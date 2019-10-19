@@ -19,11 +19,12 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import {CustomAdminModule} from '../@custom/customAdmin.module';
+import {PagesModule} from './pages/pages.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sc-home'
+        redirectTo: 'arrivedMail-sc'
     }
 ];
 
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
 
         TranslateModule.forRoot(),
-
+        BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
 
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
         SampleModule,
-        CustomAdminModule
+        CustomAdminModule,
+        PagesModule
     ],
     bootstrap   : [
         AppComponent

@@ -24,6 +24,7 @@ toolbar {
         .logo-icon {
             width: 64px;
         }
+
     }
 
     .user-button,
@@ -52,4 +53,19 @@ toolbar {
             height: 56px;
         }
     }
+
+    .title-header_arabic{
+        font-family: Pluto-Regular;
+        font-size: 20px;
+        line-height: 25px;
+        text-align: center;
+    }
+
+    .title-header_french{
+        font-family: Pluto-Regular;
+        font-size: 20px;
+        line-height: 25px;
+        text-align: center;
+    }
+
 }
