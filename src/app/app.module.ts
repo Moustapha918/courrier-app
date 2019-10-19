@@ -23,7 +23,7 @@ import {CustomAdminModule} from '../@custom/customAdmin.module';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sample'
+        redirectTo: 'sc-home'
     }
 ];
 

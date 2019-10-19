@@ -1,0 +1,15 @@
+:host {
+.sc-home-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    width: 100%;
+
+  .mat-card{
+    margin: 1em;
+    min-width: 150px;
+    min-height: 80px;
+    text-align: center;
+  }
+  }
+}

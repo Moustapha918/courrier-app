@@ -9,11 +9,8 @@
 
 <div id="main">
 
-    <!-- TOOLBAR: Above -->
-    <ng-container *ngIf="fuseConfig.layout.toolbar.position === 'above'">
         <ng-container *ngTemplateOutlet="toolbar"></ng-container>
-    </ng-container>
-    <!-- / TOOLBAR: Above -->
+
 
     <!-- NAVBAR: Top -->
     <ng-container>
@@ -21,23 +18,13 @@
     </ng-container>
     <!-- / NAVBAR: Top -->
 
-    <!-- TOOLBAR: Below -->
-    <ng-container *ngIf="fuseConfig.layout.toolbar.position === 'below'">
-        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
-    </ng-container>
-    <!-- / TOOLBAR: Below -->
 
     <div id="container-1" class="container">
 
-        <!-- NAVBAR: Left -->
-        <ng-container>
-            <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
-        </ng-container>
-        <!-- / NAVBAR: Left -->
 
         <div id="container-2" class="container">
 
-            <div id="container-3" class="container" fusePerfectScrollbar
+             <div id="container-3" class="container" fusePerfectScrollbar
                  [fusePerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
 
                 <!-- CONTENT -->
