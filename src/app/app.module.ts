@@ -19,11 +19,12 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import {CustomAdminModule} from '../@custom/customAdmin.module';
+import {MatSelectModule} from '@angular/material';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sc-home'
+        redirectTo: 'new-arrived-mail'
     }
 ];
 
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
         SampleModule,
-        CustomAdminModule
+        CustomAdminModule,
+        MatSelectModule
     ],
     bootstrap   : [
         AppComponent
