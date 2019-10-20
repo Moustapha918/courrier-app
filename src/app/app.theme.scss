@@ -1,3 +1,6 @@
+@import "src/app/pages/arrived-mail-sc/products.theme";
+
+
 // -----------------------------------------------------------------------------------------------------
 // @ Custom color maps for Fuse
 // -----------------------------------------------------------------------------------------------------
@@ -87,7 +90,9 @@ $typography: mat-typography-config(
     // Layout components
     @include chat-panel-theme($theme);
     @include toolbar-theme($theme);
+    @include e-commerce-products-theme($theme);
 }
+
 
 // -----------------------------------------------------------------------------------------------------
 // @ Define the default theme

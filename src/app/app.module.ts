@@ -20,11 +20,12 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import {CustomAdminModule} from '../@custom/customAdmin.module';
 import {MatSelectModule} from '@angular/material';
+import {PagesModule} from './pages/pages.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'new-arrived-mail'
+        redirectTo: 'sc-home'
     }
 ];
 
@@ -32,14 +33,14 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports: [
+    imports     : [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
 
         TranslateModule.forRoot(),
-
+        BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
 
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
         LayoutModule,
         SampleModule,
         CustomAdminModule,
+        PagesModule,
         MatSelectModule
     ],
     bootstrap   : [
