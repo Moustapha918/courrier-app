@@ -44,7 +44,7 @@ const routes = [
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule
-    ]
+    ],
 })
 export class CustomAdminModule
 {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
+import {InitMailService} from '../../app/services/init-mail.service';
 
 @Component({
   selector: 'app-init-mail',
@@ -20,7 +21,9 @@ export class InitMailComponent implements OnInit {
      * @param {FormBuilder} _formBuilder
      */
     constructor(
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private initMailService: InitMailService,
+
     )
     {
         // Set the private defaults
@@ -36,18 +39,22 @@ export class InitMailComponent implements OnInit {
      */
     ngOnInit(): void
     {
+        // init params: to get idEntry, idDirectory and receptionDate from
+        this.initMailService.getInitParamsFromBackend()
         // Reactive Form
         this.form = this._formBuilder.group({
-            receptionDate : [{value: '', disabled: true}, Validators.required],
-            idDirectory : [{value: '', disabled: true}, Validators.required],
-            idEntry : [{value: '', disabled: true}, Validators.required],
+            receptionDate : [{value: this.initMailService.initParams['receptionDate'],
+                disabled: true}, Validators.required],
+            idDirectory : [{value: this.initMailService.initParams['idDirectory'],
+                disabled: true}, Validators.required],
+            idEntry : [{value: this.initMailService.initParams['idEntry'],
+                disabled: true}, Validators.required],
             idReceivedDocument : ['', Validators.required],
-            dateReceivedDocument  : ['', Validators.required],
+            dateReceivedDocument  : [],
             subject  : ['', Validators.required],
             sender  : ['', Validators.required],
-            attachment : [],
+            attachments : [],
             observations : [],
-            address   : [],
             priorityDegree   : []
         });
 
@@ -81,5 +88,13 @@ export class InitMailComponent implements OnInit {
     finishVerticalStepper(): void
     {
         alert('You have finished the vertical stepper!');
+    }
+
+
+    validateArrivedMail(): void{
+
+        console.log(this.form.value);
+        // TO CHECK ??
+        // this.initMailService.saveArrivedMailToBackend(this.form.value);
     }
 }
