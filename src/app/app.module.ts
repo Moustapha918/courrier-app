@@ -19,12 +19,13 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import {CustomAdminModule} from '../@custom/customAdmin.module';
+import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'arrivedMail-sc'
+        redirectTo: 'sc-home'
     }
 ];
 
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
         LayoutModule,
         SampleModule,
         CustomAdminModule,
-        PagesModule
+        PagesModule,
+        MatSelectModule
     ],
     bootstrap   : [
         AppComponent
