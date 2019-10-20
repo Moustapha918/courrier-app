@@ -25,8 +25,9 @@ import {PagesModule} from './pages/pages.module';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sc-home'
+        redirectTo: 'arrivedMail-sc'
     }
+
 ];
 
 @NgModule({
