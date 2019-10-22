@@ -8,17 +8,28 @@ import {fuseAnimations} from '../../../@fuse/animations';
 
 
 export interface Mail {
-    object: string;
+    id: string;
     idEntry: number;
-    expediteur: number;
-    date: string;
+    idDossier: number;
+    subject: string;
+    sender: number;
+    receptionDate: string;
+    idReceivedDocument: number;
+    dateReceivedDocument: string;
+    priorityDegree: number;
+    attachment: string;
+    observations: string;
+    direction: any;
+    service: any;
+    division: any;
+    step: string;
 
 }
 
 
 const ELEMENT_DATA: Mail[] = [
-    {idEntry: 1, object: 'Hydrogen', expediteur: 1.0079, date: 'H'},
-    {idEntry: 2, object: 'Helium', expediteur: 4.0026, date: 'He'},
+/*    {idEntry: 1, subject: 'Hydrogen', sender: 1.0079, receptionDate: 'H'},
+    {idEntry: 2, subject: 'Helium', sender: 4.0026, receptionDate: 'He'},*/
 
 ];
 
@@ -34,7 +45,7 @@ export class ArrivedMailScComponent {
 
 
     // dataSource: FilesDataSource | null;
-    displayedColumns: string[] = ['idEntry', 'object', 'expediteur', 'date'];
+    displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
     dataSource = ELEMENT_DATA;
   /*  @ViewChild(MatPaginator, {static: true})
     paginator: MatPaginator;
