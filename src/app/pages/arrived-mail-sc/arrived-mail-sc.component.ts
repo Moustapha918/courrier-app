@@ -10,15 +10,15 @@ import {fuseAnimations} from '../../../@fuse/animations';
 export interface Mail {
     object: string;
     idEntry: number;
-    Expediteur: number;
+    expediteur: number;
     date: string;
 
 }
 
 
 const ELEMENT_DATA: Mail[] = [
-    {idEntry: 1, object: 'Hydrogen', Expediteur: 1.0079, date: 'H'},
-    {idEntry: 2, object: 'Helium', Expediteur: 4.0026, date: 'He'},
+    {idEntry: 1, object: 'Hydrogen', expediteur: 1.0079, date: 'H'},
+    {idEntry: 2, object: 'Helium', expediteur: 4.0026, date: 'He'},
 
 ];
 
@@ -34,7 +34,7 @@ export class ArrivedMailScComponent {
 
 
     // dataSource: FilesDataSource | null;
-    displayedColumns: string[] = ['idEntry', 'object', 'Expediteur', 'date'];
+    displayedColumns: string[] = ['idEntry', 'object', 'expediteur', 'date'];
     dataSource = ELEMENT_DATA;
   /*  @ViewChild(MatPaginator, {static: true})
     paginator: MatPaginator;

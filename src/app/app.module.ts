@@ -26,8 +26,9 @@ import {InitMailService} from './services/init-mail.service';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'sc-home'
+        redirectTo: 'arrivedMail-sc'
     }
+
 ];
 
 @NgModule({
