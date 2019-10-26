@@ -11,7 +11,7 @@
 
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Date de reception du courrier </mat-label>
-                    <input matInput formControlName="receptionDate">
+                    <input matInput formControlName="receptionDate" [attr.disabled]="isDisabled == true ? true : null">
                     <mat-icon matSuffix class="disabled-text">today</mat-icon>
                 </mat-form-field>
             </div>
@@ -19,13 +19,13 @@
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
-                    <mat-label>Numéro du dossier (auto-generated)</mat-label>
+                    <mat-label>Numéro du dossier </mat-label>
                     <input matInput formControlName="idDirectory">
                     <mat-icon matSuffix class="disabled-text">folder</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-                    <mat-label>Numéro d'entré {{autoIdEntry}}</mat-label>
+                    <mat-label>Numéro d'entré </mat-label>
                     <input matInput formControlName="idEntry">
                     <mat-icon matSuffix class="disabled-text">flag</mat-icon>
                 </mat-form-field>
@@ -86,13 +86,13 @@
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Dégré d'urgence</mat-label>
                     <mat-select formControlName="priorityDegree">
-                        <mat-option [value]="'1'">
+                        <mat-option [value]="'Normal'">
                             Normal
                         </mat-option>
-                        <mat-option [value]="'2'">
+                        <mat-option [value]="'Urgent'">
                             Urgent
                         </mat-option>
-                        <mat-option [value]="'3'">
+                        <mat-option [value]="'Trés urgent'">
                             Trés urgent
                         </mat-option>
                     </mat-select>
