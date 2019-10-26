@@ -10,7 +10,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                 <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Date de reception du courrier (auto-generated)</mat-label>
+                    <mat-label>Date de reception du courrier </mat-label>
                     <input matInput formControlName="receptionDate">
                     <mat-icon matSuffix class="disabled-text">today</mat-icon>
                 </mat-form-field>
@@ -25,7 +25,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-                    <mat-label>Numéro d'entré(auto-generated)</mat-label>
+                    <mat-label>Numéro d'entré {{autoIdEntry}}</mat-label>
                     <input matInput formControlName="idEntry">
                     <mat-icon matSuffix class="disabled-text">flag</mat-icon>
                 </mat-form-field>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {InitMailService} from '../../app/services/init-mail.service';
+import {AutoGenParamsModel} from '../../app/models/auto-gen-params.model';
 
 @Component({
   selector: 'app-init-mail',
@@ -11,6 +12,9 @@ import {InitMailService} from '../../app/services/init-mail.service';
 export class InitMailComponent implements OnInit {
 
     form: FormGroup;
+    autoGenParams: AutoGenParamsModel;
+    autoIdEntry: string;
+
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -23,6 +27,7 @@ export class InitMailComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
+
 
     )
     {
@@ -40,22 +45,25 @@ export class InitMailComponent implements OnInit {
     ngOnInit(): void
     {
         // init params: to get idEntry, idDirectory and receptionDate from
-        this.initMailService.getInitParamsFromBackend()
+        // this.initMailService.getInitParamsFromBackend()
+
+        // this.initMailService.saveAutoGenParamsToFirebase();
+        this.initMailService.getAutoGenParamsFromFirebase(this.initMailService.urlFirebase);
+        this.autoGenParams = this.initMailService.autoGenParams2;
+        // this.autoIdEntry = this.autoGenParams.idEntry; // getAutoIdEntry(); // 'AR2019001'; // this.autoGenParams['idEntry'];
+        console.log(this.autoGenParams);
         // Reactive Form
         this.form = this._formBuilder.group({
-            receptionDate : [{value: this.initMailService.initParams['receptionDate'],
-                disabled: true}, Validators.required],
-            idDirectory : [{value: this.initMailService.initParams['idDirectory'],
-                disabled: true}, Validators.required],
-            idEntry : [{value: this.initMailService.initParams['idEntry'],
-                disabled: true}, Validators.required],
+            receptionDate :  [{value: null, disabled: true }],
+            idDirectory :  [{value: null, disabled: true }],
+            idEntry :  [{value: null, disabled: true }],
             idReceivedDocument : ['', Validators.required],
             dateReceivedDocument  : [],
             subject  : ['', Validators.required],
             sender  : ['', Validators.required],
             attachments : [],
             observations : [],
-            priorityDegree   : []
+            priorityDegree : []
         });
 
     }
