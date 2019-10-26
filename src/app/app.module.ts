@@ -21,6 +21,7 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {CustomAdminModule} from '../@custom/customAdmin.module';
 import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
+import {InitMailService} from './services/init-mail.service';
 
 const appRoutes: Routes = [
     {
@@ -61,6 +62,9 @@ const appRoutes: Routes = [
         CustomAdminModule,
         PagesModule,
         MatSelectModule
+    ],
+    providers   : [
+        InitMailService
     ],
     bootstrap   : [
         AppComponent
