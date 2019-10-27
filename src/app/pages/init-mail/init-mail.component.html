@@ -100,8 +100,11 @@
                 </mat-form-field>
             </div>
 
-            <button type="submit" (click)="validateArrivedMail()" [disabled]="form.invalid">VALIDER</button>
-
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button (click)="validateArrivedMail()" [disabled]="form.invalid" mat-raised-button type="button" color="accent">
+                    Valider
+                </button>
+            </div>
         </form>
 
     </div>

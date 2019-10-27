@@ -35,7 +35,7 @@
 
             <!-- ADD BUTTON -->
             <button mat-raised-button
-                    [routerLink]="'/src/@custom/new-arrived-mail'">
+                    [routerLink]="'/new-arrived-mail'">
                     <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
                 <span>Ajouter un courrier</span>
             </button>
@@ -61,18 +61,6 @@
                     </mat-cell>
                 </ng-container>
 
-                <!--&lt;!&ndash; Image Column &ndash;&gt;
-                <ng-container matColumnDef="image">
-                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                    <mat-cell *matCellDef="let product">
-                        <img class="product-image"
-                             *ngIf="product.featuredImageId" [alt]="product.name"
-                             [src]="product.images[product.featuredImageId].url"/>
-                        <img *ngIf="!product.featuredImageId"
-                             [src]="'assets/images/ecommerce/product-image-placeholder.png'">
-                    </mat-cell>
-                </ng-container>-->
-
                 <!-- Name Column -->
                 <ng-container matColumnDef="subject">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Objet</mat-header-cell>
@@ -97,51 +85,7 @@
                     </mat-cell>
                 </ng-container>
 
-                <!-- Category Column -->
-                <!--<ng-container matColumnDef="category">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Category</mat-header-cell>
-                    <mat-cell *matCellDef="let product" fxHide fxShow.gt-md>
-                        <p class="category text-truncate">
-                            {{product.categories[0]}}
-                        </p>
-                    </mat-cell>
-                </ng-container>-->
-
-                <!-- Price Column -->
-                <!--<ng-container matColumnDef="price">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Price</mat-header-cell>
-                    <mat-cell *matCellDef="let product" fxHide fxShow.gt-xs>
-                        &lt;!&ndash;<p class="price text-truncate">
-                            {{product.priceTaxIncl | currency:'USD':'symbol'}}
-                        </p>&ndash;&gt;
-                    </mat-cell>
-                </ng-container>
-
-                &lt;!&ndash; Quantity Column &ndash;&gt;
-                <ng-container matColumnDef="quantity">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Quantity</mat-header-cell>
-                    <mat-cell *matCellDef="let product" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate"
-                              [ngClass]="{'red-500':product.quantity <= 5, 'amber-500':product.quantity > 5 && product.quantity <= 25,'green-600':product.quantity > 25}">
-                        </span>
-                        <span>
-                            {{product.quantity}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container>
-
-                &lt;!&ndash; Active Column &ndash;&gt;
-                <ng-container matColumnDef="active">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Active</mat-header-cell>
-                    <mat-cell *matCellDef="let product" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="product.active" class="active-icon green-600 s-16">check</mat-icon>
-                        <mat-icon *ngIf="!product.active" class="active-icon red-500 s-16">close</mat-icon>
-                    </mat-cell>
-                </ng-container>
--->
-                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+                              <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
                 <mat-row *matRowDef="let mail; columns: displayedColumns;"
                          class="product"
