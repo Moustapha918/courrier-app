@@ -15,12 +15,12 @@
             <!-- APP TITLE -->
             <div class="logo mb-24 mb-md-0"
                  fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                <!--<mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
                     shopping_basket
                 </mat-icon>
                 <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     Products
-                </span>
+                </span>-->
             </div>
             <!-- / APP TITLE -->
 
@@ -28,16 +28,16 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input #filter placeholder="Search for a product">
+                    <input #filter placeholder="Chercher un courrier">
                 </div>
             </div>
             <!-- / SEARCH -->
 
             <!-- ADD BUTTON -->
             <button mat-raised-button
-                    [routerLink]="'/apps/e-commerce/products/new'">
+                    [routerLink]="'/src/@custom/new-arrived-mail'">
                     <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
-                <span>ADD NEW PRODUCT</span>
+                <span>Ajouter un courrier</span>
             </button>
             <!-- / ADD BUTTON -->
 
@@ -47,21 +47,21 @@
         <!-- CONTENT CARD -->
         <div class="content-card">
 
-  <!--          <mat-table class="products-table"
-                       #table [dataSource]="dataSource">
-                      &lt;!&ndash; matSort
+            <mat-table class="products-table"
+                       #table [dataSource]="arrivedMails">
+                      <!-- matSort
                        [@animateStagger]="{value:'50'}"
-                       fusePerfectScrollbar>&ndash;&gt;
+                       fusePerfectScrollbar>-->
 
-                &lt;!&ndash; ID Column &ndash;&gt;
+                <!-- ID Column -->
                 <ng-container matColumnDef="idEntry">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>IdEntry</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.idEntry}}</p>
                     </mat-cell>
                 </ng-container>
 
-                &lt;!&ndash;&lt;!&ndash; Image Column &ndash;&gt;
+                <!--&lt;!&ndash; Image Column &ndash;&gt;
                 <ng-container matColumnDef="image">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let product">
@@ -71,44 +71,44 @@
                         <img *ngIf="!product.featuredImageId"
                              [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                     </mat-cell>
-                </ng-container>&ndash;&gt;
+                </ng-container>-->
 
-                &lt;!&ndash; Name Column &ndash;&gt;
-                <ng-container matColumnDef="Object">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Object</mat-header-cell>
+                <!-- Name Column -->
+                <ng-container matColumnDef="subject">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Objet</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.object}}</p>
+                        <p class="text-truncate">{{Mail.subject}}</p>
                     </mat-cell>
                 </ng-container>
 
-                &lt;!&ndash; expediteur &ndash;&gt;
-                <ng-container matColumnDef="Expediteur">
+                <!-- expediteur -->
+                <ng-container matColumnDef="sender">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Expediteur</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.Expediteur}}</p>
+                        <p class="text-truncate">{{Mail.sender}}</p>
                     </mat-cell>
                 </ng-container>
 
-                &lt;!&ndash; Date &ndash;&gt;
-                <ng-container matColumnDef="Date">
+                <!-- Date -->
+                <ng-container matColumnDef="receptionDate">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.Date}}</p>
+                        <p class="text-truncate">{{Mail.receptionDate}}</p>
                     </mat-cell>
                 </ng-container>
 
-                &lt;!&ndash; Category Column &ndash;&gt;
-                &lt;!&ndash;<ng-container matColumnDef="category">
+                <!-- Category Column -->
+                <!--<ng-container matColumnDef="category">
                     <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Category</mat-header-cell>
                     <mat-cell *matCellDef="let product" fxHide fxShow.gt-md>
                         <p class="category text-truncate">
                             {{product.categories[0]}}
                         </p>
                     </mat-cell>
-                </ng-container>&ndash;&gt;
+                </ng-container>-->
 
-                &lt;!&ndash; Price Column &ndash;&gt;
-                &lt;!&ndash;<ng-container matColumnDef="price">
+                <!-- Price Column -->
+                <!--<ng-container matColumnDef="price">
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Price</mat-header-cell>
                     <mat-cell *matCellDef="let product" fxHide fxShow.gt-xs>
                         &lt;!&ndash;<p class="price text-truncate">
@@ -140,16 +140,16 @@
                         <mat-icon *ngIf="!product.active" class="active-icon red-500 s-16">close</mat-icon>
                     </mat-cell>
                 </ng-container>
-
+-->
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
-                <mat-row *matRowDef="let product; columns: displayedColumns;"
+                <mat-row *matRowDef="let mail; columns: displayedColumns;"
                          class="product"
-                         matRipple
-                         [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
-                </mat-row>&ndash;&gt;
+                         matRipple>
+                      <!--   [routerLink]="'/apps/e-commerce/products/'+mail.idEntry + '/'+product.handle">-->
+                </mat-row>
 
-            </mat-table>-->
+            </mat-table>
 
             <mat-paginator #paginator
 
