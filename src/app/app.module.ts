@@ -24,9 +24,13 @@ import {InitMailService} from './services/init-mail.service';
 
 const appRoutes: Routes = [
     {
+        path        : 'ui',
+        loadChildren: './main/ui/ui.module#UIModule'
+    },
+    {
         path      : '**',
         redirectTo: 'sc-home'
-    }
+    },
 
 ];
 
