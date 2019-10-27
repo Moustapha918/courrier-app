@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {InitMailService} from '../../app/services/init-mail.service';
 import {AutoGenParamsModel} from '../../app/models/auto-gen-params.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-init-mail',
@@ -12,27 +13,16 @@ import {AutoGenParamsModel} from '../../app/models/auto-gen-params.model';
 export class InitMailComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
-    autoGenParams: AutoGenParamsModel;
-    autoIdEntry: string;
-    isDisabled = true;
 
 
-    // Private
     private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {FormBuilder} _formBuilder
-     */
     constructor(
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
-
-
+        private router: Router
     )
     {
-        // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
 
@@ -74,9 +64,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 console.log('Error ! : ' + error);
             }
         );
-
-
-
     }
 
     /**
@@ -89,27 +76,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Finish the horizontal stepper
-     */
-    finishHorizontalStepper(): void
-    {
-        alert('You have finished the horizontal stepper!');
-    }
-
-    /**
-     * Finish the vertical stepper
-     */
-    finishVerticalStepper(): void
-    {
-        alert('You have finished the vertical stepper!');
-    }
-
-
     validateArrivedMail(): void{
 
         console.log(' fom', this.form);
@@ -117,14 +83,12 @@ export class InitMailComponent implements OnInit, OnDestroy {
         this.initMailService.sendArrivedMailFormToBackend(this.form.value)
             .subscribe(
                 () => {
-                     console.log('form sent to backend');
+                   this.router.navigate(['arrivedMail-sc']);
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
                 }
             );
 
-        // TO CHECK ??
-        // this.initMailService.saveArrivedMailToBackend(this.form.value);
     }
 }

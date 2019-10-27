@@ -26,7 +26,7 @@ import {InitMailService} from './services/init-mail.service';
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'arrivedMail-sc'
+        redirectTo: 'sc-home'
     }
 
 ];
