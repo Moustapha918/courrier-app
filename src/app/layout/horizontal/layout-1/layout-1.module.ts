@@ -11,7 +11,6 @@ import { QuickPanelModule } from 'app/layout/components/quick-panel/quick-panel.
 import { ToolbarModule } from 'app/layout/components/toolbar/toolbar.module';
 
 import { HorizontalLayout1Component } from 'app/layout/horizontal/layout-1/layout-1.component';
-import {CustomAdminModule} from '../../../../@custom/customAdmin.module';
 
 @NgModule({
     declarations: [
@@ -28,8 +27,7 @@ import {CustomAdminModule} from '../../../../@custom/customAdmin.module';
         FooterModule,
         NavbarModule,
         QuickPanelModule,
-        ToolbarModule,
-        CustomAdminModule
+        ToolbarModule
     ],
     exports     : [
         HorizontalLayout1Component

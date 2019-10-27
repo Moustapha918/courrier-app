@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {InitMailService} from '../../app/services/init-mail.service';
-import {AutoGenParamsModel} from '../../app/models/auto-gen-params.model';
+import {InitMailService} from '../../services/init-mail.service';
+import {AutoGenParamsModel} from '../../models/auto-gen-params.model';
 import {Router} from '@angular/router';
 
 @Component({
