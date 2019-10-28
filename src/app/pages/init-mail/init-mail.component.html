@@ -11,7 +11,7 @@
 
                 <mat-form-field appearance="outline" fxFlex="100">
                     <mat-label>Date de reception du courrier </mat-label>
-                    <input matInput formControlName="receptionDate" [attr.disabled]="isDisabled == true ? true : null">
+                    <input matInput formControlName="receptionDate">
                     <mat-icon matSuffix class="disabled-text">today</mat-icon>
                 </mat-form-field>
             </div>
@@ -99,6 +99,18 @@
                     <mat-icon matSuffix class="secondary-text">format_list_numbered</mat-icon>
                 </mat-form-field>
             </div>
+
+<!--            <form method="post" enctype="multipart/form-data">-->
+                <div>
+                    <label for="file">Choisir un fichier </label>
+                    <input type="file" id="file" name="file" accept=".pdf, .jpg, .jpeg, .png">
+                    <button (click)="uploadScan()" mat-raised-button type="button" color="accent">
+                        Charger le fichier
+
+                    </button>
+                </div>
+
+<!--            </form>-->
 
             <div fxLayout="row" fxLayoutAlign="center center">
                 <button (click)="validateArrivedMail()" [disabled]="form.invalid" mat-raised-button type="button" color="accent">

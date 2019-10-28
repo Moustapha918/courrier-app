@@ -5,7 +5,7 @@ import {takeUntil} from 'rxjs/operators';
 import {FuseUtils} from '../../../@fuse/utils';
 import {Subject} from 'rxjs';
 import {fuseAnimations} from '../../../@fuse/animations';
-import {ArrivedMailModelModel} from '../../models/arrived-mail.model';
+import {ArrivedMailModel} from '../../models/arrived-mail.model';
 import {InitMailService} from '../../services/init-mail.service';
 
 
@@ -23,7 +23,7 @@ import {InitMailService} from '../../services/init-mail.service';
 export class ArrivedMailScComponent {
 
 
-    arrivedMails: ArrivedMailModelModel[];
+    arrivedMails: ArrivedMailModel[];
     displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
 
     constructor(private initMailService: InitMailService)

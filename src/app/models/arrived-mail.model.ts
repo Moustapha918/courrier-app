@@ -1,5 +1,5 @@
 
-export class ArrivedMailModelModel{
+export class ArrivedMailModel{
     idEntry: string;
     idDirectory: string;
     subject: string;
