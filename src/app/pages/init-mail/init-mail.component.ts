@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy,  ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {InitMailService} from '../../services/init-mail.service';
 import {Router} from '@angular/router';
+import {FileUploader} from 'ng2-file-upload';
 
 @Component({
     selector: 'app-init-mail',
@@ -11,7 +12,14 @@ import {Router} from '@angular/router';
 })
 export class InitMailComponent implements OnInit, OnDestroy {
 
+    // @ts-ignore
+    @ViewChild('fileInput') fileInput: ElementRef;
+
+    uploader: FileUploader;
+    isDropOver: boolean;
+
     form: FormGroup;
+    scanFile: any;
 
 
     private _unsubscribeAll: Subject<any>;
@@ -67,6 +75,26 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     console.log('Error ! : ' + error);
                 }
             );
+
+        // upload file using FileUploader HTML5
+        const headers = [{name: 'Accept', value: 'application/json'}];
+        this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI, autoUpload: true, headers: headers});
+        console.log(this.uploader.response);
+        // this.uploader.onCompleteAll = () => alert('Fichier chargé avec succès !');
+    }
+
+    ngAfterViewInit(){
+        this.uploader.onAfterAddingFile = (item => {
+            item.withCredentials = false;
+        });
+    }
+
+    fileOverAnother(e: any): void {
+        this.isDropOver = e;
+    }
+
+    fileClicked(): void {
+        this.fileInput.nativeElement.click();
     }
 
 
@@ -89,8 +117,37 @@ export class InitMailComponent implements OnInit, OnDestroy {
              );
 
     }
+    //
 
-    uploadScan(): void{
+    sendScanFile(): void {
+        // this.scanFile.name =  this.form.controls['idEntry'].value + '_' +  this.scanFile.name;
+        this.initMailService.sendFileToBackend(this.scanFile)
+            .subscribe(
+                () => {
+                    // this.router.navigate([']);
+                    console.log('file sent to backend');
+                    console.log(this.scanFile);
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+    }
+    //
+    // onSelectFile(event) {
+    //     if(event.target.files && event.target.files.length > 0) {
+    //         this.file = event.target.files[0];
+    //         this.fileInformation = null;
+    //     }
+    // }
+
+    uploadScan(fileEvent: any): void{
+        this.scanFile = fileEvent.target.files[0];
+        console.log(this.form.controls['idEntry'].value + '_' + this.scanFile.name);
+        console.log(this.scanFile);
+    }
+
+    selectFile(): void{
         console.log('file upload');
     }
 }

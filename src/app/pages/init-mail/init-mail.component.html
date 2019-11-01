@@ -101,16 +101,44 @@
             </div>
 
 <!--            <form method="post" enctype="multipart/form-data">-->
-                <div>
-                    <label for="file">Choisir un fichier </label>
-                    <input type="file" id="file" name="file" accept=".pdf, .jpg, .jpeg, .png">
-                    <button (click)="uploadScan()" mat-raised-button type="button" color="accent">
-                        Charger le fichier
+<!--            <div>-->
+<!--                <label for="file">Choisir un fichier </label>-->
+<!--                <input mat-raised-button type="file" id="file" name="file" accept=".pdf, .jpg, .jpeg, .png">-->
+<!--                <button (click)="uploadScan()" mat-raised-button type="button" color="accent">-->
+<!--                    Charger le fichier-->
 
-                    </button>
+<!--                </button>-->
+<!--            </div>-->
+
+            <div>
+                <input #fileInput type="file" ng2FileSelect [uploader]="uploader" accept=".pdf, .jpg, .jpeg, .png"/>
+                <div class="drop-box" ng2FileDrop
+                     [ngClass]="{'dragover': isDropOver}"
+                     [uploader]="uploader"
+                     (fileOver)="fileOverAnother($event)"
+                     (click)="fileClicked()">
+                    <span class="drag-in-title"> <h3> Importer ou glisser un fichier ici </h3>
+                     <mat-icon> attach_file </mat-icon>
+                    </span>
+                    <span class="drag-over-title">Déposer le fichier</span>
                 </div>
+            </div>
 
-<!--            </form>-->
+
+<!--            <mat-card class="example-card" style="margin: 3em; background-color: gainsboro">-->
+<!--                <mat-card-header>-->
+<!--                    <h2> Scan du document</h2>-->
+<!--                </mat-card-header>-->
+<!--                <mat-card-content>-->
+<!--                        <input type="file" id="scanFile" (change)="uploadScan($event)" accept=".pdf, .jpg, .jpeg, .png">-->
+<!--                        <button mat-button (click)="sendScanFile()" mat-raised-button type="button" color="accent">Envoyer </button>-->
+<!--                </mat-card-content>-->
+<!--            </mat-card>-->
+<!--            <input #scanFile hidden="true" type="file" onclick="this.value=null" (change)="uploadScan($event)" accept=".pdf, .jpg, .jpeg, .png"/>-->
+<!--            <button mat-flat-button color="primary" (click)="scanFile.click()"> Choisir un fichier</button>-->
+
+
+            <!--            </form>-->
 
             <div fxLayout="row" fxLayoutAlign="center center">
                 <button (click)="validateArrivedMail()" [disabled]="form.invalid" mat-raised-button type="button" color="accent">
