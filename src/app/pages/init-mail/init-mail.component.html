@@ -110,14 +110,18 @@
 <!--                </button>-->
 <!--            </div>-->
 
+
             <div>
-                <input #fileInput type="file" ng2FileSelect [uploader]="uploader" accept=".pdf, .jpg, .jpeg, .png"/>
+                <input #fileInput type="file" ng2FileSelect [uploader]="uploader"
+                       accept=".pdf, .jpg, .jpeg, .png" id="scanFile" />
                 <div class="drop-box" ng2FileDrop
                      [ngClass]="{'dragover': isDropOver}"
                      [uploader]="uploader"
                      (fileOver)="fileOverAnother($event)"
                      (click)="fileClicked()">
-                    <span class="drag-in-title"> <h3> Importer ou glisser un fichier ici </h3>
+                    <span class="drag-in-title"> <h3> {{scanFileName || 'Importer ou glisser un fichier ici '}}</h3>
+
+
                      <mat-icon> attach_file </mat-icon>
                     </span>
                     <span class="drag-over-title">Déposer le fichier</span>
@@ -125,15 +129,25 @@
             </div>
 
 
-<!--            <mat-card class="example-card" style="margin: 3em; background-color: gainsboro">-->
+<!--            <mat-card class="mat-card card-upload" >-->
 <!--                <mat-card-header>-->
-<!--                    <h2> Scan du document</h2>-->
+<!--                    <h3> Scan du document</h3>-->
 <!--                </mat-card-header>-->
 <!--                <mat-card-content>-->
-<!--                        <input type="file" id="scanFile" (change)="uploadScan($event)" accept=".pdf, .jpg, .jpeg, .png">-->
+<!--                        <input type="file" id="scanFile" (change)="uploadScan($event)" accept=".pdf, .jpg, .jpeg, .png"/>-->
 <!--                        <button mat-button (click)="sendScanFile()" mat-raised-button type="button" color="accent">Envoyer </button>-->
 <!--                </mat-card-content>-->
 <!--            </mat-card>-->
+
+<!--            <div class="container">-->
+<!--                <input type="file" name="scanFile" ng2FileSelect [uploader]="uploader" />-->
+<!--                <button type="button" class="btn btn-success btn-s"-->
+<!--                        (click)="uploader.uploadAll()"-->
+<!--                        [disabled]="!uploader.getNotUploadedItems().length" >-->
+<!--                    Charger le fichier-->
+<!--                </button>-->
+<!--            </div>-->
+
 <!--            <input #scanFile hidden="true" type="file" onclick="this.value=null" (change)="uploadScan($event)" accept=".pdf, .jpg, .jpeg, .png"/>-->
 <!--            <button mat-flat-button color="primary" (click)="scanFile.click()"> Choisir un fichier</button>-->
 

@@ -20,7 +20,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
     scanFile: any;
-
+    scanFileName: string;
 
     private _unsubscribeAll: Subject<any>;
 
@@ -75,27 +75,38 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     console.log('Error ! : ' + error);
                 }
             );
-
-        // upload file using FileUploader HTML5
-        const headers = [{name: 'Accept', value: 'application/json'}];
-        this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI, autoUpload: true, headers: headers});
-        console.log(this.uploader.response);
-        // this.uploader.onCompleteAll = () => alert('Fichier chargé avec succès !');
     }
 
-    ngAfterViewInit(){
-        this.uploader.onAfterAddingFile = (item => {
-            item.withCredentials = false;
-        });
-    }
+
 
     fileOverAnother(e: any): void {
+        console.log(e);
+
+        console.log(this.fileInput.nativeElement.files);
         this.isDropOver = e;
     }
 
     fileClicked(): void {
         this.fileInput.nativeElement.click();
+
+        const headers = [{name: 'Accept', value: 'application/json'}];
+        this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
+                + this.form.controls['idEntry'].value , autoUpload: true, headers: headers});
+
+        this.uploader.onAfterAddingFile = (item => { // to allow cross o
+            item.withCredentials = false;
+        });
+
+        console.log(this.uploader.response);
+        this.uploader.onCompleteAll = () =>  {
+
+            this.scanFileName = this.fileInput.nativeElement.files[0].name;
+
+            console.log(this.fileInput.nativeElement.files[0].name);
+        };
+
     }
+
 
 
     ngOnDestroy(): void {
