@@ -12,43 +12,14 @@ form {
 }
 
 
-
-.card-upload {
-   // cursor: pointer;
-   // background: #03A9F4;
-   //border: 2px dashed #19a0f8;
-   // text-align: center;
-    margin: 25px;
-}
-////start here for upload fie
-.drop-box {
+.upload-box {  // TO DO: manage this
     cursor: pointer;
     background: rgba(21, 153, 225, 0);
-   border: 2px dashed #19a0f8;
+    border: 2px dashed #19a0f8;
     text-align: center;
     margin: 25px;
 }
 
-.drag-over-title {
-    display: none;
-}
-
-.drop-box.dragover {
-    opacity: 0.6;
-}
-
-.drop-box.dragover .drag-over-title {
-    display: block;
-}
-
-.drop-box.dragover .drag-in-title {
-    display: none;
-}
-
-input[type='file'] {
-    display: none;
-}
-//end here for upload fie
 
 .horizontal-stepper-wrapper,
 .vertical-stepper-wrapper {

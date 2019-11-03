@@ -10,6 +10,7 @@ export class ArrivedMailModel{
     priorityDegree: string;
     attachments: string;
     observations: string;
+    idScanFile: string;
 }
 
 

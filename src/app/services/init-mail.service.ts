@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {AutoGenParamsModel} from '../models/auto-gen-params.model';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {ArrivedMailModel} from '../models/arrived-mail.model';
 
@@ -31,10 +31,6 @@ export class InitMailService {
             .get<ArrivedMailModel[]>(this.getAllArrivedMAilsURI);
     }
 
-    sendFileToBackend(scanFile): Observable<any> {
-        return this.httpClient
-            .post<any>(this.uploadScanFileURI, scanFile);
-    }
 }
 
 
