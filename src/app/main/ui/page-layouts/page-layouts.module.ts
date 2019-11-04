@@ -32,6 +32,7 @@ import { SimpleRightSidebar4Component } from 'app/main/ui/page-layouts/simple/ri
 import { BlankComponent } from 'app/main/ui/page-layouts/blank/blank.component';
 
 import { FuseSidebarModule } from '@fuse/components';
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 const routes: Routes = [
     // Carded
@@ -157,7 +158,7 @@ const routes: Routes = [
         SimpleRightSidebar4Component,
         BlankComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
 
         MatButtonModule,
@@ -166,7 +167,8 @@ const routes: Routes = [
 
         FuseSidebarModule,
         FuseSharedModule,
-        FuseDemoModule
+        FuseDemoModule,
+        MatFormFieldModule
     ]
 })
 export class UIPageLayoutsModule
