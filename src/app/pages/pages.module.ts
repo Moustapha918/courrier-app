@@ -14,6 +14,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {MatCardModule, MatDatepickerModule, MatInputModule, MatSelectModule, MatStepperModule} from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {FileUploadModule} from "ng2-file-upload";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const routes = [
     {
@@ -56,7 +58,9 @@ const routes = [
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        FileUploadModule,
+        MatProgressBarModule
     ]
 })
 export class PagesModule
