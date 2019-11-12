@@ -14,6 +14,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {MatCardModule, MatDatepickerModule, MatInputModule, MatSelectModule, MatStepperModule} from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {MatSortModule} from "@angular/material/sort";
 
 const routes = [
     {
@@ -56,7 +57,8 @@ const routes = [
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        MatSortModule
     ]
 })
 export class PagesModule

@@ -19,9 +19,15 @@ export class FuseDemoSidebarComponent
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnInit(): void {
         this.form = this._formBuilder.group({
+            receptionDate: [
+                {
+                    value: '',
+                    disabled: true
+                }, Validators.required
+            ],
             idDirectory: [
                 {
-                    value: 'acd',
+                    value: '',
                     disabled: true
                 }, Validators.required
             ],
@@ -29,9 +35,14 @@ export class FuseDemoSidebarComponent
                 value: '',
                 disabled: true
             }, Validators.required
-            ]
-
-
+            ],
+            idReceivedDocument: [{value: '', disabled: true}, Validators.required],
+            dateReceivedDocument: [],
+            subject: [{value: '', disabled: true}, Validators.required],
+            sender: ['', Validators.required],
+            attachments: [],
+            observations: [],
+            priorityDegree: []
         });
     }
 
