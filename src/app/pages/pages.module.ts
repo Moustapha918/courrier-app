@@ -12,13 +12,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
-import {MatCardModule, MatDatepickerModule, MatInputModule, MatSelectModule, MatStepperModule} from '@angular/material';
+import {
+    MatCardModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatStepperModule
+} from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {InitMailService} from '../services/init-mail.service';
 
 const routes = [
     {
         path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
     }, {
         path     : 'sc-home',
         component: ScHomeComponent
@@ -56,7 +67,8 @@ const routes = [
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        MatSortModule
     ]
 })
 export class PagesModule
