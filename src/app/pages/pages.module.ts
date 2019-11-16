@@ -7,7 +7,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -21,8 +20,8 @@ import {
     MatStepperModule
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {FileUploadModule} from "ng2-file-upload";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {FileUploadModule} from 'ng2-file-upload';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 
 const routes = [
