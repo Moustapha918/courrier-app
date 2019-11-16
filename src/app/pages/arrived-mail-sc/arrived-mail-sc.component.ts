@@ -5,7 +5,7 @@ import {debounceTime, distinctUntilChanged, map, takeUntil} from 'rxjs/operators
 import {FuseUtils} from '../../../@fuse/utils';
 import {BehaviorSubject, fromEvent, merge, Observable, Subject} from 'rxjs';
 import {fuseAnimations} from '../../../@fuse/animations';
-import {ArrivedMailModelModel} from '../../models/arrived-mail.model';
+import {ArrivedMailModel} from '../../models/arrived-mail.model';
 import {InitMailService} from '../../services/init-mail.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {DataSource} from '@angular/cdk/table';

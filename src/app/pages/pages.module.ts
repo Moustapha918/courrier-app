@@ -21,6 +21,8 @@ import {
     MatStepperModule
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {FileUploadModule} from "ng2-file-upload";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {InitMailService} from '../services/init-mail.service';
 
 const routes = [
@@ -68,7 +70,10 @@ const routes = [
         MatStepperModule,
         MatDatepickerModule,
         AngularSvgIconModule,
-        MatSortModule
+        FileUploadModule,
+        MatProgressBarModule,
+        AngularSvgIconModule,
+        MatSortModule,
     ]
 })
 export class PagesModule
