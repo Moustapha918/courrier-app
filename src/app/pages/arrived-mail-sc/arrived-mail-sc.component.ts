@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {map, takeUntil} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, takeUntil} from 'rxjs/operators';
 import {FuseUtils} from '../../../@fuse/utils';
-import {BehaviorSubject, merge, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, fromEvent, merge, Observable, Subject} from 'rxjs';
 import {fuseAnimations} from '../../../@fuse/animations';
 import {ArrivedMailModelModel} from '../../models/arrived-mail.model';
 import {InitMailService} from '../../services/init-mail.service';
@@ -17,7 +17,7 @@ import {DataSource} from '@angular/cdk/table';
     animations   : fuseAnimations,
     encapsulation: ViewEncapsulation.None
 })
-export class ArrivedMailScComponent {
+export class ArrivedMailScComponent implements OnInit{
 
     dataSource: FilesDataSource | null;
     displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
@@ -33,28 +33,29 @@ export class ArrivedMailScComponent {
 
     constructor(private initMailService: InitMailService)
     {
-
     }
-
-
-    /**
-     * On init
-     */
-
-    // tslint:disable-next-line:use-lifecycle-interface
     ngOnInit(): void{
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
             console.log(data);
         });
-
-
-
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
+
+        fromEvent(this.filter.nativeElement, 'keyup')
+            .pipe(
+                debounceTime(150),
+                distinctUntilChanged()
+            )
+            .subscribe(() => {
+                if ( !this.dataSource )
+                {
+                    return;
+                }
+
+                this.dataSource.filter = this.filter.nativeElement.value;
+            });
     }
 }
-
-
 
 export class FilesDataSource extends DataSource<any>
 {
