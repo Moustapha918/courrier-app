@@ -37,12 +37,12 @@ export class FuseDemoSidebarComponent
             }, Validators.required
             ],
             idReceivedDocument: [{value: '', disabled: true}, Validators.required],
-            dateReceivedDocument: [],
+            dateReceivedDocument: [{value: '', disabled: true}, Validators.required],
             subject: [{value: '', disabled: true}, Validators.required],
-            sender: ['', Validators.required],
-            attachments: [],
-            observations: [],
-            priorityDegree: []
+            sender: [{value: '', disabled: true}, Validators.required],
+            attachments: [{value: '', disabled: true}, Validators.required],
+            observations: [{value: '', disabled: true}, Validators.required],
+            priorityDegree: [{value: '', disabled: true}, Validators.required]
         });
     }
 

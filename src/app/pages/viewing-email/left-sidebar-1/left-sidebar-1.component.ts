@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import {ArrivedMailModelModel} from '../../../../../models/arrived-mail.model';
+import {ArrivedMailModelModel} from '../../../models/arrived-mail.model';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 export class CardedLeftSidebar1Component
 {
 
-    test = 'test';
+    /*test = 'test';
     arrivedMail = new ArrivedMailModelModel('AR2019001',
         'DOSS001',
         'objet 1',
@@ -22,7 +22,7 @@ export class CardedLeftSidebar1Component
         '2019-10-24T22:00:00.000Z',
         'Trés urgent',
         'piéce',
-        'observation');
+        'observation');*/
     form: FormGroup;
 
 
