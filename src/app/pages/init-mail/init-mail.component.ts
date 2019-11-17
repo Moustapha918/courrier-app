@@ -19,7 +19,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
     scanFileName: string;
-    uploadFileMessage: string
+    uploadFileMessage: string;
 
 
     private _unsubscribeAll: Subject<any>;
