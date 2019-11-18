@@ -32,7 +32,7 @@ import { SimpleRightSidebar4Component } from 'app/main/ui/page-layouts/simple/ri
 import { BlankComponent } from 'app/main/ui/page-layouts/blank/blank.component';
 
 import { FuseSidebarModule } from '@fuse/components';
-import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 const routes: Routes = [
     // Carded
@@ -52,10 +52,11 @@ const routes: Routes = [
         path     : 'page-layouts/carded/full-width-tabbed-2',
         component: CardedFullWidthTabbed2Component
     },
-    {
+  /*  {
         path     : 'page-layouts/carded/left-sidebar-1',
         component: CardedLeftSidebar1Component
-    },
+       
+    },*/
     {
         path     : 'page-layouts/carded/left-sidebar-tabbed-1',
         component: CardedLeftSidebarTabbed1Component
@@ -138,7 +139,7 @@ const routes: Routes = [
         CardedFullWidth2Component,
         CardedFullWidthTabbed1Component,
         CardedFullWidthTabbed2Component,
-        CardedLeftSidebar1Component,
+      //  CardedLeftSidebar1Component,
         CardedLeftSidebar2Component,
         CardedLeftSidebarTabbed1Component,
         CardedLeftSidebarTabbed2Component,

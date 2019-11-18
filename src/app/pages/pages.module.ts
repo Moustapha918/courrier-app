@@ -7,14 +7,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {MatCardModule, MatDatepickerModule, MatInputModule, MatSelectModule, MatStepperModule} from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {MatSortModule} from "@angular/material/sort";
+import {MatSortModule} from '@angular/material/sort';
+import {CardedLeftSidebar1Component} from './viewing-email/left-sidebar-1/left-sidebar-1.component';
+import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 
 const routes = [
     {
@@ -27,13 +28,18 @@ const routes = [
     {
         path     : 'new-arrived-mail',
         component: InitMailComponent
+    },
+    {
+        path     : 'lecture',
+        component: CardedLeftSidebar1Component
     }
 
 ];
 
 @NgModule({
     declarations: [
-        ArrivedMailScComponent, ScHomeComponent, InitMailComponent
+        ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
+        CardedLeftSidebar1Component
     ],
     exports: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent
@@ -58,7 +64,9 @@ const routes = [
         MatStepperModule,
         MatDatepickerModule,
         AngularSvgIconModule,
-        MatSortModule
+        MatSortModule,
+        FuseDemoModule,
+        FuseSidebarModule
     ]
 })
 export class PagesModule
