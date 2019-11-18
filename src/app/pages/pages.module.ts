@@ -11,16 +11,28 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
-import {MatCardModule, MatDatepickerModule, MatInputModule, MatSelectModule, MatStepperModule} from '@angular/material';
+import {
+    MatCardModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatStepperModule
+} from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {MatSortModule} from '@angular/material/sort';
 import {CardedLeftSidebar1Component} from './viewing-email/left-sidebar-1/left-sidebar-1.component';
 import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
+import {FileUploadModule} from 'ng2-file-upload';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {InitMailService} from '../services/init-mail.service';
 
 const routes = [
     {
         path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
     }, {
         path     : 'sc-home',
         component: ScHomeComponent
@@ -63,6 +75,11 @@ const routes = [
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
+        AngularSvgIconModule,
+        FileUploadModule,
+        MatProgressBarModule,
+        AngularSvgIconModule,
+        MatSortModule,
         AngularSvgIconModule,
         MatSortModule,
         FuseDemoModule,

@@ -7,6 +7,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import {FileUploadModule} from 'ng2-file-upload';
 import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
+        FileUploadModule,
 
         TranslateModule.forRoot(),
         BrowserAnimationsModule,

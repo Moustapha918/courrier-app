@@ -48,8 +48,8 @@
         <div class="content-card">
 
             <mat-table class="products-table"
-                       #table [dataSource]="arrivedMails"
-                       matSort
+                       #table [dataSource]="dataSource"
+                      matSort
                        [@animateStagger]="{value:'50'}"
                        fusePerfectScrollbar>
 
