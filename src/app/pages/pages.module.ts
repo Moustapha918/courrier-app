@@ -20,11 +20,11 @@ import {
     MatStepperModule
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {CardedLeftSidebar1Component} from './viewing-email/left-sidebar-1/left-sidebar-1.component';
+import {ViewingEmailComponent} from './viewing-email/viewing-email/viewing-email';
 import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
-import {FileUploadModule} from 'ng2-file-upload';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
+import {FileUploadModule} from 'ng2-file-upload';
 
 const routes = [
     {
@@ -43,7 +43,7 @@ const routes = [
     },
     {
         path     : 'lecture',
-        component: CardedLeftSidebar1Component
+        component: ViewingEmailComponent
     }
 
 ];
@@ -51,7 +51,7 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        CardedLeftSidebar1Component
+        ViewingEmailComponent
     ],
     exports: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent
@@ -76,14 +76,14 @@ const routes = [
         MatStepperModule,
         MatDatepickerModule,
         AngularSvgIconModule,
-        FileUploadModule,
         MatProgressBarModule,
         AngularSvgIconModule,
         MatSortModule,
         AngularSvgIconModule,
         MatSortModule,
         FuseDemoModule,
-        FuseSidebarModule
+        FuseSidebarModule,
+        FileUploadModule
     ]
 })
 export class PagesModule

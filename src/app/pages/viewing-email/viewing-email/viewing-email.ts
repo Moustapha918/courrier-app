@@ -1,28 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import {ArrivedMailModelModel} from '../../../models/arrived-mail.model';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
     selector   : 'carded-left-sidebar-1',
-    templateUrl: './left-sidebar-1.component.html',
-    styleUrls  : ['./left-sidebar-1.component.scss']
+    templateUrl: './viewing-email.html',
+    styleUrls  : ['./viewing-email.scss']
 })
-export class CardedLeftSidebar1Component
+export class ViewingEmailComponent
 {
 
-    /*test = 'test';
-    arrivedMail = new ArrivedMailModelModel('AR2019001',
-        'DOSS001',
-        'objet 1',
-        'expéditeur1',
-        '01/09/2019 14:30:20',
-        'documents ref',
-        '2019-10-24T22:00:00.000Z',
-        'Trés urgent',
-        'piéce',
-        'observation');*/
     form: FormGroup;
 
 
