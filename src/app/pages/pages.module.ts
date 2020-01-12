@@ -24,6 +24,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {TranslateModule} from '@ngx-translate/core';
+import {LoginComponent} from '../login/login.component';
 
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     {
         path     : 'new-arrived-mail',
         component: InitMailComponent
+    },
+
+    {
+        path     : 'login',
+        component: LoginComponent
     }
 
 ];

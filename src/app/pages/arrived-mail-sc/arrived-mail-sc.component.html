@@ -28,7 +28,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input #filter placeholder="Chercher un courrier">
+                    <input #filter placeholder="{{ 'Courrier.Chercher un courrier' | translate }}">
                 </div>
             </div>
             <!-- / SEARCH -->
@@ -71,7 +71,7 @@
 
                 <!-- expediteur -->
                 <ng-container matColumnDef="sender">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Expediteur</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Courrier.Expediteur' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.sender}}</p>
                     </mat-cell>

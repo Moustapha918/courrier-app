@@ -23,6 +23,16 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
+import { LoginComponent } from './login/login.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
+
+// @ts-ignore
+import { locale as arabe } from './login/ar';
+// @ts-ignore
+import { locale as french } from './login/en';
+
 
 
 const appRoutes: Routes = [
@@ -38,31 +48,33 @@ const appRoutes: Routes = [
 ];
 
 // tslint:disable-next-line:typedef
-export function createTranslateLoader(http: HttpClient) {
+/*export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+}*/
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
+        LoginComponent,
 
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         FileUploadModule,
-
-        TranslateModule.forRoot({
+        TranslateModule,
+        TranslateModule.forRoot(),
+        /*TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: (createTranslateLoader),
                 deps: [HttpClient]
             }
-        }),
+        }),*/
         BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
@@ -82,7 +94,9 @@ export function createTranslateLoader(http: HttpClient) {
         LayoutModule,
         SampleModule,
         PagesModule,
-        MatSelectModule
+        MatSelectModule,
+        MatMenuModule,
+        MatToolbarModule
     ],
     providers   : [
         InitMailService
@@ -93,4 +107,9 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class AppModule
 {
+    constructor(private translationLoader: FuseTranslationLoaderService)
+    {
+        this.translationLoader.loadTranslations(arabe, french);
+    }
+
 }
