@@ -23,6 +23,8 @@ import {AngularSvgIconModule} from 'angular-svg-icon';
 import {FileUploadModule} from 'ng2-file-upload';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
+import {TranslateModule} from '@ngx-translate/core';
+
 
 const routes = [
     {
@@ -73,6 +75,7 @@ const routes = [
         MatProgressBarModule,
         AngularSvgIconModule,
         MatSortModule,
+        TranslateModule,
     ]
 })
 export class PagesModule
