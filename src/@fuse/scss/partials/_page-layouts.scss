@@ -259,8 +259,8 @@ $carded-header-height-without-toolbar: $carded-header-height - $carded-toolbar-h
                 flex-direction: column;
                 flex: 1 1 auto;
                 width: 240px;
-                min-width: 240px;
-                max-width: 240px;
+                min-width: 700px;
+                max-width: 800px;
                 height: auto;
                 overflow: hidden;
                 @include mat-elevation(7);

@@ -11,8 +11,8 @@ fuse-sidebar {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     width: 280px;
-    min-width: 280px;
-    max-width: 280px;
+    min-width: 500px;
+    max-width: 1000px;
     z-index: 1000;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.35);
 
@@ -52,6 +52,7 @@ fuse-sidebar {
         transition-duration: 150ms;
         transition-timing-function: ease-in-out;
     }
+
 }
 
 .fuse-sidebar-overlay {

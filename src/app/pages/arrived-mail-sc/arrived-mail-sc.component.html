@@ -89,8 +89,8 @@
 
                 <mat-row *matRowDef="let mail; columns: displayedColumns;"
                          class="product"
-                         matRipple>
-                      <!--   [routerLink]="'/apps/e-commerce/products/'+mail.idEntry + '/'+product.handle">-->
+                         matRipple [routerLink]="'/lecture-mail/'+mail.idEntry">
+
                 </mat-row>
 
             </mat-table>

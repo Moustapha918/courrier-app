@@ -22,6 +22,7 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
+import {MailService} from './services/mail.service';
 
 const appRoutes: Routes = [
     {
@@ -66,10 +67,12 @@ const appRoutes: Routes = [
         LayoutModule,
         SampleModule,
         PagesModule,
+
         MatSelectModule
     ],
     providers   : [
-        InitMailService
+        InitMailService,
+        // MailService
     ],
     bootstrap   : [
         AppComponent

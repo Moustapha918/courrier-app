@@ -1,0 +1,30 @@
+
+
+.sidebar{
+
+    width: 800px;
+
+}
+
+.header p-24 accent{
+    color: #0c050c;
+
+}
+
+form {
+    width: 100%;
+    max-width: 800px !important;
+}
+
+.form-errors-model {
+    flex: 1;
+
+    code {
+        background: none !important;
+    }
+}
+
+.horizontal-stepper-wrapper,
+.vertical-stepper-wrapper {
+    max-width: 1000px;
+}
