@@ -12,7 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {
-    MatCardModule,
+    MatCardModule, MatCheckboxModule,
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
@@ -25,6 +25,7 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
+import {MailService} from '../services/mail.service';
 
 const routes = [
     {
@@ -42,8 +43,11 @@ const routes = [
         component: InitMailComponent
     },
     {
-        path     : 'lecture',
-        component: ViewingEmailComponent
+        path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent,
+       /* resolve : {
+          data: MailService
+        }*/
     }
 
 ];
@@ -83,7 +87,8 @@ const routes = [
         MatSortModule,
         FuseDemoModule,
         FuseSidebarModule,
-        FileUploadModule
+        FileUploadModule,
+        MatCheckboxModule
     ]
 })
 export class PagesModule
