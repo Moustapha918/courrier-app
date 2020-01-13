@@ -33,6 +33,7 @@ import { locale as arabe } from '../assets/i18n/ar';
 import { locale as french } from '../assets/i18n/fr';
 
 
+import {MailService} from './services/mail.service';
 
 const appRoutes: Routes = [
     {
@@ -46,18 +47,13 @@ const appRoutes: Routes = [
 
 ];
 
-// tslint:disable-next-line:typedef
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
 
 
     ],
-    imports: [
+    imports     : [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -65,7 +61,6 @@ const appRoutes: Routes = [
         FileUploadModule,
         TranslateModule,
         TranslateModule.forRoot(),
-
         BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
@@ -87,10 +82,13 @@ const appRoutes: Routes = [
         PagesModule,
         MatSelectModule,
         MatMenuModule,
-        MatToolbarModule
+        MatToolbarModule,
+
+        MatSelectModule
     ],
     providers   : [
-        InitMailService
+        InitMailService,
+        // MailService
     ],
     bootstrap   : [
         AppComponent

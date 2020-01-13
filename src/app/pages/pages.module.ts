@@ -12,7 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {
-    MatCardModule,
+    MatCardModule, MatCheckboxModule,
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
@@ -20,9 +20,12 @@ import {
     MatStepperModule
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {FileUploadModule} from 'ng2-file-upload';
+import {ViewingEmailComponent} from './viewing-email/viewing-email/viewing-email';
+import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
+import {FileUploadModule} from 'ng2-file-upload';
+import {MailService} from '../services/mail.service';
 import {TranslateModule} from '@ngx-translate/core';
 
 
@@ -41,15 +44,21 @@ const routes = [
     {
         path     : 'new-arrived-mail',
         component: InitMailComponent
+    },
+    {
+        path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent,
+       /* resolve : {
+          data: MailService
+        }*/
     }
-
-
 
 ];
 
 @NgModule({
     declarations: [
-        ArrivedMailScComponent, ScHomeComponent, InitMailComponent
+        ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
+        ViewingEmailComponent
     ],
     exports: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent
@@ -74,11 +83,16 @@ const routes = [
         MatStepperModule,
         MatDatepickerModule,
         AngularSvgIconModule,
-        FileUploadModule,
         MatProgressBarModule,
         AngularSvgIconModule,
         MatSortModule,
-        TranslateModule,
+        AngularSvgIconModule,
+        MatSortModule,
+        FuseDemoModule,
+        FuseSidebarModule,
+        FileUploadModule,
+        MatCheckboxModule,
+        TranslateModule
     ]
 })
 export class PagesModule

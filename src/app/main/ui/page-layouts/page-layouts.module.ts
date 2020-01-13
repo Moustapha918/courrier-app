@@ -11,7 +11,7 @@ import { CardedFullWidth1Component } from 'app/main/ui/page-layouts/carded/full-
 import { CardedFullWidth2Component } from 'app/main/ui/page-layouts/carded/full-width-2/full-width-2.component';
 import { CardedFullWidthTabbed1Component } from 'app/main/ui/page-layouts/carded/full-width-tabbed-1/full-width-tabbed-1.component';
 import { CardedFullWidthTabbed2Component } from 'app/main/ui/page-layouts/carded/full-width-tabbed-2/full-width-tabbed-2.component';
-import { CardedLeftSidebar1Component } from 'app/main/ui/page-layouts/carded/left-sidebar-1/left-sidebar-1.component';
+import { ViewingEmailComponent } from 'app/pages/viewing-email/viewing-email/viewing-email';
 import { CardedLeftSidebar2Component } from 'app/main/ui/page-layouts/carded/left-sidebar-2/left-sidebar-2.component';
 import { CardedLeftSidebarTabbed1Component } from 'app/main/ui/page-layouts/carded/left-sidebar-tabbed-1/left-sidebar-tabbed-1.component';
 import { CardedLeftSidebarTabbed2Component } from 'app/main/ui/page-layouts/carded/left-sidebar-tabbed-2/left-sidebar-tabbed-2.component';
@@ -32,6 +32,7 @@ import { SimpleRightSidebar4Component } from 'app/main/ui/page-layouts/simple/ri
 import { BlankComponent } from 'app/main/ui/page-layouts/blank/blank.component';
 
 import { FuseSidebarModule } from '@fuse/components';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 const routes: Routes = [
     // Carded
@@ -51,10 +52,11 @@ const routes: Routes = [
         path     : 'page-layouts/carded/full-width-tabbed-2',
         component: CardedFullWidthTabbed2Component
     },
-    {
-        path     : 'page-layouts/carded/left-sidebar-1',
+  /*  {
+        path     : 'page-layouts/carded/viewing-email',
         component: CardedLeftSidebar1Component
-    },
+       
+    },*/
     {
         path     : 'page-layouts/carded/left-sidebar-tabbed-1',
         component: CardedLeftSidebarTabbed1Component
@@ -93,7 +95,7 @@ const routes: Routes = [
         component: SimpleFullWidthTabbed1Component
     },
     {
-        path     : 'page-layouts/simple/left-sidebar-1',
+        path     : 'page-layouts/simple/viewing-email',
         component: SimpleLeftSidebar1Component
     },
     {
@@ -137,7 +139,7 @@ const routes: Routes = [
         CardedFullWidth2Component,
         CardedFullWidthTabbed1Component,
         CardedFullWidthTabbed2Component,
-        CardedLeftSidebar1Component,
+      //  CardedLeftSidebar1Component,
         CardedLeftSidebar2Component,
         CardedLeftSidebarTabbed1Component,
         CardedLeftSidebarTabbed2Component,
@@ -157,7 +159,7 @@ const routes: Routes = [
         SimpleRightSidebar4Component,
         BlankComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
 
         MatButtonModule,
@@ -166,7 +168,8 @@ const routes: Routes = [
 
         FuseSidebarModule,
         FuseSharedModule,
-        FuseDemoModule
+        FuseDemoModule,
+        MatFormFieldModule
     ]
 })
 export class UIPageLayoutsModule
