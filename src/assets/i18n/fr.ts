@@ -1,5 +1,5 @@
 export const locale = {
-    lang: 'en',
+    lang: 'fr',
     data: {
         Courrier: {
             'Courrier Arrivé': 'Courrier Arrivé',

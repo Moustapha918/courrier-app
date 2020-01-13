@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy
 
     // Private
     private _unsubscribeAll: Subject<any>;
+    localStorage: any;
 
     /**
      * Constructor
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy
     {
         this.languages = [
             {
-                id   : 'en',
+                id   : 'fr',
                 title: 'french',
                 flag : 'us'
             },
@@ -77,16 +78,29 @@ export class AppComponent implements OnInit, OnDestroy
         this._fuseNavigationService.setCurrentNavigation('main');
 
         // Add languages
-        this._translateService.addLangs(['en', 'tr']);
+        this._translateService.addLangs(['fr', 'ar']);
 
         // Set the default language
-        this._translateService.setDefaultLang('en');
+        this._translateService.setDefaultLang('fr');
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+        // this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
 
         // Use a language
-        this._translateService.use('en');
+        // this._translateService.use('en');
+
+
+        // localstorage
+        const storedLang = localStorage.getItem('language');
+
+
+        if (storedLang){
+            _translateService.setDefaultLang(storedLang);
+            _translateService.use(storedLang);
+        }else {
+            _translateService.setDefaultLang('fr');
+            _translateService.use('fr');
+        }
 
        /* *
          * ----------------------------------------------------------------------------------------------------
@@ -137,6 +151,7 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On init
      */
+
     ngOnInit(): void
     {
         this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
@@ -181,6 +196,7 @@ export class AppComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+        localStorage.setItem('language', lang.id);
     }
 
     /**

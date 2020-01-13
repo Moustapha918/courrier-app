@@ -23,15 +23,14 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
-import { LoginComponent } from './login/login.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
 
 // @ts-ignore
-import { locale as arabe } from './login/ar';
+import { locale as arabe } from '../assets/i18n/ar';
 // @ts-ignore
-import { locale as french } from './login/en';
+import { locale as french } from '../assets/i18n/fr';
 
 
 
@@ -48,16 +47,14 @@ const appRoutes: Routes = [
 ];
 
 // tslint:disable-next-line:typedef
-/*export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}*/
+
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
+
 
     ],
     imports: [
@@ -68,13 +65,7 @@ const appRoutes: Routes = [
         FileUploadModule,
         TranslateModule,
         TranslateModule.forRoot(),
-        /*TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient]
-            }
-        }),*/
+
         BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
