@@ -2,18 +2,18 @@
     <mat-card routerLink="/arrivedMail-sc">
         <svg-icon src="assets/icons/customAdmin/mailbox.svg"
                   [svgStyle]="{ 'width.px':60, 'height.px':60 }"></svg-icon>
-        <div class="your-title"> {{ 'Courrier.Courrier Arrivé' | translate }}</div>
+        <div class="your-title"> {{ 'mail.COURRIER_ARRIVEE' | translate }}</div>
     </mat-card>
 
     <mat-card>
         <svg-icon src="assets/icons/customAdmin/delivery-truck.svg"
                   [svgStyle]="{ 'width.px':60, 'height.px':60 }"></svg-icon>
-        <div class="your-title">Courrier Depart</div>
+        <div class="your-title">{{ 'mail.COURRIER_DEPART' | translate }}</div>
     </mat-card>
 
     <mat-card>
         <svg-icon src="assets/icons/customAdmin/265695.svg"
                   [svgStyle]="{ 'width.px':60, 'height.px':60 }"></svg-icon>
-        <div class="your-title">Archive</div>
+        <div class="your-title">{{ 'mail.ARCHIVE' | translate }}</div>
     </mat-card>
 </div>
