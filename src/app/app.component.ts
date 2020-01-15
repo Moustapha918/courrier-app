@@ -14,6 +14,7 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+import * as _ from 'lodash';
 
 @Component({
     selector   : 'app',
@@ -24,9 +25,12 @@ export class AppComponent implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    languages: any;
+    selectedLanguage: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
+    localStorage: any;
 
     /**
      * Constructor
@@ -51,6 +55,19 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform
     )
     {
+        this.languages = [
+            {
+                id   : 'fr',
+                title: 'french',
+                flag : 'us'
+            },
+            {
+                id   : 'ar',
+                title: 'arabe',
+                flag : 'tr'
+            }
+        ];
+
         // Get default navigation
         this.navigation = navigation;
 
@@ -61,24 +78,36 @@ export class AppComponent implements OnInit, OnDestroy
         this._fuseNavigationService.setCurrentNavigation('main');
 
         // Add languages
-        this._translateService.addLangs(['en', 'tr']);
+        this._translateService.addLangs(['fr', 'ar']);
 
         // Set the default language
-        this._translateService.setDefaultLang('en');
+        this._translateService.setDefaultLang('fr');
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+        // this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
 
         // Use a language
-        this._translateService.use('en');
+        // this._translateService.use('en');
 
-        /**
+
+        // localstorage
+        const storedLang = localStorage.getItem('language');
+
+
+        if (storedLang){
+            _translateService.setDefaultLang(storedLang);
+            _translateService.use(storedLang);
+        }else {
+            _translateService.setDefaultLang('fr');
+            _translateService.use('fr');
+        }
+
+       /* *
          * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix Start
          * ----------------------------------------------------------------------------------------------------
-         */
 
-        /**
+        *
          * If you are using a language other than the default one, i.e. Turkish in this case,
          * you may encounter an issue where some of the components are not actually being
          * translated when your app first initialized.
@@ -86,25 +115,25 @@ export class AppComponent implements OnInit, OnDestroy
          * This is related to ngxTranslate module and below there is a temporary fix while we
          * are moving the multi language implementation over to the Angular's core language
          * service.
-         **/
+
+         *
 
         // Set the default language to 'en' and then back to 'tr'.
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
-        /**
+        *
          setTimeout(() => {
             this._translateService.setDefaultLang('en');
+            // tslint:disable-next-line:jsdoc-format
             this._translateService.setDefaultLang('tr');
          });
-         */
 
-        /**
+        *
          * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix End
          * ----------------------------------------------------------------------------------------------------
-         */
-
+*/
         // Add is-mobile class to the body if the platform is mobile
         if ( this._platform.ANDROID || this._platform.IOS )
         {
@@ -122,8 +151,10 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On init
      */
+
     ngOnInit(): void
     {
+        this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -131,7 +162,7 @@ export class AppComponent implements OnInit, OnDestroy
 
                 this.fuseConfig = config;
 
-                console.log(config)
+                console.log(config);
                 // Boxed
                 if ( this.fuseConfig.layout.width === 'boxed' )
                 {
@@ -143,6 +174,7 @@ export class AppComponent implements OnInit, OnDestroy
                 }
 
                 // Color theme - Use normal for loop for IE11 compatibility
+                // tslint:disable-next-line:prefer-for-of
                 for ( let i = 0; i < this.document.body.classList.length; i++ )
                 {
                     const className = this.document.body.classList[i];
@@ -155,6 +187,16 @@ export class AppComponent implements OnInit, OnDestroy
 
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
+    }
+
+    setLanguage(lang): void {
+        // Set the selected language for the toolbar
+        this.selectedLanguage = lang;
+
+
+        // Use the selected language for translations
+        this._translateService.use(lang.id);
+        localStorage.setItem('language', lang.id);
     }
 
     /**

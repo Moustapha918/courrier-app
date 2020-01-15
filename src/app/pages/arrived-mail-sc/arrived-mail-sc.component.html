@@ -28,7 +28,7 @@
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input #filter placeholder="Chercher un courrier">
+                    <input #filter placeholder="{{ 'mail.CHERCHER_COURRIER' | translate }}">
                 </div>
             </div>
             <!-- / SEARCH -->
@@ -37,7 +37,7 @@
             <button mat-raised-button
                     [routerLink]="'/new-arrived-mail'">
                     <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
-                <span>Ajouter un courrier</span>
+                <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
             </button>
             <!-- / ADD BUTTON -->
 
@@ -55,7 +55,7 @@
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="idEntry">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.NUMERO_ENTREE' | translate }} </mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.idEntry}}</p>
                     </mat-cell>
@@ -63,7 +63,7 @@
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="subject">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Objet</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.subject}}</p>
                     </mat-cell>
@@ -71,7 +71,7 @@
 
                 <!-- expediteur -->
                 <ng-container matColumnDef="sender">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Expediteur</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.EXPEDITEUR' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.sender}}</p>
                     </mat-cell>
@@ -79,7 +79,7 @@
 
                 <!-- Date -->
                 <ng-container matColumnDef="receptionDate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATE' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate">{{Mail.receptionDate}}</p>
                     </mat-cell>

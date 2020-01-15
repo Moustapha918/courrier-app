@@ -26,6 +26,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
 import {MailService} from '../services/mail.service';
+import {TranslateModule} from '@ngx-translate/core';
+
+
 
 const routes = [
     {
@@ -88,7 +91,8 @@ const routes = [
         FuseDemoModule,
         FuseSidebarModule,
         FileUploadModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        TranslateModule
     ]
 })
 export class PagesModule
