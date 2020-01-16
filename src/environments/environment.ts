@@ -5,7 +5,8 @@
 export const environment = {
     production: false,
     hmr       : false,
-    backendUrl: 'https://admin-courrier.herokuapp.com'
+    backendUrl: 'http://localhost:8080'
+    // backendUrl: 'https://admin-courrier.herokuapp.com'
 };
 
 /*

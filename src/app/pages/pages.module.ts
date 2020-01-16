@@ -2,7 +2,6 @@ import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.componen
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FuseSharedModule} from '../../@fuse/shared.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -26,6 +25,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
 import {MailService} from '../services/mail.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FuseSharedModule} from '../../@fuse/shared.module';
 
 const routes = [
     {
@@ -58,10 +59,9 @@ const routes = [
         ViewingEmailComponent
     ],
     exports: [
-        ArrivedMailScComponent, ScHomeComponent, InitMailComponent
+        ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent
     ],
     imports: [
-        FuseSharedModule,
         MatIconModule,
         RouterModule.forRoot(routes),
         MatTabsModule,
@@ -71,7 +71,6 @@ const routes = [
         MatTableModule,
         MatPaginatorModule,
         MatCardModule,
-        FuseSharedModule,
         MatButtonModule,
         MatFormFieldModule,
         MatIconModule,
@@ -88,7 +87,8 @@ const routes = [
         FuseDemoModule,
         FuseSidebarModule,
         FileUploadModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        FuseSharedModule
     ]
 })
 export class PagesModule

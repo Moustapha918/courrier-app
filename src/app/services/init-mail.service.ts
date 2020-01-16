@@ -14,6 +14,7 @@ export class InitMailService implements Resolve<any>{
     getAllArrivedMAilsURI = environment.backendUrl + '/mailing/arrived/all';
     uploadScanFileURI = environment.backendUrl + '/mailing/arrived/upload-scan';
 
+
     arrivedMails: ArrivedMailModel[];
     onarrivedMailsChanged: BehaviorSubject<any>;
 
@@ -76,6 +77,13 @@ export class InitMailService implements Resolve<any>{
         });
     }
 
+    annotate(annotations: any[], idEntry: string): void {
+
+        const arrivedMailAnnotateUri = environment.backendUrl + '/mailing/arrived/' + idEntry + '/annotate';
+        this.httpClient.post(arrivedMailAnnotateUri, annotations).subscribe(
+            data => console.log(data));
+
+    }
 }
 
 
