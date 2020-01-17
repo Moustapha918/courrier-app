@@ -11,6 +11,8 @@ export class ArrivedMailModel {
     attachments: string;
     observations: string;
     idScanFile: string;
+    annotations: any[];
+    directions: any[];
 }
 
 
