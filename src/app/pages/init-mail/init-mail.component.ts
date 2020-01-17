@@ -85,7 +85,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
         const headers = [{name: 'Accept', value: 'application/json'}];
         this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
                 + this.form.controls['idDirectory'].value + '/'
-                + this.form.controls['idEntry'].value, autoUpload: true, headers: headers});
+                + this.form.controls['idEntry'].value, autoUpload: true, headers: headers}); 
+             // dddd
 
         this.uploader.onAfterAddingFile = item => { // to allow cross origin
             item.withCredentials = false;

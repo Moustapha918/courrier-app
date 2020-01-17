@@ -27,6 +27,9 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {MailService} from '../services/mail.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
+import {TranslateModule} from '@ngx-translate/core';
+
+
 
 const routes = [
     {
@@ -88,7 +91,8 @@ const routes = [
         FuseSidebarModule,
         FileUploadModule,
         MatCheckboxModule,
-        FuseSharedModule
+        FuseSharedModule,
+        TranslateModule
     ]
 })
 export class PagesModule

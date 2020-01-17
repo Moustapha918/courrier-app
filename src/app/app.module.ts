@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FileUploadModule} from 'ng2-file-upload';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
@@ -22,6 +23,16 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {MatSelectModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
+
+// @ts-ignore
+import { locale as arabe } from '../assets/i18n/ar';
+// @ts-ignore
+import { locale as french } from '../assets/i18n/fr';
+
+
 import {MailService} from './services/mail.service';
 
 const appRoutes: Routes = [
@@ -38,7 +49,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+
+
     ],
     imports     : [
         BrowserModule,
@@ -46,7 +59,7 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         FileUploadModule,
-
+        TranslateModule,
         TranslateModule.forRoot(),
         BrowserAnimationsModule,
         // Material moment date module
@@ -67,6 +80,9 @@ const appRoutes: Routes = [
         LayoutModule,
         SampleModule,
         PagesModule,
+        MatSelectModule,
+        MatMenuModule,
+        MatToolbarModule,
 
         MatSelectModule
     ],
@@ -80,4 +96,9 @@ const appRoutes: Routes = [
 })
 export class AppModule
 {
+    constructor(private translationLoader: FuseTranslationLoaderService)
+    {
+        this.translationLoader.loadTranslations(arabe, french);
+    }
+
 }
