@@ -11,6 +11,7 @@ import { QuickPanelModule } from 'app/layout/components/quick-panel/quick-panel.
 import { ToolbarModule } from 'app/layout/components/toolbar/toolbar.module';
 
 import { HorizontalLayout1Component } from 'app/layout/horizontal/layout-1/layout-1.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { HorizontalLayout1Component } from 'app/layout/horizontal/layout-1/layou
         FooterModule,
         NavbarModule,
         QuickPanelModule,
-        ToolbarModule
+        ToolbarModule,
+        MatTabsModule
     ],
     exports     : [
         HorizontalLayout1Component
