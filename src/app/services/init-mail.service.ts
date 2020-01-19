@@ -77,11 +77,10 @@ export class InitMailService implements Resolve<any>{
         });
     }
 
-    annotate(annotations: any[], idEntry: string): void {
+    annotate(arrivedMail: ArrivedMailModel): Observable<any> {
 
-        const arrivedMailAnnotateUri = environment.backendUrl + '/mailing/arrived/' + idEntry + '/annotate';
-        this.httpClient.post(arrivedMailAnnotateUri, annotations).subscribe(
-            data => console.log(data));
+        const arrivedMailAnnotateUri = environment.backendUrl + '/mailing/arrived/' + arrivedMail.idEntry + '/annotate';
+        return this.httpClient.post(arrivedMailAnnotateUri, arrivedMail);
 
     }
 }
