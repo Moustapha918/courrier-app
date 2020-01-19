@@ -28,7 +28,14 @@ export const locale = {
             PRIORITY_DEGREE_NORMAL          : 'Normal',
             PRIORITY_DEGREE_URGENT          : 'Urgent',
             PRIORITY_DEGREE_V_URGENT        : 'Trés urgent',
-            ATTACH_FILE                     : 'Importer un fichier ici'
+            ATTACH_FILE                     : 'Importer un fichier ici',
+            MAIL_INFORMATION                : 'Informations du courrier',
+            ANNOTATION_VENTILATION          : 'Annoter et ventiler',
+            ANNOTATION                      : 'Annotations',
+            VENTILATION                     : 'Ventilations',
+            DISPLAY                         : 'Visualiser',
+            CONFIRM                         : 'Confirmer',
+            DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier'
 
         }
     }

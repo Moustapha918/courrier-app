@@ -4,7 +4,7 @@
     <div class="center">
 
         <div class="h1 pt-32">
-            Visualiser Annoter et Ventiler ce courrier
+            {{ 'mail.DISPALY_ANNOTATION_VENTILATION' | translate }}
         </div>
 
         <p class="pb-32">
@@ -17,24 +17,24 @@
             <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
 
                 <mat-step [stepControl]="horizontalStepperStep1">
-                    <ng-template matStepLabel>Visualiser</ng-template>
+                    <ng-template matStepLabel>{{ 'mail.DISPLAY' | translate }}</ng-template>
                     <div fxLayout="row" fxLayoutAlign="center">
 
 
                         <form fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form">
                             <div class="h1 pt-32 pb-32" fxLayout="row" fxLayoutAlign="center">
-                                Informations du courrier
+                                {{ 'mail.MAIL_INFORMATION' | translate }}
                             </div>
                             <div fxLayout="row" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
-                                    <mat-label>Date de reception du courrier</mat-label>
+                                    <mat-label>{{ 'mail.MAIL_DATE' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.receptionDate" disabled name="receptionDate">
                                     <mat-icon matSuffix class="disabled-text">today</mat-icon>
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-                                    <mat-label>Numéro du dossier</mat-label>
+                                    <mat-label>{{ 'mail.DIRECTORY_ID' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.idDirectory" name="idDirectory" disabled>
                                 </mat-form-field>
                             </div>
@@ -43,13 +43,13 @@
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="100" class="pr-4">
-                                    <mat-label>Numéro d'entré</mat-label>
+                                    <mat-label>{{ 'mail.ID_ENTRY' | translate }}</mat-label>
                                     <input [(ngModel)]="mail.idEntry" matInput name="idEntry" disabled>
                                     <mat-icon matSuffix class="disabled-text">flag</mat-icon>
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-                                    <mat-label>Réference du document réçu</mat-label>
+                                    <mat-label>{{ 'mail.IDRECEIVED_DOCUMENT' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.idReceivedDocument" name="idReceivedDocument"
                                            disabled>
                                     <mat-icon matSuffix class="secondary-text">flag</mat-icon>
@@ -60,7 +60,7 @@
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
-                                    <mat-label>Date du document réçu</mat-label>
+                                    <mat-label>{{ 'mail.RECEIVED_DOCUMENT_DATE' | translate }}</mat-label>
                                     <input matInput [matDatepicker]="picker" [(ngModel)]="mail.dateReceivedDocument"
                                            name="dateReceivedDocument" disabled>
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,7 +68,7 @@
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
-                                    <mat-label>Expéditeur du courrier</mat-label>
+                                    <mat-label>{{ 'mail.SENDER_MAIL' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.sender" name="sender" disabled>
                                     <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
                                 </mat-form-field>
@@ -77,7 +77,7 @@
                             <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Objet du courrier</mat-label>
+                                    <mat-label>{{ 'mail.SUBJECT_MAIL' | translate }}</mat-label>
                                     <textarea [(ngModel)]="mail.subject" matInput name="subject" disabled>
                             </textarea>
                                 </mat-form-field>
@@ -85,7 +85,7 @@
 
                             <div fxLayout="row" fxLayoutAlign="center center">
                                 <button mat-raised-button matStepperNext type="button" color="accent">
-                                    Annoter et ventiler
+                                    {{ 'mail.ANNOTATION_VENTILATION' | translate }}
                                 </button>
                             </div>
                         </form>
@@ -98,13 +98,13 @@
                     <div fxLayout="row" fxLayoutAlign="center">
                         <form fxLayout="column">
 
-                            <ng-template matStepLabel>Annoter et ventiler</ng-template>
+                            <ng-template matStepLabel>{{ 'mail.ANNOTATION_VENTILATION' | translate }}</ng-template>
 
                             <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
                                 <div fxLayoutAlign="start" fxLayout="column" >
 
-                                    <h1> Annotations</h1>
+                                    <h1> {{ 'mail.ANNOTATION' | translate }}</h1>
 
                                     <mat-checkbox *ngFor="let annotation of annotations" name="annotations"
                                                   class="app-checkbox"
@@ -112,7 +112,7 @@
                                 </div>
 
                                 <div fxLayoutAlign="start" fxLayout="column">
-                                   <h1> Ventilations</h1>
+                                   <h1> {{ 'mail.VENTILATION' | translate }}</h1>
                                     <mat-checkbox *ngFor="let direction of directions" name="annotations"
                                                   class="app-checkbox"
                                                   [(ngModel)]="direction.value">{{direction.name}}</mat-checkbox>
@@ -123,12 +123,12 @@
 
                             <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
                                 <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
-                                    Visualiser
+                                    {{ 'mail.DISPLAY' | translate }}
                                 </button>
 
                                 <button class="mr-8" mat-raised-button type="button" color="accent"
                                         (click)="annotate()" [disabled]="!canConfirm()">
-                                    Confirmer
+                                    {{ 'mail.CONFIRM' | translate }}
                                 </button>
 
                             </div>
