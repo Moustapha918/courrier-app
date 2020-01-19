@@ -100,9 +100,9 @@
 
                             <ng-template matStepLabel>Annoter et ventiler</ng-template>
 
-                            <div fxLayoutAlign="space-between" fxLayout="row" fxFlex="1 0 auto">
+                            <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
-                                <div fxLayoutAlign="start" fxLayout="column" fxFlex="50">
+                                <div fxLayoutAlign="start" fxLayout="column" >
 
                                     <h1> Annotations</h1>
 
@@ -111,7 +111,7 @@
                                                   [(ngModel)]="annotation.value">{{annotation.label}}</mat-checkbox>
                                 </div>
 
-                                <div fxLayoutAlign="start" fxLayout="column" fxFlex="50">
+                                <div fxLayoutAlign="start" fxLayout="column">
                                    <h1> Ventilations</h1>
                                     <mat-checkbox *ngFor="let direction of directions" name="annotations"
                                                   class="app-checkbox"
@@ -121,13 +121,13 @@
                             </div>
 
 
-                            <div fxLayout="row" fxLayoutAlign="center center">
+                            <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
                                 <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                                     Visualiser
                                 </button>
 
                                 <button class="mr-8" mat-raised-button type="button" color="accent"
-                                        (click)="annotate()">
+                                        (click)="annotate()" [disabled]="!canConfirm()">
                                     Confirmer
                                 </button>
 
