@@ -85,4 +85,9 @@ export class ViewingEmailComponent implements OnInit
         },
                 error => console.log(error));
     }
+
+    canConfirm(): boolean {
+        return  this.annotations.some( annotation => annotation.value) &&
+            this.directions.some(dir => dir.value);
+    }
 }

@@ -1,8 +1,8 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
-import {InitMailService} from '../../../services/init-mail.service';
-import {ArrivedMailModel} from '../../../models/arrived-mail.model';
+import {InitMailService} from '../../../../app/services/init-mail.service';
+import {ArrivedMailModel} from '../../../../app/models/arrived-mail.model';
 
 @Component({
     selector   : 'fuse-demo-sidebar',
