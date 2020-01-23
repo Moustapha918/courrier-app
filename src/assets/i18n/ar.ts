@@ -35,7 +35,8 @@ export const locale = {
             VENTILATION                    : 'التوزيع',
             DISPLAY                        : 'عرض',
             CONFIRM                        : 'تأكيد',
-            DISPALY_ANNOTATION_VENTILATION : 'عرض و تعليق و توزيع هذا البريد'
+            DISPALY_ANNOTATION_VENTILATION : 'عرض و تعليق و توزيع هذا البريد',
+            REFERENTIEL                    : 'المرجع'
 
 
 

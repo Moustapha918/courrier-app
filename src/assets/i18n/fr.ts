@@ -35,7 +35,8 @@ export const locale = {
             VENTILATION                     : 'Ventilations',
             DISPLAY                         : 'Visualiser',
             CONFIRM                         : 'Confirmer',
-            DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier'
+            DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier',
+            REFERENTIEL                     : 'Referentiel'
 
         }
     }
