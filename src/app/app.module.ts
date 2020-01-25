@@ -25,6 +25,7 @@ import {InitMailService} from './services/init-mail.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
+import { ToastrModule } from 'ngx-toastr';
 
 // @ts-ignore
 import { locale as arabe } from '../assets/i18n/ar';
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
         FileUploadModule,
         TranslateModule,
         TranslateModule.forRoot(),
+        ToastrModule.forRoot(),
         BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
