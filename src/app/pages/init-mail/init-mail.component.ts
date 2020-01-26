@@ -2,6 +2,7 @@ import {Component, OnDestroy,  ElementRef, OnInit, ViewChild} from '@angular/cor
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {InitMailService} from '../../services/init-mail.service';
+import { NotificationService } from '../../services/notification.service';
 import {Router} from '@angular/router';
 import {FileUploader, FileItem} from 'ng2-file-upload';
 
@@ -27,7 +28,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
     constructor(
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
-        private router: Router
+        private router: Router,
+        private notifyService: NotificationService
     ) {
         this._unsubscribeAll = new Subject();
     }
@@ -79,6 +81,11 @@ export class InitMailComponent implements OnInit, OnDestroy {
     }
 
 
+    // tslint:disable-next-line:typedef
+    showToaster(){
+        this.notifyService.openSnackBar('A', 'Notification');
+    }
+
     uploadScanFile(): void {
         this.fileInput.nativeElement.click();
 
@@ -101,11 +108,13 @@ export class InitMailComponent implements OnInit, OnDestroy {
             if (status === 200){
                 this.scanFileName = this.fileInput.nativeElement.files[0].name;
                 this.uploadFileMessage = 'Fichier chargé: ' + this.scanFileName;
-                alert('le fichier a été chargé avec succès');
+                this.notifyService.openSnackBar('le fichier a été chargé avec succès', 'Notification');
+                // alert('le fichier a été chargé avec succès');
             }
             else{
                 this.uploadFileMessage = 'Le fichier n\'a pas été charger, Veuillez réessayer';
-                alert('erreur du téléchargement du fichier');
+                this.notifyService.openSnackBar('erreur du téléchargement du fichier', 'Notification');
+                // alert('erreur du téléchargement du fichier');
             }
             this.form.controls['idScanFile'].setValue(idScanFile);
         };
