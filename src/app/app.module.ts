@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
 import {FileUploadModule} from 'ng2-file-upload';
 import 'hammerjs';
 
@@ -19,7 +19,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
-import {MatSelectModule} from '@angular/material';
+import {MatSelectModule, MatTabsModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
 import {MatMenuModule} from '@angular/material/menu';
@@ -33,6 +33,12 @@ import { locale as french } from '../assets/i18n/fr';
 
 
 import {MailService} from './services/mail.service';
+import {ToolbarModule} from './layout/components/toolbar/toolbar.module';
+import {ContentModule} from './layout/components/content/content.module';
+import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
+import {FooterModule} from './layout/components/footer/footer.module';
+import {ScHomeComponent} from './pages/sc-home/sc-home.component';
+import { VoidComponent } from './void/void.component';
 
 const appRoutes: Routes = [
     {
@@ -41,18 +47,24 @@ const appRoutes: Routes = [
     },
     {
         path      : '**',
-        redirectTo: 'sc-home'
+        redirectTo: 'void'
     },
+    {
+        path      : '',
+        component: ScHomeComponent,
+    }
 
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
+        ScWorkflowComponent,
+        VoidComponent,
 
 
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -83,7 +95,11 @@ const appRoutes: Routes = [
         MatMenuModule,
         MatToolbarModule,
 
-        MatSelectModule
+        MatSelectModule,
+        MatTabsModule,
+        ToolbarModule,
+        ContentModule,
+        FooterModule
     ],
     providers   : [
         InitMailService,

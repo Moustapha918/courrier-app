@@ -35,7 +35,7 @@
 
             <!-- ADD BUTTON -->
             <button mat-raised-button
-                    [routerLink]="'/new-arrived-mail'">
+                    [routerLink]="'../new-arrived-mail'">
                     <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
                 <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
             </button>
@@ -89,7 +89,7 @@
 
                 <mat-row *matRowDef="let mail; columns: displayedColumns;"
                          class="product"
-                         matRipple [routerLink]="'/lecture-mail/'+mail.idEntry">
+                         matRipple [routerLink]="'../lecture-mail/'+mail.idEntry">
 
                 </mat-row>
 
