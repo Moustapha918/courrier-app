@@ -1,109 +1,121 @@
-<div id="products" class="page-layout carded fullwidth inner-scroll">
+<div>
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg accent"></div>
-    <!-- / TOP BACKGROUND -->
-
-    <!-- CENTER -->
-    <div class="center">
-
-        <!-- HEADER -->
-        <div class="header accent"
-             fxLayout="column" fxLayoutAlign="center center"
-             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
-
-            <!-- APP TITLE -->
-            <div class="logo mb-24 mb-md-0"
-                 fxLayout="row" fxLayoutAlign="start center">
-                <!--<mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-                    shopping_basket
-                </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    Products
-                </span>-->
-            </div>
-            <!-- / APP TITLE -->
-
-            <!-- SEARCH -->
-            <div class="search-wrapper mx-32 mx-md-0">
-                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-                    <mat-icon>search</mat-icon>
-                    <input #filter placeholder="{{ 'mail.CHERCHER_COURRIER' | translate }}">
-                </div>
-            </div>
-            <!-- / SEARCH -->
-
-            <!-- ADD BUTTON -->
-            <button mat-raised-button
-                    [routerLink]="'/new-arrived-mail'">
-                    <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
-                <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
-            </button>
-            <!-- / ADD BUTTON -->
-
-        </div>
-        <!-- / HEADER -->
-
-        <!-- CONTENT CARD -->
-        <div class="content-card">
-
-            <mat-table class="products-table"
-                       #table [dataSource]="dataSource"
-                      matSort
-                       [@animateStagger]="{value:'50'}"
-                       fusePerfectScrollbar>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="idEntry">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.ID_ENTRY' | translate }} </mat-header-cell>
-                    <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.idEntry}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="subject">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.subject}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- expediteur -->
-                <ng-container matColumnDef="sender">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.EXPEDITEUR' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.sender}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Date -->
-                <ng-container matColumnDef="receptionDate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATE' | translate }}</mat-header-cell>
-                    <mat-cell *matCellDef="let Mail">
-                        <p class="text-truncate">{{Mail.receptionDate}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                              <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
-
-                <mat-row *matRowDef="let mail; columns: displayedColumns;"
-                         class="product"
-                         matRipple [routerLink]="'/lecture-mail/'+mail.idEntry">
-
-                </mat-row>
-
-            </mat-table>
-
-            <mat-paginator #paginator
-
-                           [pageIndex]="0"
-                           [pageSize]="10"
-                           [pageSizeOptions]="[5, 10, 25, 100]">
-            </mat-paginator>
-
-        </div>
-        <!-- / CONTENT CARD -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner *ngIf="loading" color="accent"></mat-spinner>
     </div>
-    <!-- / CENTER -->
+
+
+    <div id="products" class="page-layout carded fullwidth inner-scroll">
+
+
+
+        <!-- TOP BACKGROUND -->
+        <div class="top-bg accent"></div>
+        <!-- / TOP BACKGROUND -->
+
+        <!-- CENTER -->
+
+        <div class="center">
+
+            <!-- HEADER -->
+            <div class="header accent"
+                 fxLayout="column" fxLayoutAlign="center center"
+                 fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+
+                <!-- APP TITLE -->
+                <div class="logo mb-24 mb-md-0"
+                     fxLayout="row" fxLayoutAlign="start center">
+                    <!--<mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                        shopping_basket
+                    </mat-icon>
+                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        Products
+                    </span>-->
+                </div>
+                <!-- / APP TITLE -->
+
+                <!-- SEARCH -->
+                <div class="search-wrapper mx-32 mx-md-0">
+                    <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon>search</mat-icon>
+                        <input #filter placeholder="{{ 'mail.CHERCHER_COURRIER' | translate }}">
+                    </div>
+                </div>
+                <!-- / SEARCH -->
+
+                <!-- ADD BUTTON -->
+                <button mat-raised-button
+                        [routerLink]="'/new-arrived-mail'">
+                        <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
+                    <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
+                </button>
+                <!-- / ADD BUTTON -->
+
+            </div>
+            <!-- / HEADER -->
+
+            <!-- CONTENT CARD -->
+            <div class="content-card">
+
+                <mat-table class="products-table"
+                           #table [dataSource]="dataSource"
+                          matSort
+                           [@animateStagger]="{value:'50'}"
+                           fusePerfectScrollbar>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="idEntry">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.ID_ENTRY' | translate }} </mat-header-cell>
+                        <mat-cell *matCellDef="let Mail">
+                            <p class="text-truncate">{{Mail.idEntry}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="subject">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
+                        <mat-cell *matCellDef="let Mail">
+                            <p class="text-truncate">{{Mail.subject}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- expediteur -->
+                    <ng-container matColumnDef="sender">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.EXPEDITEUR' | translate }}</mat-header-cell>
+                        <mat-cell *matCellDef="let Mail">
+                            <p class="text-truncate">{{Mail.sender}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Date -->
+                    <ng-container matColumnDef="receptionDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATE' | translate }}</mat-header-cell>
+                        <mat-cell *matCellDef="let Mail">
+                            <p class="text-truncate">{{Mail.receptionDate}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                                  <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                    <mat-row *matRowDef="let mail; columns: displayedColumns;"
+                             class="product"
+                             matRipple [routerLink]="'/lecture-mail/'+mail.idEntry">
+
+                    </mat-row>
+
+                </mat-table>
+
+                <mat-paginator #paginator
+
+                               [pageIndex]="0"
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+
+            </div>
+            <!-- / CONTENT CARD -->
+        </div>
+        <!-- / CENTER -->
+    </div>
+
 </div>

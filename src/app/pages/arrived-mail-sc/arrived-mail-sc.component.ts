@@ -18,9 +18,11 @@ import {DataSource} from '@angular/cdk/table';
     encapsulation: ViewEncapsulation.None
 })
 export class ArrivedMailScComponent implements OnInit{
+    loading: boolean;
 
     dataSource: FilesDataSource | null;
     displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
+
 
     @ViewChild(MatPaginator, {static: true})
     paginator: MatPaginator;
@@ -33,11 +35,14 @@ export class ArrivedMailScComponent implements OnInit{
 
     constructor(private initMailService: InitMailService)
     {
+        // Set the defaults
+        this.loading = true;
     }
     ngOnInit(): void{
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
             console.log(data);
+            this.loading = false;
         });
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
 

@@ -36,8 +36,15 @@ export const locale = {
             DISPLAY                         : 'Visualiser',
             CONFIRM                         : 'Confirmer',
             DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier',
-            REFERENTIEL                     : 'Referentiel'
 
+
+        },
+        REFERENTIEL: {
+            REFERENTIEL                     : 'Referentiel',
+            ORGANIGRAM                      : 'Organigramme',
+            DIRECTION                       : 'Direction',
+            SERVICE                         : 'Service',
+            DIVISION                        : 'Division'
         }
     }
 };

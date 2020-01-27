@@ -1,4 +1,6 @@
 import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.component';
+// @ts-ignore
+import { ReferentialComponent } from './referential/referential.component';
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
@@ -28,6 +30,10 @@ import {MailService} from '../services/mail.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DirectionComponent } from './direction/direction.component';
+// @ts-ignore
+
 
 
 
@@ -47,6 +53,14 @@ const routes = [
         component: InitMailComponent
     },
     {
+        path     : 'referentiel',
+        component: ReferentialComponent
+    },
+    {
+        path     : 'Direction',
+        component: DirectionComponent
+    },
+    {
         path     : 'lecture-mail/:id',
         component: ViewingEmailComponent,
        /* resolve : {
@@ -59,10 +73,11 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        ViewingEmailComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent
+
     ],
     exports: [
-        ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent
+        ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent, ReferentialComponent
     ],
     imports: [
         MatIconModule,
@@ -92,7 +107,8 @@ const routes = [
         FileUploadModule,
         MatCheckboxModule,
         FuseSharedModule,
-        TranslateModule
+        TranslateModule,
+        MatProgressSpinnerModule
     ]
 })
 export class PagesModule

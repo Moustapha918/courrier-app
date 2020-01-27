@@ -36,12 +36,14 @@ export const locale = {
             DISPLAY                        : 'عرض',
             CONFIRM                        : 'تأكيد',
             DISPALY_ANNOTATION_VENTILATION : 'عرض و تعليق و توزيع هذا البريد',
-            REFERENTIEL                    : 'المرجع'
 
-
-
-
-
+        },
+            REFERENTIEL: {
+            REFERENTIEL                     : 'Referentiel',
+            ORGANIGRAM                      : 'Organigramme',
+            DIRECTION                       : 'Direction',
+            SERVICE                         : 'Service',
+            DIVISION                        : 'Division'
         }
     }
 };
