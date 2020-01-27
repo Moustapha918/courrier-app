@@ -1,0 +1,12 @@
+:host{
+ height: 90%;
+    .mat-tab-label-active {
+        color: #00ADEE !important;
+    }
+
+    mat-tab-group {
+        overflow-y: scroll !important;
+        height: 100%;
+    }
+}
+
