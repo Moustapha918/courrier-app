@@ -38,7 +38,6 @@ import {ContentModule} from './layout/components/content/content.module';
 import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
 import {FooterModule} from './layout/components/footer/footer.module';
 import {ScHomeComponent} from './pages/sc-home/sc-home.component';
-import { VoidComponent } from './void/void.component';
 
 const appRoutes: Routes = [
     {
@@ -59,9 +58,7 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        ScWorkflowComponent,
-        VoidComponent,
-
+        ScWorkflowComponent
 
     ],
     imports: [
