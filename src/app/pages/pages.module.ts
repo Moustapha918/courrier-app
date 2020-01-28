@@ -30,6 +30,7 @@ import {MailService} from '../services/mail.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
+import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DirectionComponent } from './direction/direction.component';
 // @ts-ignore
@@ -66,6 +67,25 @@ const routes = [
        /* resolve : {
           data: MailService
         }*/
+        path: 'sc-workflow',
+        component: ScWorkflowComponent,
+        children: [
+            {
+                path     : 'arrivedMail-sc',
+                component: ArrivedMailScComponent,
+                resolve  : {
+                    data: InitMailService
+                }
+            },
+            {
+                path     : 'new-arrived-mail',
+                component: InitMailComponent
+            },
+            {
+                path     : 'lecture-mail/:id',
+                component: ViewingEmailComponent
+            }
+        ]
     }
 
 ];
