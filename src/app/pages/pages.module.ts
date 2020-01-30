@@ -33,6 +33,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DirectionComponent } from './direction/direction.component';
+import { NewDirectionComponent } from './new-direction/new-direction.component';
 // @ts-ignore
 
 
@@ -62,13 +63,14 @@ const routes = [
         component: DirectionComponent
     },
     {
-        path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,
+        /*path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent,*/
        /* resolve : {
           data: MailService
         }*/
-        path: 'sc-workflow',
-        component: ScWorkflowComponent,
+
+        path  : 'sc-workflow',
+        component  : ScWorkflowComponent,
         children: [
             {
                 path     : 'arrivedMail-sc',
@@ -93,7 +95,7 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent
 
     ],
     exports: [

@@ -1,7 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+// @ts-ignore
+import NewDirectionComponent from '../../pages/new-direction';
+
 
 export interface Direction {
     ID: number;
@@ -36,29 +40,44 @@ export class DirectionComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    constructor() {
+    Id: number;
+    Direction1: string;
+    Adresse1: string;
 
+    constructor(public dialog: MatDialog) {
     }
 
+    openDialog(): void {
+        const dialogRef = this.dialog.open(NewDirectionComponent, {
+            width: '250px',
+            data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
+        });
+
+
+
+    }
     // tslint:disable-next-line:typedef
     ngOnInit() {
-      /*  this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;*/
+        /*  this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;*/
     }
 
 
 
 }
 
-/** Builds and returns a new User. */
-/*function createNewUser(id: number): UserData {
-    const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
-    return {
-        id: id.toString(),
-        name: name,
-        progress: Math.round(Math.random() * 100).toString(),
-        color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-    };*/
+
+export class NewDirectionComponent {
+
+    constructor(
+        public dialogRef: MatDialogRef<NewDirectionComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: Direction) {}
+
+    onNoClick(): void {
+        this.dialogRef.close();
+
+    }
+
+}
 
