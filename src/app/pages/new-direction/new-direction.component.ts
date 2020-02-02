@@ -7,15 +7,18 @@ import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
+import {DirectionModel} from "../../models/direction.model";
 
 
 
 export interface DirectionCst {
-    code: number;
-    label: string;
-    address: string;
+    code: '1';
+    label: 'Libellé Direction';
+    address: 'Adresse';
 
 }
+
+
 
 @Component({
   selector: 'app-new-direction',
@@ -63,10 +66,12 @@ export class NewDirectionComponent implements OnInit {
           label: [
               {
                   value: '',
+
               }, Validators.required
           ],
           address: [{
               value: '',
+
           }, Validators.required
           ],
 
@@ -77,9 +82,6 @@ export class NewDirectionComponent implements OnInit {
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
     }
 
     validateDirection(): void {

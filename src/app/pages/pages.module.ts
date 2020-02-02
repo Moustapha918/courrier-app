@@ -34,6 +34,9 @@ import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
+import { ServiceEntityComponent } from './service-entity/service-entity.component';
+import { DivisionComponent } from './division/division.component';
+import { DepartementComponent } from './departement/departement.component';
 // @ts-ignore
 
 
@@ -95,7 +98,7 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent
 
     ],
     exports: [

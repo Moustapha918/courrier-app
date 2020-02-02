@@ -136,7 +136,7 @@ export class FilesDataSource extends DataSource<any>
 
     // Filter
     get filter(): string
-    {
+     {
         return this._filterChange.value;
     }
 
