@@ -3,8 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {NewDirectionComponent} from '../new-direction/new-direction.component';
 // @ts-ignore
-import NewDirectionComponent from '../../pages/new-direction';
 
 
 export interface Direction {
@@ -49,7 +49,7 @@ export class DirectionComponent implements OnInit {
 
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDirectionComponent, {
-            width: '250px',
+            width: '4000px',
             data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
         });
 
@@ -66,18 +66,4 @@ export class DirectionComponent implements OnInit {
 
 }
 
-
-
-export class NewDirectionComponent {
-
-    constructor(
-        public dialogRef: MatDialogRef<NewDirectionComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Direction) {}
-
-    onNoClick(): void {
-        this.dialogRef.close();
-
-    }
-
-}
 

@@ -131,7 +131,8 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         MatProgressSpinnerModule
-    ]
+    ],
+    entryComponents: [NewDirectionComponent]
 })
 export class PagesModule
 {
