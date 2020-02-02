@@ -37,6 +37,7 @@ import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
 import { DivisionComponent } from './division/division.component';
 import { DepartementComponent } from './departement/departement.component';
+import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
 // @ts-ignore
 
 
@@ -62,8 +63,20 @@ const routes = [
         component: ReferentialComponent
     },
     {
-        path     : 'Direction',
+        path     : 'direction',
         component: DirectionComponent
+    },
+    {
+        path     : 'service',
+        component: ServiceEntityComponent
+    },
+    {
+        path     : 'division',
+        component: DivisionComponent
+    },
+    {
+        path     : 'departement',
+        component: DepartementComponent
     },
     {
         /*path     : 'lecture-mail/:id',
@@ -98,7 +111,8 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent
+        // tslint:disable-next-line:max-line-length
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent
 
     ],
     exports: [
@@ -135,7 +149,7 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule
     ],
-    entryComponents: [NewDirectionComponent]
+    entryComponents: [NewDirectionComponent, NewServiceEntityComponent]
 })
 export class PagesModule
 {

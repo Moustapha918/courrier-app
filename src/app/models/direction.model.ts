@@ -1,6 +1,6 @@
 
 export class DirectionModel {
-    Code: string;
+    code: string;
     label: string;
     address: string;
 }

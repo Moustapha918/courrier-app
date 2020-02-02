@@ -43,7 +43,7 @@ export class DirectionComponent implements OnInit {
 
     displayedColumns: string[] = ['code', 'label', 'address'];
     // @ts-ignore
-    dataSource: ELEMENT_DATA; // Promise<any> | null;
+    dataSource: any; // Promise<any> | null;
 
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -74,7 +74,7 @@ export class DirectionComponent implements OnInit {
     ngOnInit() {
 
         console.log(this.referentialService.getAllDirectionsFromBackend());
-        // this.dataSource = this.referentialService.getAllDirections();
+        this.dataSource = this.referentialService.getAllDirectionsFromBackend();
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
     }

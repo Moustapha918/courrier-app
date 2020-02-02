@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {DirectionModel} from '../models/direction.model';
 import {ArrivedMailModel} from "../models/arrived-mail.model";
+import {ServiceEntity} from "../models/service-entity.model";
 
 
 
@@ -15,9 +16,17 @@ import {ArrivedMailModel} from "../models/arrived-mail.model";
 })
 export class ReferentialService {
     getAllDirectionURI = environment.backendUrl + '/referential/direction/all';
-    addNewDirectionURI = environment.backendUrl + '/referential/direction/add/new';
+    getAllServicesEntityURI = environment.backendUrl + '/referential/service/all';
+
     directions: DirectionModel[];
     onDirectionChanged: BehaviorSubject<any>;
+
+    serviceEntity: ServiceEntity;
+    onServiceEntityChanged: BehaviorSubject<any>;
+
+
+    addNewDirectionURI = environment.backendUrl + '/referential/direction/add/new';
+    addNewServiceEntityURI = environment.backendUrl + '/referential/service/add/new';
 
     constructor(private httpClient: HttpClient) {
 
@@ -38,10 +47,30 @@ export class ReferentialService {
         });
     }
 
+    getAllServicesEntity(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.httpClient.get<ServiceEntity[]>(this.getAllServicesEntityURI)
+                .subscribe((response: any) => {
+                    this.serviceEntity = response;
+                    console.log('this.Service from service', this.serviceEntity);
+                    // this.onServiceEntityChanged.next(this.serviceEntity);
+
+                    resolve(response);
+                }, reject);
+        });
+    }
+
     sendDirectionFormToBackend(direction: DirectionModel): Observable<any> {
         return this.httpClient
             .post<any>(this.addNewDirectionURI, direction);
     }
+
+    sendServiceEntityFormToBackend(serviceEntity: ServiceEntity): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewServiceEntityURI, serviceEntity);
+    }
+
+
 
 
     getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
@@ -51,6 +80,16 @@ export class ReferentialService {
         // }
         return this.httpClient
             .get<DirectionModel[]>(this.getAllDirectionURI) ;
+    }
+
+
+    getAllServiceEntityFromBackend(): Observable<ServiceEntity[]> {
+
+        // if (!this.directions ){
+        //
+        // }
+        return this.httpClient
+            .get<ServiceEntity[]>(this.getAllServicesEntityURI) ;
     }
 
 }
