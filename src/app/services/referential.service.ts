@@ -6,8 +6,9 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {DirectionModel} from '../models/direction.model';
-import {ArrivedMailModel} from "../models/arrived-mail.model";
-import {ServiceEntity} from "../models/service-entity.model";
+import {ServiceEntity} from '../models/service-entity.model';
+import {DivisionModel} from '../models/division.model';
+
 
 
 
@@ -27,6 +28,9 @@ export class ReferentialService {
 
     addNewDirectionURI = environment.backendUrl + '/referential/direction/add/new';
     addNewServiceEntityURI = environment.backendUrl + '/referential/service/add/new';
+
+    addNewDivisionURI = environment.backendUrl + '/referential/division/add/new';
+    getAllDivisionsURI = environment.backendUrl + '/referential/division/all';
 
     constructor(private httpClient: HttpClient) {
 
@@ -90,6 +94,18 @@ export class ReferentialService {
         // }
         return this.httpClient
             .get<ServiceEntity[]>(this.getAllServicesEntityURI) ;
+    }
+
+
+    // Division
+    sendDivisionFormToBackend(division: DivisionModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewDivisionURI, division);
+    }
+
+    getAllDivisionsFromBackend(): Observable<DivisionModel[]> {
+        return this.httpClient
+            .get<DivisionModel[]>(this.getAllDivisionsURI) ;
     }
 
 }

@@ -1,6 +1,6 @@
 
 // tslint:disable-next-line:class-name
-export class Division{
+export class DivisionModel {
 
     code: string;
     codeService: string;

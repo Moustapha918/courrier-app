@@ -55,8 +55,6 @@ export class DirectionComponent implements OnInit {
 
     constructor(public dialog: MatDialog,
                 private referentialService: ReferentialService) {
-
-
     }
 
     openDialog(): void {
@@ -65,16 +63,15 @@ export class DirectionComponent implements OnInit {
             data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
         });
 
-
-
     }
 
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
 
-        console.log(this.referentialService.getAllDirectionsFromBackend());
+
         this.dataSource = this.referentialService.getAllDirectionsFromBackend();
+        console.log(this.referentialService.getAllDirectionsFromBackend());
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
     }
