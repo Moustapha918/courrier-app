@@ -5,6 +5,8 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState, RouterStateSnapshot} from '@angular/router';
 import {InitMailService} from '../../../services/init-mail.service';
 import {ArrivedMailModel} from '../../../models/arrived-mail.model';
+import {MatDialog} from '@angular/material';
+import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 
 const annotations  = [{id: 'classed' , label: 'classé'}, {id: 'ventilated', label: 'ventilé'}, {id: 'studying', label: 'à etudier'}];
 const directions  = [{idDirection: '1' , name: 'direction technique'}, {idDirection: '2', name: 'direction des operation'}, {idDirection: '3', name: 'direction des etudes'}];
@@ -35,7 +37,8 @@ export class ViewingEmailComponent implements OnInit
     constructor(
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
-        private _formBuilder: FormBuilder, private router: Router
+        private _formBuilder: FormBuilder, private router: Router,
+        private matDialog: MatDialog
     )
     {
 
@@ -67,6 +70,14 @@ export class ViewingEmailComponent implements OnInit
             city      : ['', Validators.required],
             state     : ['', Validators.required],
             postalCode: ['', [Validators.required, Validators.maxLength(5)]]
+        });
+    }
+
+    visualizeMailPDF(): void{
+        this.matDialog.open(VisualizePdfComponent,{
+            width: '90%',
+            height: '95%',
+            data: this.mail
         });
     }
 

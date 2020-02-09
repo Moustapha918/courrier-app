@@ -25,6 +25,14 @@
                             <div class="h1 pt-32 pb-32" fxLayout="row" fxLayoutAlign="center">
                                 {{ 'mail.MAIL_INFORMATION' | translate }}
                             </div>
+
+
+                            <div class="h1 pb-32" fxLayout="row" fxLayoutAlign="center">
+
+                                <button (click)="visualizeMailPDF()" mat-button>
+                                    <svg-icon src="assets/icons/customAdmin/view.svg"
+                                              [svgStyle]="{ 'width.px':22, 'height.px':16 }"></svg-icon>   {{ 'mail.DISPLAY' | translate }}</button>
+                            </div>
                             <div fxLayout="row" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
@@ -90,6 +98,9 @@
                             </div>
                         </form>
                     </div>
+
+
+
                     <!--<fuse-demo-sidebar></fuse-demo-sidebar>-->
 
                 </mat-step>

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {InitMailService} from '../../services/init-mail.service';
 import { NotificationService } from '../../services/notification.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FileUploader, FileItem} from 'ng2-file-upload';
 
 @Component({
@@ -29,7 +29,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
         private router: Router,
-        private notifyService: NotificationService
+        private notifyService: NotificationService,
+        private activatedRoute: ActivatedRoute
     ) {
         this._unsubscribeAll = new Subject();
     }
@@ -137,7 +138,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
         this.initMailService.sendArrivedMailFormToBackend(this.form.getRawValue())
              .subscribe(
                  () => {
-                     this.router.navigate(['arrivedMail-sc']);
+                     this.router.navigate(['../arrivedMail-sc'], { relativeTo: this.activatedRoute });
                  },
                  (error) => {
                      console.log('Error ! : ' + error);
