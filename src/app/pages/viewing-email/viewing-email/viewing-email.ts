@@ -81,7 +81,7 @@ export class ViewingEmailComponent implements OnInit
         this.mail.annotations = this.annotations.filter( ann => ann.value);
         this.initMailService.annotate(this.mail).subscribe( data =>{
             console.log(data);
-            this.router.navigate(['arrivedMail-sc']);
+            this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
         },
                 error => console.log(error));
     }

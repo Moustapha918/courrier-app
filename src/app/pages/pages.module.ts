@@ -24,34 +24,37 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
-import {MailService} from '../services/mail.service';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
+import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 
 
 
 const routes = [
-    {
-        path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent,
-        resolve  : {
-            data: InitMailService
-        }
-    }, {
+ {
         path     : 'sc-home',
-        component: ScHomeComponent
+        component: ScHomeComponent,
     },
     {
-        path     : 'new-arrived-mail',
-        component: InitMailComponent
-    },
-    {
-        path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,
-       /* resolve : {
-          data: MailService
-        }*/
+        path: 'sc-workflow',
+        component: ScWorkflowComponent,
+        children: [
+            {
+                path     : 'arrivedMail-sc',
+                component: ArrivedMailScComponent,
+                resolve  : {
+                    data: InitMailService
+                }
+            },
+            {
+                path     : 'new-arrived-mail',
+                component: InitMailComponent
+            },
+            {
+                path     : 'lecture-mail/:id',
+                component: ViewingEmailComponent
+            }
+        ]
     }
 
 ];
