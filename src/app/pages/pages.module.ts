@@ -14,7 +14,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {
     MatCardModule, MatCheckboxModule,
-    MatDatepickerModule,
+    MatDatepickerModule, MatDialogModule,
     MatInputModule,
     MatSelectModule,
     MatSortModule,
@@ -43,8 +43,7 @@ import { NewDepartementComponent } from './new-departement/new-departement.compo
 import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 // @ts-ignore
-
-
+import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 
 
 const routes = [
@@ -116,7 +115,8 @@ const routes = [
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent
 
     ],
     exports: [
@@ -153,7 +153,7 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule
     ],
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent]
+    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
 export class PagesModule
 {

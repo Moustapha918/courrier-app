@@ -26,7 +26,8 @@ import {ReferentialService} from './services/referential.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
-
+import { ToastrModule } from 'ngx-toastr';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 // @ts-ignore
 import { locale as arabe } from '../assets/i18n/ar';
 // @ts-ignore
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
         FileUploadModule,
         TranslateModule,
         TranslateModule.forRoot(),
+        MatSnackBarModule,
         BrowserAnimationsModule,
         // Material moment date module
         MatMomentDateModule,
