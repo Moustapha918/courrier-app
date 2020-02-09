@@ -12,7 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {InitMailComponent} from './init-mail/init-mail.component';
 import {
     MatCardModule, MatCheckboxModule,
-    MatDatepickerModule,
+    MatDatepickerModule, MatDialogModule,
     MatInputModule,
     MatSelectModule,
     MatSortModule,
@@ -27,6 +27,8 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
+import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 
@@ -62,7 +64,8 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
-        ViewingEmailComponent
+        ViewingEmailComponent,
+        VisualizePdfComponent
     ],
     exports: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent
@@ -95,8 +98,11 @@ const routes = [
         FileUploadModule,
         MatCheckboxModule,
         FuseSharedModule,
-        TranslateModule
-    ]
+        TranslateModule,
+        PdfViewerModule,
+        MatDialogModule
+    ],
+    entryComponents: [VisualizePdfComponent]
 })
 export class PagesModule
 {
