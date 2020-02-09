@@ -1,34 +1,12 @@
 import {ChangeDetectorRef, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {ReferentialService} from '../../services/referential.service';
-import {DirectionModel} from "../../models/direction.model";
-import {FilesDataSource} from "../arrived-mail-sc/arrived-mail-sc.component";
-// @ts-ignore
+import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 
-export interface Direction {
-    code: string;
-    label: string;
-    address: string;
-
-}
-
-const ELEMENT_DATA: Direction[] = [
-    {code: '1', label: 'Hydrogen', address: 'hhhhh'},
-    {code: '2', label: 'Helium', address: 'hhhh'},
-    /*{ID: 3, Direction_name: 'Lithium', Adresse: 'jyghg'},
-    {ID: 4, Direction_name: 'Beryllium', Adresse: 'hhhjk'},
-    {ID: 5, Direction_name: 'Boron', Adresse: 'jyuygh'},
-    {ID: 6, Direction_name: 'Carbon', Adresse: 'iuiij'},
-    {ID: 7, Direction_name: 'Nitrogen', Adresse: 'kjkjk'},
-    {ID: 8, Direction_name: 'Oxygen', Adresse: 'ujklj'},
-    {ID: 9, Direction_name: 'Fluorine', Adresse: 'ujhg'},
-    {ID: 10, Direction_name: 'Neon', Adresse: 'uyhtg'},*/
-];
 
 @Component({
   selector: 'app-direction',
@@ -48,17 +26,37 @@ export class DirectionComponent implements OnInit {
     Direction1: string;
     Adresse1: string;
 
-    constructor(public dialog: MatDialog,
+    constructor(public dialog: MatDialog, public dialog1: MatDialog,
                 private referentialService: ReferentialService,
                 private cdr: ChangeDetectorRef) {}
 
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDirectionComponent, {
             width: '4000px',
-            data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
+            // data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
         });
         this.dataSource = this.referentialService.getAllDirectionsFromBackend();
     }
+
+    confirmDialog(direction): void {
+        const message = `Are you sure you want to do this?`;
+
+        const dialogData = new ConfirmDialogModel('Confirm Action', message);
+
+
+        const dialogRef = this.dialog1.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteDirection(direction);
+            }
+            });
+    }
+
 
 
     // tslint:disable-next-line:typedef

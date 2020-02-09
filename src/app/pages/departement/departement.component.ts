@@ -62,7 +62,6 @@ export class DepartementComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
-
     }
 
 

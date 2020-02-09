@@ -52,22 +52,22 @@ export class NewDepartementComponent implements OnInit {
         this.dialogRef.close();
 
     }
-
     // tslint:disable-next-line:typedef
     ngOnInit() {
         this.form = this._formBuilder.group({
-            code: [
+            code: ['',
                 {
                     value: '',
                 }, Validators.required
             ],
-            label: [
+            label: ['',
                 {
                     value: '',
 
                 }, Validators.required
             ],
-            address: [{
+            address: ['',
+                {
                 value: '',
 
             }, Validators.required
@@ -89,6 +89,7 @@ export class NewDepartementComponent implements OnInit {
         this.referentialService.sendDepartementFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
+                    this.dialogRef.close();
                     console.log('succes');
                 },
 

@@ -1,10 +1,12 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {FileUploader} from "ng2-file-upload";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subject} from "rxjs";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ReferentialService} from "../../services/referential.service";
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {ReferentialService} from '../../services/referential.service';
+import {FileUploader} from 'ng2-file-upload';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
+
 
 
 export interface DirectionCst {
@@ -90,6 +92,7 @@ export class NewServiceEntityComponent implements OnInit {
         this.referentialService.sendServiceEntityFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
+                    this.dialogRef.close();
                     console.log('succes');
                 },
 
@@ -99,6 +102,5 @@ export class NewServiceEntityComponent implements OnInit {
             );
 
     }
-
 
 }

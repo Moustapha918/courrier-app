@@ -6,11 +6,12 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {DirectionModel} from '../models/direction.model';
-import {ArrivedMailModel} from "../models/arrived-mail.model";
-import {ServiceEntityModel} from "../models/service-entity.model";
-import {DepartmentModel} from "../models/departement.model";
-
+import {ServiceEntityModel} from '../models/service-entity.model';
+import {DepartmentModel} from '../models/departement.model';
 import {DivisionModel} from '../models/division.model';
+
+
+
 
 
 
@@ -52,6 +53,9 @@ export class ReferentialService {
     }
 
 
+
+    // Direction
+
     getAllDirections(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.httpClient.get<DirectionModel[]>(this.getAllDirectionURI)
@@ -65,6 +69,29 @@ export class ReferentialService {
         });
     }
 
+    getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
+
+        // if (!this.directions ){
+        //
+        // }
+        return this.httpClient
+            .get<DirectionModel[]>(this.getAllDirectionURI) ;
+    }
+
+    sendDirectionFormToBackend(direction: DirectionModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewDirectionURI, direction);
+    }
+
+    deleteDirection(code: string): Observable<DirectionModel> {
+        console.log(this.deleteDirectionURI + code );
+        return this.httpClient
+            .delete<DirectionModel>(this.deleteDirectionURI  + code ) ;
+    }
+
+
+
+    // ServiceEntity
     getAllServicesEntity(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.httpClient.get<ServiceEntityModel[]>(this.getAllServicesEntityURI)
@@ -78,49 +105,15 @@ export class ReferentialService {
         });
     }
 
-    sendDirectionFormToBackend(direction: DirectionModel): Observable<any> {
-        return this.httpClient
-            .post<any>(this.addNewDirectionURI, direction);
-    }
 
     sendServiceEntityFormToBackend(serviceEntity: ServiceEntityModel): Observable<any> {
         return this.httpClient
             .post<any>(this.addNewServiceEntityURI, serviceEntity);
     }
 
-    sendDepartementFormToBackend(departement: DepartmentModel): Observable<any> {
-        return this.httpClient
-            .post<any>(this.addNewDepartementURI, departement);
-    }
-
-
-
-
-    getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
-
-        // if (!this.directions ){
-        //
-        // }
-        return this.httpClient
-            .get<DirectionModel[]>(this.getAllDirectionURI) ;
-    }
-
-
     getAllServiceEntityFromBackend(): Observable<ServiceEntityModel[]> {
         return this.httpClient
             .get<ServiceEntityModel[]>(this.getAllServicesEntityURI) ;
-    }
-
-    getAllDepartmentFromBackend(): Observable<DepartmentModel[]> {
-        return this.httpClient
-            .get<DepartmentModel[]>(this.getAllDepartmentURI) ;
-    }
-
-
-    deleteDirection(code: string): Observable<DirectionModel> {
-        console.log(this.deleteDirectionURI + code );
-        return this.httpClient
-            .delete<DirectionModel>(this.deleteDirectionURI  + code ) ;
     }
 
     deleteServiceEntity(code: string): Observable<ServiceEntityModel> {
@@ -129,11 +122,26 @@ export class ReferentialService {
             .delete<ServiceEntityModel>(this.deleteServiceEntityURI  + code ) ;
     }
 
+
+    // Departement
+    getAllDepartmentFromBackend(): Observable<DepartmentModel[]> {
+        return this.httpClient
+            .get<DepartmentModel[]>(this.getAllDepartmentURI) ;
+    }
+
+    sendDepartementFormToBackend(departement: DepartmentModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewDepartementURI, departement);
+    }
+
+
     deleteDepartement(code: string): Observable<DepartmentModel> {
         console.log(this.deleteDepartmentURI + code );
         return this.httpClient
             .delete<DepartmentModel>(this.deleteDepartmentURI  + code ) ;
     }
+
+
 
 
     // Division
@@ -146,5 +154,12 @@ export class ReferentialService {
         return this.httpClient
             .get<DivisionModel[]>(this.getAllDivisionsURI) ;
     }
+
+    deleteDivision(code: string): Observable<DivisionModel> {
+        console.log(this.deleteDivisionURI + code );
+        return this.httpClient
+            .delete<DivisionModel>(this.deleteDivisionURI  + code ) ;
+    }
+
 
 }

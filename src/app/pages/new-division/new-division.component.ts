@@ -30,36 +30,36 @@ export class NewDivisionComponent implements OnInit {
     // tslint:disable-next-line:typedef
     ngOnInit() {
         this.form = this._formBuilder.group({
-            code: [
+            code: ['',
                 {
                     value: '',
                 }, Validators.required
             ],
-            codeDirection: [
+            codeDirection: ['',
                 {
                     value: '',
                 }, Validators.required
             ],
-            codeService: [
+            codeService: ['',
                 {
                     value: '',
                 }, Validators.required
             ],
-            label: [
+            label: ['',
                 {
                     value: '',
 
                 }, Validators.required
             ],
-            address: [{
+            address: ['',
+                {
                 value: '',
             }, Validators.required
             ],
 
-
         });
-
     }
+    // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
     }
 
@@ -70,6 +70,7 @@ export class NewDivisionComponent implements OnInit {
         this.referentialService.sendDivisionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
+                    this.dialogRef.close();
                     console.log('success');
                 },
 
@@ -77,7 +78,6 @@ export class NewDivisionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
-
     }
 
 }

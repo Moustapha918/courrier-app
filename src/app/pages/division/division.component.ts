@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {NewDivisionComponent} from "../new-division/new-division.component";
+import {NewDivisionComponent} from '../new-division/new-division.component';
 
 @Component({
   selector: 'app-division',
@@ -13,7 +13,7 @@ import {NewDivisionComponent} from "../new-division/new-division.component";
 })
 export class DivisionComponent implements OnInit {
 
-    displayedColumns: string[] = ['code', 'codeDirection', 'codeService', 'label', 'address'];
+    displayedColumns: string[] = ['code', 'codeDirection', 'codeService', 'label', 'address', 'update', 'delete'];
     dataSource: any;
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -32,7 +32,7 @@ export class DivisionComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDivisionComponent, {
             width: '4000px',
-            data: {code: this.code, codeDirection: this.codeDirection, codeService: this.codeService, address: this.address}
+
         });
 
     }
@@ -43,6 +43,19 @@ export class DivisionComponent implements OnInit {
         console.log(this.dataSource);
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
+    }
+
+    deleteDivision(division): void {
+        this.referentialService.deleteDivision(division.code)
+            .subscribe(
+                () => {
+                    console.log('successful division delete');
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+
     }
 
 }
