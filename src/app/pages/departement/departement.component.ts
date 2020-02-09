@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
-import {ReferentialService} from "../../services/referential.service";
-import {NewDirectionComponent} from "../new-direction/new-direction.component";
-import {NewDepartementComponent} from "../new-departement/new-departement.component";
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
+import {ReferentialService} from '../../services/referential.service';
+import {NewDirectionComponent} from '../new-direction/new-direction.component';
+import {NewDepartementComponent} from '../new-departement/new-departement.component';
+import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 
 
@@ -36,9 +37,11 @@ export class DepartementComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDepartementComponent, {
             width: '4000px',
-            // data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
+
         });
-        // dialogRef.afterClosed().subscribe();
+        dialogRef.afterClosed().subscribe(result => {
+            this.dataSource = this.referentialService.getAllDepartmentFromBackend();
+        });
     }
 
 
@@ -50,6 +53,26 @@ export class DepartementComponent implements OnInit {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+    }
+
+    confirmDialog(departement): void {
+        const message = `Vous êtes sûr de vouloir supprimer ce dpartement`;
+
+        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteDepartement(departement);
+                this.dataSource = this.referentialService.getAllDepartmentFromBackend();
+            }
+        });
+
     }
 
     deleteDepartement(departement): void {

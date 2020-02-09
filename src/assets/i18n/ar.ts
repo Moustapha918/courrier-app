@@ -39,11 +39,11 @@ export const locale = {
 
         },
             REFERENTIEL: {
-            REFERENTIEL                     : 'Referentiel',
-            ORGANIGRAM                      : 'Organigramme',
-            DIRECTION                       : 'Direction',
-            SERVICE                         : 'Service',
-            DIVISION                        : 'Division'
-        }
+                REFERENTIEL                     : 'Referentiel',
+                ORGANIGRAM                      : 'Organigramme',
+                DIRECTION                       : 'Direction',
+                SERVICE                         : 'Service',
+                DIVISION                        : 'Division'
+            }
     }
 };

@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
-import {ReferentialService} from "../../services/referential.service";
-import {NewDirectionComponent} from '../new-direction/new-direction.component';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
+import {ReferentialService} from '../../services/referential.service';
 import {NewServiceEntityComponent} from '../new-service-entity/new-service-entity.component';
+import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 
 
@@ -24,10 +24,6 @@ export class ServiceEntityComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    code: string;
-    codeDirection: string;
-    Direction1: string;
-    Adresse1: string;
 
     constructor(public dialog: MatDialog, private referentialService: ReferentialService) {
 
@@ -37,10 +33,12 @@ export class ServiceEntityComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewServiceEntityComponent, {
             width: '4000px',
-            data: {code: this.code, codeDirection: this.codeDirection , Direction1: this.Direction1, adresse1: this.Adresse1}
         });
+        dialogRef.afterClosed().subscribe(result => {
+            this.dataSource = this.referentialService.getAllServiceEntityFromBackend();
+            // tslint:disable-next-line:triple-equals
 
-
+        });
 
     }
 
@@ -52,6 +50,26 @@ export class ServiceEntityComponent implements OnInit {
         this.dataSource = this.referentialService.getAllServiceEntityFromBackend();
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
+    }
+
+    confirmDialog(serviceEntity): void {
+        const message = `Vous êtes sûr de vouloir supprimer ce service`;
+
+        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteServiceEntity(serviceEntity);
+                this.dataSource = this.referentialService.getAllServiceEntityFromBackend();
+            }
+        });
+
     }
 
     deleteServiceEntity(service): void {

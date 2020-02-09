@@ -37,11 +37,6 @@ export class NewDirectionComponent implements OnInit {
     }
 
 
-    onNoClick(): void {
-
-
-    }
-
     // tslint:disable-next-line:typedef
   ngOnInit() {
       this.form = this._formBuilder.group({
@@ -80,7 +75,7 @@ export class NewDirectionComponent implements OnInit {
         this.referentialService.sendDirectionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
-                    this.dialogRef.close();
+                    this.dialogRef.close(this.form.getRawValue());
                     console.log('succes');
                 },
 

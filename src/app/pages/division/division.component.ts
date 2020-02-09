@@ -5,6 +5,7 @@ import {ReferentialService} from '../../services/referential.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {NewDivisionComponent} from '../new-division/new-division.component';
+import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-division',
@@ -32,6 +33,10 @@ export class DivisionComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDivisionComponent, {
             width: '4000px',
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            this.dataSource = this.referentialService.getAllDivisionsFromBackend();
+            // tslint:disable-next-line:triple-equals
 
         });
 
@@ -43,6 +48,26 @@ export class DivisionComponent implements OnInit {
         console.log(this.dataSource);
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
+    }
+
+    confirmDialog(division): void {
+        const message = `Vous êtes sûr de vouloir supprimer cette division`;
+
+        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteDivision(division);
+                this.dataSource = this.referentialService.getAllDivisionsFromBackend();
+            }
+        });
+
     }
 
     deleteDivision(division): void {

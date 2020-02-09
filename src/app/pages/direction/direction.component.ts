@@ -33,29 +33,15 @@ export class DirectionComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewDirectionComponent, {
             width: '4000px',
-            // data: {Id: this.Id, Direction1: this.Direction1, adresse1: this.Adresse1}
         });
-        this.dataSource = this.referentialService.getAllDirectionsFromBackend();
-    }
 
-    confirmDialog(direction): void {
-        const message = `Are you sure you want to do this?`;
-
-        const dialogData = new ConfirmDialogModel('Confirm Action', message);
-
-
-        const dialogRef = this.dialog1.open(ConfirmDialogComponent, {
-            maxWidth: '4000px',
-            data: dialogData
-        });
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
+            this.dataSource = this.referentialService.getAllDirectionsFromBackend();
             // tslint:disable-next-line:triple-equals
-            if (result == true) {
-                this.deleteDirection(direction);
-            }
-            });
+
+        });
     }
+
 
 
 
@@ -85,6 +71,26 @@ export class DirectionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+
+    }
+
+    confirmDialog(direction): void {
+        const message = `Vous êtes sûr de vouloir supprimer cette direction`;
+
+        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteDirection(direction);
+                this.dataSource = this.referentialService.getAllDirectionsFromBackend();
+            }
+        });
 
     }
 
