@@ -45,6 +45,7 @@ export const locale = {
             DIRECTION                       : 'Direction',
             SERVICE                         : 'Service',
             DIVISION                        : 'Division'
+
         }
     }
 };

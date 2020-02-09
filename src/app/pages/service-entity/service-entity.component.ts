@@ -7,26 +7,6 @@ import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {NewServiceEntityComponent} from '../new-service-entity/new-service-entity.component';
 
 
-export interface Direction {
-    code: string;
-    codeDirection: string;
-    label: string;
-    address: string;
-
-}
-
-const ELEMENT_DATA: Direction[] = [
-    {code: '1', codeDirection: 'hyh', label: 'Hydrogen', address: 'hhhhh'},
-    {code: '2', codeDirection: 'iui', label: 'Helium', address: 'hhhh'},
-    /*{ID: 3, Direction_name: 'Lithium', Adresse: 'jyghg'},
-    {ID: 4, Direction_name: 'Beryllium', Adresse: 'hhhjk'},
-    {ID: 5, Direction_name: 'Boron', Adresse: 'jyuygh'},
-    {ID: 6, Direction_name: 'Carbon', Adresse: 'iuiij'},
-    {ID: 7, Direction_name: 'Nitrogen', Adresse: 'kjkjk'},
-    {ID: 8, Direction_name: 'Oxygen', Adresse: 'ujklj'},
-    {ID: 9, Direction_name: 'Fluorine', Adresse: 'ujhg'},
-    {ID: 10, Direction_name: 'Neon', Adresse: 'uyhtg'},*/
-];
 
 
 @Component({
@@ -36,7 +16,7 @@ const ELEMENT_DATA: Direction[] = [
 })
 export class ServiceEntityComponent implements OnInit {
 
-    displayedColumns: string[] = ['code', 'codeDirection', 'label', 'address'];
+    displayedColumns: string[] = ['code', 'codeDirection', 'label', 'address', 'update', 'delete'];
     // @ts-ignore
     dataSource: any; // Promise<any> | null;
 
@@ -44,7 +24,7 @@ export class ServiceEntityComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    Id: number;
+    code: string;
     codeDirection: string;
     Direction1: string;
     Adresse1: string;
@@ -57,7 +37,7 @@ export class ServiceEntityComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewServiceEntityComponent, {
             width: '4000px',
-            data: {Id: this.Id, codeDirection: this.codeDirection , Direction1: this.Direction1, adresse1: this.Adresse1}
+            data: {code: this.code, codeDirection: this.codeDirection , Direction1: this.Direction1, adresse1: this.Adresse1}
         });
 
 
@@ -72,6 +52,19 @@ export class ServiceEntityComponent implements OnInit {
         this.dataSource = this.referentialService.getAllServiceEntityFromBackend();
         /*  this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;*/
+    }
+
+    deleteServiceEntity(service): void {
+        this.referentialService.deleteServiceEntity(service.code)
+            .subscribe(
+                () => {
+                    console.log('successful service delete');
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+
     }
 
 }

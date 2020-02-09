@@ -7,16 +7,8 @@ import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
-import {DirectionModel} from "../../models/direction.model";
+import {DirectionModel} from '../../models/direction.model';
 
-
-
-export interface DirectionCst {
-    code: '1';
-    label: 'Libellé Direction';
-    address: 'Adresse';
-
-}
 
 
 
@@ -27,10 +19,6 @@ export interface DirectionCst {
 })
 export class NewDirectionComponent implements OnInit {
 
-    // @ts-ignore
-    @ViewChild('fileInput') fileInput: ElementRef;
-
-    uploader: FileUploader;
 
     form: FormGroup;
 
@@ -40,7 +28,6 @@ export class NewDirectionComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewDirectionComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DirectionCst,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
         private router: Router)
@@ -51,25 +38,27 @@ export class NewDirectionComponent implements OnInit {
 
 
     onNoClick(): void {
-        this.dialogRef.close();
+
 
     }
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
       this.form = this._formBuilder.group({
-          code: [
+          code: ['',
               {
                   value: '',
               }, Validators.required
           ],
-          label: [
+          label: ['',
               {
                   value: '',
 
               }, Validators.required
           ],
-          address: [{
+          address: [
+              '',
+              {
               value: '',
 
           }, Validators.required
@@ -91,7 +80,8 @@ export class NewDirectionComponent implements OnInit {
         this.referentialService.sendDirectionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
-                   console.log('succes');
+                    this.dialogRef.close();
+                    console.log('succes');
                 },
 
                 (error) => {

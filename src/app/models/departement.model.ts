@@ -1,6 +1,6 @@
 
-export class Departement {
-    Code: string;
+export class DepartmentModel {
+    code: string;
     label: string;
     address: string;
 }

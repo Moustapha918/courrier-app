@@ -1,24 +1,29 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {FileUploader} from "ng2-file-upload";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subject} from "rxjs";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ReferentialService} from "../../services/referential.service";
-import {Router} from "@angular/router";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
+
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FileUploader} from 'ng2-file-upload';
+import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
+import {ReferentialService} from '../../services/referential.service';
+
+
 
 
 export interface DirectionCst {
     code: '1';
     label: 'Libellé Direction';
     address: 'Adresse';
+
 }
 
 @Component({
-  selector: 'app-new-service-entity',
-  templateUrl: './new-service-entity.component.html',
-  styleUrls: ['./new-service-entity.component.scss']
+  selector: 'app-new-departement',
+  templateUrl: './new-departement.component.html',
+  styleUrls: ['./new-departement.component.scss']
 })
-export class NewServiceEntityComponent implements OnInit {
+export class NewDepartementComponent implements OnInit {
 
     // @ts-ignore
     @ViewChild('fileInput') fileInput: ElementRef;
@@ -32,7 +37,7 @@ export class NewServiceEntityComponent implements OnInit {
 
 
     constructor(
-        public dialogRef: MatDialogRef<NewServiceEntityComponent>,
+        public dialogRef: MatDialogRef<NewDepartementComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DirectionCst,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
@@ -51,24 +56,18 @@ export class NewServiceEntityComponent implements OnInit {
     // tslint:disable-next-line:typedef
     ngOnInit() {
         this.form = this._formBuilder.group({
-            code: ['',
+            code: [
                 {
                     value: '',
                 }, Validators.required
             ],
-            codeDirection: ['',
-                {
-                    value: '',
-                }, Validators.required
-            ],
-            label: ['',
+            label: [
                 {
                     value: '',
 
                 }, Validators.required
             ],
-            address: ['',
-                {
+            address: [{
                 value: '',
 
             }, Validators.required
@@ -83,11 +82,11 @@ export class NewServiceEntityComponent implements OnInit {
     ngOnDestroy(): void {
     }
 
-    validateDirection(): void {
+    validateDepartement(): void {
 
         console.log(this.form.getRawValue());
 
-        this.referentialService.sendServiceEntityFormToBackend(this.form.getRawValue())
+        this.referentialService.sendDepartementFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
                     console.log('succes');

@@ -1,5 +1,11 @@
 @import "src/@fuse/scss/fuse";
 
+
+
+.content-card{
+    max-width: 100%;
+}
+
 app-direction {
 
     #products {
@@ -85,6 +91,7 @@ app-direction {
         border-bottom: 1px solid rgba(0, 0, 0, .12);
         overflow: auto;
         -webkit-overflow-scrolling: touch;
+        width: 100%;
 
         .mat-header-row {
             min-height: 64px;
@@ -116,21 +123,19 @@ app-direction {
             }
         }
 
-        .mat-column-category {
+        .mat-column-code {
             flex: 0 1 240px;
         }
 
-        .mat-column-price {
+        .mat-column-label {
             flex: 0 1 160px;
         }
 
-        .mat-column-quantity {
+        .mat-column-address {
             flex: 0 1 160px;
         }
 
-        .mat-column-active {
-            flex: 0 1 80px;
-        }
+
 
         .quantity-indicator {
             display: inline-block;
