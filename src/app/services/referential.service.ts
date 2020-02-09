@@ -10,6 +10,8 @@ import {ArrivedMailModel} from "../models/arrived-mail.model";
 import {ServiceEntityModel} from "../models/service-entity.model";
 import {DepartmentModel} from "../models/departement.model";
 
+import {DivisionModel} from '../models/division.model';
+
 
 
 
@@ -40,6 +42,9 @@ export class ReferentialService {
     deleteDepartmentURI = environment.backendUrl + '/referential/department/delete/';
 
 
+
+    addNewDivisionURI = environment.backendUrl + '/referential/division/add/new';
+    getAllDivisionsURI = environment.backendUrl + '/referential/division/all';
 
     constructor(private httpClient: HttpClient) {
 
@@ -92,6 +97,10 @@ export class ReferentialService {
 
 
     getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
+
+        // if (!this.directions ){
+        //
+        // }
         return this.httpClient
             .get<DirectionModel[]>(this.getAllDirectionURI) ;
     }
@@ -124,6 +133,18 @@ export class ReferentialService {
         console.log(this.deleteDepartmentURI + code );
         return this.httpClient
             .delete<DepartmentModel>(this.deleteDepartmentURI  + code ) ;
+    }
+
+
+    // Division
+    sendDivisionFormToBackend(division: DivisionModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewDivisionURI, division);
+    }
+
+    getAllDivisionsFromBackend(): Observable<DivisionModel[]> {
+        return this.httpClient
+            .get<DivisionModel[]>(this.getAllDivisionsURI) ;
     }
 
 }

@@ -40,6 +40,8 @@ import { DepartementComponent } from './departement/departement.component';
 import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
 import { NewDepartementComponent } from './new-departement/new-departement.component';
 // @ts-ignore
+import { NewDivisionComponent } from './new-division/new-division.component';
+// @ts-ignore
 
 
 
@@ -113,7 +115,7 @@ const routes = [
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDepartementComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent
 
     ],
     exports: [
@@ -150,7 +152,7 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule
     ],
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent]
+    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent]
 })
 export class PagesModule
 {
