@@ -5,15 +5,10 @@ import {FileUploader} from 'ng2-file-upload';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ServiceEntityModel} from '../../models/service-entity.model';
 
 
 
-
-export interface DirectionCst {
-    code: '1';
-    label: 'Libellé Direction';
-    address: 'Adresse';
-}
 
 @Component({
   selector: 'app-new-service-entity',
@@ -22,10 +17,10 @@ export interface DirectionCst {
 })
 export class NewServiceEntityComponent implements OnInit {
 
-    // @ts-ignore
-    @ViewChild('fileInput') fileInput: ElementRef;
 
-    uploader: FileUploader;
+
+
+
 
     form: FormGroup;
 
@@ -35,7 +30,7 @@ export class NewServiceEntityComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewServiceEntityComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DirectionCst,
+        @Inject(MAT_DIALOG_DATA) public data: ServiceEntityModel,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
         private router: Router)
@@ -78,6 +73,12 @@ export class NewServiceEntityComponent implements OnInit {
 
 
         });
+        if (this.data != null) {
+
+            delete this.data.id;
+            this.form.setValue( this.data);
+            this.form.controls['code'].disable();
+        }
 
     }
 
@@ -85,7 +86,7 @@ export class NewServiceEntityComponent implements OnInit {
     ngOnDestroy(): void {
     }
 
-    validateDirection(): void {
+    validateServiceEntity(): void {
 
         console.log(this.form.getRawValue());
 
@@ -102,5 +103,33 @@ export class NewServiceEntityComponent implements OnInit {
             );
 
     }
+
+    updateServiceEntity(): void {
+
+        console.log(this.form.getRawValue());
+
+        this.referentialService.updateServiceEntity(this.form.getRawValue())
+            .subscribe(
+                () => {
+                    this.dialogRef.close(this.form.getRawValue());
+                    console.log('succes');
+                },
+
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+    }
+
+    updateOrValidate(): void {
+        if (this.data != null) {
+            return this.updateServiceEntity();
+        }
+        else{
+            return this.validateServiceEntity();
+        }
+
+    }
+
 
 }

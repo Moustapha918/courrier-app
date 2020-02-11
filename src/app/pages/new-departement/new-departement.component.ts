@@ -1,22 +1,13 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
-
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
+import {DepartmentModel} from '../../models/departement.model';
 
 
-
-
-export interface DirectionCst {
-    code: '1';
-    label: 'Libellé Direction';
-    address: 'Adresse';
-
-}
 
 @Component({
   selector: 'app-new-departement',
@@ -38,7 +29,7 @@ export class NewDepartementComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewDepartementComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DirectionCst,
+        @Inject(MAT_DIALOG_DATA) public data: DepartmentModel,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
         private router: Router)
@@ -76,13 +67,21 @@ export class NewDepartementComponent implements OnInit {
 
         });
 
+        if (this.data != null) {
+
+            delete this.data.id;
+
+            this.form.setValue( this.data);
+            this.form.controls['code'].disable();
+
+        }
     }
 
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
     }
 
-    validateDepartement(): void {
+    validateDepartment(): void {
 
         console.log(this.form.getRawValue());
 
@@ -97,6 +96,33 @@ export class NewDepartementComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+
+    }
+
+    updateDepartment(): void {
+
+        console.log(this.form.getRawValue());
+
+        this.referentialService.updateDepartement(this.form.getRawValue())
+            .subscribe(
+                () => {
+                    this.dialogRef.close(this.form.getRawValue());
+                    console.log('succes');
+                },
+
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+    }
+
+    updateOrValidate(): void {
+        if (this.data != null) {
+            return this.updateDepartment();
+        }
+        else{
+            return this.validateDepartment();
+        }
 
     }
 

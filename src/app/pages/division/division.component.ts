@@ -30,13 +30,14 @@ export class DivisionComponent implements OnInit {
               private referentialService: ReferentialService) { }
 
 
-    openDialog(): void {
+    AddDivision(): void {
         const dialogRef = this.dialog.open(NewDivisionComponent, {
             width: '4000px',
+
         });
         dialogRef.afterClosed().subscribe(result => {
             this.dataSource = this.referentialService.getAllDivisionsFromBackend();
-            // tslint:disable-next-line:triple-equals
+
 
         });
 
@@ -80,6 +81,18 @@ export class DivisionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+
+    }
+
+    updateDivision(division): void {
+
+        const dialogRef = this.dialog.open(NewDivisionComponent, {
+            maxWidth: '4000px',
+            data: division
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            this.dataSource = this.referentialService.getAllDivisionsFromBackend();
+        });
 
     }
 

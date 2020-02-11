@@ -36,15 +36,43 @@ export const locale = {
             DISPLAY                         : 'Visualiser',
             CONFIRM                         : 'Confirmer',
             DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier',
+            NOTIFICATION                    : 'Notification',
+            YES                            : 'Oui',
+            NO                             : 'No',
 
 
         },
-        REFERENTIEL: {
+        REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',
             DIRECTION                       : 'Direction',
             SERVICE                         : 'Service',
-            DIVISION                        : 'Division'
+            DIVISION                        : 'Division',
+
+
+            ADDDIRECTION                    : 'Ajouter une direction',
+            CODEDIRECTION                   : 'Code direction',
+            LABELDIRECTION                  : 'Libellé Direcion',
+            ADRESSEDIRECTION                : 'Adresse',
+            UPDATEDIRECTION                 : 'Editer',
+            DELETEDIRECTION                 : 'Supprimer',
+            ADDDIRRECTIONTITLE              : 'Créer une nouvelle direction',
+            ADDDIRECTIONMSG                 : 'Direction à été rajouté',
+            DELETEDIRECTIONMSG              : 'Direction supprimé',
+            UPDATEDIRECTIONMSG              : 'Direction mis à jour',
+
+
+            ADDSERVICE                      : 'Service à été rajouté',
+            DELETESERVICE                   : 'Service supprimé',
+            UPDATESERVICE                   : 'Service mis à jour',
+
+
+            ADDDIVISION                     : 'Division à été rajouté',
+            DELETEDIVISION                  : 'Division supprimé',
+            UPDATEDIVISION                  : 'Division mis à jour',
+
+            DELETEMSG                       : `Etes-vous sûr de vouloir supprimer cette direction`,
+            DELETECONFIRMATION              : 'Confirmation de suppression'
 
         }
     }

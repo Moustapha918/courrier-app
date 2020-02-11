@@ -9,6 +9,7 @@ import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/conf
 
 
 
+
 @Component({
   selector: 'app-service-entity',
   templateUrl: './service-entity.component.html',
@@ -24,13 +25,12 @@ export class ServiceEntityComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-
     constructor(public dialog: MatDialog, private referentialService: ReferentialService) {
 
 
     }
 
-    openDialog(): void {
+    addServiceEntity(): void {
         const dialogRef = this.dialog.open(NewServiceEntityComponent, {
             width: '4000px',
         });
@@ -82,6 +82,18 @@ export class ServiceEntityComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+
+    }
+
+    updateServiceEntity(service): void {
+
+        const dialogRef = this.dialog.open(NewServiceEntityComponent, {
+            maxWidth: '4000px',
+            data: service
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            this.dataSource = this.referentialService.getAllServiceEntityFromBackend();
+        });
 
     }
 

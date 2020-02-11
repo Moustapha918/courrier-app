@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ReferentialService} from '../../services/referential.service';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
+import {DivisionModel} from '../../models/division.model';
 
 @Component({
   selector: 'app-new-division',
@@ -18,7 +19,7 @@ export class NewDivisionComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewDivisionComponent>,
-        // @Inject(MAT_DIALOG_DATA) public data: DirectionCst,
+        @Inject(MAT_DIALOG_DATA) public data: DivisionModel,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
         private router: Router)
@@ -58,6 +59,14 @@ export class NewDivisionComponent implements OnInit {
             ],
 
         });
+
+        if (this.data != null) {
+
+            delete this.data.id;
+            this.form.setValue( this.data);
+            this.form.controls['code'].disable();
+
+        }
     }
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
@@ -78,6 +87,33 @@ export class NewDivisionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+    }
+
+    updateDivision(): void {
+
+        console.log(this.form.getRawValue());
+
+        this.referentialService.updateDivision(this.form.getRawValue())
+            .subscribe(
+                () => {
+                    this.dialogRef.close(this.form.getRawValue());
+                    console.log('succes');
+                },
+
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+    }
+
+    updateOrValidate(): void {
+        if (this.data != null) {
+            return this.updateDivision();
+        }
+        else{
+            return this.validateDivision();
+        }
+
     }
 
 }

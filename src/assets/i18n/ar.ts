@@ -36,14 +36,38 @@ export const locale = {
             DISPLAY                        : 'عرض',
             CONFIRM                        : 'تأكيد',
             DISPALY_ANNOTATION_VENTILATION : 'عرض و تعليق و توزيع هذا البريد',
+            NOTIFICATION                    : 'إشعار',
+            YES                            : 'نعم',
+            NO                             : 'لا',
 
         },
-            REFERENTIEL: {
+            REFERENTIAL: {
                 REFERENTIEL                     : 'Referentiel',
                 ORGANIGRAM                      : 'Organigramme',
                 DIRECTION                       : 'Direction',
                 SERVICE                         : 'Service',
-                DIVISION                        : 'Division'
+                DIVISION                        : 'Division',
+
+                ADDDIRECTION                    : 'إضافة إدارة',
+                CODEDIRECTION                   : 'رمز الإدارة',
+                LABELDIRECTION                  : 'تسمية الإدارة',
+                ADRESSEDIRECTION                : 'عنوان الإدارة',
+                UPDATEDIRECTION                 : 'تعديل الإدارة',
+                DELETEDIRECTION                 : 'مسح الإدارة',
+                ADDDIRRECTIONTITLE              : 'إنشاء إدارة جديدة',
+                ADDDIRECTIONMSG                 : 'تمت إضافة الإدارة',
+                DELETEDIRECTIONMSG              : 'تم حذف الإدارة',
+                UPDATEDIRECTIONMSG              : 'تم تحديث الإدارة',
+
+                ADDSERVICE                      : 'تمت إضافة المصلحة',
+                DELETESERVICE                   : 'تم حذف المصلحة',
+                UPDATESERVICE                   : 'تم تحديث المصلحة',
+                ADDDIVISION                     : 'تمت إضافة القسم',
+                DELETEDIVISION                  : 'تم حذف القسم',
+                UPDATEDIVISION                  : 'تم تحديث القسم',
+
+                DELETEMSG                       : 'هل أنت متأكد أنك تريد حذف هذ الإدارة',
+                DELETECONFIRMATION              : 'تأكيد الحذف',
             }
     }
 };

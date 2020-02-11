@@ -8,6 +8,7 @@ import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
 import {DirectionModel} from '../../models/direction.model';
+import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 
 
@@ -30,7 +31,8 @@ export class NewDirectionComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDirectionComponent>,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
-        private router: Router)
+        private router: Router,
+        @Inject(MAT_DIALOG_DATA) public data: DirectionModel)
     {
         this._unsubscribeAll = new Subject();
 
@@ -39,6 +41,8 @@ export class NewDirectionComponent implements OnInit {
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
+
+
       this.form = this._formBuilder.group({
           code: ['',
               {
@@ -62,11 +66,19 @@ export class NewDirectionComponent implements OnInit {
 
       });
 
+      if (this.data != null) {
+
+          delete this.data.id;
+
+          this.form.setValue( this.data);
+          this.form.controls['code'].disable();
+
+      }
+
   }
 
     // tslint:disable-next-line:use-lifecycle-interface
-    ngOnDestroy(): void {
-    }
+
 
     validateDirection(): void {
 
@@ -76,6 +88,7 @@ export class NewDirectionComponent implements OnInit {
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
+                    this.dialogRef.close(true);
                     console.log('succes');
                 },
 
@@ -83,6 +96,34 @@ export class NewDirectionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+    }
+
+    updateDirection(): void {
+
+        console.log(this.form.getRawValue());
+
+        this.referentialService.updateDirection(this.form.getRawValue())
+            .subscribe(
+                () => {
+                    this.dialogRef.close(this.form.getRawValue());
+                    this.dialogRef.close(true);
+                    console.log('succes');
+                },
+
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+
+    }
+
+    updateOrValidate(): void {
+        if (this.data != null) {
+            return this.updateDirection();
+        }
+        else{
+            return this.validateDirection();
+        }
 
     }
 
