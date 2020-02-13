@@ -10,6 +10,8 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {TranslateModule} from '@ngx-translate/core';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,9 @@ import {AngularSvgIconModule} from 'angular-svg-icon';
         FuseSharedModule,
         FuseSearchBarModule,
         FuseShortcutsModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        TranslateModule,
+        MatSelectModule
     ],
     exports     : [
         ToolbarComponent

@@ -25,7 +25,18 @@
                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="full-width">
                      <div class="logo"> <svg-icon src="assets/icons/customAdmin/logout.svg" [svgStyle]="{ 'width.px':40, 'height.px':40 }"></svg-icon>  </div>
 
-                     <div>
+                     <div fxLayout="Column"  >
+                         <button mat-raised-button (click)=UseFrench() >
+                             <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
+                             <span>Français</span>
+                         </button>
+                         <button mat-raised-button (click)=UseArabe()>
+                             <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
+                             <span>العربية</span>
+                         </button>
+
+                     </div>
+                     <!--<div>
                          <button mat-button fxHide fxShow.gt-xs
                                  class="language-button"
                                  [matMenuTriggerFor]="languageMenu">
@@ -36,7 +47,6 @@
                          </button>
 
                          <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
-
                              <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
                                  <span fxLayout="row" fxLayoutAlign="start center">
                                     <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
@@ -44,12 +54,11 @@
                                  </span>
                              </button>
                          </mat-menu>
-                     </div>
+                     </div>-->
                  </div>
 
 
              </div>
-
          </div>
 
 

@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     languages: any;
     navigation: any;
     selectedLanguage: any;
-    userStatusOptions: any[];
+
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -125,13 +125,24 @@ export class ToolbarComponent implements OnInit, OnDestroy
      *
      * @param lang
      */
-    setLanguage(lang): void
+    UseFrench(): void
     {
         // Set the selected language for the toolbar
-        this.selectedLanguage = lang;
+        // this.selectedLanguage = lang;
 
         // Use the selected language for translations
-        this._translateService.use(lang.id);
+        this._translateService.use('fr');
+        localStorage.setItem('language', 'fr');
+    }
+
+    UseArabe(): void
+    {
+        // Set the selected language for the toolbar
+        // this.selectedLanguage = lang;
+
+        // Use the selected language for translations
+        this._translateService.use('ar');
+        localStorage.setItem('language', 'ar');
     }
 }
 

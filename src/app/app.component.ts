@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform
     )
     {
-        this.languages = [
+        /*this.languages = [
             {
                 id   : 'fr',
                 title: 'french',
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy
                 title: 'arabe',
                 flag : 'tr'
             }
-        ];
+        ];*/
 
         // Get default navigation
         this.navigation = navigation;
@@ -101,6 +101,7 @@ export class AppComponent implements OnInit, OnDestroy
             _translateService.setDefaultLang('fr');
             _translateService.use('fr');
         }
+
 
        /* *
          * ----------------------------------------------------------------------------------------------------
@@ -154,7 +155,7 @@ export class AppComponent implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
-        this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
+        // this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
         // Subscribe to config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -189,7 +190,7 @@ export class AppComponent implements OnInit, OnDestroy
             });
     }
 
-    setLanguage(lang): void {
+   /* setLanguage(lang): void {
         // Set the selected language for the toolbar
         this.selectedLanguage = lang;
 
@@ -197,7 +198,7 @@ export class AppComponent implements OnInit, OnDestroy
         // Use the selected language for translations
         this._translateService.use(lang.id);
         localStorage.setItem('language', lang.id);
-    }
+    }*/
 
     /**
      * On destroy
