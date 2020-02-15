@@ -1,0 +1,70 @@
+
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+
+        <div class="header accent"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+
+            <button mat-raised-button (click)=openDialog() >
+                <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
+                <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
+            </button>
+
+        </div>
+        <div class="content-card">
+
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="code">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+                    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="label">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Direction </th>
+                    <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="update">
+                    <th mat-header-cell *matHeaderCellDef> Editer </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="accent"> <!--(click)="redirectToUpdate(element.id)"-->
+                            <mat-icon class="mat-18">edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="accent" (click)="confirmDialog(element)">
+                            <mat-icon class="mat-18">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+</div>

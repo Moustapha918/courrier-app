@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -11,14 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScHomeComponent implements OnInit {
 
+
+
+
+     /* param = {value: 'world'};*/
+
     // tslint:disable-next-line:adjacent-overload-signatures
     constructor( ) {}
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
   }
-
-
-
 
 }

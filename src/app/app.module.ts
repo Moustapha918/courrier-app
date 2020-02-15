@@ -22,6 +22,7 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import {MatSelectModule, MatTabsModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
+import {ReferentialService} from './services/referential.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
@@ -102,6 +103,7 @@ const appRoutes: Routes = [
     ],
     providers   : [
         InitMailService,
+        ReferentialService
         // MailService
     ],
     bootstrap   : [
