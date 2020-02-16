@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-sc-workflow',
@@ -7,9 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScWorkflowComponent implements OnInit {
 
-  constructor() { }
+    activeIndex = 0;
 
-  ngOnInit() {
+  constructor(private router: Router) { }
+
+  ngOnInit(): void{
+
+     if (this.router.url.match('sc-workflow')){
+         this.activeIndex = 1;
+     }
+
+     if (this.router.url.match('referentiel')){
+         this.activeIndex = 3;
+     }
+
+
   }
 
+    goToReferentiel($event: any): void {
+      // this.router.url = 'referentiel';
+        //
+
+        console.log('clicked ---------------------', $event.index);
+        if ($event.index === 4){
+            this.router.navigate(['../sc-workflow/referentiel']);
+
+            // if (this.router.url.match('../sc-workflow/referentiel/division')){
+            //     this.router.navigate(['../sc-workflow/referentiel/division']);
+            //     console.log(this.router.url);
+            // }
+        }
+        if ($event.index === 1){
+            this.router.navigate(['../sc-workflow/arrivedMail-sc']);
+
+            // if (this.router.url.match('../sc-workflow/referentiel/division')){
+            //     this.router.navigate(['../sc-workflow/referentiel/division']);
+            //     console.log(this.router.url);
+            // }
+        }
+
+    }
 }

@@ -44,50 +44,47 @@ import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 // @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 const routes = [
-    {
-        path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent,
-        resolve  : {
-            data: InitMailService
-        }
-    }, {
-        path     : 'sc-home',
-        component: ScHomeComponent
-    },
-    {
-        path     : 'new-arrived-mail',
-        component: InitMailComponent
-    },
-    {
-        path     : 'referentiel',
-        component: ReferentialComponent
-    },
-    {
-        path     : 'direction',
-        component: DirectionComponent
-    },
-    {
-        path     : 'service',
-        component: ServiceEntityComponent
-    },
-    {
-        path     : 'division',
-        component: DivisionComponent
-    },
-    {
-        path     : 'departement',
-        component: DepartementComponent
-    },
-    {
-        /*path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,*/
-       /* resolve : {
-          data: MailService
-        }*/
+    // {
+    //     path     : 'arrivedMail-sc',
+    //     component: ArrivedMailScComponent,
+    //     resolve  : {
+    //         data: InitMailService
+    //     }
+    // },
+    // {
+    //     path     : 'sc-home',
+    //     component: ScHomeComponent
+    // },
+    // {
+    //     path     : 'new-arrived-mail',
+    //     component: InitMailComponent
+    // },
+    // {
+    //     path     : 'referentiel',
+    //     component: ReferentialComponent,
+    // },
+    // {
+    //     path     : 'direction',
+    //     component: DirectionComponent
+    // },
+    // {
+    //     path     : 'service',
+    //     component: ServiceEntityComponent
+    // },
+    // {
+    //     path     : 'division',
+    //     component: DivisionComponent
+    // },
+    // {
+    //     path     : 'departement',
+    //     component: DepartementComponent
+    // },
 
+    {
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
         children: [
@@ -105,6 +102,28 @@ const routes = [
             {
                 path     : 'lecture-mail/:id',
                 component: ViewingEmailComponent
+            },
+            {
+                path     : 'referentiel',
+                component: ReferentialComponent,
+                children: [
+                    {
+                        path     : 'direction',
+                        component: DirectionComponent
+                    },
+                    {
+                        path     : 'service',
+                        component: ServiceEntityComponent
+                    },
+                    {
+                        path     : 'division',
+                        component: DivisionComponent
+                    },
+                    {
+                        path     : 'departement',
+                        component: DepartementComponent
+                    }
+                ]
             }
         ]
     }
@@ -151,7 +170,8 @@ const routes = [
         MatCheckboxModule,
         FuseSharedModule,
         TranslateModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        PdfViewerModule
     ],
     entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
