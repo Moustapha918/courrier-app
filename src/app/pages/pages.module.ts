@@ -13,7 +13,7 @@ import {InitMailComponent} from './init-mail/init-mail.component';
 import {
     MatCardModule, MatCheckboxModule,
     MatDatepickerModule, MatDialogModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule,
     MatSortModule,
     MatStepperModule
@@ -29,6 +29,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
 
 
 
@@ -65,7 +66,8 @@ const routes = [
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
         ViewingEmailComponent,
-        VisualizePdfComponent
+        VisualizePdfComponent,
+        SpinnerModalComponent
     ],
     exports: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent
@@ -100,9 +102,10 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         PdfViewerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
-    entryComponents: [VisualizePdfComponent]
+    entryComponents: [VisualizePdfComponent, SpinnerModalComponent]
 })
 export class PagesModule
 {

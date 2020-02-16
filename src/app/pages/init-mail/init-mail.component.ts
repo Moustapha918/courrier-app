@@ -5,6 +5,9 @@ import {InitMailService} from '../../services/init-mail.service';
 import { NotificationService } from '../../services/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FileUploader, FileItem} from 'ng2-file-upload';
+import {LoadingService} from '../../services/loading.service';
+import {MatDialogRef} from '@angular/material';
+import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 
 @Component({
     selector: 'app-init-mail',
@@ -30,7 +33,9 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private initMailService: InitMailService,
         private router: Router,
         private notifyService: NotificationService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private loadingService: LoadingService,
+        private notificationService: NotificationService
     ) {
         this._unsubscribeAll = new Subject();
     }
@@ -88,7 +93,9 @@ export class InitMailComponent implements OnInit, OnDestroy {
     }
 
     uploadScanFile(): void {
+        let refDialog: MatDialogRef<SpinnerModalComponent, any>;
         this.fileInput.nativeElement.click();
+
 
         const headers = [{name: 'Accept', value: 'application/json'}];
         this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
@@ -98,11 +105,12 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
         this.uploader.onAfterAddingFile = item => { // to allow cross origin
             item.withCredentials = false;
+            console.log('onAfterAddingFile')
+            refDialog = this.loadingService.displaySpinner();
         };
-
         this.uploader.onCompleteAll = () =>  {
 
-            // console.log(this.fileInput.nativeElement.files[0].name);
+            console.log('onCompleteAll');
         };
 
         this.uploader.onSuccessItem = (item: FileItem, idScanFile: string, status: number) => {
@@ -117,8 +125,13 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 this.notifyService.openSnackBar('erreur du téléchargement du fichier', 'Notification');
                 // alert('erreur du téléchargement du fichier');
             }
+
+            if (refDialog){
+                refDialog.close();
+            }
             this.form.controls['idScanFile'].setValue(idScanFile);
         };
+
 
 
     }
@@ -134,17 +147,19 @@ export class InitMailComponent implements OnInit, OnDestroy {
     validateArrivedMail(): void {
 
         console.log(this.form.getRawValue());
+        const refDialog = this.loadingService.displaySpinner();
 
         this.initMailService.sendArrivedMailFormToBackend(this.form.getRawValue())
              .subscribe(
                  () => {
                      this.router.navigate(['../arrivedMail-sc'], { relativeTo: this.activatedRoute });
+                     refDialog.close();
                  },
                  (error) => {
+                     refDialog.close();
+                     this.notificationService.openSnackBar('Unne Erreur est survenu lors de la création du courrier', 'close');
                      console.log('Error ! : ' + error);
-                 }
-             );
-
+                 });
     }
 
 }

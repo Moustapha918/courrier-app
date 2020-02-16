@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 
 
@@ -12,13 +13,13 @@ import { Component, OnInit } from '@angular/core';
 export class ScHomeComponent implements OnInit {
 
     // tslint:disable-next-line:adjacent-overload-signatures
-    constructor( ) {}
+    constructor(private router: Router ) {}
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
   }
 
-
-
-
+    goToArrivedMail(): void {
+        this.router.navigate(['sc-workflow/arrivedMail-sc']);
+    }
 }

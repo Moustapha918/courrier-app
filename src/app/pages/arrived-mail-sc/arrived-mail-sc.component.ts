@@ -35,10 +35,6 @@ export class ArrivedMailScComponent implements OnInit{
     {
     }
     ngOnInit(): void{
-
-        this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
-            console.log(data);
-        });
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
 
         fromEvent(this.filter.nativeElement, 'keyup')
