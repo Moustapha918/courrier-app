@@ -1,4 +1,6 @@
 import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.component';
+// @ts-ignore
+import { ReferentialComponent } from './referential/referential.component';
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
@@ -24,9 +26,22 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
+import {MailService} from '../services/mail.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
+import { DirectionComponent } from './direction/direction.component';
+import { NewDirectionComponent } from './new-direction/new-direction.component';
+import { ServiceEntityComponent } from './service-entity/service-entity.component';
+import { DivisionComponent } from './division/division.component';
+import { DepartementComponent } from './departement/departement.component';
+import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
+import { NewDepartementComponent } from './new-departement/new-departement.component';
+// @ts-ignore
+import { NewDivisionComponent } from './new-division/new-division.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+// @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
@@ -34,13 +49,49 @@ import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
 
 
 const routes = [
- {
+    {
+        path     : 'arrivedMail-sc',
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
+    }, {
         path     : 'sc-home',
-        component: ScHomeComponent,
+        component: ScHomeComponent
     },
     {
-        path: 'sc-workflow',
-        component: ScWorkflowComponent,
+        path     : 'new-arrived-mail',
+        component: InitMailComponent
+    },
+    {
+        path     : 'referentiel',
+        component: ReferentialComponent
+    },
+    {
+        path     : 'direction',
+        component: DirectionComponent
+    },
+    {
+        path     : 'service',
+        component: ServiceEntityComponent
+    },
+    {
+        path     : 'division',
+        component: DivisionComponent
+    },
+    {
+        path     : 'departement',
+        component: DepartementComponent
+    },
+    {
+        /*path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent,*/
+       /* resolve : {
+          data: MailService
+        }*/
+
+        path  : 'sc-workflow',
+        component  : ScWorkflowComponent,
         children: [
             {
                 path     : 'arrivedMail-sc',
@@ -67,10 +118,14 @@ const routes = [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
         ViewingEmailComponent,
         VisualizePdfComponent,
-        SpinnerModalComponent
+        SpinnerModalComponent,
+        // tslint:disable-next-line:max-line-length
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent
+
     ],
     exports: [
-        ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent
+        ArrivedMailScComponent, ScHomeComponent, InitMailComponent, ViewingEmailComponent, ReferentialComponent
     ],
     imports: [
         MatIconModule,
@@ -101,11 +156,11 @@ const routes = [
         MatCheckboxModule,
         FuseSharedModule,
         TranslateModule,
+        MatProgressSpinnerModule,
         PdfViewerModule,
-        MatDialogModule,
-        MatProgressSpinnerModule
+        MatDialogModule
     ],
-    entryComponents: [VisualizePdfComponent, SpinnerModalComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
 export class PagesModule
 {

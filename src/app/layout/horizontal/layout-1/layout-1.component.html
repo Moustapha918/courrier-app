@@ -25,9 +25,12 @@
 
         </mat-tab>
 
-        <mat-tab label="{{ 'mail.COURRIER_DEPART' | translate }}">  </mat-tab>
+        <mat-tab label="{{ 'mail.COURRIER_DEPART' | translate }}"> </mat-tab>
         <mat-tab label="{{ 'mail.ARCHIVE' | translate }}">  </mat-tab>
-        <mat-tab label="{{ 'mail.REFERENTIEL' | translate }}"> Referentiel </mat-tab>
+        <mat-tab label="{{ 'REFERENTIEL.REFERENTIEL' | translate }}">
+            <app-referential></app-referential>
+
+        </mat-tab>
     </mat-tab-group>
     <footer>  </footer>
 </div>

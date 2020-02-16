@@ -1,0 +1,21 @@
+.your-title {
+    font-family: Pluto-Bold;
+    font-size: 23px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.mat-card{
+    margin: 1em;
+    min-width:30%;
+    min-height: 30%;
+    text-align: center;
+}
+
+mat-card:hover {
+    cursor: pointer;
+}

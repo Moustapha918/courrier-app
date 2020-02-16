@@ -13,6 +13,7 @@ import { ToolbarModule } from 'app/layout/components/toolbar/toolbar.module';
 import { HorizontalLayout1Component } from 'app/layout/horizontal/layout-1/layout-1.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {TranslateModule} from '@ngx-translate/core';
+import {PagesModule} from '../../../pages/pages.module';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {TranslateModule} from '@ngx-translate/core';
         QuickPanelModule,
         ToolbarModule,
         MatTabsModule,
-        TranslateModule
+        TranslateModule,
+        PagesModule
     ],
     exports     : [
         HorizontalLayout1Component
