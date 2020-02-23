@@ -31,7 +31,6 @@ export class NewDirectionComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDirectionComponent>,
         private _formBuilder: FormBuilder,
         private referentialService: ReferentialService,
-        private router: Router,
         @Inject(MAT_DIALOG_DATA) public data: DirectionModel)
     {
         this._unsubscribeAll = new Subject();

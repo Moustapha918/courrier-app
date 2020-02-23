@@ -5,6 +5,7 @@ import {ReferentialService} from '../../services/referential.service';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {DivisionModel} from '../../models/division.model';
+import {DirectionModel} from '../../models/direction.model';
 
 @Component({
   selector: 'app-new-division',
@@ -16,6 +17,7 @@ export class NewDivisionComponent implements OnInit {
     form: FormGroup;
 
     private _unsubscribeAll: Subject<any>;
+    private directions: DirectionModel[];
 
     constructor(
         public dialogRef: MatDialogRef<NewDivisionComponent>,
@@ -30,6 +32,10 @@ export class NewDivisionComponent implements OnInit {
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
+        this.referentialService.getAllDirectionsFromBackend().subscribe(
+            data => this.directions = data
+        );
+
         this.form = this._formBuilder.group({
             code: ['',
                 {
@@ -80,6 +86,7 @@ export class NewDivisionComponent implements OnInit {
             .subscribe(
                 () => {
                     this.dialogRef.close();
+                    this.dialogRef.close(true);
                     console.log('success');
                 },
 
@@ -97,6 +104,7 @@ export class NewDivisionComponent implements OnInit {
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
+                    this.dialogRef.close(true);
                     console.log('succes');
                 },
 

@@ -48,6 +48,7 @@ export const locale = {
             DIRECTION                       : 'Direction',
             SERVICE                         : 'Service',
             DIVISION                        : 'Division',
+            DEPARTMENT                      : 'Departement',
 
 
             ADDDIRECTION                    : 'Ajouter une direction',
@@ -60,18 +61,27 @@ export const locale = {
             ADDDIRECTIONMSG                 : 'Direction à été rajouté',
             DELETEDIRECTIONMSG              : 'Direction supprimé',
             UPDATEDIRECTIONMSG              : 'Direction mis à jour',
+            DELETEMSGCONFIRMATIONDIRECTION  : `Etes-vous sûr de vouloir supprimer cette direction`,
 
 
-            ADDSERVICE                      : 'Service à été rajouté',
-            DELETESERVICE                   : 'Service supprimé',
-            UPDATESERVICE                   : 'Service mis à jour',
+            ADDSERVICE                      : 'Ajouter un service',
+            CODESERVICE                     : 'Code service',
+            LABELSERVICE                    : 'Libellé service',
+            ADRESSESERVICE                  : 'Adresse',
+            UPDATESERVICE                   : 'Editer',
+            DELETESERVICE                   : 'Supprimer',
+            ADDSERVICETITLE                 : 'Créer une nouvelle service',
+            ADDSERVICEMSG                   : 'service à été rajouté',
+            DELETESERVICEMSG                : 'service supprimé',
+            UPDATESERVICEMSG                : 'service mis à jour',
+            DELETEMSGCONFIRMATIONSERVICE  : `Etes-vous sûr de vouloir supprimer cette service`,
 
 
             ADDDIVISION                     : 'Division à été rajouté',
             DELETEDIVISION                  : 'Division supprimé',
             UPDATEDIVISION                  : 'Division mis à jour',
 
-            DELETEMSG                       : `Etes-vous sûr de vouloir supprimer cette direction`,
+
             DELETECONFIRMATION              : 'Confirmation de suppression'
 
         }

@@ -24,6 +24,7 @@ export class NewDepartementComponent implements OnInit {
     form: FormGroup;
 
     private _unsubscribeAll: Subject<any>;
+    private directions: any;
 
 
 
@@ -45,6 +46,9 @@ export class NewDepartementComponent implements OnInit {
     }
     // tslint:disable-next-line:typedef
     ngOnInit() {
+        this.directions = this.referentialService.getAllDirectionsFromBackend().subscribe(
+            data => this.directions = data
+        );
         this.form = this._formBuilder.group({
             code: ['',
                 {

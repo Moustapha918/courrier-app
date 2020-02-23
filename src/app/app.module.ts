@@ -12,7 +12,7 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import {FuseNavigationModule, FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
@@ -40,6 +40,7 @@ import {ContentModule} from './layout/components/content/content.module';
 import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
 import {FooterModule} from './layout/components/footer/footer.module';
 import {ScHomeComponent} from './pages/sc-home/sc-home.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 const appRoutes: Routes = [
     {
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
+        MatSidenavModule,
 
         // App modules
         LayoutModule,
@@ -99,7 +101,8 @@ const appRoutes: Routes = [
         MatTabsModule,
         ToolbarModule,
         ContentModule,
-        FooterModule
+        FooterModule,
+        FuseNavigationModule
     ],
     providers   : [
         InitMailService,

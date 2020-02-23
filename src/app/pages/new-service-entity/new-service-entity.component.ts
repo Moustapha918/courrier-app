@@ -3,9 +3,11 @@ import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
 import {FileUploader} from 'ng2-file-upload';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ServiceEntityModel} from '../../models/service-entity.model';
+import {DirectionModel} from '../../models/direction.model';
+
 
 
 
@@ -24,7 +26,9 @@ export class NewServiceEntityComponent implements OnInit {
 
     form: FormGroup;
 
+
     private _unsubscribeAll: Subject<any>;
+    private directions: DirectionModel[];
 
 
 
@@ -47,13 +51,21 @@ export class NewServiceEntityComponent implements OnInit {
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
+
+
+
+        this.referentialService.getAllDirectionsFromBackend().subscribe(
+            data => this.directions = data
+        );
+        console.log(this.directions);
+
         this.form = this._formBuilder.group({
             code: ['',
                 {
                     value: '',
                 }, Validators.required
             ],
-            codeDirection: ['',
+            codeDirection: [,
                 {
                     value: '',
                 }, Validators.required
@@ -82,6 +94,7 @@ export class NewServiceEntityComponent implements OnInit {
 
     }
 
+
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
     }
@@ -94,6 +107,7 @@ export class NewServiceEntityComponent implements OnInit {
             .subscribe(
                 () => {
                     this.dialogRef.close();
+                    this.dialogRef.close(true);
                     console.log('succes');
                 },
 
@@ -112,6 +126,7 @@ export class NewServiceEntityComponent implements OnInit {
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
+                    this.dialogRef.close(true);
                     console.log('succes');
                 },
 

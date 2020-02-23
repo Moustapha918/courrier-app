@@ -1,4 +1,8 @@
-<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+
+
+
+<div id="products" class="page-layout carded fullwidth inner-scroll" fusePerfectScrollbar>
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg accent"></div>
@@ -64,7 +68,13 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator
+
+                [pageIndex]="0"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 20]" >
+
+            </mat-paginator>
 
         </div>
     </div>

@@ -22,7 +22,7 @@ import {
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {ViewingEmailComponent} from './viewing-email/viewing-email/viewing-email';
-import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
+import {FuseDemoModule, FuseNavigationModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -45,8 +45,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 // @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
+// @ts-ignore
 const routes = [
     {
         path     : 'arrivedMail-sc',
@@ -54,7 +58,8 @@ const routes = [
         resolve  : {
             data: InitMailService
         }
-    }, {
+    },
+    {
         path     : 'sc-home',
         component: ScHomeComponent
     },
@@ -83,11 +88,25 @@ const routes = [
         component: DepartementComponent
     },
     {
+        path  : 'referentiel',
+        component  : ReferentialComponent,
+        children: [
+
+            {
+                path     : 'direction',
+                component: DirectionComponent
+            }
+            ]
+    },
+
+    {
         /*path     : 'lecture-mail/:id',
         component: ViewingEmailComponent,*/
        /* resolve : {
           data: MailService
         }*/
+
+
 
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
@@ -153,7 +172,11 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         MatProgressSpinnerModule,
-        PdfViewerModule
+        PdfViewerModule,
+        FuseNavigationModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule
     ],
     entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })

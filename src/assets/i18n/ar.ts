@@ -47,6 +47,7 @@ export const locale = {
                 DIRECTION                       : 'Direction',
                 SERVICE                         : 'Service',
                 DIVISION                        : 'Division',
+                DEPARTMENT                      : 'Departement',
 
                 ADDDIRECTION                    : 'إضافة إدارة',
                 CODEDIRECTION                   : 'رمز الإدارة',
@@ -58,15 +59,27 @@ export const locale = {
                 ADDDIRECTIONMSG                 : 'تمت إضافة الإدارة',
                 DELETEDIRECTIONMSG              : 'تم حذف الإدارة',
                 UPDATEDIRECTIONMSG              : 'تم تحديث الإدارة',
+                DELETEMSGCONFIRMATIONDIRECTION  : `هل أنت متأكد أنك تريد حذف هذه الإدارة`,
 
-                ADDSERVICE                      : 'تمت إضافة المصلحة',
-                DELETESERVICE                   : 'تم حذف المصلحة',
-                UPDATESERVICE                   : 'تم تحديث المصلحة',
+                ADDSERVICE                      : 'إضافة مصلحة',
+                CODESERVICE                     : 'رمز المصلحة',
+                LABELSERVICE                    : 'تسمية المصلحة',
+                ADRESSESERVICE                  : 'عنوان المصلحة',
+                UPDATESERVICE                   : 'تعديل المصلحة',
+                DELETESERVICE                   : 'مسح المصلحة',
+                ADDSERVICETITLE                 : 'إنشاء مصلحة جديدة',
+                ADDSERVICEMSG                   : 'تمت إضافة المصلحة',
+                DELETESERVICEMSG                : 'تم حذف المصلحة',
+                UPDATESERVICEMSG                : 'تم تحديث المصلحة',
+                DELETEMSGCONFIRMATIONSERVICE    : `هل أنت متأكد أنك تريد حذف هذه المصلحة`,
+
+
+
                 ADDDIVISION                     : 'تمت إضافة القسم',
                 DELETEDIVISION                  : 'تم حذف القسم',
                 UPDATEDIVISION                  : 'تم تحديث القسم',
 
-                DELETEMSG                       : 'هل أنت متأكد أنك تريد حذف هذ الإدارة',
+
                 DELETECONFIRMATION              : 'تأكيد الحذف',
             }
     }

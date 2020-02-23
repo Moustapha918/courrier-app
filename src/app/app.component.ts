@@ -55,18 +55,7 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform
     )
     {
-        /*this.languages = [
-            {
-                id   : 'fr',
-                title: 'french',
-                flag : 'us'
-            },
-            {
-                id   : 'ar',
-                title: 'arabe',
-                flag : 'tr'
-            }
-        ];*/
+
 
         // Get default navigation
         this.navigation = navigation;
