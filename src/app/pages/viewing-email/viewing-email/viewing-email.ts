@@ -2,14 +2,25 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {InitMailService} from '../../../services/init-mail.service';
 import {ArrivedMailModel} from '../../../models/arrived-mail.model';
 import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
+import {ReferentialService} from '../../../services/referential.service';
 
-const annotations  = [{id: 'classed' , label: 'classé'}, {id: 'ventilated', label: 'ventilé'}, {id: 'studying', label: 'à etudier'}];
-const directions  = [{idDirection: '1' , name: 'direction technique'}, {idDirection: '2', name: 'direction des operation'}, {idDirection: '3', name: 'direction des etudes'}];
+const annotations  = [
+    {code: '1' , label: 'M’en Parler'},
+    {code: '2', label: 'Suite à Donner'},
+    {code: '3', label: 'Exploitation'},
+    {code: '4', label: 'Suivi'},
+    {code: '5', label: 'Attribution'},
+    {code: '6', label: 'Etude et Avis'},
+    {code: '7', label: 'Disposition à prendre'},
+    {code: '8', label: 'Faire Nécessaire'}
+
+    ];
+
 
 @Component({
     selector   : 'carded-left-sidebar-1',
@@ -26,7 +37,8 @@ export class ViewingEmailComponent implements OnInit
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
     annotations: any[];
-    directions: any[];
+    directions: any;
+    directionsLength: any;
 
 
     /**
@@ -38,7 +50,7 @@ export class ViewingEmailComponent implements OnInit
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router,
-        private matDialog: MatDialog
+        private matDialog: MatDialog, private referentialService: ReferentialService
     )
     {
 
@@ -49,7 +61,20 @@ export class ViewingEmailComponent implements OnInit
         // Horizontal Stepper form steps
 
         this.annotations = annotations;
-        this.directions = directions;
+
+        this.referentialService.getAllDirectionsFromBackend()
+            .subscribe(
+                dirs => {
+                    console.log(dirs);
+                    this.directions = dirs;
+                    this.directionsLength = dirs.length;
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+
+
         this.activatedRoute.params.subscribe( param => {
             console.log(param);
             this.initMailService.getArrivedMails().then( mails => {
@@ -71,6 +96,9 @@ export class ViewingEmailComponent implements OnInit
             state     : ['', Validators.required],
             postalCode: ['', [Validators.required, Validators.maxLength(5)]]
         });
+
+
+
     }
 
     visualizeMailPDF(): void{

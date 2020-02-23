@@ -44,6 +44,7 @@ import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 // @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 
 const routes = [
@@ -151,7 +152,8 @@ const routes = [
         MatCheckboxModule,
         FuseSharedModule,
         TranslateModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        PdfViewerModule
     ],
     entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
