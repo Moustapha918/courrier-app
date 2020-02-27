@@ -7,6 +7,7 @@ import {Observable, Subject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {DirectionModel} from '../../models/direction.model';
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -25,6 +26,7 @@ export class NewServiceEntityComponent implements OnInit {
 
 
     form: FormGroup;
+    title: any;
 
 
     private _unsubscribeAll: Subject<any>;
@@ -36,6 +38,7 @@ export class NewServiceEntityComponent implements OnInit {
         public dialogRef: MatDialogRef<NewServiceEntityComponent>,
         @Inject(MAT_DIALOG_DATA) public data: ServiceEntityModel,
         private _formBuilder: FormBuilder,
+        private translate: TranslateService,
         private referentialService: ReferentialService,
         private router: Router)
     {
@@ -52,12 +55,21 @@ export class NewServiceEntityComponent implements OnInit {
     // tslint:disable-next-line:typedef
     ngOnInit() {
 
+        // chane the title of popup
+
+        if (this.data != null) {
+            this.title = this.translate.instant('REFERENTIAL.EDITSERVICETITLE');
+        }
+        else{
+            this.title = this.title = this.translate.instant('REFERENTIAL.ADDSERVICETITLE');
+        }
 
 
+        // POUR LA LISTE DEROULANTE DES DIRECTIONS
         this.referentialService.getAllDirectionsFromBackend().subscribe(
             data => this.directions = data
         );
-        console.log(this.directions);
+
 
         this.form = this._formBuilder.group({
             code: ['',

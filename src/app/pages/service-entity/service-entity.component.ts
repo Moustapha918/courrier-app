@@ -40,7 +40,9 @@ export class ServiceEntityComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             this.updateServicesTable();
-            this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDSERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            if (result === true) {
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDSERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
 
         });
 
@@ -60,6 +62,21 @@ export class ServiceEntityComponent implements OnInit {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
+    }
+
+
+
+    deleteServiceEntity(service): void {
+        this.referentialService.deleteServiceEntity(service.code)
+            .subscribe(
+                () => {
+                    console.log('successful service delete');
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+
     }
 
     deleteConfirm(serviceEntity): void {
@@ -83,28 +100,17 @@ export class ServiceEntityComponent implements OnInit {
 
     }
 
-    deleteServiceEntity(service): void {
-        this.referentialService.deleteServiceEntity(service.code)
-            .subscribe(
-                () => {
-                    console.log('successful service delete');
-                },
-                (error) => {
-                    console.log('Error ! : ' + error);
-                }
-            );
-
-    }
-
     updateServiceEntity(service): void {
 
         const dialogRef = this.dialog.open(NewServiceEntityComponent, {
-            maxWidth: '4000px',
+            width: '4000px',
             data: service
         });
         dialogRef.afterClosed().subscribe(result => {
-            this.updateServicesTable();
-            this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATESERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            if (result === true) {
+                this.updateServicesTable();
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATESERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
         });
 
     }

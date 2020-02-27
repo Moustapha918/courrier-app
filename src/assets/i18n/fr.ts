@@ -58,6 +58,7 @@ export const locale = {
             UPDATEDIRECTION                 : 'Editer',
             DELETEDIRECTION                 : 'Supprimer',
             ADDDIRRECTIONTITLE              : 'Créer une nouvelle direction',
+            EDITDIRECTIONTITLE              : 'Modifier la direction',
             ADDDIRECTIONMSG                 : 'Direction à été rajouté',
             DELETEDIRECTIONMSG              : 'Direction supprimé',
             UPDATEDIRECTIONMSG              : 'Direction mis à jour',
@@ -70,16 +71,30 @@ export const locale = {
             ADRESSESERVICE                  : 'Adresse',
             UPDATESERVICE                   : 'Editer',
             DELETESERVICE                   : 'Supprimer',
-            ADDSERVICETITLE                 : 'Créer une nouvelle service',
+            ADDSERVICETITLE                 : 'Créer un nouveau service',
+            EDITSERVICETITLE                : 'Modifier le service',
             ADDSERVICEMSG                   : 'service à été rajouté',
             DELETESERVICEMSG                : 'service supprimé',
             UPDATESERVICEMSG                : 'service mis à jour',
-            DELETEMSGCONFIRMATIONSERVICE  : `Etes-vous sûr de vouloir supprimer cette service`,
+            DELETEMSGCONFIRMATIONSERVICE    : `Etes-vous sûr de vouloir supprimer cette service`,
 
 
-            ADDDIVISION                     : 'Division à été rajouté',
-            DELETEDIVISION                  : 'Division supprimé',
-            UPDATEDIVISION                  : 'Division mis à jour',
+            ADDDIVISION                      : 'Ajouter une division',
+            CODEDIVISION                      : 'Code division',
+            LABELDIVISION                    : 'Libellé division',
+            ADRESSEDIVISION                  : 'Adresse',
+            UPDATEDIVISION                   : 'Editer',
+            DELETEDIVISION                   : 'Supprimer',
+            ADDDIVISIONTITLE                 : 'Créer une nouvelle division',
+            EDITDIVISIONTITLE                : 'Modifier la division',
+            ADDDIVISIONMSG                   : 'Division à été rajouté',
+            DELETEDIVISIONMSG                : 'division supprimé',
+            UPDATEDIVISIONMSG                : 'division mis à jour',
+            DELETEMSGCONFIRMATIONDIVISION    : `Etes-vous sûr de vouloir supprimer cette division`,
+
+
+
+
 
 
             DELETECONFIRMATION              : 'Confirmation de suppression'

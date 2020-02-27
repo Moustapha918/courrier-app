@@ -56,6 +56,7 @@ export const locale = {
                 UPDATEDIRECTION                 : 'تعديل الإدارة',
                 DELETEDIRECTION                 : 'مسح الإدارة',
                 ADDDIRRECTIONTITLE              : 'إنشاء إدارة جديدة',
+                EDITDIRECTIONTITLE              : 'تعديل الإدارة',
                 ADDDIRECTIONMSG                 : 'تمت إضافة الإدارة',
                 DELETEDIRECTIONMSG              : 'تم حذف الإدارة',
                 UPDATEDIRECTIONMSG              : 'تم تحديث الإدارة',
@@ -68,16 +69,24 @@ export const locale = {
                 UPDATESERVICE                   : 'تعديل المصلحة',
                 DELETESERVICE                   : 'مسح المصلحة',
                 ADDSERVICETITLE                 : 'إنشاء مصلحة جديدة',
+                EDITSERVICETITLE                : 'تعديل المصلحة',
                 ADDSERVICEMSG                   : 'تمت إضافة المصلحة',
                 DELETESERVICEMSG                : 'تم حذف المصلحة',
                 UPDATESERVICEMSG                : 'تم تحديث المصلحة',
                 DELETEMSGCONFIRMATIONSERVICE    : `هل أنت متأكد أنك تريد حذف هذه المصلحة`,
 
-
-
-                ADDDIVISION                     : 'تمت إضافة القسم',
-                DELETEDIVISION                  : 'تم حذف القسم',
-                UPDATEDIVISION                  : 'تم تحديث القسم',
+                ADDDIVISION                      : 'إضافة قسم',
+                CODEDIVISION                      : 'رمز القسم',
+                LABELDIVISION                    : 'تسمية القسم',
+                ADRESSEDIVISION                  : 'عنوان القسم',
+                UPDATEDIVISION                   : 'تعديل القسم',
+                DELETEDIVISION                   : 'مسح القسم',
+                ADDDIVISIONTITLE                 : 'إنشاء قسم جديد',
+                EDITDIVISIONTITLE                : 'تعديل القسم',
+                ADDDIVISIONMSG                   : 'تمت إضافة القسم',
+                DELETEDIVISIONMSG                : 'تم حذف القسم',
+                UPDATEDIVISIONMSG                : 'تم تحديث القسم',
+                DELETEMSGCONFIRMATIONDIVISION    : `هل أنت متأكد أنك تريد حذف هذا القسم`,
 
 
                 DELETECONFIRMATION              : 'تأكيد الحذف',

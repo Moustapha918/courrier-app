@@ -23,9 +23,7 @@ export class DirectionComponent implements OnInit {
     displayedColumns: string[] = ['code', 'label', 'address', 'update', 'delete'];
     // @ts-ignore
     dataSource: MatTableDataSource;
-    navigation: any;
-    // tslint:disable-next-line:variable-name
-    dataLength: any;
+
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -108,8 +106,8 @@ export class DirectionComponent implements OnInit {
     updateDirection(direction): void {
 
         const dialogRef = this.dialog.open(NewDirectionComponent, {
-            maxWidth: '4000px',
-            data: direction
+            width: '4000px',
+            data: direction,
         });
         dialogRef.afterClosed().subscribe(result => {
             // tslint:disable-next-line:triple-equals

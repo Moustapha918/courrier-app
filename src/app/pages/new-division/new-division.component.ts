@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {DivisionModel} from '../../models/division.model';
 import {DirectionModel} from '../../models/direction.model';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-new-division',
@@ -15,6 +16,7 @@ import {DirectionModel} from '../../models/direction.model';
 export class NewDivisionComponent implements OnInit {
 
     form: FormGroup;
+    title: any;
 
     private _unsubscribeAll: Subject<any>;
     private directions: DirectionModel[];
@@ -23,6 +25,7 @@ export class NewDivisionComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDivisionComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DivisionModel,
         private _formBuilder: FormBuilder,
+        private translate: TranslateService,
         private referentialService: ReferentialService,
         private router: Router)
     {
@@ -32,6 +35,17 @@ export class NewDivisionComponent implements OnInit {
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
+
+        // FOR FILL TITLE
+        if (this.data != null) {
+            this.title = this.translate.instant('REFERENTIAL.EDITDIVISIONTITLE');
+        }
+        else{
+            this.title = this.title = this.translate.instant('REFERENTIAL.ADDDIVISIONTITLE');
+        }
+
+
+        // POUR LA LISTE DEROULANTE DES DIRECTIONS
         this.referentialService.getAllDirectionsFromBackend().subscribe(
             data => this.directions = data
         );
