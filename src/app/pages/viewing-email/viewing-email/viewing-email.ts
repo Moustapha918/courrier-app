@@ -22,6 +22,7 @@ const annotations  = [
     ];
 
 
+
 @Component({
     selector   : 'carded-left-sidebar-1',
     templateUrl: './viewing-email.html',
@@ -36,9 +37,8 @@ export class ViewingEmailComponent implements OnInit
 
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
-    annotations: any[];
+    annotations: any;
     directions: any;
-    directionsLength: any;
 
 
     /**
@@ -67,7 +67,6 @@ export class ViewingEmailComponent implements OnInit
                 dirs => {
                     console.log(dirs);
                     this.directions = dirs;
-                    this.directionsLength = dirs.length;
                 },
                 (error) => {
                     console.log('Error ! : ' + error);

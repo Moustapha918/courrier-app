@@ -117,7 +117,7 @@
 
                                     <mat-checkbox *ngFor="let annotation of annotations | slice:0:annotations.length/2; let i = index" name="annotations1"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{annotations[i].label}}</mat-checkbox>
+                                                  [(ngModel)]="annotations[i].value">{{annotations[i].label}} </mat-checkbox>
                                 </div>
 
 
@@ -126,7 +126,7 @@
 
                                     <mat-checkbox *ngFor="let annotation of annotations | slice:annotations.length/2; let i = index" name="annotations2"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{annotations[i].label}}</mat-checkbox>
+                                                  [(ngModel)]="annotations[i].value">{{ annotations[i + annotations.length/2].label}}</mat-checkbox>
                                 </div>
 
                             </div>
