@@ -48,6 +48,8 @@ export const locale = {
                 SERVICE                         : 'Service',
                 DIVISION                        : 'Division',
                 DEPARTMENT                      : 'Departement',
+                MINISTEROFFICE                  : 'ديوان الوزير',
+                GENERALSECRETARY                : 'الأمانة العامة',
 
                 ADDDIRECTION                    : 'إضافة إدارة',
                 CODEDIRECTION                   : 'رمز الإدارة',
@@ -87,6 +89,19 @@ export const locale = {
                 DELETEDIVISIONMSG                : 'تم حذف القسم',
                 UPDATEDIVISIONMSG                : 'تم تحديث القسم',
                 DELETEMSGCONFIRMATIONDIVISION    : `هل أنت متأكد أنك تريد حذف هذا القسم`,
+
+                ADDMINISTEROFFICE               : 'Ajouter un élément',
+                CODEMINISTEROFFICE              : 'Code',
+                LABELMINISTEROFFICE             : 'Libellé ',
+                ADRESSEMINISTEROFFICE           : 'Adresse',
+                UPDATEMINISTEROFFICE            : 'Editer',
+                DELETEMINISTEROFFICE            : 'Supprimer',
+                ADDMINISTEROFFICETITLE          : 'Créer un nouveau élément',
+                EDITMINISTEROFFICETITLE              : 'Modifier élément',
+                ADDMINISTEROFFICEMSG            : 'Elément à été rajouté',
+                DELETEMINISTEROFFICEMSG         : 'Elément supprimé',
+                UPDATEMINISTEROFFICEMSG         : 'Elément mis à jour',
+                DELETEMSGCONFIRMATIONMINISTEROFFICE  : `Etes-vous sûr de vouloir supprimer cet élément`,
 
 
                 DELETECONFIRMATION              : 'تأكيد الحذف',

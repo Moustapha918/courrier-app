@@ -48,6 +48,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
+import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 
 
 // @ts-ignore
@@ -72,6 +74,10 @@ const routes = [
         component: ReferentialComponent
     },
     {
+        path     : 'cabinet-ministre',
+        component: CabinetMinistreComponent
+    },
+    {
         path     : 'direction',
         component: DirectionComponent
     },
@@ -87,17 +93,7 @@ const routes = [
         path     : 'departement',
         component: DepartementComponent
     },
-    {
-        path  : 'referentiel',
-        component  : ReferentialComponent,
-        children: [
 
-            {
-                path     : 'direction',
-                component: DirectionComponent
-            }
-            ]
-    },
 
     {
         /*path     : 'lecture-mail/:id',
@@ -135,8 +131,9 @@ const routes = [
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, CabinetMinistreComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent,
+        NewCabinetMinstreComponent
 
     ],
     exports: [
@@ -178,7 +175,8 @@ const routes = [
         MatSidenavModule,
         MatListModule
     ],
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
+    // tslint:disable-next-line:max-line-length
+    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent]
 })
 export class PagesModule
 {

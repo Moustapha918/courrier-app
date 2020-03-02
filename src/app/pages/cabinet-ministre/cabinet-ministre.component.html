@@ -16,17 +16,12 @@
              fxLayout="column" fxLayoutAlign="center center"
              fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
 
-            <h1 class="md-display-3"> Les directions</h1>
+            <h1 class="md-display-3"> Cabinet du ministre</h1>
 
-            <button mat-raised-button (click)=addDirection() >
+            <button mat-raised-button (click)=addMinisterOffice() >
                 <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
-                <span>{{ 'REFERENTIAL.ADDDIRECTION' | translate }}</span>
+                <span>{{ 'REFERENTIAL.ADDMINISTEROFFICE' | translate }}</span>
             </button>
-
-
-
-
-
         </div>
         <div class="content-card">
 
@@ -34,33 +29,33 @@
 
                 <!-- Position Column -->
                 <ng-container matColumnDef="code">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.CODEDIRECTION' | translate }} </th>
-                    <td mat-cell *matCellDef="let elemtnt"> {{elemtnt.code}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.CODEMINISTEROFFICE' | translate }} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="label">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.LABELDIRECTION' | translate }} </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.LABELMINISTEROFFICE' | translate }} </th>
                     <td mat-cell *matCellDef="let element"> {{element.label}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="address">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.ADRESSEDIRECTION' | translate }} </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.ADRESSEMINISTEROFFICE' | translate }} </th>
                     <td mat-cell *matCellDef="let element"> {{element.address}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="update">
-                    <th mat-header-cell *matHeaderCellDef> {{ 'REFERENTIAL.UPDATEDIRECTION' | translate }} </th>
+                    <th mat-header-cell *matHeaderCellDef> {{ 'REFERENTIAL.UPDATEMINISTEROFFICE' | translate }} </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="accent" (click)="updateDirection(element)">
+                        <button mat-icon-button color="accent" (click)="updateMinisterOffice(element)">
                             <mat-icon class="mat-18">edit</mat-icon>
                         </button>
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="delete">
-                    <th mat-header-cell *matHeaderCellDef> {{ 'REFERENTIAL.DELETEDIRECTION' | translate }} </th>
+                    <th mat-header-cell *matHeaderCellDef> {{ 'REFERENTIAL.DELETEMINISTEROFFICE' | translate }} </th>
                     <td mat-cell *matCellDef="let element">
                         <button mat-icon-button color="accent" (click)=deleteConfirm(element)>
                             <mat-icon class="mat-18">delete</mat-icon>
@@ -83,4 +78,5 @@
         </div>
     </div>
 </div>
+
 

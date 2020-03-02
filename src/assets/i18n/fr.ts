@@ -49,6 +49,8 @@ export const locale = {
             SERVICE                         : 'Service',
             DIVISION                        : 'Division',
             DEPARTMENT                      : 'Departement',
+            MINISTEROFFICE                  : 'Cabinet du ministre',
+            GENERALSECRETARY                : 'Secretariat Generale',
 
 
             ADDDIRECTION                    : 'Ajouter une direction',
@@ -91,6 +93,19 @@ export const locale = {
             DELETEDIVISIONMSG                : 'division supprimé',
             UPDATEDIVISIONMSG                : 'division mis à jour',
             DELETEMSGCONFIRMATIONDIVISION    : `Etes-vous sûr de vouloir supprimer cette division`,
+
+            ADDMINISTEROFFICE               : 'Ajouter un élément',
+            CODEMINISTEROFFICE              : 'Code',
+            LABELMINISTEROFFICE             : 'Libellé ',
+            ADRESSEMINISTEROFFICE           : 'Adresse',
+            UPDATEMINISTEROFFICE            : 'Editer',
+            DELETEMINISTEROFFICE            : 'Supprimer',
+            ADDMINISTEROFFICETITLE          : 'Créer un nouveau élément',
+            EDITMINISTEROFFICETITLE            : 'Modifier élément',
+            ADDMINISTEROFFICEMSG            : 'Elément à été rajouté',
+            DELETEMINISTEROFFICEMSG         : 'Elément supprimé',
+            UPDATEMINISTEROFFICEMSG         : 'Elément mis à jour',
+            DELETEMSGCONFIRMATIONMINISTEROFFICE  : `Etes-vous sûr de vouloir supprimer cet élément`,
 
 
 

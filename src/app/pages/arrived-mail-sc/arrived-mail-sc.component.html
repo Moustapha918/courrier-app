@@ -86,6 +86,17 @@
                     </mat-cell>
                 </ng-container>
 
+                <!--<ng-container matColumnDef="priorityDegree">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Degré d'urgence</mat-header-cell>
+                    <mat-cell *matCellDef="let mail"  fxHide fxShow.gt-xs>
+
+                        <mat-cell *ngIf="mail.priorityDegree==='Normal'" [style.background-color] = "'red'" >check</mat-cell>
+
+                    </mat-cell>
+                </ng-container>-->
+
+
+
                               <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
                 <mat-row *matRowDef="let mail; columns: displayedColumns;"
