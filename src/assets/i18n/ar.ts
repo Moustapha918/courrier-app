@@ -97,7 +97,7 @@ export const locale = {
                 UPDATEMINISTEROFFICE            : 'Editer',
                 DELETEMINISTEROFFICE            : 'Supprimer',
                 ADDMINISTEROFFICETITLE          : 'Créer un nouveau élément',
-                EDITMINISTEROFFICETITLE              : 'Modifier élément',
+                EDITMINISTEROFFICETITLE         : 'Modifier élément',
                 ADDMINISTEROFFICEMSG            : 'Elément à été rajouté',
                 DELETEMINISTEROFFICEMSG         : 'Elément supprimé',
                 UPDATEMINISTEROFFICEMSG         : 'Elément mis à jour',

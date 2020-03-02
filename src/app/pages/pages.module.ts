@@ -50,6 +50,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
+import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
+import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 
 
 // @ts-ignore
@@ -76,6 +78,10 @@ const routes = [
     {
         path     : 'cabinet-ministre',
         component: CabinetMinistreComponent
+    },
+    {
+        path     : 'secretaire-general',
+        component: SecretaireGeneraleComponent
     },
     {
         path     : 'direction',
@@ -133,7 +139,9 @@ const routes = [
         // tslint:disable-next-line:max-line-length
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, CabinetMinistreComponent, ConfirmDialogComponent, ViewingEmailComponent,
         VisualizePdfComponent,
-        NewCabinetMinstreComponent
+        NewCabinetMinstreComponent,
+        SecretaireGeneraleComponent,
+        NewSecretaireGeneraleComponent
 
     ],
     exports: [
@@ -176,7 +184,7 @@ const routes = [
         MatListModule
     ],
     // tslint:disable-next-line:max-line-length
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent]
+    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent, NewSecretaireGeneraleComponent]
 })
 export class PagesModule
 {
