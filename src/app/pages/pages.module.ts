@@ -1,5 +1,4 @@
 import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.component';
-// @ts-ignore
 import { ReferentialComponent } from './referential/referential.component';
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
@@ -26,8 +25,6 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
-import {MailService} from '../services/mail.service';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
@@ -38,10 +35,9 @@ import { DivisionComponent } from './division/division.component';
 import { DepartementComponent } from './departement/departement.component';
 import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
 import { NewDepartementComponent } from './new-departement/new-departement.component';
-// @ts-ignore
+
 import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-// @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
@@ -49,47 +45,56 @@ import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
 
 
 const routes = [
+   
+    {
+        path     : 'sc-home',
+        component: ScHomeComponent
+    },
+    {
+        path     : '',
+        component: ReferentialComponent,
+        outlet: 'ref'
+    },
+    {
+        path     : 'referentiel',
+        component: ReferentialComponent,
+        outlet: 'ref',
+        children: [
+            {
+                path     : 'direction',
+                component: DirectionComponent
+            },
+            {
+                path     : 'service',
+                component: ServiceEntityComponent
+            },
+            {
+                path     : 'division',
+                component: DivisionComponent
+            },
+            {
+                path     : 'departement',
+                component: DepartementComponent
+            }      
+        ]
+    },
+
     {
         path     : 'arrivedMail-sc',
         component: ArrivedMailScComponent,
         resolve  : {
             data: InitMailService
         }
-    }, {
-        path     : 'sc-home',
-        component: ScHomeComponent
     },
     {
         path     : 'new-arrived-mail',
         component: InitMailComponent
     },
     {
-        path     : 'referentiel',
-        component: ReferentialComponent
+        path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent
     },
-    {
-        path     : 'direction',
-        component: DirectionComponent
-    },
-    {
-        path     : 'service',
-        component: ServiceEntityComponent
-    },
-    {
-        path     : 'division',
-        component: DivisionComponent
-    },
-    {
-        path     : 'departement',
-        component: DepartementComponent
-    },
-    {
-        /*path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,*/
-       /* resolve : {
-          data: MailService
-        }*/
-
+/*    {
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
         children: [
@@ -109,7 +114,7 @@ const routes = [
                 component: ViewingEmailComponent
             }
         ]
-    }
+    }*/
 
 ];
 
@@ -120,7 +125,8 @@ const routes = [
         VisualizePdfComponent,
         SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
+        DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
         VisualizePdfComponent
 
     ],
@@ -160,7 +166,8 @@ const routes = [
         PdfViewerModule,
         MatDialogModule
     ],
-    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent,
+        NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
 export class PagesModule
 {

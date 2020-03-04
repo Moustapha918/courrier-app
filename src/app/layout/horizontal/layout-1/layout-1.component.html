@@ -2,12 +2,12 @@
 <div id="main">
     <toolbar>   </toolbar>
 
+    <navbar variant="horizontal-style-1"
+           class="top-navbar" fxHide fxShow.gt-md>
+          <!-- *ngIf="!fuseConfig.layout.navbar.hidden"-->
+    </navbar>
 
-    <mat-tab-group mat-stretch-tabs>
 
-        <mat-tab label="Instance">  </mat-tab>
-
-        <mat-tab label="{{ 'mail.COURRIER_ARRIVEE' | translate }} ">
             <div id="container-1" class="container">
 
 
@@ -16,6 +16,8 @@
                     <div id="container-3" class="container" >
                         <content></content>
 
+                       <!-- <app-arrived-mail-sc></app-arrived-mail-sc>-->
+
 
                     </div>
                 </div>
@@ -23,15 +25,10 @@
             </div>
 
 
-        </mat-tab>
 
-        <mat-tab label="{{ 'mail.COURRIER_DEPART' | translate }}"> </mat-tab>
-        <mat-tab label="{{ 'mail.ARCHIVE' | translate }}">  </mat-tab>
-        <mat-tab label="{{ 'REFERENTIEL.REFERENTIEL' | translate }}">
-            <app-referential></app-referential>
+         <!--   <app-referential></app-referential>-->
 
-        </mat-tab>
-    </mat-tab-group>
+
     <footer>  </footer>
 </div>
 

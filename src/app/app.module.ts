@@ -40,6 +40,7 @@ import {ContentModule} from './layout/components/content/content.module';
 import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
 import {FooterModule} from './layout/components/footer/footer.module';
 import {ScHomeComponent} from './pages/sc-home/sc-home.component';
+import {ReferentialComponent} from './pages/referential/referential.component';
 
 const appRoutes: Routes = [
     {
@@ -53,8 +54,12 @@ const appRoutes: Routes = [
     {
         path      : '',
         component: ScHomeComponent,
+    },
+    {
+        path     : '',
+        component: ReferentialComponent,
+        outlet: 'ref'
     }
-
 ];
 
 @NgModule({
@@ -69,7 +74,6 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         FileUploadModule,
-        TranslateModule,
         TranslateModule.forRoot(),
         MatSnackBarModule,
         BrowserAnimationsModule,

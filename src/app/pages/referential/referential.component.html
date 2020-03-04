@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="full-width" >
 
-
-    <mat-card class="mat-elevation-z8" routerLink="/direction" >
+    <!--routerLink="/direction"-->
+    <mat-card class="mat-elevation-z8"   [routerLink]='[{ outlets: { ref: ["direction"] } }]'>
         <div class="your-title"> {{ 'REFERENTIEL.ORGANIGRAM' | translate }}</div>
     </mat-card>
     <mat-card class="mat-elevation-z8" routerLink="/direction" >

@@ -20,6 +20,6 @@ export class ScHomeComponent implements OnInit {
   }
 
     goToArrivedMail(): void {
-        this.router.navigate(['sc-workflow/arrivedMail-sc']);
+        this.router.navigate(['arrivedMail-sc']);
     }
 }

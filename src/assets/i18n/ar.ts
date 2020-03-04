@@ -1,6 +1,14 @@
 export const locale = {
     lang: 'ar',
     data: {
+        NAV: {
+            ARRIVED: 'الواردات',
+            LIST: 'كل الرسائل',
+            NEWMAIIL: 'اضافة',
+            DEPARTURE: 'البريد المرسل',
+            ARCHIVE: 'الارشيف',
+            REFERENTIEL: 'مرجع',
+        },
         mail: {
             COURRIER_ARRIVEE               : 'البريد الوارد',
             COURRIER_DEPART                : 'البريد المرسل',
