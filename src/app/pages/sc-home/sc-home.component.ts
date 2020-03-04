@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
+
+
+
 
 
 @Component({
@@ -9,16 +12,14 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class ScHomeComponent implements OnInit {
 
-
-
-
-     /* param = {value: 'world'};*/
-
     // tslint:disable-next-line:adjacent-overload-signatures
-    constructor( ) {}
+    constructor(private router: Router ) {}
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
   }
 
+    goToArrivedMail(): void {
+        this.router.navigate(['sc-workflow/arrivedMail-sc']);
+    }
 }

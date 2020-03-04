@@ -15,14 +15,14 @@ import {InitMailComponent} from './init-mail/init-mail.component';
 import {
     MatCardModule, MatCheckboxModule,
     MatDatepickerModule, MatDialogModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule,
     MatSortModule,
     MatStepperModule
 } from '@angular/material';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {ViewingEmailComponent} from './viewing-email/viewing-email/viewing-email';
-import {FuseDemoModule, FuseNavigationModule, FuseSidebarModule} from '../../@fuse/components';
+import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -31,7 +31,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
@@ -45,6 +44,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 // @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
@@ -54,7 +55,6 @@ import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-ge
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 
 
-// @ts-ignore
 const routes = [
     {
         path     : 'arrivedMail-sc',
@@ -99,16 +99,12 @@ const routes = [
         path     : 'departement',
         component: DepartementComponent
     },
-
-
     {
         /*path     : 'lecture-mail/:id',
         component: ViewingEmailComponent,*/
        /* resolve : {
           data: MailService
         }*/
-
-
 
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
@@ -136,6 +132,9 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
+        ViewingEmailComponent,
+        VisualizePdfComponent,
+        SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, CabinetMinistreComponent, ConfirmDialogComponent, ViewingEmailComponent,
         VisualizePdfComponent,
@@ -177,11 +176,13 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         MatProgressSpinnerModule,
-        PdfViewerModule
-
+        PdfViewerModule,
+        MatDialogModule
     ],
-    // tslint:disable-next-line:max-line-length
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent, NewSecretaireGeneraleComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent,
+        NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
+        ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent,
+        NewSecretaireGeneraleComponent]
 })
 export class PagesModule
 {
