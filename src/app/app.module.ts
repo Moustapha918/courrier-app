@@ -19,7 +19,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
-import {MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatTabsModule} from '@angular/material';
+import {MatSelectModule, MatTabsModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
 import {ReferentialService} from './services/referential.service';
@@ -96,9 +96,7 @@ const appRoutes: Routes = [
         MatTabsModule,
         ToolbarModule,
         ContentModule,
-        FooterModule,
-        MatProgressSpinnerModule,
-        MatProgressBarModule
+        FooterModule
     ],
     providers   : [
         InitMailService,
