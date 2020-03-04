@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -12,7 +12,7 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import {FuseNavigationModule, FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
@@ -26,15 +26,10 @@ import {ReferentialService} from './services/referential.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
-import { ToastrModule } from 'ngx-toastr';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-// @ts-ignore
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { locale as arabe } from '../assets/i18n/ar';
-// @ts-ignore
 import { locale as french } from '../assets/i18n/fr';
 
-
-import {MailService} from './services/mail.service';
 import {ToolbarModule} from './layout/components/toolbar/toolbar.module';
 import {ContentModule} from './layout/components/content/content.module';
 import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
@@ -101,8 +96,7 @@ const appRoutes: Routes = [
         MatTabsModule,
         ToolbarModule,
         ContentModule,
-        FooterModule,
-        FuseNavigationModule
+        FooterModule
     ],
     providers   : [
         InitMailService,

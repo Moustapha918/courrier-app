@@ -177,11 +177,8 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         MatProgressSpinnerModule,
-        PdfViewerModule,
-        FuseNavigationModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatListModule
+        PdfViewerModule
+
     ],
     // tslint:disable-next-line:max-line-length
     entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent, NewSecretaireGeneraleComponent]
