@@ -62,12 +62,24 @@ export class ViewingEmailComponent implements OnInit
 
 
     ngOnInit(): void {
-        // Horizontal Stepper form steps
 
         this.annotations = annotations;
         this.index1 = index1;
         this.index2 = index2;
 
+        this.activatedRoute.params.subscribe( param => {
+            console.log(param);
+            this.initMailService.getArrivedMail(param.id).
+            subscribe(
+                arrivedMail => {
+                    console.log(arrivedMail);
+                    this.mail = arrivedMail;
+                },
+                error => {
+                    console.log('Error ! : ' + error);
+                }
+            );
+        });
 
         this.referentialService.getAllDirectionsFromBackend()
             .subscribe(
@@ -81,15 +93,6 @@ export class ViewingEmailComponent implements OnInit
             );
 
 
-        this.activatedRoute.params.subscribe( param => {
-            console.log(param);
-            this.initMailService.getArrivedMails().then( mails => {
-                console.log(mails);
-                this.mail = mails.find( m => m.idEntry === param.id);
-                console.log(this.mail);
-            });
-        });
-
         this.horizontalStepperStep1 = this._formBuilder.group({
         });
 
@@ -98,12 +101,7 @@ export class ViewingEmailComponent implements OnInit
         });
 
         this.horizontalStepperStep3 = this._formBuilder.group({
-            city      : ['', Validators.required],
-            state     : ['', Validators.required],
-            postalCode: ['', [Validators.required, Validators.maxLength(5)]]
         });
-
-
 
     }
 
@@ -115,24 +113,32 @@ export class ViewingEmailComponent implements OnInit
         });
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-
 
     annotate(): void {
         this.mail.directions = this.directions.filter(dir => dir.value);
         this.mail.annotations = this.annotations.filter( ann => ann.value);
-        this.initMailService.annotate(this.mail).subscribe( data =>{
-            console.log(data);
+        console.log(this.mail);
+        this.initMailService.annotate(this.mail).subscribe( data => {
+           // console.log(data);
             this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
         },
                 error => console.log(error));
     }
 
     canConfirm(): boolean {
+        if (!this.annotations || !this.directions) {
+            return false;
+        }
         return  this.annotations.some( annotation => annotation.value) &&
             this.directions.some(dir => dir.value);
+
+    }
+
+    canConfirmAnnotation(): boolean {
+        if (!this.annotations) {
+            return false;
+        }
+        return  this.annotations.some( annotation => annotation.value);
+
     }
 }
