@@ -1,6 +1,17 @@
 export const locale = {
     lang: 'fr',
     data: {
+        NAV: {
+            ARRIVED: 'Courrier arrivée',
+            LIST: 'Liste des courrier(en instance)',
+            NEWMAIIL: 'Nouveau',
+            DEPARTURE: 'Courrier Départ',
+            ARCHIVE: 'Archives',
+            REFERENTIEL: 'Référentiel',
+            SAMPLE        : {
+                TITLE: 'Couriée Arrivée',
+            }
+        },
         mail: {
             COURRIER_ARRIVEE                : 'Courrier Arrivé',
             COURRIER_DEPART                 : 'Courrier Depart',

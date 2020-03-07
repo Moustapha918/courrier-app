@@ -21,7 +21,7 @@ import { FuseNavHorizontalCollapsableComponent } from './horizontal/collapsable/
         MatIconModule,
         MatRippleModule,
 
-        TranslateModule.forChild()
+         TranslateModule.forChild()
     ],
     exports     : [
         FuseNavigationComponent

@@ -1,5 +1,4 @@
 import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.component';
-// @ts-ignore
 import { ReferentialComponent } from './referential/referential.component';
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
@@ -26,11 +25,8 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
-import {MailService} from '../services/mail.service';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
-import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
@@ -38,17 +34,12 @@ import { DivisionComponent } from './division/division.component';
 import { DepartementComponent } from './departement/departement.component';
 import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
 import { NewDepartementComponent } from './new-departement/new-departement.component';
-// @ts-ignore
+
 import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-// @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
-
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
@@ -56,32 +47,10 @@ import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-se
 
 
 const routes = [
-    {
-        path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent,
-        resolve  : {
-            data: InitMailService
-        }
-    },
+
     {
         path     : 'sc-home',
         component: ScHomeComponent
-    },
-    {
-        path     : 'new-arrived-mail',
-        component: InitMailComponent
-    },
-    {
-        path     : 'referentiel',
-        component: ReferentialComponent
-    },
-    {
-        path     : 'cabinet-ministre',
-        component: CabinetMinistreComponent
-    },
-    {
-        path     : 'secretaire-general',
-        component: SecretaireGeneraleComponent
     },
     {
         path     : 'direction',
@@ -100,12 +69,29 @@ const routes = [
         component: DepartementComponent
     },
     {
-        /*path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,*/
-       /* resolve : {
-          data: MailService
-        }*/
+        path     : 'referentiel',
+        component: ReferentialComponent,
+        children: [
 
+        ]
+    },
+
+    {
+        path     : 'arrivedMail-sc',
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
+    },
+    {
+        path     : 'new-arrived-mail',
+        component: InitMailComponent
+    },
+    {
+        path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent
+    },
+/*    {
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
         children: [
@@ -125,7 +111,7 @@ const routes = [
                 component: ViewingEmailComponent
             }
         ]
-    }
+    }*/
 
 ];
 
@@ -140,7 +126,10 @@ const routes = [
         VisualizePdfComponent,
         NewCabinetMinstreComponent,
         SecretaireGeneraleComponent,
-        NewSecretaireGeneraleComponent
+        NewSecretaireGeneraleComponent,
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
+        DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent
 
     ],
     exports: [

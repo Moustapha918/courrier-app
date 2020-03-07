@@ -12,23 +12,8 @@ export class ReferentialComponent implements OnInit {
 
     navigation: any;
 
-  constructor(private _fuseNavigationService: FuseNavigationService) {
+  constructor( ) {
 
-      this.navigation = [ {
-          id       : 'components',
-          title    : 'COMPONENTS',
-          translate: 'Direction',
-          type     : 'group',
-          url  : 'direction',
-
-      },
-          ];
-
-      // Register the navigation to the service
-      this._fuseNavigationService.register('main1', this.navigation);
-
-      // Set the main navigation as our current navigation
-      this._fuseNavigationService.setCurrentNavigation('main1');
   }
 
     // tslint:disable-next-line:typedef
