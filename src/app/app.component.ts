@@ -9,8 +9,8 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-
 import { navigation } from 'app/navigation/navigation';
+
 
 import * as _ from 'lodash';
 import {FuseSplashScreenService} from '../@fuse/services/splash-screen.service';
@@ -217,7 +217,7 @@ export class AppComponent implements OnInit, OnDestroy
             });
     }
 
-    setLanguage(lang): void {
+   /* setLanguage(lang): void {
         // Set the selected language for the toolbar
         this.selectedLanguage = lang;
 
@@ -225,7 +225,7 @@ export class AppComponent implements OnInit, OnDestroy
         // Use the selected language for translations
         this._translateService.use(lang.id);
         localStorage.setItem('language', lang.id);
-    }
+    }*/
 
     /**
      * On destroy

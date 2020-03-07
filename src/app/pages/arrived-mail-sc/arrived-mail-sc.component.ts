@@ -46,6 +46,7 @@ export class ArrivedMailScComponent implements OnInit{
         });
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
 
+
         fromEvent(this.filter.nativeElement, 'keyup')
             .pipe(
                 debounceTime(150),

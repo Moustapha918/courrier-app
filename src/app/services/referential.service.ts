@@ -9,6 +9,8 @@ import {DirectionModel} from '../models/direction.model';
 import {ServiceEntityModel} from '../models/service-entity.model';
 import {DepartmentModel} from '../models/departement.model';
 import {DivisionModel} from '../models/division.model';
+import {MinisterOfficeModel} from '../models/minister-office.model';
+import {GeneralSecretaryModel} from '../models/general-secretary.model';
 
 
 
@@ -23,7 +25,9 @@ export class ReferentialService {
     getAllDirectionURI = environment.backendUrl + '/referential/direction/all';
     getAllServicesEntityURI = environment.backendUrl + '/referential/service/all';
     getAllDepartmentURI = environment.backendUrl + '/referential/department/all';
-
+    getAllDivisionsURI = environment.backendUrl + '/referential/division/all';
+    getAllMinisterOfficeURI = environment.backendUrl + '/referential/minister/all';
+    getAllGeneralSecretaryURI = environment.backendUrl + '/referential/secretary/all';
 
     directions: DirectionModel[];
     onDirectionChanged: BehaviorSubject<any>;
@@ -35,17 +39,26 @@ export class ReferentialService {
     addNewDirectionURI = environment.backendUrl + '/referential/direction/add/new';
     addNewServiceEntityURI = environment.backendUrl + '/referential/service/add/new';
     addNewDepartementURI = environment.backendUrl + '/referential/department/add/new';
+    addNewDivisionURI = environment.backendUrl + '/referential/division/add/new';
+    addNewMinisterOfficeURI = environment.backendUrl + '/referential/minister/add/new';
+    addNewGeneralSecretaryURI = environment.backendUrl + '/referential/secretary/add/new';
 
 
     deleteDirectionURI = environment.backendUrl + '/referential/direction/delete/';
     deleteServiceEntityURI = environment.backendUrl + '/referential/service/delete/';
     deleteDivisionURI = environment.backendUrl + '/referential/division/delete/';
     deleteDepartmentURI = environment.backendUrl + '/referential/department/delete/';
+    deleteMinisterOfficeURI = environment.backendUrl + '/referential/minister/delete/';
+    deleteGeneralSecretaryURI = environment.backendUrl + '/referential/secretary/delete/';
+
+    updateDirectionURI = environment.backendUrl + '/referential/direction/update';
+    updateServiceEntityURI = environment.backendUrl + '/referential/service/update';
+    updateDivisionURI = environment.backendUrl + '/referential/division/update';
+    updateDepartementURI = environment.backendUrl + '/referential/departement/update';
+    updateMinisterOfficeURI = environment.backendUrl + '/referential/minister/update';
+    updateGeneralSecretaryURI = environment.backendUrl + '/referential/secretary/update';
 
 
-
-    addNewDivisionURI = environment.backendUrl + '/referential/division/add/new';
-    getAllDivisionsURI = environment.backendUrl + '/referential/division/all';
 
     constructor(private httpClient: HttpClient) {
 
@@ -70,10 +83,6 @@ export class ReferentialService {
     }
 
     getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
-
-        // if (!this.directions ){
-        //
-        // }
         return this.httpClient
             .get<DirectionModel[]>(this.getAllDirectionURI) ;
     }
@@ -89,7 +98,54 @@ export class ReferentialService {
             .delete<DirectionModel>(this.deleteDirectionURI  + code ) ;
     }
 
+    updateDirection(direction: DirectionModel): Observable<DirectionModel> {
+        console.log(this.updateDirectionURI );
+        return this.httpClient
+            .put<DirectionModel>(this.updateDirectionURI, direction);
+    }
 
+    // ministerOffice
+    getAllMinistreOfficeFromBackend(): Observable<MinisterOfficeModel[]> {
+        return this.httpClient
+            .get<MinisterOfficeModel[]>(this.getAllMinisterOfficeURI) ;
+    }
+
+    sendMinisterOfficeFormToBackend(ministerOffice: MinisterOfficeModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewMinisterOfficeURI, ministerOffice);
+    }
+
+    deleteMinisterOffice(code: string): Observable<MinisterOfficeModel> {
+        return this.httpClient
+            .delete<MinisterOfficeModel>(this.deleteMinisterOfficeURI  + code ) ;
+    }
+
+    updateMinisterOffice(ministerOffice: MinisterOfficeModel): Observable<MinisterOfficeModel> {
+        return this.httpClient
+            .put<MinisterOfficeModel>(this.updateMinisterOfficeURI, ministerOffice);
+    }
+
+    // GeneralSecretary
+
+    getAllGeneralSecretaryFromBackend(): Observable<GeneralSecretaryModel[]> {
+        return this.httpClient
+            .get<GeneralSecretaryModel[]>(this.getAllGeneralSecretaryURI) ;
+    }
+
+    sendGeneralSecretaryFormToBackend(generalSecretary: GeneralSecretaryModel): Observable<any> {
+        return this.httpClient
+            .post<any>(this.addNewGeneralSecretaryURI, generalSecretary);
+    }
+
+    deleteGeneralSecretary(code: string): Observable<GeneralSecretaryModel> {
+        return this.httpClient
+            .delete<GeneralSecretaryModel>(this.deleteGeneralSecretaryURI  + code ) ;
+    }
+
+    updateGeneralSecretary(generalSecretary: GeneralSecretaryModel): Observable<GeneralSecretaryModel> {
+        return this.httpClient
+            .put<GeneralSecretaryModel>(this.updateGeneralSecretaryURI, generalSecretary);
+    }
 
     // ServiceEntity
     getAllServicesEntity(): Promise<any> {
@@ -122,6 +178,12 @@ export class ReferentialService {
             .delete<ServiceEntityModel>(this.deleteServiceEntityURI  + code ) ;
     }
 
+    updateServiceEntity(service: ServiceEntityModel): Observable<DirectionModel> {
+        console.log(this.updateServiceEntityURI );
+        return this.httpClient
+            .put<DirectionModel>(this.updateServiceEntityURI, service);
+    }
+
 
     // Departement
     getAllDepartmentFromBackend(): Observable<DepartmentModel[]> {
@@ -139,6 +201,12 @@ export class ReferentialService {
         console.log(this.deleteDepartmentURI + code );
         return this.httpClient
             .delete<DepartmentModel>(this.deleteDepartmentURI  + code ) ;
+    }
+
+    updateDepartement(departement: DepartmentModel): Observable<DirectionModel> {
+        console.log(this.updateDepartementURI );
+        return this.httpClient
+            .put<DirectionModel>(this.updateDepartementURI, departement);
     }
 
 
@@ -159,6 +227,12 @@ export class ReferentialService {
         console.log(this.deleteDivisionURI + code );
         return this.httpClient
             .delete<DivisionModel>(this.deleteDivisionURI  + code ) ;
+    }
+
+    updateDivision(division: DivisionModel): Observable<DirectionModel> {
+        console.log(this.updateDivisionURI );
+        return this.httpClient
+            .put<DirectionModel>(this.updateDivisionURI, division);
     }
 
 

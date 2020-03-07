@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -12,34 +12,31 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
-import {MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatTabsModule} from '@angular/material';
+import {MatSelectModule, MatTabsModule} from '@angular/material';
 import {PagesModule} from './pages/pages.module';
 import {InitMailService} from './services/init-mail.service';
 import {ReferentialService} from './services/referential.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FuseTranslationLoaderService} from '../@fuse/services/translation-loader.service';
-import { ToastrModule } from 'ngx-toastr';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
-// @ts-ignore
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { locale as arabe } from '../assets/i18n/ar';
-// @ts-ignore
 import { locale as french } from '../assets/i18n/fr';
 
-
-import {MailService} from './services/mail.service';
 import {ToolbarModule} from './layout/components/toolbar/toolbar.module';
 import {ContentModule} from './layout/components/content/content.module';
 import {ScWorkflowComponent} from './pages/sc-workflow/sc-workflow.component';
 import {FooterModule} from './layout/components/footer/footer.module';
 import {ScHomeComponent} from './pages/sc-home/sc-home.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {ReferentialComponent} from './pages/referential/referential.component';
 
 const appRoutes: Routes = [
     {
@@ -53,8 +50,12 @@ const appRoutes: Routes = [
     {
         path      : '',
         component: ScHomeComponent,
+    },
+    {
+        path     : '',
+        component: ReferentialComponent,
+        outlet: 'ref'
     }
-
 ];
 
 @NgModule({
@@ -69,7 +70,6 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         FileUploadModule,
-        TranslateModule,
         TranslateModule.forRoot(),
         MatSnackBarModule,
         BrowserAnimationsModule,
@@ -86,11 +86,11 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
+        MatSidenavModule,
 
         // App modules
         LayoutModule,
         SampleModule,
-        PagesModule,
         MatSelectModule,
         MatMenuModule,
         MatToolbarModule,
@@ -99,9 +99,7 @@ const appRoutes: Routes = [
         MatTabsModule,
         ToolbarModule,
         ContentModule,
-        FooterModule,
-        MatProgressSpinnerModule,
-        MatProgressBarModule
+        FooterModule
     ],
     providers   : [
         InitMailService,

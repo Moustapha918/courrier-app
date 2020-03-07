@@ -26,11 +26,8 @@ import {FuseDemoModule, FuseSidebarModule} from '../../@fuse/components';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
-import {MailService} from '../services/mail.service';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
-import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
@@ -41,31 +38,20 @@ import { NewDepartementComponent } from './new-departement/new-departement.compo
 // @ts-ignore
 import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-// @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
-
+import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
+import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
+import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
+import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 
 
 const routes = [
+
     {
-        path     : 'arrivedMail-sc',
-        component: ArrivedMailScComponent,
-        resolve  : {
-            data: InitMailService
-        }
-    }, {
         path     : 'sc-home',
         component: ScHomeComponent
-    },
-    {
-        path     : 'new-arrived-mail',
-        component: InitMailComponent
-    },
-    {
-        path     : 'referentiel',
-        component: ReferentialComponent
     },
     {
         path     : 'direction',
@@ -84,12 +70,29 @@ const routes = [
         component: DepartementComponent
     },
     {
-        /*path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent,*/
-       /* resolve : {
-          data: MailService
-        }*/
+        path     : 'referentiel',
+        component: ReferentialComponent,
+        children: [
 
+        ]
+    },
+
+    {
+        path     : 'arrivedMail-sc',
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
+    },
+    {
+        path     : 'new-arrived-mail',
+        component: InitMailComponent
+    },
+    {
+        path     : 'lecture-mail/:id',
+        component: ViewingEmailComponent
+    },
+/*    {
         path  : 'sc-workflow',
         component  : ScWorkflowComponent,
         children: [
@@ -109,7 +112,7 @@ const routes = [
                 component: ViewingEmailComponent
             }
         ]
-    }
+    }*/
 
 ];
 
@@ -120,7 +123,13 @@ const routes = [
         VisualizePdfComponent,
         SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, CabinetMinistreComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent,
+        NewCabinetMinstreComponent,
+        SecretaireGeneraleComponent,
+        NewSecretaireGeneraleComponent,
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
+        DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
         VisualizePdfComponent, SpinnerModalComponent
 
     ],
@@ -160,7 +169,10 @@ const routes = [
         PdfViewerModule,
         MatDialogModule
     ],
-    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent,
+        NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
+        ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent,
+        NewSecretaireGeneraleComponent]
 })
 export class PagesModule
 {
