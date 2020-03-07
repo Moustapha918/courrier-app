@@ -15,7 +15,7 @@ import {InitMailComponent} from './init-mail/init-mail.component';
 import {
     MatCardModule, MatCheckboxModule,
     MatDatepickerModule, MatDialogModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule,
     MatSortModule,
     MatStepperModule
@@ -31,7 +31,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
@@ -44,7 +43,9 @@ import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 // @ts-ignore
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
-import {PdfViewerModule} from "ng2-pdf-viewer";
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
+
 
 
 const routes = [
@@ -115,6 +116,9 @@ const routes = [
 @NgModule({
     declarations: [
         ArrivedMailScComponent, ScHomeComponent, InitMailComponent,
+        ViewingEmailComponent,
+        VisualizePdfComponent,
+        SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
         VisualizePdfComponent
@@ -153,9 +157,10 @@ const routes = [
         FuseSharedModule,
         TranslateModule,
         MatProgressSpinnerModule,
-        PdfViewerModule
+        PdfViewerModule,
+        MatDialogModule
     ],
-    entryComponents: [NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
 })
 export class PagesModule
 {

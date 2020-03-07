@@ -8,13 +8,16 @@ import { takeUntil } from 'rxjs/operators';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
 import { navigation } from 'app/navigation/navigation';
-import { locale as navigationEnglish } from 'app/navigation/i18n/en';
-import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+
 import * as _ from 'lodash';
+import {FuseSplashScreenService} from '../@fuse/services/splash-screen.service';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event} from '@angular/router';
+import {LoadingService} from './services/loading.service';
+import {MatDialogRef} from '@angular/material';
+import {SpinnerModalComponent} from './pages/spinner-modal/spinner-modal.component';
 
 @Component({
     selector   : 'app',
@@ -31,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy
     // Private
     private _unsubscribeAll: Subject<any>;
     localStorage: any;
+    loading: boolean;
 
     /**
      * Constructor
@@ -52,9 +56,33 @@ export class AppComponent implements OnInit, OnDestroy
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
-        private _platform: Platform
+        private _platform: Platform,
+        private router: Router,
+        private loadingService: LoadingService
     )
     {
+
+        this.router.events.subscribe((event: Event) => {
+            let dialogRef: MatDialogRef<SpinnerModalComponent> = null;
+
+            switch (true) {
+                case event instanceof NavigationStart: {
+                    this.loading = true;
+                    break;
+                }
+
+                case event instanceof NavigationEnd:
+                case event instanceof NavigationCancel:
+                case event instanceof NavigationError: {
+                    this.loading = false;
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
+
         this.languages = [
             {
                 id   : 'fr',
