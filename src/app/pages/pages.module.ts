@@ -27,7 +27,6 @@ import {InitMailService} from '../services/init-mail.service';
 import {FileUploadModule} from 'ng2-file-upload';
 import {FuseSharedModule} from '../../@fuse/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
-import {ScWorkflowComponent} from './sc-workflow/sc-workflow.component';
 import { DirectionComponent } from './direction/direction.component';
 import { NewDirectionComponent } from './new-direction/new-direction.component';
 import { ServiceEntityComponent } from './service-entity/service-entity.component';
@@ -41,10 +40,6 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
-
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
@@ -58,31 +53,26 @@ const routes = [
         component: ScHomeComponent
     },
     {
-        path     : '',
-        component: ReferentialComponent,
-        outlet: 'ref'
+        path     : 'direction',
+        component: DirectionComponent
+    },
+    {
+        path     : 'service',
+        component: ServiceEntityComponent
+    },
+    {
+        path     : 'division',
+        component: DivisionComponent
+    },
+    {
+        path     : 'departement',
+        component: DepartementComponent
     },
     {
         path     : 'referentiel',
         component: ReferentialComponent,
-        outlet: 'ref',
         children: [
-            {
-                path     : 'direction',
-                component: DirectionComponent
-            },
-            {
-                path     : 'service',
-                component: ServiceEntityComponent
-            },
-            {
-                path     : 'division',
-                component: DivisionComponent
-            },
-            {
-                path     : 'departement',
-                component: DepartementComponent
-            }
+
         ]
     },
 

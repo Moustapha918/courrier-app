@@ -1,5 +1,4 @@
 import { FuseNavigation } from '@fuse/types';
-import {ArrivedMailScComponent} from '../pages/arrived-mail-sc/arrived-mail-sc.component';
 
 
 export const navigation: FuseNavigation[] = [
@@ -37,6 +36,7 @@ export const navigation: FuseNavigation[] = [
         title    : 'référentiel',
         translate: 'NAV.REFERENTIEL',
         type     : 'group',
+        url      : 'referentiel'
     },
     {
         id       : 'archive',
@@ -45,19 +45,3 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
     }
 ];
-
-
-/* {
-                id       : 'sample',
-                title    : 'Simple Title',
-                translate: 'NAV.SAMPLE.TITLE',
-                type     : 'item',
-                icon     : 'email',
-                url      : '/',
-                badge    : {
-                    title    : '25',
-                    translate: 'NAV.SAMPLE.BADGE',
-                    bg       : '#F44336',
-                    fg       : '#FFFFFF'
-                }
-            },*/
