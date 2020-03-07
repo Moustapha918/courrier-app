@@ -121,7 +121,7 @@ const routes = [
         SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent
+        VisualizePdfComponent, SpinnerModalComponent
 
     ],
     exports: [

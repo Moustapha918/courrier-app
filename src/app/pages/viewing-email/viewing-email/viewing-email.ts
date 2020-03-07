@@ -20,6 +20,8 @@ const annotations  = [
     {code: '8', label: 'Faire Nécessaire'}
 
     ];
+const index1 = [0, 1, 2, 3];
+const index2 = [4, 5, 6, 7];
 
 
 
@@ -39,6 +41,8 @@ export class ViewingEmailComponent implements OnInit
     mail: ArrivedMailModel = new ArrivedMailModel();
     annotations: any;
     directions: any;
+    index1: any;
+    index2: any;
 
 
     /**
@@ -61,6 +65,9 @@ export class ViewingEmailComponent implements OnInit
         // Horizontal Stepper form steps
 
         this.annotations = annotations;
+        this.index1 = index1;
+        this.index2 = index2;
+
 
         this.referentialService.getAllDirectionsFromBackend()
             .subscribe(
