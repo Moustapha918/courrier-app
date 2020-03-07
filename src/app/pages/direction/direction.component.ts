@@ -5,6 +5,11 @@ import {MatDialog} from '@angular/material/dialog';
 import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {ReferentialService} from '../../services/referential.service';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import { NotificationService } from '../../services/notification.service';
+import {TranslateService} from '@ngx-translate/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {DirectionModel} from '../../models/direction.model';
+
 
 
 
@@ -17,55 +22,58 @@ export class DirectionComponent implements OnInit {
 
     displayedColumns: string[] = ['code', 'label', 'address', 'update', 'delete'];
     // @ts-ignore
-    dataSource: any;
+    dataSource: MatTableDataSource;
+
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    Id: number;
-    Direction1: string;
-    Adresse1: string;
-
     constructor(public dialog: MatDialog, public dialog1: MatDialog,
                 private referentialService: ReferentialService,
-                private cdr: ChangeDetectorRef) {}
+                private notifyService: NotificationService,
+                private translate: TranslateService,
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(NewDirectionComponent, {
-            width: '4000px',
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            this.dataSource = this.referentialService.getAllDirectionsFromBackend();
-            // tslint:disable-next-line:triple-equals
-
-        });
-    }
-
-
+                ) {}
 
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
 
-        console.log(this.referentialService.getAllDirectionsFromBackend());
-        this.dataSource = this.referentialService.getAllDirectionsFromBackend();
-        this.cdr.detectChanges();
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+           this.updateDirectionsTable();
     }
 
-    // tslint:disable-next-line:use-lifecycle-interface
-    ngAfterViewInit(): void {
-        this.dataSource.sort = this.sort;
+
+    private updateDirectionsTable(): void {
+        this.referentialService.getAllDirectionsFromBackend().subscribe((data) => {
+
+            this.dataSource = new MatTableDataSource<DirectionModel>(data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
     }
+
+    addDirection(): void {
+        const dialogRef = this.dialog.open(NewDirectionComponent, {
+            width: '4000px',
+
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.updateDirectionsTable();
+
+            if (result === true) {
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+        });
+    }
+
 
 
     deleteDirection(direction): void {
         this.referentialService.deleteDirection(direction.code)
             .subscribe(
                 () => {
-                    console.log('successful irection delete');
+                    console.log('successful direction delete');
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
@@ -74,10 +82,10 @@ export class DirectionComponent implements OnInit {
 
     }
 
-    confirmDialog(direction): void {
-        const message = `Vous êtes sûr de vouloir supprimer cette direction`;
+    deleteConfirm(direction): void {
+        const message = this.translate.instant('REFERENTIAL.DELETEMSGCONFIRMATIONDIRECTION');
 
-        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+        const dialogData = new ConfirmDialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
 
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -85,15 +93,32 @@ export class DirectionComponent implements OnInit {
             data: dialogData
         });
         dialogRef.afterClosed().subscribe(result => {
-            // tslint:disable-next-line:triple-equals
-            if (result == true) {
+
+            if (result === true) {
                 this.deleteDirection(direction);
-                this.dataSource = this.referentialService.getAllDirectionsFromBackend();
+                this.updateDirectionsTable();
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
 
     }
 
+    updateDirection(direction): void {
+
+        const dialogRef = this.dialog.open(NewDirectionComponent, {
+            width: '4000px',
+            data: direction,
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                // this.dataSource = this.referentialService.getAllDirectionsFromBackend();
+                this.updateDirectionsTable();
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATEDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+        });
+
+    }
 }
 
 

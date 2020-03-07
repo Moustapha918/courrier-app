@@ -6,6 +6,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {NewDivisionComponent} from '../new-division/new-division.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {MatTableDataSource} from '@angular/material/table';
+import {DivisionModel} from '../../models/division.model';
+import {NotificationService} from "../../services/notification.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-division',
@@ -15,56 +19,45 @@ import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/conf
 export class DivisionComponent implements OnInit {
 
     displayedColumns: string[] = ['code', 'codeDirection', 'codeService', 'label', 'address', 'update', 'delete'];
-    dataSource: any;
+    // @ts-ignore
+    dataSource: MatTableDataSource;
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    code: string;
-    codeDirection: string;
-    codeService: string;
-    label: string;
-    address: string;
+
 
   constructor(public dialog: MatDialog,
+              private notifyService: NotificationService,
+              private translate: TranslateService,
               private referentialService: ReferentialService) { }
 
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(NewDivisionComponent, {
-            width: '4000px',
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            this.dataSource = this.referentialService.getAllDivisionsFromBackend();
-            // tslint:disable-next-line:triple-equals
 
-        });
-
-    }
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
-        this.dataSource = this.referentialService.getAllDivisionsFromBackend();
-        console.log(this.dataSource);
-        /*  this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;*/
+      this.updateDivisionsTable();
     }
 
-    confirmDialog(division): void {
-        const message = `Vous êtes sûr de vouloir supprimer cette division`;
+    private updateDivisionsTable(): void {
+        this.referentialService.getAllDivisionsFromBackend().subscribe((data) => {
 
-        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+            this.dataSource = new MatTableDataSource<DivisionModel>(data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
+    }
 
+    AddDivision(): void {
+        const dialogRef = this.dialog.open(NewDivisionComponent, {
+            width: '4000px',
 
-        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-            maxWidth: '4000px',
-            data: dialogData
         });
         dialogRef.afterClosed().subscribe(result => {
-            // tslint:disable-next-line:triple-equals
-            if (result == true) {
-                this.deleteDivision(division);
-                this.dataSource = this.referentialService.getAllDivisionsFromBackend();
+            this.updateDivisionsTable();
+            if (result === true) {
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
 
@@ -80,6 +73,44 @@ export class DivisionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+
+    }
+
+    deleteConfirm(division): void {
+        const message = this.translate.instant('REFERENTIAL.DELETEMSGCONFIRMATIONDIVISION');
+
+        const dialogData = new ConfirmDialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+                this.deleteDivision(division);
+                this.updateDivisionsTable();
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+        });
+
+    }
+
+
+
+    updateDivision(division): void {
+
+        const dialogRef = this.dialog.open(NewDivisionComponent, {
+            width: '4000px',
+            data: division
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.updateDivisionsTable();
+                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATEDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+        });
 
     }
 

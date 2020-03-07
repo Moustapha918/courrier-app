@@ -46,6 +46,13 @@ import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SpinnerModalComponent } from './spinner-modal/spinner-modal.component';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.component';
+import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
+import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
+import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 
 
 const routes = [
@@ -55,7 +62,8 @@ const routes = [
         resolve  : {
             data: InitMailService
         }
-    }, {
+    },
+    {
         path     : 'sc-home',
         component: ScHomeComponent
     },
@@ -66,6 +74,14 @@ const routes = [
     {
         path     : 'referentiel',
         component: ReferentialComponent
+    },
+    {
+        path     : 'cabinet-ministre',
+        component: CabinetMinistreComponent
+    },
+    {
+        path     : 'secretaire-general',
+        component: SecretaireGeneraleComponent
     },
     {
         path     : 'direction',
@@ -120,8 +136,11 @@ const routes = [
         VisualizePdfComponent,
         SpinnerModalComponent,
         // tslint:disable-next-line:max-line-length
-        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent
+        ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent, DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, CabinetMinistreComponent, ConfirmDialogComponent, ViewingEmailComponent,
+        VisualizePdfComponent,
+        NewCabinetMinstreComponent,
+        SecretaireGeneraleComponent,
+        NewSecretaireGeneraleComponent
 
     ],
     exports: [
@@ -160,7 +179,10 @@ const routes = [
         PdfViewerModule,
         MatDialogModule
     ],
-    entryComponents: [SpinnerModalComponent, NewDirectionComponent, NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent, ConfirmDialogComponent, VisualizePdfComponent]
+    entryComponents: [SpinnerModalComponent, NewDirectionComponent,
+        NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
+        ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent,
+        NewSecretaireGeneraleComponent]
 })
 export class PagesModule
 {
