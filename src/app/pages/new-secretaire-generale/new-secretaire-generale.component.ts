@@ -1,55 +1,39 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
-
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
-import {Router} from '@angular/router';
-import {ReferentialService} from '../../services/referential.service';
-import {DirectionModel} from '../../models/direction.model';
-import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TranslateService} from '@ngx-translate/core';
-
-
-
+import {ReferentialService} from '../../services/referential.service';
+import {GeneralSecretaryModel} from '../../models/general-secretary.model';
 
 @Component({
-  selector: 'app-new-direction',
-  templateUrl: './new-direction.component.html',
-  styleUrls: ['./new-direction.component.scss']
+  selector: 'app-new-secretaire-generale',
+  templateUrl: './new-secretaire-generale.component.html',
+  styleUrls: ['./new-secretaire-generale.component.scss']
 })
-export class NewDirectionComponent implements OnInit {
-
+export class NewSecretaireGeneraleComponent implements OnInit {
 
     form: FormGroup;
     title: any;
-
     private _unsubscribeAll: Subject<any>;
 
-
-
-    constructor(
-        public dialogRef: MatDialogRef<NewDirectionComponent>,
-        private _formBuilder: FormBuilder,
-        private translate: TranslateService,
-        private referentialService: ReferentialService,
-        @Inject(MAT_DIALOG_DATA) public data: DirectionModel)
-    {
-        this._unsubscribeAll = new Subject();
-
-    }
-
+  constructor(
+      public dialogRef: MatDialogRef<NewSecretaireGeneraleComponent>,
+      private _formBuilder: FormBuilder,
+      private translate: TranslateService,
+      private referentialService: ReferentialService,
+      @Inject(MAT_DIALOG_DATA) public data: GeneralSecretaryModel
+  ) { }
 
     // tslint:disable-next-line:typedef
   ngOnInit() {
 
-        // titte of popup
+      // titte of popup
       if (this.data != null) {
-          this.title = this.translate.instant('REFERENTIAL.EDITDIRECTIONTITLE');
+          this.title = this.translate.instant('REFERENTIAL.EDITMINISTEROFFICETITLE');
       }
       else{
-          this.title = this.title = this.translate.instant('REFERENTIAL.ADDDIRRECTIONTITLE');
+          this.title = this.title = this.translate.instant('REFERENTIAL.ADDMINISTEROFFICETITLE');
       }
 
       this.form = this._formBuilder.group({
@@ -67,9 +51,9 @@ export class NewDirectionComponent implements OnInit {
           address: [
               '',
               {
-              value: '',
+                  value: '',
 
-          }, Validators.required
+              }, Validators.required
           ],
 
 
@@ -84,17 +68,13 @@ export class NewDirectionComponent implements OnInit {
           this.form.controls['code'].disable();
 
       }
-
   }
 
-    // tslint:disable-next-line:use-lifecycle-interface
-
-
-    validateDirection(): void {
+    validateGeneralSecretary(): void {
 
         console.log(this.form.getRawValue());
 
-        this.referentialService.sendDirectionFormToBackend(this.form.getRawValue())
+        this.referentialService.sendGeneralSecretaryFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
@@ -108,11 +88,11 @@ export class NewDirectionComponent implements OnInit {
             );
     }
 
-    updateDirection(): void {
+    updateGenralSecretary(): void {
 
         console.log(this.form.getRawValue());
 
-        this.referentialService.updateDirection(this.form.getRawValue())
+        this.referentialService.updateGeneralSecretary(this.form.getRawValue())
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
@@ -124,15 +104,14 @@ export class NewDirectionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
-
     }
 
     updateOrValidate(): void {
         if (this.data != null) {
-            return this.updateDirection();
+            return this.updateGenralSecretary();
         }
         else{
-            return this.validateDirection();
+            return this.validateGeneralSecretary();
         }
 
     }

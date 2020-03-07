@@ -1,5 +1,5 @@
 
-export class DirectionModel {
+export class GeneralSecretaryModel {
     id: any;
     code: string;
     label: string;

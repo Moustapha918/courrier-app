@@ -6,6 +6,7 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState, RouterState
 import {InitMailService} from '../../../services/init-mail.service';
 import {ArrivedMailModel} from '../../../models/arrived-mail.model';
 import {MatDialog} from '@angular/material';
+// @ts-ignore
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 
 const annotations  = [{id: 'classed' , label: 'classé'}, {id: 'ventilated', label: 'ventilé'}, {id: 'studying', label: 'à etudier'}];
@@ -74,7 +75,7 @@ export class ViewingEmailComponent implements OnInit
     }
 
     visualizeMailPDF(): void{
-        this.matDialog.open(VisualizePdfComponent,{
+        this.matDialog.open(VisualizePdfComponent, {
             width: '90%',
             height: '95%',
             data: this.mail
@@ -90,7 +91,7 @@ export class ViewingEmailComponent implements OnInit
     annotate(): void {
         this.mail.directions = this.directions.filter(dir => dir.value);
         this.mail.annotations = this.annotations.filter( ann => ann.value);
-        this.initMailService.annotate(this.mail).subscribe( data =>{
+        this.initMailService.annotate(this.mail).subscribe( data => {
             console.log(data);
             this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
         },

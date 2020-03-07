@@ -1,4 +1,21 @@
+
+
+mat-table {
+    overflow-y: scroll
+}
+mat-tab-header {
+    z-index: 9999;
+    position: sticky !important;
+    top: 0px;
+    background-color: white !important;
+}
+
+/*
 @import "src/@fuse/scss/fuse";
+
+.products-table {
+    height: auto !important;
+}
 
 app-direction {
 
@@ -160,7 +177,7 @@ app-direction {
 
 
 
-/*
+!*
 
 
 table {
@@ -180,4 +197,5 @@ td, th {
     width: 70%;
 }
 
+*!
 */

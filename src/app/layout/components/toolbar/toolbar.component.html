@@ -5,7 +5,7 @@
              <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="space-between">
 
                  <div routerLink="/" class="logo ml-16">
-                     <img class="logo-icon" src="assets/images/customAdmin/rim.png">
+                     <!--<img class="logo-icon" src="assets/images/customAdmin/rim.png">-->
                  </div>
 
                  <div class="title-header_french">
@@ -13,40 +13,38 @@
                      <div> Honneur-Fraternité-Justice </div>
                  </div>
 
+                 <div routerLink="/" class="logo ml-16">
+                 <img class="logo-icon" src="assets/images/customAdmin/rim.png">
+                </div>
+
 
                  <div class="title-header_arabic">
                      <div> الجمهورية الإسلامية الموريتانية </div>
                      <div> شرف - إخاء - عدل</div>
                  </div>
 
-                 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="full-width">
-                     <div class="logo"> <svg-icon src="assets/icons/customAdmin/logout.svg" [svgStyle]="{ 'width.px':40, 'height.px':40 }"></svg-icon>  </div>
 
-                     <div>
-                         <button mat-button fxHide fxShow.gt-xs
-                                 class="language-button"
-                                 [matMenuTriggerFor]="languageMenu">
-                             <div fxLayout="row" fxLayoutAlign="center center">
-                                 <img class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
-                                 <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
-                             </div>
-                         </button>
+                 <div>
+                        <button mat-button fxHide fxShow.gt-xs
+                                class="language-button"
+                                [matMenuTriggerFor]="languageMenu">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <img class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
+                                <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
+                            </div>
+                        </button>
 
-                         <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
-
-                             <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
-                                 <span fxLayout="row" fxLayoutAlign="start center">
-                                    <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
-                                    <span class="iso">{{lang.title}}</span>
-                                 </span>
-                             </button>
-                         </mat-menu>
-                     </div>
-                 </div>
-
+                        <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+                            <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+                                <span fxLayout="row" fxLayoutAlign="start center">
+                                   <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                                   <span class="iso">{{lang.title}}</span>
+                                </span>
+                            </button>
+                        </mat-menu>
+                    </div>
 
              </div>
-
          </div>
 
 

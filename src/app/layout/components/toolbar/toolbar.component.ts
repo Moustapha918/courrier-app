@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     languages: any;
     navigation: any;
     selectedLanguage: any;
-    userStatusOptions: any[];
+
 
     // Private
     private _unsubscribeAll: Subject<any>;

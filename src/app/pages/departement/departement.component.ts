@@ -3,9 +3,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
-import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {NewDepartementComponent} from '../new-departement/new-departement.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+
 
 
 
@@ -24,9 +24,6 @@ export class DepartementComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    /*Id: number;
-    Direction1: string;
-    Adresse1: string;*/
 
     constructor(public dialog: MatDialog,
                 private referentialService: ReferentialService) {
@@ -34,7 +31,7 @@ export class DepartementComponent implements OnInit {
 
     }
 
-    openDialog(): void {
+    AddDepartment(): void {
         const dialogRef = this.dialog.open(NewDepartementComponent, {
             width: '4000px',
 
@@ -85,6 +82,22 @@ export class DepartementComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+    }
+
+    updateDepartment(departement): void {
+
+        const dialogRef = this.dialog.open(NewDepartementComponent, {
+            maxWidth: '4000px',
+            data: departement
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            // tslint:disable-next-line:triple-equals
+            if (result == true) {
+
+            }
+            this.dataSource = this.referentialService.getAllDepartmentFromBackend();
+        });
+
     }
 
 

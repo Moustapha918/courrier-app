@@ -47,15 +47,83 @@ export const locale = {
             DISPLAY                         : 'Visualiser',
             CONFIRM                         : 'Confirmer',
             DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier',
+            NOTIFICATION                    : 'Notification',
+            YES                            : 'Oui',
+            NO                             : 'No',
 
 
         },
-        REFERENTIEL: {
+        REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',
             DIRECTION                       : 'Direction',
             SERVICE                         : 'Service',
-            DIVISION                        : 'Division'
+            DIVISION                        : 'Division',
+            DEPARTMENT                      : 'Departement',
+            MINISTEROFFICE                  : 'Cabinet du ministre',
+            GENERALSECRETARY                : 'Secretariat Generale',
+
+
+            ADDDIRECTION                    : 'Ajouter une direction',
+            CODEDIRECTION                   : 'Code direction',
+            LABELDIRECTION                  : 'Libellé Direcion',
+            ADRESSEDIRECTION                : 'Adresse',
+            UPDATEDIRECTION                 : 'Editer',
+            DELETEDIRECTION                 : 'Supprimer',
+            ADDDIRRECTIONTITLE              : 'Créer une nouvelle direction',
+            EDITDIRECTIONTITLE              : 'Modifier la direction',
+            ADDDIRECTIONMSG                 : 'Direction à été rajouté',
+            DELETEDIRECTIONMSG              : 'Direction supprimé',
+            UPDATEDIRECTIONMSG              : 'Direction mis à jour',
+            DELETEMSGCONFIRMATIONDIRECTION  : `Etes-vous sûr de vouloir supprimer cette direction`,
+
+
+            ADDSERVICE                      : 'Ajouter un service',
+            CODESERVICE                     : 'Code service',
+            LABELSERVICE                    : 'Libellé service',
+            ADRESSESERVICE                  : 'Adresse',
+            UPDATESERVICE                   : 'Editer',
+            DELETESERVICE                   : 'Supprimer',
+            ADDSERVICETITLE                 : 'Créer un nouveau service',
+            EDITSERVICETITLE                : 'Modifier le service',
+            ADDSERVICEMSG                   : 'service à été rajouté',
+            DELETESERVICEMSG                : 'service supprimé',
+            UPDATESERVICEMSG                : 'service mis à jour',
+            DELETEMSGCONFIRMATIONSERVICE    : `Etes-vous sûr de vouloir supprimer cette service`,
+
+
+            ADDDIVISION                      : 'Ajouter une division',
+            CODEDIVISION                      : 'Code division',
+            LABELDIVISION                    : 'Libellé division',
+            ADRESSEDIVISION                  : 'Adresse',
+            UPDATEDIVISION                   : 'Editer',
+            DELETEDIVISION                   : 'Supprimer',
+            ADDDIVISIONTITLE                 : 'Créer une nouvelle division',
+            EDITDIVISIONTITLE                : 'Modifier la division',
+            ADDDIVISIONMSG                   : 'Division à été rajouté',
+            DELETEDIVISIONMSG                : 'division supprimé',
+            UPDATEDIVISIONMSG                : 'division mis à jour',
+            DELETEMSGCONFIRMATIONDIVISION    : `Etes-vous sûr de vouloir supprimer cette division`,
+
+            ADDMINISTEROFFICE               : 'Ajouter un élément',
+            CODEMINISTEROFFICE              : 'Code',
+            LABELMINISTEROFFICE             : 'Libellé ',
+            ADRESSEMINISTEROFFICE           : 'Adresse',
+            UPDATEMINISTEROFFICE            : 'Editer',
+            DELETEMINISTEROFFICE            : 'Supprimer',
+            ADDMINISTEROFFICETITLE          : 'Créer un nouveau élément',
+            EDITMINISTEROFFICETITLE            : 'Modifier élément',
+            ADDMINISTEROFFICEMSG            : 'Elément à été rajouté',
+            DELETEMINISTEROFFICEMSG         : 'Elément supprimé',
+            UPDATEMINISTEROFFICEMSG         : 'Elément mis à jour',
+            DELETEMSGCONFIRMATIONMINISTEROFFICE  : `Etes-vous sûr de vouloir supprimer cet élément`,
+
+
+
+
+
+
+            DELETECONFIRMATION              : 'Confirmation de suppression'
 
         }
     }

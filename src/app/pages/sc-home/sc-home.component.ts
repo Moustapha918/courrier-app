@@ -12,11 +12,9 @@ import {Router} from '@angular/router';
 })
 export class ScHomeComponent implements OnInit {
 
-    // tslint:disable-next-line:adjacent-overload-signatures
     constructor(private router: Router ) {}
 
-    // tslint:disable-next-line:typedef
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
     goToArrivedMail(): void {
