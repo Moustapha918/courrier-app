@@ -41,7 +41,7 @@ export class ArrivedMailScComponent implements OnInit{
     ngOnInit(): void{
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
-            console.log(data);
+            // console.log(data);
             this.loading = false;
         });
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
@@ -105,7 +105,7 @@ export class FilesDataSource extends DataSource<any>
                 map(() => {
 
 
-                    console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
+                    // console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
                     let data = this.initMailService.arrivedMails.slice();
                     data = this.filterData(data);
 

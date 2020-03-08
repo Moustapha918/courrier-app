@@ -84,7 +84,7 @@ export class ViewingEmailComponent implements OnInit
         this.referentialService.getAllDirectionsFromBackend()
             .subscribe(
                 dirs => {
-                    console.log(dirs);
+                    // console.log(dirs);
                     this.directions = dirs;
                 },
                 (error) => {
@@ -134,11 +134,4 @@ export class ViewingEmailComponent implements OnInit
 
     }
 
-    canConfirmAnnotation(): boolean {
-        if (!this.annotations) {
-            return false;
-        }
-        return  this.annotations.some( annotation => annotation.value);
-
-    }
 }
