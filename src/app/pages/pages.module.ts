@@ -1,4 +1,5 @@
 import {ArrivedMailScComponent} from './arrived-mail-sc/arrived-mail-sc.component';
+// @ts-ignore
 import { ReferentialComponent } from './referential/referential.component';
 import {ScHomeComponent} from './sc-home/sc-home.component';
 import {RouterModule} from '@angular/router';
@@ -34,7 +35,7 @@ import { DivisionComponent } from './division/division.component';
 import { DepartementComponent } from './departement/departement.component';
 import { NewServiceEntityComponent } from './new-service-entity/new-service-entity.component';
 import { NewDepartementComponent } from './new-departement/new-departement.component';
-
+// @ts-ignore
 import { NewDivisionComponent } from './new-division/new-division.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VisualizePdfComponent } from './visualize-pdf/visualize-pdf.component';
@@ -129,7 +130,7 @@ const routes = [
         NewSecretaireGeneraleComponent,
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
         DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent
+        VisualizePdfComponent, SpinnerModalComponent
 
     ],
     exports: [

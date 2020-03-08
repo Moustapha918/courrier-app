@@ -98,41 +98,72 @@
                             </div>
                         </form>
                     </div>
+
+
+
                     <!--<fuse-demo-sidebar></fuse-demo-sidebar>-->
+
                 </mat-step>
 
                 <mat-step [stepControl]="horizontalStepperStep2">
-                    <div fxLayout="row" fxLayoutAlign="center">
+                    <div fxLayout="row" fxLayoutAlign="center" >
                         <form fxLayout="column">
 
-                            <ng-template matStepLabel>{{ 'mail.ANNOTATION_VENTILATION' | translate }}</ng-template>
-
+                            <ng-template matStepLabel>{{ 'mail.ANNOTATION' | translate }}</ng-template>
                             <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
                                 <div fxLayoutAlign="start" fxLayout="column" >
 
-                                    <h1> {{ 'mail.ANNOTATION' | translate }}</h1>
 
-                                    <mat-checkbox *ngFor="let annotation of annotations" name="annotations"
+                                    <mat-checkbox *ngFor="let i of index1 " name="annotations"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="annotation.value">{{annotation.label}}</mat-checkbox>
+                                                  [(ngModel)]="annotations[i].value">{{annotations[i].label}} </mat-checkbox>
                                 </div>
 
-                                <div fxLayoutAlign="start" fxLayout="column">
-                                   <h1> {{ 'mail.VENTILATION' | translate }}</h1>
-                                    <mat-checkbox *ngFor="let direction of directions" name="annotations"
+                                <div fxLayoutAlign="start" fxLayout="column" >
+
+
+                                    <mat-checkbox *ngFor="let i of index2" name="annotations"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="direction.value">{{direction.name}}</mat-checkbox>
+                                                  [(ngModel)]="annotations[i].value">{{ annotations[i].label}}</mat-checkbox>
+                                </div>
+
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
+                                <button class="mr-8" mat-raised-button matStepperNext type="button" color="accent">
+                                    {{ 'mail.VENTILATION' | translate }}
+                                </button>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+
+                </mat-step>
+
+                <mat-step [stepControl]="horizontalStepperStep3">
+                    <div fxLayout="row" fxLayoutAlign="center">
+
+                        <form fxLayout="column" fxLayoutAlign="center center">
+
+                            <ng-template matStepLabel>{{ 'mail.VENTILATION' | translate }}</ng-template>
+
+                            <div fxLayoutAlign="space-between space-between" fxLayout="row">
+
+
+                                <div fxLayoutAlign="start" fxLayout="column">
+
+                                    <mat-checkbox *ngFor="let direction of directions" name="directions"
+                                                  class="app-checkbox"
+                                                  [(ngModel)]="direction.value"> {{direction.code}} - {{direction.label}}</mat-checkbox>
 
                                 </div>
                             </div>
 
 
                             <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
-                                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
-                                    {{ 'mail.DISPLAY' | translate }}
-                                </button>
-
                                 <button class="mr-8" mat-raised-button type="button" color="accent"
                                         (click)="annotate()" [disabled]="!canConfirm()">
                                     {{ 'mail.CONFIRM' | translate }}
@@ -144,12 +175,13 @@
                     </div>
 
                 </mat-step>
+
+
             </mat-horizontal-stepper>
-            <!-- / HORIZONTAL STEPPER EXAMPLE -->
+
         </div>
 
     </div>
-    <!-- / CENTER -->
 
 </div>
 
