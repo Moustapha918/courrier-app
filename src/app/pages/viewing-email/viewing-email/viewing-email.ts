@@ -114,11 +114,11 @@ export class ViewingEmailComponent implements OnInit
     }
 
 
-    annotate(): void {
+    annotateAndVentilate(): void {
         this.mail.directions = this.directions.filter(dir => dir.value);
         this.mail.annotations = this.annotations.filter( ann => ann.value);
         // console.log(this.mail);
-        this.initMailService.annotate(this.mail).subscribe( data => {
+        this.initMailService.annotateAndVentilate(this.mail).subscribe( data => {
            // console.log(data);
             this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
         },
