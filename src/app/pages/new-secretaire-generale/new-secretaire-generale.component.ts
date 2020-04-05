@@ -42,7 +42,13 @@ export class NewSecretaireGeneraleComponent implements OnInit {
                   value: '',
               }, Validators.required
           ],
-          label: ['',
+          labelAR: ['',
+              {
+                  value: '',
+
+              }, Validators.required
+          ],
+          labelFR: ['',
               {
                   value: '',
 

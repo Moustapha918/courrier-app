@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
 import {DepartmentModel} from '../../models/departement.model';
+import {TranslateService} from '@ngx-translate/core';
 
 
 
@@ -32,6 +33,7 @@ export class NewDepartementComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDepartementComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DepartmentModel,
         private _formBuilder: FormBuilder,
+        private translate: TranslateService,
         private referentialService: ReferentialService,
         private router: Router)
     {
@@ -55,7 +57,13 @@ export class NewDepartementComponent implements OnInit {
                     value: '',
                 }, Validators.required
             ],
-            label: ['',
+            labelAR: ['',
+                {
+                    value: '',
+
+                }, Validators.required
+            ],
+            labelFR: ['',
                 {
                     value: '',
 

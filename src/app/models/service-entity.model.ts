@@ -4,7 +4,8 @@ export class ServiceEntityModel{
     id: any;
     code: string;
     codeDirection: string;
-    label: string;
+    labelFR: string;
+    labelAR: string;
     address: string;
 }
 

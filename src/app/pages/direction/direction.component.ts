@@ -10,7 +10,13 @@ import {TranslateService} from '@ngx-translate/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {DirectionModel} from '../../models/direction.model';
 
-
+export interface Dessert {
+    calories: number;
+    carbs: number;
+    fat: number;
+    name: string;
+    protein: number;
+}
 
 
 @Component({
@@ -24,9 +30,14 @@ export class DirectionComponent implements OnInit {
     // @ts-ignore
     dataSource: MatTableDataSource;
 
+    // localstorage
+    storedLang = localStorage.getItem('language');
+
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+
 
     constructor(public dialog: MatDialog, public dialog1: MatDialog,
                 private referentialService: ReferentialService,
@@ -38,14 +49,12 @@ export class DirectionComponent implements OnInit {
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
-
-           this.updateDirectionsTable();
+        this.updateDirectionsTable();
     }
 
 
     private updateDirectionsTable(): void {
         this.referentialService.getAllDirectionsFromBackend().subscribe((data) => {
-
             this.dataSource = new MatTableDataSource<DirectionModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;

@@ -17,7 +17,8 @@
                 <!--<input matInput formControlName="codeDirection" required>-->
                 <mat-select formControlName="codeDirection" required>
                     <mat-option *ngFor="let direction of directions" [value]="direction.code">
-                        {{direction.code + ' - ' +  direction.label}}
+                        <span *ngIf="translate.currentLang==='ar'" >{{direction.code + ' - ' +  direction.labelAR}}</span>
+                        <span *ngIf="translate.currentLang==='fr'" >{{direction.code + ' - ' +  direction.labelFR}}</span>
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -28,8 +29,15 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
-                <mat-label>{{ 'REFERENTIAL.LABELDIVISION' | translate }}</mat-label>
-                <input matInput formControlName="label" required>
+                <mat-label>{{ 'REFERENTIAL.LABELDIVISIONAR' | translate }}</mat-label>
+                <input matInput formControlName="labelAR" required>
+                <!--<mat-icon matSuffix class="secondary-text">flag</mat-icon>
+                <mat-error>{{ 'mail.IDRECEIVED_DOCUMENT_MSG' | translate }}</mat-error>-->
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+                <mat-label>{{ 'REFERENTIAL.LABELDIVISIONFR' | translate }}</mat-label>
+                <input matInput formControlName="labelFR" required>
                 <!--<mat-icon matSuffix class="secondary-text">flag</mat-icon>
                 <mat-error>{{ 'mail.IDRECEIVED_DOCUMENT_MSG' | translate }}</mat-error>-->
             </mat-form-field>

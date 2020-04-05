@@ -2,10 +2,10 @@
 export class DirectionModel {
     id: any;
     code: string;
-    label: string;
+    labelFR: string;
+    labelAR: string;
     address: string;
 }
-
 
 
 

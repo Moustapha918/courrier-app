@@ -36,7 +36,8 @@
                 <!-- Name Column -->
                 <ng-container matColumnDef="label">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.LABELSERVICE' | translate }} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+                    <td mat-cell *matCellDef="let element"> <span *ngIf="translate.currentLang==='ar'" >{{element.labelAR}}</span>
+                        <span *ngIf="translate.currentLang==='fr'" >{{element.labelFR}}</span>  </td>
                 </ng-container>
 
                 <!-- Weight Column -->
@@ -69,7 +70,7 @@
             <mat-paginator
 
                 [pageIndex]="0"
-                [pageSize]="10"
+                [pageSize]="5"
                 [pageSizeOptions]="[5, 10, 20]" >
 
             </mat-paginator>
