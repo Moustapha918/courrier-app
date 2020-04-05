@@ -66,6 +66,8 @@ export const locale = {
 
             ADDDIRECTION                    : 'Ajouter une direction',
             CODEDIRECTION                   : 'Code direction',
+            LABELDIRECTIONAR                  : 'Libellé Direcion en arabe',
+            LABELDIRECTIONFR                  : 'Libellé Direcion en français',
             LABELDIRECTION                  : 'Libellé Direcion',
             ADRESSEDIRECTION                : 'Adresse',
             UPDATEDIRECTION                 : 'Editer',
@@ -80,6 +82,8 @@ export const locale = {
 
             ADDSERVICE                      : 'Ajouter un service',
             CODESERVICE                     : 'Code service',
+            LABELSERVICEAR                    : 'Libellé service en arabe',
+            LABELSERVICEFR                    : 'Libellé service en français',
             LABELSERVICE                    : 'Libellé service',
             ADRESSESERVICE                  : 'Adresse',
             UPDATESERVICE                   : 'Editer',
@@ -94,6 +98,8 @@ export const locale = {
 
             ADDDIVISION                      : 'Ajouter une division',
             CODEDIVISION                      : 'Code division',
+            LABELDIVISIONAR                    : 'Libellé division en arabe',
+            LABELDIVISIONFR                    : 'Libellé division en français',
             LABELDIVISION                    : 'Libellé division',
             ADRESSEDIVISION                  : 'Adresse',
             UPDATEDIVISION                   : 'Editer',
@@ -107,6 +113,8 @@ export const locale = {
 
             ADDMINISTEROFFICE               : 'Ajouter un élément',
             CODEMINISTEROFFICE              : 'Code',
+            LABELMINISTEROFFICEAR             : 'Libellé en arabe ',
+            LABELMINISTEROFFICEFR             : 'Libellé en français',
             LABELMINISTEROFFICE             : 'Libellé ',
             ADRESSEMINISTEROFFICE           : 'Adresse',
             UPDATEMINISTEROFFICE            : 'Editer',

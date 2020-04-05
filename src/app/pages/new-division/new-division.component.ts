@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {DivisionModel} from '../../models/division.model';
 import {DirectionModel} from '../../models/direction.model';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-division',
@@ -66,7 +66,13 @@ export class NewDivisionComponent implements OnInit {
                     value: '',
                 }, Validators.required
             ],
-            label: ['',
+            labelAR: ['',
+                {
+                    value: '',
+
+                }, Validators.required
+            ],
+            labelFR: ['',
                 {
                     value: '',
 

@@ -7,7 +7,7 @@ import {Observable, Subject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {DirectionModel} from '../../models/direction.model';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 
 
@@ -82,7 +82,13 @@ export class NewServiceEntityComponent implements OnInit {
                     value: '',
                 }, Validators.required
             ],
-            label: ['',
+            labelAR: ['',
+                {
+                    value: '',
+
+                }, Validators.required
+            ],
+            labelFR: ['',
                 {
                     value: '',
 

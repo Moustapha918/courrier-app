@@ -2,7 +2,8 @@
 export class MinisterOfficeModel {
     id: any;
     code: string;
-    label: string;
+    labelFR: string;
+    labelAR: string;
     address: string;
 }
 

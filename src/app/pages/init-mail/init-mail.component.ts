@@ -8,6 +8,8 @@ import {FileUploader, FileItem} from 'ng2-file-upload';
 import {LoadingService} from '../../services/loading.service';
 import {MatDialogRef} from '@angular/material';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
+import {ReferentialService} from '../../services/referential.service';
+import {DepartmentModel} from '../../models/departement.model';
 
 @Component({
     selector: 'app-init-mail',
@@ -24,6 +26,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
     form: FormGroup;
     scanFileName: string;
     uploadFileMessage: string;
+    departments: DepartmentModel[];
 
 
     private _unsubscribeAll: Subject<any>;
@@ -35,12 +38,20 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private notifyService: NotificationService,
         private activatedRoute: ActivatedRoute,
         private loadingService: LoadingService,
+        private referentialService: ReferentialService,
         private notificationService: NotificationService
     ) {
         this._unsubscribeAll = new Subject();
     }
 
     ngOnInit(): void {
+
+        // POUR LA LISTE DEROULANTE DES Departements
+        this.referentialService.getAllDepartmentFromBackend().subscribe(
+            data => this.departments = data
+        );
+
+        console.log(this.departments);
 
         this.form = this._formBuilder.group({
             receptionDate: [
@@ -105,7 +116,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
         this.uploader.onAfterAddingFile = item => { // to allow cross origin
             item.withCredentials = false;
-            console.log('onAfterAddingFile')
+            console.log('onAfterAddingFile');
             refDialog = this.loadingService.displaySpinner();
         };
         this.uploader.onCompleteAll = () =>  {
@@ -161,5 +172,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                      console.log('Error ! : ' + error);
                  });
     }
+
+
 
 }

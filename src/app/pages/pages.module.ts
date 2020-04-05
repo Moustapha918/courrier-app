@@ -53,6 +53,12 @@ const routes = [
         path     : 'sc-home',
         component: ScHomeComponent
     },
+
+    {
+        path     : 'cabinet-ministre',
+        component: CabinetMinistreComponent
+    },
+
     {
         path     : 'direction',
         component: DirectionComponent
@@ -68,6 +74,10 @@ const routes = [
     {
         path     : 'departement',
         component: DepartementComponent
+    },
+    {
+        path     : 'secretaire-general',
+        component: SecretaireGeneraleComponent
     },
     {
         path     : 'referentiel',

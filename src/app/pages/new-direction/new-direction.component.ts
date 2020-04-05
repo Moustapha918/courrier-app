@@ -58,7 +58,13 @@ export class NewDirectionComponent implements OnInit {
                   value: '',
               }, Validators.required
           ],
-          label: ['',
+          labelAR: ['',
+              {
+                  value: '',
+
+              }, Validators.required
+          ],
+          labelFR: ['',
               {
                   value: '',
 
@@ -71,7 +77,6 @@ export class NewDirectionComponent implements OnInit {
 
           }, Validators.required
           ],
-
 
       });
 

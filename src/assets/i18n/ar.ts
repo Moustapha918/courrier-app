@@ -61,6 +61,8 @@ export const locale = {
 
                 ADDDIRECTION                    : 'إضافة إدارة',
                 CODEDIRECTION                   : 'رمز الإدارة',
+                LABELDIRECTIONAR                  : 'تسمية الإدارة بالعربية',
+                LABELDIRECTIONFR                  : 'تسمية الإدارة بالفرنسية',
                 LABELDIRECTION                  : 'تسمية الإدارة',
                 ADRESSEDIRECTION                : 'عنوان الإدارة',
                 UPDATEDIRECTION                 : 'تعديل الإدارة',
@@ -74,6 +76,8 @@ export const locale = {
 
                 ADDSERVICE                      : 'إضافة مصلحة',
                 CODESERVICE                     : 'رمز المصلحة',
+                LABELSERVICEAR                    : 'تسمية المصلحة بالعربية',
+                LABELSERVICEFR                    : 'تسمية المصلحة بالفرنسية',
                 LABELSERVICE                    : 'تسمية المصلحة',
                 ADRESSESERVICE                  : 'عنوان المصلحة',
                 UPDATESERVICE                   : 'تعديل المصلحة',
@@ -87,6 +91,8 @@ export const locale = {
 
                 ADDDIVISION                      : 'إضافة قسم',
                 CODEDIVISION                      : 'رمز القسم',
+                LABELDIVISIONAR                    : 'تسمية القسم بالعربية',
+                LABELDIVISIONFR                    : 'تسمية القسم بالفرنسية',
                 LABELDIVISION                    : 'تسمية القسم',
                 ADRESSEDIVISION                  : 'عنوان القسم',
                 UPDATEDIVISION                   : 'تعديل القسم',
@@ -100,6 +106,8 @@ export const locale = {
 
                 ADDMINISTEROFFICE               : 'Ajouter un élément',
                 CODEMINISTEROFFICE              : 'Code',
+                LABELMINISTEROFFICEAR           : 'Libellé en arabe',
+                LABELMINISTEROFFICEFR           : 'Libellé en français',
                 LABELMINISTEROFFICE             : 'Libellé ',
                 ADRESSEMINISTEROFFICE           : 'Adresse',
                 UPDATEMINISTEROFFICE            : 'Editer',

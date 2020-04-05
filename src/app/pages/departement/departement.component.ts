@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {NewDepartementComponent} from '../new-departement/new-departement.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {TranslateService} from '@ngx-translate/core';
 
 
 
@@ -26,6 +27,7 @@ export class DepartementComponent implements OnInit {
 
 
     constructor(public dialog: MatDialog,
+                private translate: TranslateService,
                 private referentialService: ReferentialService) {
 
 
