@@ -50,15 +50,16 @@ export const locale = {
 
         },
             REFERENTIAL: {
-                REFERENTIEL                     : 'Referentiel',
+                REFERENTIEL                     : 'المرجع',
                 ORGANIGRAM                      : 'Organigramme',
-                DIRECTION                       : 'Direction',
-                SERVICE                         : 'Service',
-                DIVISION                        : 'Division',
-                DEPARTMENT                      : 'Departement',
+                DIRECTIONS                       : 'الإدارات',
+                SERVICES                         : 'المصالح',
+                DIVISIONS                        : 'الأقسام',
+                DEPARTMENTS                      : 'Departement',
                 MINISTEROFFICE                  : 'ديوان الوزير',
                 GENERALSECRETARY                : 'الأمانة العامة',
 
+                DIRECTION                       : 'الإدارة',
                 ADDDIRECTION                    : 'إضافة إدارة',
                 CODEDIRECTION                   : 'رمز الإدارة',
                 LABELDIRECTIONAR                  : 'تسمية الإدارة بالعربية',
@@ -74,6 +75,8 @@ export const locale = {
                 UPDATEDIRECTIONMSG              : 'تم تحديث الإدارة',
                 DELETEMSGCONFIRMATIONDIRECTION  : `هل أنت متأكد أنك تريد حذف هذه الإدارة`,
 
+
+                SERVICE                         : 'المصلحة',
                 ADDSERVICE                      : 'إضافة مصلحة',
                 CODESERVICE                     : 'رمز المصلحة',
                 LABELSERVICEAR                    : 'تسمية المصلحة بالعربية',
@@ -89,6 +92,8 @@ export const locale = {
                 UPDATESERVICEMSG                : 'تم تحديث المصلحة',
                 DELETEMSGCONFIRMATIONSERVICE    : `هل أنت متأكد أنك تريد حذف هذه المصلحة`,
 
+
+                DIVISION                         : 'القسم',
                 ADDDIVISION                      : 'إضافة قسم',
                 CODEDIVISION                      : 'رمز القسم',
                 LABELDIVISIONAR                    : 'تسمية القسم بالعربية',

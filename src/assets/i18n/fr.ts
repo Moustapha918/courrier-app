@@ -56,14 +56,15 @@ export const locale = {
         REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',
-            DIRECTION                       : 'Direction',
-            SERVICE                         : 'Service',
-            DIVISION                        : 'Division',
-            DEPARTMENT                      : 'Departement',
+            DIRECTIONS                       : 'Direction',
+            SERVICES                         : 'Service',
+            DIVISIONS                        : 'Division',
+            DEPARTMENTS                      : 'Departement',
             MINISTEROFFICE                  : 'Cabinet du ministre',
             GENERALSECRETARY                : 'Secretariat Generale',
 
 
+            DIRECTION                       : 'direction',
             ADDDIRECTION                    : 'Ajouter une direction',
             CODEDIRECTION                   : 'Code direction',
             LABELDIRECTIONAR                  : 'Libellé Direcion en arabe',
@@ -80,6 +81,7 @@ export const locale = {
             DELETEMSGCONFIRMATIONDIRECTION  : `Etes-vous sûr de vouloir supprimer cette direction`,
 
 
+            SERVICE                         : 'service',
             ADDSERVICE                      : 'Ajouter un service',
             CODESERVICE                     : 'Code service',
             LABELSERVICEAR                    : 'Libellé service en arabe',
@@ -96,6 +98,7 @@ export const locale = {
             DELETEMSGCONFIRMATIONSERVICE    : `Etes-vous sûr de vouloir supprimer cette service`,
 
 
+            DIVISION                         : 'division',
             ADDDIVISION                      : 'Ajouter une division',
             CODEDIVISION                      : 'Code division',
             LABELDIVISIONAR                    : 'Libellé division en arabe',

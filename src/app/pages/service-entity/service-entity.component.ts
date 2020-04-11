@@ -9,7 +9,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {TranslateService} from '@ngx-translate/core';
 import {NotificationService} from '../../services/notification.service';
-
+import {DirectionModel} from '../../models/direction.model';
 
 
 
@@ -24,12 +24,14 @@ export class ServiceEntityComponent implements OnInit {
     displayedColumns: string[] = ['code', 'codeDirection', 'label', 'address', 'update', 'delete'];
     // @ts-ignore
     dataSource: any; // Promise<any> | null;
+    direction: DirectionModel;
 
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    constructor(public dialog: MatDialog, private referentialService: ReferentialService,private notifyService: NotificationService, private translate: TranslateService) {
+    constructor(public dialog: MatDialog, private referentialService: ReferentialService,
+                private notifyService: NotificationService, private translate: TranslateService) {
 
 
     }
@@ -56,14 +58,19 @@ export class ServiceEntityComponent implements OnInit {
     }
 
     private updateServicesTable(): void {
-        this.referentialService.getAllServiceEntityFromBackend().subscribe((data) => {
+        this.referentialService.getAllServiceEntityFromBackend().subscribe((services) => {
 
-            this.dataSource = new MatTableDataSource<ServiceEntityModel>(data);
+            services.map(service  => {
+                this.referentialService.getDirectionByCode(service.codeDirection).subscribe((direction) => {
+                    service.labelDirection = [direction.labelAR, direction.labelFR];
+                });
+                return service;
+            } );
+            this.dataSource = new MatTableDataSource<ServiceEntityModel>(services);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
     }
-
 
 
     deleteServiceEntity(service): void {
