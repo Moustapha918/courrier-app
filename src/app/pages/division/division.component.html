@@ -30,14 +30,22 @@
 
                 <!-- Position Column -->
                 <ng-container matColumnDef="codeDirection">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.CODEDIRECTION' | translate }} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.codeDirection}}</td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.DIRECTION' | translate }} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span *ngIf="element.labelDirection != undefined && translate.currentLang==='ar' " >{{element.codeDirection +' - ' + element.labelDirection[0] }}</span>
+                        <span *ngIf="element.labelDirection != undefined && translate.currentLang==='fr'" >{{element.codeDirection +' - ' + element.labelDirection[1] }}</span>
+                    </td>
+
                 </ng-container>
 
                 <!-- Position Column -->
                 <ng-container matColumnDef="codeService">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.CODESERVICE' | translate }} </th>
-                    <td mat-cell *matCellDef="let element"> {{element.codeService}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'REFERENTIAL.SERVICE' | translate }} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span *ngIf="element.labelService != undefined && translate.currentLang==='ar' " >{{element.codeService +' - ' + element.labelService[0] }}</span>
+                        <span *ngIf="element.labelService != undefined && translate.currentLang==='fr'" >{{element.codeService +' - ' + element.labelService[1] }}</span>
+                    </td>
+
                 </ng-container>
 
                 <!-- Name Column -->

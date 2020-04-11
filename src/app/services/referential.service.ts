@@ -14,10 +14,6 @@ import {GeneralSecretaryModel} from '../models/general-secretary.model';
 
 
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -59,6 +55,8 @@ export class ReferentialService {
     updateGeneralSecretaryURI = environment.backendUrl + '/referential/secretary/update';
 
 
+    getDirectionURI = environment.backendUrl + '/referential/direction/';
+    getServiceURI = environment.backendUrl + '/referential/service/';
 
     constructor(private httpClient: HttpClient) {
 
@@ -95,7 +93,12 @@ export class ReferentialService {
     deleteDirection(code: string): Observable<DirectionModel> {
         console.log(this.deleteDirectionURI + code );
         return this.httpClient
-            .delete<DirectionModel>(this.deleteDirectionURI  + code ) ;
+            .get<DirectionModel>(this.getDirectionURI  + code ) ;
+    }
+
+    getDirectionByCode(code: string): Observable<DirectionModel> {
+        return this.httpClient
+            .get<DirectionModel>(this.getDirectionURI + code);
     }
 
     updateDirection(direction: DirectionModel): Observable<DirectionModel> {
@@ -176,6 +179,11 @@ export class ReferentialService {
         console.log(this.deleteServiceEntityURI + code );
         return this.httpClient
             .delete<ServiceEntityModel>(this.deleteServiceEntityURI  + code ) ;
+    }
+
+    getServiceByCode(code: string): Observable<ServiceEntityModel> {
+        return this.httpClient
+            .get<ServiceEntityModel>(this.getServiceURI + code);
     }
 
     updateServiceEntity(service: ServiceEntityModel): Observable<DirectionModel> {

@@ -8,8 +8,9 @@ import {NewDivisionComponent} from '../new-division/new-division.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {MatTableDataSource} from '@angular/material/table';
 import {DivisionModel} from '../../models/division.model';
-import {NotificationService} from "../../services/notification.service";
-import {TranslateService} from "@ngx-translate/core";
+import {NotificationService} from '../../services/notification.service';
+import {TranslateService} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-division',
@@ -30,7 +31,7 @@ export class DivisionComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private notifyService: NotificationService,
               private translate: TranslateService,
-              private referentialService: ReferentialService) { }
+              private referentialService: ReferentialService) {}
 
 
 
@@ -41,9 +42,18 @@ export class DivisionComponent implements OnInit {
     }
 
     private updateDivisionsTable(): void {
-        this.referentialService.getAllDivisionsFromBackend().subscribe((data) => {
+        this.referentialService.getAllDivisionsFromBackend().subscribe((divisions) => {
+            divisions.map(division  => {
+                this.referentialService.getDirectionByCode(division.codeDirection).subscribe((direction) => {
+                    division.labelDirection = [direction.labelAR, direction.labelFR];
+                });
+                this.referentialService.getServiceByCode(division.codeService).subscribe((service) => {
+                    division.labelService = [service.labelAR, service.labelFR];
+                });
+                return division;
+            } );
 
-            this.dataSource = new MatTableDataSource<DivisionModel>(data);
+            this.dataSource = new MatTableDataSource<DivisionModel>(divisions);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
