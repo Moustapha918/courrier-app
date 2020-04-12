@@ -20,11 +20,6 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class NewServiceEntityComponent implements OnInit {
 
-
-
-
-
-
     form: FormGroup;
     title: any;
 
@@ -106,7 +101,12 @@ export class NewServiceEntityComponent implements OnInit {
         if (this.data != null) {
 
             delete this.data.id;
-            this.form.setValue( this.data);
+            this.form.controls['code'].setValue(this.data.code);
+            this.form.controls['codeDirection'].setValue(this.data.codeDirection);
+            this.form.controls['labelAR'].setValue(this.data.labelAR);
+            this.form.controls['labelFR'].setValue(this.data.labelFR);
+            this.form.controls['address'].setValue(this.data.address);
+            /*this.form.setValue( this.data);*/
             this.form.controls['code'].disable();
         }
 

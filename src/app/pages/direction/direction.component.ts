@@ -88,6 +88,7 @@ export class DirectionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
+        this.updateDirectionsTable();
 
     }
 

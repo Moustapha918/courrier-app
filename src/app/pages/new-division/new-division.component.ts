@@ -7,6 +7,9 @@ import {Subject} from 'rxjs';
 import {DivisionModel} from '../../models/division.model';
 import {DirectionModel} from '../../models/direction.model';
 import {TranslateService} from '@ngx-translate/core';
+import {ServiceEntityModel} from '../../models/service-entity.model';
+import {MatSelectChange} from '@angular/material/select';
+
 
 @Component({
   selector: 'app-new-division',
@@ -20,6 +23,7 @@ export class NewDivisionComponent implements OnInit {
 
     private _unsubscribeAll: Subject<any>;
     private directions: DirectionModel[];
+    private services: ServiceEntityModel[];
 
     constructor(
         public dialogRef: MatDialogRef<NewDivisionComponent>,
@@ -85,14 +89,27 @@ export class NewDivisionComponent implements OnInit {
             ],
 
         });
+        console.log(this.data);
+        this.referentialService.getAllServiceEntityFromBackend().subscribe(
+            data => this.services = data
+        );
+
 
         if (this.data != null) {
 
             delete this.data.id;
-            this.form.setValue( this.data);
+            this.form.controls['code'].setValue(this.data.code);
+            this.form.controls['codeDirection'].setValue(this.data.codeDirection);
+            this.form.controls['codeService'].setValue(this.data.codeService);
+            this.form.controls['labelAR'].setValue(this.data.labelAR);
+            this.form.controls['labelFR'].setValue(this.data.labelFR);
+            this.form.controls['address'].setValue(this.data.address);
+            /*this.form.setValue( this.data);*/
+
             this.form.controls['code'].disable();
 
         }
+
     }
     // tslint:disable-next-line:use-lifecycle-interface
     ngOnDestroy(): void {
@@ -134,6 +151,8 @@ export class NewDivisionComponent implements OnInit {
             );
     }
 
+
+
     updateOrValidate(): void {
         if (this.data != null) {
             return this.updateDivision();
@@ -144,4 +163,12 @@ export class NewDivisionComponent implements OnInit {
 
     }
 
+    updateServices($event: MatSelectChange): void{
+        this.referentialService.getServiceByCodeDirection($event.value).subscribe((services) => {
+            this.services = services;
+        });
+
+        console.log($event.value);
+
+    }
 }
