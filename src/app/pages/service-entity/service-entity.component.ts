@@ -84,6 +84,8 @@ export class ServiceEntityComponent implements OnInit {
                 }
             );
 
+        this.updateServicesTable();
+
     }
 
     deleteConfirm(serviceEntity): void {

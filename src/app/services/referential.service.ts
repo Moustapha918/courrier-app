@@ -57,6 +57,7 @@ export class ReferentialService {
 
     getDirectionURI = environment.backendUrl + '/referential/direction/';
     getServiceURI = environment.backendUrl + '/referential/service/';
+    getServicesURI = environment.backendUrl + '/referential/services/';
 
     constructor(private httpClient: HttpClient) {
 
@@ -93,7 +94,7 @@ export class ReferentialService {
     deleteDirection(code: string): Observable<DirectionModel> {
         console.log(this.deleteDirectionURI + code );
         return this.httpClient
-            .get<DirectionModel>(this.getDirectionURI  + code ) ;
+            .delete<DirectionModel>(this.deleteDirectionURI  + code ) ;
     }
 
     getDirectionByCode(code: string): Observable<DirectionModel> {
@@ -184,6 +185,11 @@ export class ReferentialService {
     getServiceByCode(code: string): Observable<ServiceEntityModel> {
         return this.httpClient
             .get<ServiceEntityModel>(this.getServiceURI + code);
+    }
+
+    getServiceByCodeDirection(code: string): Observable<ServiceEntityModel[]> {
+        return this.httpClient
+            .get<ServiceEntityModel[]>(this.getServicesURI + code);
     }
 
     updateServiceEntity(service: ServiceEntityModel): Observable<DirectionModel> {

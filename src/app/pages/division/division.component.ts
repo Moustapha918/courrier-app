@@ -83,7 +83,7 @@ export class DivisionComponent implements OnInit {
                     console.log('Error ! : ' + error);
                 }
             );
-
+        this.updateDivisionsTable();
     }
 
     deleteConfirm(division): void {
@@ -99,8 +99,9 @@ export class DivisionComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             // tslint:disable-next-line:triple-equals
             if (result == true) {
-                this.deleteDivision(division);
                 this.updateDivisionsTable();
+                this.deleteDivision(division);
+
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
