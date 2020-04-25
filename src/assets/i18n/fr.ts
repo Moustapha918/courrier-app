@@ -3,7 +3,7 @@ export const locale = {
     data: {
         NAV: {
             ARRIVED: 'Courrier arrivée',
-            LIST: 'Liste des courrier(en instance)',
+            LIST: 'Liste des courrier (en instance)',
             NEWMAIIL: 'Nouveau',
             DEPARTURE: 'Courrier Départ',
             ARCHIVE: 'Archives',

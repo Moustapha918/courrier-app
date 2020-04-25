@@ -8,6 +8,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {DirectionModel} from '../../models/direction.model';
 import {TranslateService} from '@ngx-translate/core';
+import {LoadingService} from '../../services/loading.service';
 
 
 
@@ -35,6 +36,7 @@ export class NewServiceEntityComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private translate: TranslateService,
         private referentialService: ReferentialService,
+        private loadingService: LoadingService,
         private router: Router)
     {
         this._unsubscribeAll = new Subject();
@@ -156,10 +158,12 @@ export class NewServiceEntityComponent implements OnInit {
 
     updateOrValidate(): void {
         if (this.data != null) {
-            return this.updateServiceEntity();
+            this.updateServiceEntity();
+            this.loadingService.displaySpinner();
         }
         else{
-            return this.validateServiceEntity();
+            this.validateServiceEntity();
+            this.loadingService.displaySpinner();
         }
 
     }

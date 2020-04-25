@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TranslateService} from '@ngx-translate/core';
 import {ReferentialService} from '../../services/referential.service';
 import {MinisterOfficeModel} from '../../models/minister-office.model';
+import {LoadingService} from '../../services/loading.service';
 
 @Component({
   selector: 'app-new-cabinet-minstre',
@@ -21,6 +22,7 @@ export class NewCabinetMinstreComponent implements OnInit {
               private _formBuilder: FormBuilder,
               private translate: TranslateService,
               private referentialService: ReferentialService,
+              private loadingService: LoadingService,
               @Inject(MAT_DIALOG_DATA) public data: MinisterOfficeModel)
   {
       this._unsubscribeAll = new Subject();
@@ -112,10 +114,12 @@ export class NewCabinetMinstreComponent implements OnInit {
 
     updateOrValidate(): void {
         if (this.data != null) {
-            return this.updateMisterOffice();
+            this.updateMisterOffice();
+            this.loadingService.displaySpinner();
         }
         else{
-            return this.validateMinisterOffice();
+            this.validateMinisterOffice();
+            this.loadingService.displaySpinner();
         }
 
     }

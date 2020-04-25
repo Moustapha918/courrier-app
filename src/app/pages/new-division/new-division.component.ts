@@ -9,6 +9,7 @@ import {DirectionModel} from '../../models/direction.model';
 import {TranslateService} from '@ngx-translate/core';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {MatSelectChange} from '@angular/material/select';
+import {LoadingService} from '../../services/loading.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class NewDivisionComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: DivisionModel,
         private _formBuilder: FormBuilder,
         private translate: TranslateService,
+        private loadingService: LoadingService,
         private referentialService: ReferentialService,
         private router: Router)
     {
@@ -155,14 +157,17 @@ export class NewDivisionComponent implements OnInit {
 
     updateOrValidate(): void {
         if (this.data != null) {
-            return this.updateDivision();
+            this.updateDivision();
+            this.loadingService.displaySpinner();
         }
         else{
-            return this.validateDivision();
+            this.validateDivision();
+            this.loadingService.displaySpinner();
         }
 
     }
 
+    // for dropdown list
     updateServices($event: MatSelectChange): void{
         this.referentialService.getServiceByCodeDirection($event.value).subscribe((services) => {
             this.services = services;

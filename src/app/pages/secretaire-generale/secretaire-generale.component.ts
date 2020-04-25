@@ -9,6 +9,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {GeneralSecretaryModel} from '../../models/general-secretary.model';
 import {NewSecretaireGeneraleComponent} from '../new-secretaire-generale/new-secretaire-generale.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {LoadingService} from '../../services/loading.service';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class SecretaireGeneraleComponent implements OnInit {
   constructor(public dialog: MatDialog, public dialog1: MatDialog,
               private referentialService: ReferentialService,
               private notifyService: NotificationService,
+              private loadingService: LoadingService,
               private translate: TranslateService) { }
 
     // tslint:disable-next-line:typedef
@@ -50,9 +52,11 @@ export class SecretaireGeneraleComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.updateGeneralSecretaryTable();
+
 
             if (result === true) {
+                this.loadingService.closeSpinner();
+                this.updateGeneralSecretaryTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -63,6 +67,7 @@ export class SecretaireGeneraleComponent implements OnInit {
             .subscribe(
                 () => {
                     console.log('successful generalSecretary delete');
+                    this.updateGeneralSecretaryTable();
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
@@ -84,7 +89,7 @@ export class SecretaireGeneraleComponent implements OnInit {
 
             if (result === true) {
                 this.deleteGeneralSecretary(generalSecretary);
-                this.updateGeneralSecretaryTable();
+                this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -99,7 +104,7 @@ export class SecretaireGeneraleComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             // tslint:disable-next-line:triple-equals
             if (result == true) {
-                // this.dataSource = this.referentialService.getAllDirectionsFromBackend();
+                this.loadingService.closeSpinner();
                 this.updateGeneralSecretaryTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATEMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }

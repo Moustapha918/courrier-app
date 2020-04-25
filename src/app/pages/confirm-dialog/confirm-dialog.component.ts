@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {DirectionModel} from '../../models/direction.model';
+import {LoadingService} from '../../services/loading.service';
 
 
 
@@ -15,10 +16,10 @@ export class ConfirmDialogComponent implements OnInit {
     direction: DirectionModel;
 
   constructor( public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) {
+               @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel,
+               private loadingService: LoadingService) {
       this.title = data.title;
       this.message = data.message;
-
   }
 
     // tslint:disable-next-line:typedef
@@ -29,6 +30,8 @@ export class ConfirmDialogComponent implements OnInit {
 
         // Close the dialog, return true
         this.dialogRef.close(true);
+        this.loadingService.displaySpinner();
+
     }
 
     onDismiss(): void {

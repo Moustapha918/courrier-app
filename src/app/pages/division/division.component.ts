@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NewDirectionComponent} from '../new-direction/new-direction.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -10,6 +10,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {DivisionModel} from '../../models/division.model';
 import {NotificationService} from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
+import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
+import {LoadingService} from '../../services/loading.service';
 
 
 @Component({
@@ -31,6 +33,7 @@ export class DivisionComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private notifyService: NotificationService,
               private translate: TranslateService,
+              private loadingService: LoadingService,
               private referentialService: ReferentialService) {}
 
 
@@ -60,6 +63,7 @@ export class DivisionComponent implements OnInit {
     }
 
     AddDivision(): void {
+
         const dialogRef = this.dialog.open(NewDivisionComponent, {
             width: '4000px',
 
@@ -67,6 +71,7 @@ export class DivisionComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.updateDivisionsTable();
             if (result === true) {
+                this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -78,12 +83,13 @@ export class DivisionComponent implements OnInit {
             .subscribe(
                 () => {
                     console.log('successful division delete');
+                    this.updateDivisionsTable();
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
                 }
             );
-        this.updateDivisionsTable();
+
     }
 
     deleteConfirm(division): void {
@@ -99,7 +105,7 @@ export class DivisionComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             // tslint:disable-next-line:triple-equals
             if (result == true) {
-                this.updateDivisionsTable();
+                this.loadingService.closeSpinner();
                 this.deleteDivision(division);
 
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
@@ -118,6 +124,7 @@ export class DivisionComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result === true) {
+                this.loadingService.closeSpinner();
                 this.updateDivisionsTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATEDIVISIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
