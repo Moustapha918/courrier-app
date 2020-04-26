@@ -47,6 +47,7 @@ export class InitMailService implements Resolve<any>{
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
     {
+
         return new Promise((resolve, reject) => {
 
             Promise.all([
@@ -72,8 +73,8 @@ export class InitMailService implements Resolve<any>{
                 .subscribe((response: any) => {
                     this.arrivedMails = response;
                     console.log('this.arrivedMails from service', this.arrivedMails);
+                    // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
                     this.onarrivedMailsChanged.next(this.arrivedMails);
-
                     resolve(response);
                 }, reject);
         });
@@ -86,8 +87,8 @@ export class InitMailService implements Resolve<any>{
                 .subscribe((response: any) => {
                     this.arrivedMails = response;
                     console.log('this.arrivedMails from service', this.arrivedMails);
+                    // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
                     this.onarrivedMailsChanged.next(this.arrivedMails);
-
                     resolve(response);
                 }, reject);
         });

@@ -5,10 +5,10 @@ import {debounceTime, distinctUntilChanged, map, takeUntil} from 'rxjs/operators
 import {FuseUtils} from '../../../@fuse/utils';
 import {BehaviorSubject, fromEvent, merge, Observable, Subject} from 'rxjs';
 import {fuseAnimations} from '../../../@fuse/animations';
-import {ArrivedMailModel} from '../../models/arrived-mail.model';
 import {InitMailService} from '../../services/init-mail.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
 import {DataSource} from '@angular/cdk/table';
+import {LoadingService} from '../../services/loading.service';
 
 @Component({
   selector: 'app-arrived-mail-sc',
@@ -33,7 +33,7 @@ export class ArrivedMailScComponent implements OnInit{
     @ViewChild('filter', {static: true})
     filter: ElementRef;
 
-    constructor(private initMailService: InitMailService)
+    constructor(private initMailService: InitMailService, private loadingService: LoadingService)
     {
         // Set the defaults
         this.loading = true;
@@ -41,8 +41,7 @@ export class ArrivedMailScComponent implements OnInit{
     ngOnInit(): void{
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
-            // console.log(data);
-            this.loading = false;
+            this.loadingService.closeSpinner();
         });
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
 
