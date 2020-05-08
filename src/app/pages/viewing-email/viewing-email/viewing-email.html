@@ -153,12 +153,20 @@
                             <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
 
-                                <div fxLayoutAlign="start" fxLayout="column">
+                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'ar'">
 
-                                    <mat-checkbox *ngFor="let direction of directions" name="directions"
+                                    <mat-checkbox   *ngFor="let direction of directions" name="directions"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="direction.value"> {{direction.code}} - {{direction.label}}</mat-checkbox>
 
+                                                  [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelAR}}</mat-checkbox>
+                                </div>
+
+                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'fr'">
+
+                                    <mat-checkbox   *ngFor="let direction of directions" name="directions"
+                                                    class="app-checkbox"
+
+                                                    [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelFR}}</mat-checkbox>
                                 </div>
                             </div>
 

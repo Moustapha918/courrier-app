@@ -8,6 +8,7 @@ import {ArrivedMailModel} from '../../../models/arrived-mail.model';
 import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 import {ReferentialService} from '../../../services/referential.service';
+import {TranslateService} from '@ngx-translate/core';
 
 const annotations  = [
     {code: '1' , label: 'M’en Parler'},
@@ -54,7 +55,7 @@ export class ViewingEmailComponent implements OnInit
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router,
-        private matDialog: MatDialog, private referentialService: ReferentialService
+        private matDialog: MatDialog, private referentialService: ReferentialService, private translate: TranslateService
     )
     {
 
