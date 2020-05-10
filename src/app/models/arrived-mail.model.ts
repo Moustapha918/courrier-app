@@ -7,12 +7,15 @@ export class ArrivedMailModel {
     receptionDate: string;
     idReceivedDocument: string;
     dateReceivedDocument: string;
+    dateVentilation: string;
     priorityDegree: string;
     attachments: string;
     observations: string;
     idScanFile: string;
     annotations: any[];
     directions: any[];
+    specificInstructions: string;
+
 }
 
 
