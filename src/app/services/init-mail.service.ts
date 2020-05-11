@@ -7,7 +7,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {ArrivedMailModel} from '../models/arrived-mail.model';
 
 const annotations  = [
-    {code: '1' , labelFR: 'M’en Parler', labelAR: 'تحدثنا عنه'},
+    {code: '1' , labelFR: 'M’en Parler', labelAR: 'للنقاش'},
     {code: '2', labelFR: 'Suite à Donner', labelAR: 'لإعطاء متابعة'},
     {code: '3', labelFR: 'Exploitation', labelAR: 'إستغلال'},
     {code: '4', labelFR: 'Suivi', labelAR: 'متابعة'},

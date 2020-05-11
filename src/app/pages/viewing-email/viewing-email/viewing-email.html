@@ -124,13 +124,6 @@
                                                   [(ngModel)]="annotations[i].value">{{ annotations[i].labelFR}}
                                     </mat-checkbox>
                                 </div>
-                                <div style="margin-top:0px;">
-                                    <mat-form-field appearance="outline" fxFlex="100" >
-                                        <mat-label>{{ 'mail.SPECIFIC_INSTRUCTIONS' | translate }}</mat-label>
-                                        <textarea matInput [(ngModel)]="specificInstructions" name="specificInstructions"> </textarea>
-                                    </mat-form-field>
-                                </div>
-
                             </div>
                             <div fxLayoutAlign="space-between space-between" fxLayout="row" *ngIf="translate.currentLang === 'ar'">
 
@@ -147,15 +140,15 @@
                                                   [(ngModel)]="annotations[i].value">{{ annotations[i].labelAR}}
                                     </mat-checkbox>
                                 </div>
-                                <div style="margin-top:0px;">
-                                    <mat-form-field appearance="outline" fxFlex="100" >
-                                        <mat-label>{{ 'mail.SPECIFIC_INSTRUCTIONS' | translate }}</mat-label>
-                                        <textarea matInput [(ngModel)]="specificInstructions" name="specificInstructions"> </textarea>
-                                    </mat-form-field>
-                                </div>
 
                             </div>
 
+                            <div style="margin-top:20px;">
+                                <mat-form-field appearance="outline" fxFlex="100" >
+                                    <mat-label>{{ 'mail.SPECIFIC_INSTRUCTIONS' | translate }}</mat-label>
+                                    <textarea matInput [(ngModel)]="specificInstructions" name="specificInstructions"> </textarea>
+                                </mat-form-field>
+                            </div>
                             <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
                                 <button class="mr-8" mat-raised-button matStepperNext type="button" color="accent">
                                     {{ 'mail.VENTILATION' | translate }}
