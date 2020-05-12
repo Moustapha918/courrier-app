@@ -45,6 +45,7 @@ export const locale = {
             ANNOTATION_VENTILATION          : 'Annoter et ventiler',
             ANNOTATION                      : 'Annoter',
             VENTILATION                     : 'Ventiler',
+            SPECIFIC_INSTRUCTIONS           : 'Instructions particuliers',
             DISPLAY                         : 'Visualiser',
             CONFIRM                         : 'Confirmer',
             DISPALY_ANNOTATION_VENTILATION  : 'Visualiser, Annoter et Ventiler ce courrier',
