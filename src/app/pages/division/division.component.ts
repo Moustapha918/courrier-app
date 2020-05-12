@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -10,7 +9,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {DivisionModel} from '../../models/division.model';
 import {NotificationService} from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
-import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {LoadingService} from '../../services/loading.service';
 
 
