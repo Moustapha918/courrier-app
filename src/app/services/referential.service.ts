@@ -12,8 +12,6 @@ import {DivisionModel} from '../models/division.model';
 import {MinisterOfficeModel} from '../models/minister-office.model';
 import {GeneralSecretaryModel} from '../models/general-secretary.model';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
