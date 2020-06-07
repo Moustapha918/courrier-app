@@ -2,9 +2,10 @@ export const locale = {
     lang: 'fr',
     data: {
         NAV: {
-            ARRIVED: 'Courrier arrivée',
+            APPLICATIONS: 'Applications',
+            ARRIVED: 'Courrier arrivé',
             LIST: 'Liste des courrier (en instance)',
-            NEWMAIIL: 'Nouveau',
+            NEWMAIIL: 'Creer un courrier',
             DEPARTURE: 'Courrier Départ',
             ARCHIVE: 'Archives',
             REFERENTIEL: 'Référentiel',
