@@ -47,13 +47,19 @@ import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-ge
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 import {LoginModule} from './authentification/login/login.module';
 import {LoginComponent} from './authentification/login/login.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {AuthGuardService} from '../services/auth-guard.service';
 
+export function tokenGetter(): string{
+    return localStorage.getItem('token');
+}
 
 const routes = [
 
     {
         path     : 'sc-home',
-        component: ScHomeComponent
+        component: ScHomeComponent,
+        canActivate: [AuthGuardService]
     },
 
     {
@@ -186,7 +192,12 @@ const routes = [
         MatProgressSpinnerModule,
         PdfViewerModule,
         MatDialogModule,
-        LoginModule
+        LoginModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+            },
+        }),
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,

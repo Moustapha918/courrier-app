@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector     : 'login',
@@ -21,29 +22,7 @@ export class LoginComponent implements OnInit
      * @param {FuseConfigService} _fuseConfigService
      * @param {FormBuilder} _formBuilder
      */
-    constructor(
-        private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
-    )
-    {
-        // Configure the layout
-        this._fuseConfigService.config = {
-            layout: {
-                navbar   : {
-                    hidden: true
-                },
-                toolbar  : {
-                    hidden: true
-                },
-                footer   : {
-                    hidden: true
-                },
-                sidepanel: {
-                    hidden: true
-                }
-            }
-        };
-    }
+    constructor(private _formBuilder: FormBuilder, private authService: AuthService) {  }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -55,8 +34,13 @@ export class LoginComponent implements OnInit
     ngOnInit(): void
     {
         this.loginForm = this._formBuilder.group({
-            email   : ['', [Validators.required, Validators.email]],
+            username   : ['', [Validators.required]],
             password: ['', Validators.required]
         });
+    }
+
+    login(): void {
+        console.log(this.loginForm.value);
+        this.authService.login(this.loginForm.value['username'], this.loginForm.value['password']);
     }
 }
