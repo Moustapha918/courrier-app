@@ -45,6 +45,8 @@ import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.comp
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
+import {LoginModule} from './authentification/login/login.module';
+import {LoginComponent} from './authentification/login/login.component';
 
 
 const routes = [
@@ -86,7 +88,13 @@ const routes = [
 
         ]
     },
+    {
+        path     : 'login',
+        component: LoginComponent,
+        children: [
 
+        ]
+    },
     {
         path     : 'arrivedMail-sc',
         component: ArrivedMailScComponent,
@@ -177,7 +185,8 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule,
         PdfViewerModule,
-        MatDialogModule
+        MatDialogModule,
+        LoginModule
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
