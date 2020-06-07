@@ -7,9 +7,21 @@ import {SpinnerModalComponent} from '../pages/spinner-modal/spinner-modal.compon
 })
 export class LoadingService {
 
-  constructor(private matDialog: MatDialog) { }
+    refDialog: MatDialogRef<SpinnerModalComponent, any>;
+
+  constructor(private matDialog: MatDialog) {
+  }
 
   displaySpinner(): MatDialogRef<SpinnerModalComponent, any>{
-      return this.matDialog.open(SpinnerModalComponent, { disableClose: true});
+
+      this.refDialog = this.matDialog.open(SpinnerModalComponent, { disableClose: true});
+      return this.refDialog;
+  }
+
+
+  closeSpinner(): void{
+      if (this.refDialog){
+          this.refDialog.close();
+      }
   }
 }

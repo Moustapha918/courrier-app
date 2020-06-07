@@ -9,6 +9,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MinisterOfficeModel} from '../../models/minister-office.model';
 import {NewCabinetMinstreComponent} from '../new-cabinet-minstre/new-cabinet-minstre.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {LoadingService} from '../../services/loading.service';
 
 @Component({
   selector: 'app-cabinet-ministre',
@@ -27,6 +28,7 @@ export class CabinetMinistreComponent implements OnInit {
   constructor(public dialog: MatDialog, public dialog1: MatDialog,
               private referentialService: ReferentialService,
               private notifyService: NotificationService,
+              private loadingService: LoadingService,
               private translate: TranslateService) { }
 
     // tslint:disable-next-line:typedef
@@ -50,9 +52,10 @@ export class CabinetMinistreComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.updateMinisterOfficeTable();
 
             if (result === true) {
+                this.loadingService.closeSpinner();
+                this.updateMinisterOfficeTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -63,6 +66,7 @@ export class CabinetMinistreComponent implements OnInit {
             .subscribe(
                 () => {
                     console.log('successful minsteroffice delete');
+                    this.updateMinisterOfficeTable();
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
@@ -81,7 +85,7 @@ export class CabinetMinistreComponent implements OnInit {
 
             if (result === true) {
                 this.deleteMinisterOffice(minsterOffice);
-                this.updateMinisterOfficeTable();
+                this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -98,6 +102,7 @@ export class CabinetMinistreComponent implements OnInit {
             if (result == true) {
                 // this.dataSource = this.referentialService.getAllDirectionsFromBackend();
                 this.updateMinisterOfficeTable();
+                this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATEMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });

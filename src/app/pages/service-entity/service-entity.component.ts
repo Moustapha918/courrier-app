@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {NewServiceEntityComponent} from '../new-service-entity/new-service-entity.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
@@ -10,6 +10,8 @@ import {ServiceEntityModel} from '../../models/service-entity.model';
 import {TranslateService} from '@ngx-translate/core';
 import {NotificationService} from '../../services/notification.service';
 import {DirectionModel} from '../../models/direction.model';
+import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
+import {LoadingService} from '../../services/loading.service';
 
 
 
@@ -31,18 +33,20 @@ export class ServiceEntityComponent implements OnInit {
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     constructor(public dialog: MatDialog, private referentialService: ReferentialService,
-                private notifyService: NotificationService, private translate: TranslateService) {
+                private notifyService: NotificationService, private loadingService: LoadingService, private translate: TranslateService) {
 
 
     }
 
     addServiceEntity(): void {
+
         const dialogRef = this.dialog.open(NewServiceEntityComponent, {
             width: '4000px',
         });
         dialogRef.afterClosed().subscribe(result => {
             this.updateServicesTable();
             if (result === true) {
+                this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDSERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
 
@@ -78,22 +82,20 @@ export class ServiceEntityComponent implements OnInit {
             .subscribe(
                 () => {
                     console.log('successful service delete');
+                    this.updateServicesTable();
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
                 }
             );
 
-        this.updateServicesTable();
+
 
     }
 
     deleteConfirm(serviceEntity): void {
         const message = this.translate.instant('REFERENTIAL.DELETEMSGCONFIRMATIONSERVICE');
-
         const dialogData = new ConfirmDialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
-
-
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             maxWidth: '4000px',
             data: dialogData
@@ -101,8 +103,8 @@ export class ServiceEntityComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             // tslint:disable-next-line:triple-equals
             if (result == true) {
+                this.loadingService.closeSpinner();
                 this.deleteServiceEntity(serviceEntity);
-                this.updateServicesTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETESERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
         });
@@ -117,6 +119,7 @@ export class ServiceEntityComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result === true) {
+                this.loadingService.closeSpinner();
                 this.updateServicesTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.UPDATESERVICEMSG'), this.translate.instant('mail.NOTIFICATION'));
             }

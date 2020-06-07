@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TranslateService} from '@ngx-translate/core';
 import {ReferentialService} from '../../services/referential.service';
 import {GeneralSecretaryModel} from '../../models/general-secretary.model';
+import {LoadingService} from '../../services/loading.service';
 
 @Component({
   selector: 'app-new-secretaire-generale',
@@ -22,6 +23,7 @@ export class NewSecretaireGeneraleComponent implements OnInit {
       private _formBuilder: FormBuilder,
       private translate: TranslateService,
       private referentialService: ReferentialService,
+      private loadingService: LoadingService,
       @Inject(MAT_DIALOG_DATA) public data: GeneralSecretaryModel
   ) { }
 
@@ -114,10 +116,12 @@ export class NewSecretaireGeneraleComponent implements OnInit {
 
     updateOrValidate(): void {
         if (this.data != null) {
-            return this.updateGenralSecretary();
+            this.updateGenralSecretary();
+            this.loadingService.displaySpinner();
         }
         else{
-            return this.validateGeneralSecretary();
+            this.validateGeneralSecretary();
+            this.loadingService.displaySpinner();
         }
 
     }

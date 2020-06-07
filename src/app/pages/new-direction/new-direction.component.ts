@@ -1,7 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
-
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
@@ -10,6 +8,8 @@ import {ReferentialService} from '../../services/referential.service';
 import {DirectionModel} from '../../models/direction.model';
 import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {TranslateService} from '@ngx-translate/core';
+import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
+import {LoadingService} from '../../services/loading.service';
 
 
 
@@ -33,6 +33,7 @@ export class NewDirectionComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDirectionComponent>,
         private _formBuilder: FormBuilder,
         private translate: TranslateService,
+        private loadingService: LoadingService,
         private referentialService: ReferentialService,
         @Inject(MAT_DIALOG_DATA) public data: DirectionModel)
     {
@@ -99,12 +100,15 @@ export class NewDirectionComponent implements OnInit {
 
         console.log(this.form.getRawValue());
 
+
         this.referentialService.sendDirectionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
                     this.dialogRef.close(true);
                     console.log('succes');
+
+
                 },
 
                 (error) => {
@@ -117,12 +121,14 @@ export class NewDirectionComponent implements OnInit {
 
         console.log(this.form.getRawValue());
 
+
         this.referentialService.updateDirection(this.form.getRawValue())
             .subscribe(
                 () => {
                     this.dialogRef.close(this.form.getRawValue());
                     this.dialogRef.close(true);
                     console.log('succes');
+
                 },
 
                 (error) => {
@@ -133,13 +139,16 @@ export class NewDirectionComponent implements OnInit {
     }
 
     updateOrValidate(): void {
+
         if (this.data != null) {
-            return this.updateDirection();
+            // setTimeout(() => { console.log('____________');  this.updateDirection()}, 10000)
+            this.updateDirection();
+            this.loadingService.displaySpinner();
         }
         else{
-            return this.validateDirection();
+            this.validateDirection();
+            this.loadingService.displaySpinner();
         }
-
     }
 
 }
