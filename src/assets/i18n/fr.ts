@@ -58,9 +58,9 @@ export const locale = {
         REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',
-            DIRECTIONS                       : 'Direction',
-            SERVICES                         : 'Service',
-            DIVISIONS                        : 'Division',
+            DIRECTIONS                       : 'Directions',
+            SERVICES                         : 'Services',
+            DIVISIONS                        : 'Divisions',
             DEPARTMENTS                      : 'Departement',
             MINISTEROFFICE                  : 'Cabinet du ministre',
             GENERALSECRETARY                : 'Secretariat Generale',

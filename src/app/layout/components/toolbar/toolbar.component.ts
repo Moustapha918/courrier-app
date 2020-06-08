@@ -52,7 +52,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
             },
             {
                 id   : 'ar',
-                title: 'Arabe',
+                title: 'العربية',
                 flag : 'ar'
             }
         ];

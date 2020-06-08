@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy
     {
 
         this.router.events.subscribe((event: Event) => {
-            let dialogRef: MatDialogRef<SpinnerModalComponent> = null;
+            const dialogRef: MatDialogRef<SpinnerModalComponent> = null;
 
             switch (true) {
                 case event instanceof NavigationStart: {
