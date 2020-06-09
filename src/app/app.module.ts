@@ -37,6 +37,7 @@ import {FooterModule} from './layout/components/footer/footer.module';
 import {ScHomeComponent} from './pages/sc-home/sc-home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {ReferentialComponent} from './pages/referential/referential.component';
+import {ArrivedMailScComponent} from './pages/arrived-mail-sc/arrived-mail-sc.component';
 
 const appRoutes: Routes = [
     {
@@ -49,7 +50,10 @@ const appRoutes: Routes = [
     },
     {
         path      : '',
-        component: ScHomeComponent,
+        component: ArrivedMailScComponent,
+        resolve  : {
+            data: InitMailService
+        }
     },
     {
         path     : '',

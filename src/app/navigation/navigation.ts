@@ -1,6 +1,10 @@
 import { FuseNavigation } from '@fuse/types';
 
 
+
+
+
+
 export const navigation: FuseNavigation[] = [
     {
         id       : 'Applications',
@@ -25,7 +29,7 @@ export const navigation: FuseNavigation[] = [
                     {
                         id     : 'new-arrived-mail',
                         url     : 'new-arrived-mail',
-                        title: 'Creer un courrier',
+                        title: 'NAV.NEWMAIIL',
                         translate: 'NAV.NEWMAIIL',
                         type: 'item'
                     }
@@ -34,13 +38,13 @@ export const navigation: FuseNavigation[] = [
 
             {
                 id       : 'Departure',
-                title    : 'Departure',
+                title    : 'NAV.DEPARTURE',
                 translate: 'NAV.DEPARTURE',
                 type     : 'collapsable',
             },
             {
                 id       : 'référentiel',
-                title    : 'référentiel',
+                title    : 'Référentiel',
                 translate: 'NAV.REFERENTIEL',
                 type     : 'collapsable',
                 // url      : 'referentiel',
