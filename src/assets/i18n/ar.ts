@@ -37,7 +37,7 @@ export const locale = {
             PRIORITY_DEGREE_NORMAL         : 'طبيعي',
             PRIORITY_DEGREE_URGENT         : 'عاجل',
             PRIORITY_DEGREE_V_URGENT       : 'عاجل جدا',
-            ATTACH_FILE                    : 'حمل الملف هنا',
+            ATTACH_FILE                    : 'إضغط لتحميل الملف',
             MAIL_INFORMATION               : 'معلومات البريد',
             ANNOTATION_VENTILATION         : 'التعليق و التوزيع',
             ANNOTATION                     : 'التعليق',
