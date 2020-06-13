@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -38,27 +38,17 @@ import {ScHomeComponent} from './pages/sc-home/sc-home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {ReferentialComponent} from './pages/referential/referential.component';
 import {ArrivedMailScComponent} from './pages/arrived-mail-sc/arrived-mail-sc.component';
+import {AuthGuardService} from './services/auth-guard.service';
+import {TokenInterceptorService} from './services/token-interceptor.service';
 
 const appRoutes: Routes = [
-    {
-        path        : 'ui',
-        loadChildren: './main/ui/ui.module#UIModule'
-    },
-    {
-        path      : '**',
-        redirectTo: 'void'
-    },
     {
         path      : '',
         component: ArrivedMailScComponent,
         resolve  : {
             data: InitMailService
-        }
-    },
-    {
-        path     : '',
-        component: ReferentialComponent,
-        outlet: 'ref'
+        },
+        canActivate: [AuthGuardService]
     }
 ];
 
@@ -107,7 +97,12 @@ const appRoutes: Routes = [
     ],
     providers   : [
         InitMailService,
-        ReferentialService
+        ReferentialService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
+        }
         // MailService
     ],
     bootstrap   : [

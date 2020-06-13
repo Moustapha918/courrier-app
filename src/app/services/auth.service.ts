@@ -21,13 +21,12 @@ export class AuthService {
     }
 
     public login(username: string, password: string): Observable<HttpResponse<any>>{
-      this.httpClient.post<HttpResponse<any>>(this.loginUrl,
+      return this.httpClient.post<HttpResponse<any>>(this.loginUrl,
           {username: username, password: password},
-          {observe: 'response'})
-          .subscribe((res) => {
-              localStorage.setItem('token', res.body['Authorization']);
-              console.log(res.body);
-        }, error => console.log(error.status));
-      return null;
+          {observe: 'response'});
+    }
+
+    public getToken(): string {
+        return localStorage.getItem('token');
     }
 }

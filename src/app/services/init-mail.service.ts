@@ -103,7 +103,7 @@ export class InitMailService implements Resolve<any>{
     getArrivedMailsSC(): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this.httpClient.get<ArrivedMailModel[]>(this.getAllArrivedMAilsSCURI)
+            this.httpClient.get<ArrivedMailModel[]>(this.getAllArrivedMAilsURI)
                 .subscribe((response: any) => {
                     this.arrivedMails = response;
                     console.log('this.arrivedMails from service', this.arrivedMails);

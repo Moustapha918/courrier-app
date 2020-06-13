@@ -116,27 +116,6 @@ const routes = [
         path     : 'lecture-mail/:id',
         component: ViewingEmailComponent
     },
-/*    {
-        path  : 'sc-workflow',
-        component  : ScWorkflowComponent,
-        children: [
-            {
-                path     : 'arrivedMail-sc',
-                component: ArrivedMailScComponent,
-                resolve  : {
-                    data: InitMailService
-                }
-            },
-            {
-                path     : 'new-arrived-mail',
-                component: InitMailComponent
-            },
-            {
-                path     : 'lecture-mail/:id',
-                component: ViewingEmailComponent
-            }
-        ]
-    }*/
 
 ];
 
