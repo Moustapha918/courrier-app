@@ -45,13 +45,21 @@ import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.comp
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
+import {LoginModule} from './authentification/login/login.module';
+import {LoginComponent} from './authentification/login/login.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {AuthGuardService} from '../services/auth-guard.service';
 
+export function tokenGetter(): string{
+    return localStorage.getItem('token');
+}
 
 const routes = [
 
     {
         path     : 'sc-home',
-        component: ScHomeComponent
+        component: ScHomeComponent,
+        canActivate: [AuthGuardService]
     },
 
     {
@@ -86,7 +94,13 @@ const routes = [
 
         ]
     },
+    {
+        path     : 'login',
+        component: LoginComponent,
+        children: [
 
+        ]
+    },
     {
         path     : 'arrivedMail-sc',
         component: ArrivedMailScComponent,
@@ -102,27 +116,6 @@ const routes = [
         path     : 'lecture-mail/:id',
         component: ViewingEmailComponent
     },
-/*    {
-        path  : 'sc-workflow',
-        component  : ScWorkflowComponent,
-        children: [
-            {
-                path     : 'arrivedMail-sc',
-                component: ArrivedMailScComponent,
-                resolve  : {
-                    data: InitMailService
-                }
-            },
-            {
-                path     : 'new-arrived-mail',
-                component: InitMailComponent
-            },
-            {
-                path     : 'lecture-mail/:id',
-                component: ViewingEmailComponent
-            }
-        ]
-    }*/
 
 ];
 
@@ -177,7 +170,13 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule,
         PdfViewerModule,
-        MatDialogModule
+        MatDialogModule,
+        LoginModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+            },
+        }),
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
