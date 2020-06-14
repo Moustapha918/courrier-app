@@ -47,6 +47,9 @@ import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-ge
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 import {ErrorDilaogComponent} from './error-dilaog/error-dilaog.component';
 
+export function tokenGetter(): string{
+    return localStorage.getItem('token');
+}
 
 const routes = [
 

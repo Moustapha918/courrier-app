@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-error-dilaog',
@@ -8,8 +9,11 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class ErrorDilaogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ErrorDilaogComponent>) {
+  message: string;
+  title: string;
+    constructor(public dialogRef: MatDialogRef<ErrorDilaogComponent>, @Inject(MAT_DIALOG_DATA) public data: ErrorDilaogComponent) {
       dialogRef.disableClose = true;
+      this.message = data.message;
   }
 
   ngOnInit(): void {
@@ -19,6 +23,7 @@ export class ErrorDilaogComponent implements OnInit {
 
         // Close the dialog, return true
         this.dialogRef.close(true);
+        console.log(this.message);
     }
 
 }

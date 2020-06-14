@@ -83,8 +83,11 @@ export class CabinetMinistreComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
+                        data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
                         if (result === true) {

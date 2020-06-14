@@ -10,6 +10,7 @@ export const locale = {
             ARCHIVE: 'الارشيف',
             REFERENTIEL: 'المرجع',
         },
+
         mail: {
             COURRIER_ARRIVEE               : 'البريد الوارد',
             COURRIER_DEPART                : 'البريد المرسل',

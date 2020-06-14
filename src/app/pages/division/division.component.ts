@@ -53,8 +53,11 @@ export class DivisionComponent implements OnInit {
                     // tslint:disable-next-line:no-shadowed-variable
                     (error) => {
                         console.log('Error ! : ' + error);
+                        const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                        const dialogData = new ConfirmDialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                             width: '4000px',
+                            data: dialogData
                         });
                         dialogRefError.afterClosed().subscribe(result => {
                             /*if (result === true) {
@@ -68,12 +71,14 @@ export class DivisionComponent implements OnInit {
                     // tslint:disable-next-line:no-shadowed-variable
                     (error) => {
                         console.log('Error ! : ' + error);
+                        const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                        const dialogData = new ConfirmDialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                             width: '4000px',
+                            data: dialogData
                         });
                         dialogRefError.afterClosed().subscribe(result => {
-                            /*if (result === true) {
-                            }*/
+
                         });
                     });
                 return division;
@@ -109,7 +114,17 @@ export class DivisionComponent implements OnInit {
                     this.updateDivisionsTable();
                 },
                 (error) => {
-                    console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la division.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '400px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateDivisionsTable();
+                        }
+                    });
                 }
             );
 
