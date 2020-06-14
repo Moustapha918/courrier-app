@@ -30,7 +30,7 @@ export class SecretaireGeneraleComponent implements OnInit {
               private referentialService: ReferentialService,
               private notifyService: NotificationService,
               private loadingService: LoadingService,
-              private translate: TranslateService) { }
+              public translate: TranslateService) { }
 
     // tslint:disable-next-line:typedef
   ngOnInit() {

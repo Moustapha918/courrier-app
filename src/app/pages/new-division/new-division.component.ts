@@ -23,14 +23,14 @@ export class NewDivisionComponent implements OnInit {
     title: any;
 
     private _unsubscribeAll: Subject<any>;
-    private directions: DirectionModel[];
-    private services: ServiceEntityModel[];
+    public directions: DirectionModel[];
+    public services: ServiceEntityModel[];
 
     constructor(
         public dialogRef: MatDialogRef<NewDivisionComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DivisionModel,
         private _formBuilder: FormBuilder,
-        private translate: TranslateService,
+        public translate: TranslateService,
         private loadingService: LoadingService,
         private referentialService: ReferentialService,
         private router: Router)
