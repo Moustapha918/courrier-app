@@ -10,6 +10,8 @@ import {MatDialogRef} from '@angular/material';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {ReferentialService} from '../../services/referential.service';
 import {DepartmentModel} from '../../models/departement.model';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-init-mail',
@@ -32,6 +34,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any>;
 
     constructor(
+        public dialog: MatDialog,
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
         private router: Router,
@@ -46,12 +49,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
 
-        // POUR LA LISTE DEROULANTE DES Departements
-        this.referentialService.getAllDepartmentFromBackend().subscribe(
-            data => this.departments = data
-        );
-
-        console.log(this.departments);
 
         this.form = this._formBuilder.group({
             receptionDate: [
@@ -93,6 +90,11 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                    });
                 }
             );
     }

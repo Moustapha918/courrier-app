@@ -45,6 +45,7 @@ import {CabinetMinistreComponent} from './cabinet-ministre/cabinet-ministre.comp
 import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-minstre.component';
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
+import {ErrorDilaogComponent} from './error-dilaog/error-dilaog.component';
 
 
 const routes = [
@@ -140,7 +141,7 @@ const routes = [
         NewSecretaireGeneraleComponent,
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
         DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent, SpinnerModalComponent
+        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent
 
     ],
     exports: [
@@ -182,7 +183,7 @@ const routes = [
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
         ConfirmDialogComponent, VisualizePdfComponent, NewCabinetMinstreComponent,
-        NewSecretaireGeneraleComponent]
+        NewSecretaireGeneraleComponent, ErrorDilaogComponent]
 })
 export class PagesModule
 {

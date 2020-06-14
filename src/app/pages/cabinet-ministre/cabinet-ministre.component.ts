@@ -10,6 +10,7 @@ import {MinisterOfficeModel} from '../../models/minister-office.model';
 import {NewCabinetMinstreComponent} from '../new-cabinet-minstre/new-cabinet-minstre.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 @Component({
   selector: 'app-cabinet-ministre',
@@ -42,7 +43,19 @@ export class CabinetMinistreComponent implements OnInit {
             this.dataSource = new MatTableDataSource<MinisterOfficeModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        });
+        },
+        error => {
+            console.log('Error ! : ' + error);
+            const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                width: '4000px',
+            });
+            dialogRefError.afterClosed().subscribe(result => {
+                /*if (result === true) {
+                    this.updateMinisterOfficeTable();
+                }*/
+            });
+        }
+        );
     }
 
     addMinisterOffice(): void {
@@ -70,6 +83,14 @@ export class CabinetMinistreComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateMinisterOfficeTable();
+                        }
+                    });
                 }
             );
     }

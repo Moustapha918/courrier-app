@@ -9,6 +9,8 @@ import {InitMailService} from '../../services/init-mail.service';
 import {MatPaginator, MatSort} from '@angular/material';
 import {DataSource} from '@angular/cdk/table';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-arrived-mail-sc',
@@ -33,7 +35,7 @@ export class ArrivedMailScComponent implements OnInit{
     @ViewChild('filter', {static: true})
     filter: ElementRef;
 
-    constructor(private initMailService: InitMailService, private loadingService: LoadingService)
+    constructor(private initMailService: InitMailService, public dialog: MatDialog, private loadingService: LoadingService)
     {
         // Set the defaults
         this.loading = true;
@@ -42,7 +44,19 @@ export class ArrivedMailScComponent implements OnInit{
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
             this.loadingService.closeSpinner();
-        });
+        },
+            (error) => {
+                console.log('Error ! : ' + error);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                });
+                dialogRefError.afterClosed().subscribe(result => {
+                    if (result === true) {
+                    }
+                });
+
+            }
+        );
         this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
 
 

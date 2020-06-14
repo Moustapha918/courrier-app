@@ -10,6 +10,8 @@ import {DivisionModel} from '../../models/division.model';
 import {NotificationService} from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+
 
 
 @Component({
@@ -47,12 +49,35 @@ export class DivisionComponent implements OnInit {
             divisions.map(division  => {
                 this.referentialService.getDirectionByCode(division.codeDirection).subscribe((direction) => {
                     division.labelDirection = [direction.labelAR, direction.labelFR];
-                });
+                },
+                    // tslint:disable-next-line:no-shadowed-variable
+                    (error) => {
+                        console.log('Error ! : ' + error);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+                            /*if (result === true) {
+                            }*/
+                        });
+                    }
+                    );
                 this.referentialService.getServiceByCode(division.codeService).subscribe((service) => {
                     division.labelService = [service.labelAR, service.labelFR];
-                });
+                },
+                    // tslint:disable-next-line:no-shadowed-variable
+                    (error) => {
+                        console.log('Error ! : ' + error);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+                            /*if (result === true) {
+                            }*/
+                        });
+                    });
                 return division;
-            } );
+            });
 
             this.dataSource = new MatTableDataSource<DivisionModel>(divisions);
             this.dataSource.paginator = this.paginator;
