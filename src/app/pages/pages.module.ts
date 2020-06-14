@@ -64,59 +64,64 @@ const routes = [
 
     {
         path     : 'cabinet-ministre',
-        component: CabinetMinistreComponent
+        component: CabinetMinistreComponent,
+        canActivate: [AuthGuardService]
     },
 
     {
         path     : 'direction',
-        component: DirectionComponent
+        component: DirectionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'service',
-        component: ServiceEntityComponent
+        component: ServiceEntityComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'division',
-        component: DivisionComponent
+        component: DivisionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'departement',
-        component: DepartementComponent
+        component: DepartementComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'secretaire-general',
-        component: SecretaireGeneraleComponent
+        component: SecretaireGeneraleComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'referentiel',
         component: ReferentialComponent,
+        canActivate: [AuthGuardService],
         children: [
-
         ]
     },
     {
         path     : 'login',
         component: LoginComponent,
-        children: [
-
-        ]
     },
     {
         path     : 'arrivedMail-sc',
         component: ArrivedMailScComponent,
         resolve  : {
             data: InitMailService
-        }
+        },
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'new-arrived-mail',
-        component: InitMailComponent
+        component: InitMailComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent
+        component: ViewingEmailComponent,
+        canActivate: [AuthGuardService]
     },
-
 ];
 
 @NgModule({
