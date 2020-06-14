@@ -33,7 +33,7 @@ export class NewDepartementComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDepartementComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DepartmentModel,
         private _formBuilder: FormBuilder,
-        private translate: TranslateService,
+        public translate: TranslateService,
         private referentialService: ReferentialService,
         private router: Router)
     {

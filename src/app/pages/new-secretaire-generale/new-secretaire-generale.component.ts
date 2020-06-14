@@ -21,7 +21,7 @@ export class NewSecretaireGeneraleComponent implements OnInit {
   constructor(
       public dialogRef: MatDialogRef<NewSecretaireGeneraleComponent>,
       private _formBuilder: FormBuilder,
-      private translate: TranslateService,
+      public translate: TranslateService,
       private referentialService: ReferentialService,
       private loadingService: LoadingService,
       @Inject(MAT_DIALOG_DATA) public data: GeneralSecretaryModel

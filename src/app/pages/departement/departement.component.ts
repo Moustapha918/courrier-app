@@ -27,7 +27,7 @@ export class DepartementComponent implements OnInit {
 
 
     constructor(public dialog: MatDialog,
-                private translate: TranslateService,
+                public translate: TranslateService,
                 private referentialService: ReferentialService) {
 
 
