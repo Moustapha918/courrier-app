@@ -1,5 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileUploader} from 'ng2-file-upload';
 import {Subject} from 'rxjs';
@@ -10,6 +10,7 @@ import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {TranslateService} from '@ngx-translate/core';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 
@@ -31,6 +32,7 @@ export class NewDirectionComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<NewDirectionComponent>,
+        public dialog: MatDialog,
         private _formBuilder: FormBuilder,
         private translate: TranslateService,
         private loadingService: LoadingService,
@@ -113,6 +115,22 @@ export class NewDirectionComponent implements OnInit {
 
                 (error) => {
                     console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
     }
@@ -132,7 +150,23 @@ export class NewDirectionComponent implements OnInit {
                 },
 
                 (error) => {
-                    console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    console.log('Error ! : ' , error.status);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
 

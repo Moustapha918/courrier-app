@@ -9,6 +9,8 @@ import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
+import {ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
+import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 
 
 @Component({
@@ -38,6 +40,7 @@ export class ViewingEmailComponent implements OnInit
      * @param {FuseSidebarService} _fuseSidebarService
      */
     constructor(
+        public dialog: MatDialog,
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router,
@@ -63,6 +66,14 @@ export class ViewingEmailComponent implements OnInit
                 },
                 error => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                    });
                 }
             );
         });
@@ -75,6 +86,15 @@ export class ViewingEmailComponent implements OnInit
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        
+                    });
                 }
             );
 
@@ -110,6 +130,16 @@ export class ViewingEmailComponent implements OnInit
             this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
         },
                 error => console.log(error));
+        const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+        const dialogData = new ConfirmDialogModel('title', message);
+        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+            width: '4000px',
+            data: dialogData
+        });
+        dialogRefError.afterClosed().subscribe(result => {
+
+        });
+
     }
 
     canConfirm(): boolean {

@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ReferentialService} from '../../services/referential.service';
 import {Router} from '@angular/router';
@@ -10,6 +10,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {MatSelectChange} from '@angular/material/select';
 import {LoadingService} from '../../services/loading.service';
+import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class NewDivisionComponent implements OnInit {
     private services: ServiceEntityModel[];
 
     constructor(
+        public dialog: MatDialog,
         public dialogRef: MatDialogRef<NewDivisionComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DivisionModel,
         private _formBuilder: FormBuilder,
@@ -130,7 +133,23 @@ export class NewDivisionComponent implements OnInit {
                 },
 
                 (error) => {
-                    console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    console.log('Error ! : ' , error.status);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
     }
@@ -148,7 +167,23 @@ export class NewDivisionComponent implements OnInit {
                 },
 
                 (error) => {
-                    console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    console.log('Error ! : ' , error.status);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
     }

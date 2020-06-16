@@ -4,11 +4,13 @@ import {ReferentialService} from '../../services/referential.service';
 import {FileUploader} from 'ng2-file-upload';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ServiceEntityModel} from '../../models/service-entity.model';
 import {DirectionModel} from '../../models/direction.model';
 import {TranslateService} from '@ngx-translate/core';
 import {LoadingService} from '../../services/loading.service';
+import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 
@@ -31,6 +33,7 @@ export class NewServiceEntityComponent implements OnInit {
 
 
     constructor(
+        public dialog: MatDialog,
         public dialogRef: MatDialogRef<NewServiceEntityComponent>,
         @Inject(MAT_DIALOG_DATA) public data: ServiceEntityModel,
         private _formBuilder: FormBuilder,
@@ -133,6 +136,23 @@ export class NewServiceEntityComponent implements OnInit {
 
                 (error) => {
                     console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    console.log('Error ! : ' , error.status);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
 
@@ -152,6 +172,23 @@ export class NewServiceEntityComponent implements OnInit {
 
                 (error) => {
                     console.log('Error ! : ' + error);
+                    this.dialogRef.close(false);
+                    console.log('Error ! : ' , error.status);
+                    let message: string;
+                    if (error.status === 406){
+                        message = 'Le code que vous avez choisi existe.  Veuillez choisir un autre code';
+                    }
+                    else{
+                        message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    }
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+
+                    });
                 }
             );
     }

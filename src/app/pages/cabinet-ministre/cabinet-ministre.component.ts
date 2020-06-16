@@ -61,15 +61,16 @@ export class CabinetMinistreComponent implements OnInit {
     addMinisterOffice(): void {
         const dialogRef = this.dialog.open(NewCabinetMinstreComponent, {
             width: '4000px',
-
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
             if (result === true) {
                 this.loadingService.closeSpinner();
                 this.updateMinisterOfficeTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+            else{
+                this.loadingService.closeSpinner();
             }
         });
     }

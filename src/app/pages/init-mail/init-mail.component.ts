@@ -91,8 +91,11 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
+                        data: dialogData,
                     });
                     dialogRefError.afterClosed();
                 }
@@ -135,6 +138,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 const dialogData = new ConfirmDialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
+                    data: dialogData,
                 });
                 dialogRefError.afterClosed().subscribe(result => {
                     if (result === true) {
@@ -142,17 +146,31 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 });
             }
             this.uploader.onErrorItem = (errorItem: FileItem, errorIdScanFile: string, errorStatus: number, errorHeaders: ParsedResponseHeaders) => {
-                if (status === 500){
-                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                if (status === 404){
+                    const message = 'Le fichier est introuvable.  Veuillez réessayer ultérieurement';
                     const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
+                        data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
                         if (result === true) {
                         }
                     });
                 }
+                else{
+                    const message = 'une erreur technique est survenue lors du chargement du fichier.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                        }
+                    });
+                }
+
 
             };
 
@@ -189,7 +207,15 @@ export class InitMailComponent implements OnInit, OnDestroy {
                  (error) => {
                      refDialog.close();
                      this.notificationService.openSnackBar('Unne Erreur est survenu lors de la création du courrier', 'close');
-                     console.log('Error ! : ' + error);
+                     const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                     const dialogData = new ConfirmDialogModel('title', message);
+                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                         width: '4000px',
+                         data: dialogData
+                     });
+                     dialogRefError.afterClosed().subscribe(result => {
+
+                     });
                  });
     }
 

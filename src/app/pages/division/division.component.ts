@@ -50,7 +50,7 @@ export class DivisionComponent implements OnInit {
                 this.referentialService.getDirectionByCode(division.codeDirection).subscribe((direction) => {
                     division.labelDirection = [direction.labelAR, direction.labelFR];
                 },
-                    // tslint:disable-next-line:no-shadowed-variable
+
                     (error) => {
                         console.log('Error ! : ' + error);
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
@@ -60,15 +60,14 @@ export class DivisionComponent implements OnInit {
                             data: dialogData
                         });
                         dialogRefError.afterClosed().subscribe(result => {
-                            /*if (result === true) {
-                            }*/
+
                         });
                     }
                     );
                 this.referentialService.getServiceByCode(division.codeService).subscribe((service) => {
                     division.labelService = [service.labelAR, service.labelFR];
                 },
-                    // tslint:disable-next-line:no-shadowed-variable
+
                     (error) => {
                         console.log('Error ! : ' + error);
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
