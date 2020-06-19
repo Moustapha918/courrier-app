@@ -14,7 +14,7 @@ import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 
 
 @Component({
-    selector   : 'carded-left-sidebar-1',
+    selector   : 'viewing-email',
     templateUrl: './viewing-email.html',
     styleUrls  : ['./viewing-email.scss']
 })
@@ -44,7 +44,7 @@ export class ViewingEmailComponent implements OnInit
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router,
-        private matDialog: MatDialog, private referentialService: ReferentialService, private translate: TranslateService
+        private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService
     )
     {
 

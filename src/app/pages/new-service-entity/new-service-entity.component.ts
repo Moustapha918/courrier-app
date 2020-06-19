@@ -28,7 +28,7 @@ export class NewServiceEntityComponent implements OnInit {
 
 
     private _unsubscribeAll: Subject<any>;
-    private directions: DirectionModel[];
+    public directions: DirectionModel[];
 
 
 
@@ -37,7 +37,7 @@ export class NewServiceEntityComponent implements OnInit {
         public dialogRef: MatDialogRef<NewServiceEntityComponent>,
         @Inject(MAT_DIALOG_DATA) public data: ServiceEntityModel,
         private _formBuilder: FormBuilder,
-        private translate: TranslateService,
+        public translate: TranslateService,
         private referentialService: ReferentialService,
         private loadingService: LoadingService,
         private router: Router)

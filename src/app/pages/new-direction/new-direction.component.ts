@@ -34,7 +34,7 @@ export class NewDirectionComponent implements OnInit {
         public dialogRef: MatDialogRef<NewDirectionComponent>,
         public dialog: MatDialog,
         private _formBuilder: FormBuilder,
-        private translate: TranslateService,
+        public translate: TranslateService,
         private loadingService: LoadingService,
         private referentialService: ReferentialService,
         @Inject(MAT_DIALOG_DATA) public data: DirectionModel)

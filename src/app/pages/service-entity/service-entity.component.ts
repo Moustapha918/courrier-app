@@ -34,7 +34,7 @@ export class ServiceEntityComponent implements OnInit {
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     constructor(public dialog: MatDialog, private referentialService: ReferentialService,
-                private notifyService: NotificationService, private loadingService: LoadingService, private translate: TranslateService) {
+                private notifyService: NotificationService, private loadingService: LoadingService, public translate: TranslateService) {
 
 
     }

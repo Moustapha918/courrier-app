@@ -46,6 +46,10 @@ import { NewCabinetMinstreComponent } from './new-cabinet-minstre/new-cabinet-mi
 import { SecretaireGeneraleComponent } from './secretaire-generale/secretaire-generale.component';
 import { NewSecretaireGeneraleComponent } from './new-secretaire-generale/new-secretaire-generale.component';
 import {ErrorDilaogComponent} from './error-dilaog/error-dilaog.component';
+import {LoginModule} from './authentification/login/login.module';
+import {LoginComponent} from './authentification/login/login.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -55,33 +59,40 @@ const routes = [
 
     {
         path     : 'sc-home',
-        component: ScHomeComponent
+        component: ScHomeComponent,
+        canActivate: [AuthGuardService]
     },
 
     {
         path     : 'cabinet-ministre',
-        component: CabinetMinistreComponent
+        component: CabinetMinistreComponent,
+        canActivate: [AuthGuardService]
     },
 
     {
         path     : 'direction',
-        component: DirectionComponent
+        component: DirectionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'service',
-        component: ServiceEntityComponent
+        component: ServiceEntityComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'division',
-        component: DivisionComponent
+        component: DivisionComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'departement',
-        component: DepartementComponent
+        component: DepartementComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'secretaire-general',
-        component: SecretaireGeneraleComponent
+        component: SecretaireGeneraleComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'referentiel',
@@ -90,44 +101,28 @@ const routes = [
 
         ]
     },
-
+    {
+        path     : 'login',
+        component: LoginComponent,
+    },
     {
         path     : 'arrivedMail-sc',
         component: ArrivedMailScComponent,
         resolve  : {
             data: InitMailService
-        }
+        },
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'new-arrived-mail',
-        component: InitMailComponent
+        component: InitMailComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path     : 'lecture-mail/:id',
-        component: ViewingEmailComponent
+        component: ViewingEmailComponent,
+        canActivate: [AuthGuardService]
     },
-/*    {
-        path  : 'sc-workflow',
-        component  : ScWorkflowComponent,
-        children: [
-            {
-                path     : 'arrivedMail-sc',
-                component: ArrivedMailScComponent,
-                resolve  : {
-                    data: InitMailService
-                }
-            },
-            {
-                path     : 'new-arrived-mail',
-                component: InitMailComponent
-            },
-            {
-                path     : 'lecture-mail/:id',
-                component: ViewingEmailComponent
-            }
-        ]
-    }*/
-
 ];
 
 @NgModule({
@@ -181,7 +176,13 @@ const routes = [
         TranslateModule,
         MatProgressSpinnerModule,
         PdfViewerModule,
-        MatDialogModule
+        MatDialogModule,
+        LoginModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+            },
+        }),
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,

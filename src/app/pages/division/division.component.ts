@@ -32,7 +32,7 @@ export class DivisionComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private notifyService: NotificationService,
-              private translate: TranslateService,
+              public translate: TranslateService,
               private loadingService: LoadingService,
               private referentialService: ReferentialService) {}
 

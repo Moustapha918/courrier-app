@@ -34,7 +34,7 @@ export class DirectionComponent implements OnInit {
                 private referentialService: ReferentialService,
                 private notifyService: NotificationService,
                 private loadingService: LoadingService,
-                private translate: TranslateService,
+                public translate: TranslateService,
 
                 ) {}
 
