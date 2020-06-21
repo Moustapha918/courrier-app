@@ -10,6 +10,7 @@ import {GeneralSecretaryModel} from '../../models/general-secretary.model';
 import {NewSecretaireGeneraleComponent} from '../new-secretaire-generale/new-secretaire-generale.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class SecretaireGeneraleComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public dialog: MatDialog, public dialog1: MatDialog,
+  constructor(public dialog: MatDialog,
               private referentialService: ReferentialService,
               private notifyService: NotificationService,
               private loadingService: LoadingService,
@@ -43,7 +44,22 @@ export class SecretaireGeneraleComponent implements OnInit {
             this.dataSource = new MatTableDataSource<GeneralSecretaryModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        });
+        },
+            (error) => {
+                console.log('Error ! : ' + error);
+                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                    data: dialogData
+                });
+                dialogRefError.afterClosed().subscribe(result => {
+                    if (result === true) {
+
+                    }
+                });
+            }
+        );
     }
 
     addGeneralecretary(): void {
@@ -71,6 +87,17 @@ export class SecretaireGeneraleComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateGeneralSecretaryTable();
+                        }
+                    });
                 }
             );
     }

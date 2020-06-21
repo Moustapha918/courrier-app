@@ -12,6 +12,7 @@ import {NotificationService} from '../../services/notification.service';
 import {DirectionModel} from '../../models/direction.model';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 
@@ -67,13 +68,41 @@ export class ServiceEntityComponent implements OnInit {
             services.map(service  => {
                 this.referentialService.getDirectionByCode(service.codeDirection).subscribe((direction) => {
                     service.labelDirection = [direction.labelAR, direction.labelFR];
+                },
+                (error) => {
+                    console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+
+                        }
+                    });
                 });
                 return service;
             } );
             this.dataSource = new MatTableDataSource<ServiceEntityModel>(services);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        });
+        },
+            (error) => {
+                console.log('Error ! : ' + error);
+                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                    data: dialogData
+                });
+                dialogRefError.afterClosed().subscribe(result => {
+                    if (result === true) {
+
+                    }
+                });
+            });
     }
 
 
@@ -86,6 +115,17 @@ export class ServiceEntityComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateServicesTable()                                                  ;
+                        }
+                    });
                 }
             );
 

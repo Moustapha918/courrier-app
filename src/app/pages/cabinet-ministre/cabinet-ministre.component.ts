@@ -10,6 +10,7 @@ import {MinisterOfficeModel} from '../../models/minister-office.model';
 import {NewCabinetMinstreComponent} from '../new-cabinet-minstre/new-cabinet-minstre.component';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 @Component({
   selector: 'app-cabinet-ministre',
@@ -42,21 +43,34 @@ export class CabinetMinistreComponent implements OnInit {
             this.dataSource = new MatTableDataSource<MinisterOfficeModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        });
+        },
+        error => {
+            console.log('Error ! : ' + error);
+            const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                width: '4000px',
+            });
+            dialogRefError.afterClosed().subscribe(result => {
+                /*if (result === true) {
+                    this.updateMinisterOfficeTable();
+                }*/
+            });
+        }
+        );
     }
 
     addMinisterOffice(): void {
         const dialogRef = this.dialog.open(NewCabinetMinstreComponent, {
             width: '4000px',
-
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
             if (result === true) {
                 this.loadingService.closeSpinner();
                 this.updateMinisterOfficeTable();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDMINISTEROFFICEMSG'), this.translate.instant('mail.NOTIFICATION'));
+            }
+            else{
+                this.loadingService.closeSpinner();
             }
         });
     }
@@ -70,6 +84,17 @@ export class CabinetMinistreComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateMinisterOfficeTable();
+                        }
+                    });
                 }
             );
     }

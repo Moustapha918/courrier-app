@@ -10,6 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {DirectionModel} from '../../models/direction.model';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class DirectionComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog, public dialog1: MatDialog,
+    constructor(public dialog: MatDialog,
                 private referentialService: ReferentialService,
                 private notifyService: NotificationService,
                 private loadingService: LoadingService,
@@ -49,23 +50,39 @@ export class DirectionComponent implements OnInit {
             this.dataSource = new MatTableDataSource<DirectionModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        });
+        },
+            (error) => {
+                console.log('Error ! : ' + error);
+                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                    data: dialogData
+                });
+                dialogRefError.afterClosed().subscribe(result => {
+                    if (result === true) {
+                        this.updateDirectionsTable();
+                    }
+                });
+        }
+        );
     }
 
     addDirection(): void {
 
         const dialogRef = this.dialog.open(NewDirectionComponent, {
             width: '4000px',
+
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
             this.updateDirectionsTable();
 
             if (result === true) {
                 this.loadingService.closeSpinner();
                 this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.ADDDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
             }
+
         });
     }
 
@@ -76,13 +93,24 @@ export class DirectionComponent implements OnInit {
             .subscribe(
                 () => {
                     console.log('successful direction delete');
-                    this.updateDirectionsTable();
+                    // this.updateDirectionsTable();
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateDirectionsTable();
+                        }
+                    });
+
                 }
             );
-        this.updateDirectionsTable();
 
     }
 
@@ -98,11 +126,11 @@ export class DirectionComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
 
-            if (result === true) {
-                this.deleteDirection(direction);
-                this.loadingService.closeSpinner();
-                this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
-            }
+                if (result === true) {
+                    this.deleteDirection(direction);
+                    this.loadingService.closeSpinner();
+                    this.notifyService.openSnackBar(this.translate.instant('REFERENTIAL.DELETEDIRECTIONMSG'), this.translate.instant('mail.NOTIFICATION'));
+                }
         });
 
     }

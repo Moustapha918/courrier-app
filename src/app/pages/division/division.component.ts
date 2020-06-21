@@ -10,6 +10,8 @@ import {DivisionModel} from '../../models/division.model';
 import {NotificationService} from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+
 
 
 @Component({
@@ -47,12 +49,39 @@ export class DivisionComponent implements OnInit {
             divisions.map(division  => {
                 this.referentialService.getDirectionByCode(division.codeDirection).subscribe((direction) => {
                     division.labelDirection = [direction.labelAR, direction.labelFR];
-                });
+                },
+
+                    (error) => {
+                        console.log('Error ! : ' + error);
+                        const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                        const dialogData = new ConfirmDialogModel('title', message);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                            data: dialogData
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+
+                        });
+                    }
+                    );
                 this.referentialService.getServiceByCode(division.codeService).subscribe((service) => {
                     division.labelService = [service.labelAR, service.labelFR];
-                });
+                },
+
+                    (error) => {
+                        console.log('Error ! : ' + error);
+                        const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                        const dialogData = new ConfirmDialogModel('title', message);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                            data: dialogData
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+
+                        });
+                    });
                 return division;
-            } );
+            });
 
             this.dataSource = new MatTableDataSource<DivisionModel>(divisions);
             this.dataSource.paginator = this.paginator;
@@ -84,7 +113,17 @@ export class DivisionComponent implements OnInit {
                     this.updateDivisionsTable();
                 },
                 (error) => {
-                    console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue lors de la suppression de la division.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '400px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                            this.updateDivisionsTable();
+                        }
+                    });
                 }
             );
 

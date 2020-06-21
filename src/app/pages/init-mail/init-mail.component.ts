@@ -4,12 +4,15 @@ import {Subject} from 'rxjs';
 import {InitMailService} from '../../services/init-mail.service';
 import { NotificationService } from '../../services/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FileUploader, FileItem} from 'ng2-file-upload';
+import {FileUploader, FileItem, ParsedResponseHeaders} from 'ng2-file-upload';
 import {LoadingService} from '../../services/loading.service';
 import {MatDialogRef} from '@angular/material';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {ReferentialService} from '../../services/referential.service';
 import {DepartmentModel} from '../../models/departement.model';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-init-mail',
@@ -32,6 +35,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any>;
 
     constructor(
+        public dialog: MatDialog,
         private _formBuilder: FormBuilder,
         private initMailService: InitMailService,
         private router: Router,
@@ -46,12 +50,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
 
-        // POUR LA LISTE DEROULANTE DES Departements
-        this.referentialService.getAllDepartmentFromBackend().subscribe(
-            data => this.departments = data
-        );
-
-        console.log(this.departments);
 
         this.form = this._formBuilder.group({
             receptionDate: [
@@ -93,15 +91,17 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData,
+                    });
+                    dialogRefError.afterClosed();
                 }
             );
     }
 
-
-    // tslint:disable-next-line:typedef
-    showToaster(){
-        this.notifyService.openSnackBar('A', 'Notification');
-    }
 
     uploadScanFile(): void {
         let refDialog: MatDialogRef<SpinnerModalComponent, any>;
@@ -120,7 +120,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
             refDialog = this.loadingService.displaySpinner();
         };
         this.uploader.onCompleteAll = () =>  {
-
             console.log('onCompleteAll');
         };
 
@@ -133,9 +132,48 @@ export class InitMailComponent implements OnInit, OnDestroy {
             }
             else{
                 this.uploadFileMessage = 'Le fichier n\'a pas été charger, Veuillez réessayer';
+
                 this.notifyService.openSnackBar('erreur du téléchargement du fichier', 'Notification');
-                // alert('erreur du téléchargement du fichier');
+                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                    data: dialogData,
+                });
+                dialogRefError.afterClosed().subscribe(result => {
+                    if (result === true) {
+                    }
+                });
             }
+            this.uploader.onErrorItem = (errorItem: FileItem, errorIdScanFile: string, errorStatus: number, errorHeaders: ParsedResponseHeaders) => {
+                if (status === 404){
+                    const message = 'Le fichier est introuvable.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                        }
+                    });
+                }
+                else{
+                    const message = 'une erreur technique est survenue lors du chargement du fichier.  Veuillez réessayer ultérieurement';
+                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                        width: '4000px',
+                        data: dialogData
+                    });
+                    dialogRefError.afterClosed().subscribe(result => {
+                        if (result === true) {
+                        }
+                    });
+                }
+
+
+            };
+
 
             if (refDialog){
                 refDialog.close();
@@ -169,7 +207,15 @@ export class InitMailComponent implements OnInit, OnDestroy {
                  (error) => {
                      refDialog.close();
                      this.notificationService.openSnackBar('Unne Erreur est survenu lors de la création du courrier', 'close');
-                     console.log('Error ! : ' + error);
+                     const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
+                     const dialogData = new ConfirmDialogModel('title', message);
+                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                         width: '4000px',
+                         data: dialogData
+                     });
+                     dialogRefError.afterClosed().subscribe(result => {
+
+                     });
                  });
     }
 
