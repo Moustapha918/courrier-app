@@ -5,13 +5,15 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {NotificationService} from '../../../services/notification.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector     : 'login',
     templateUrl  : './login.component.html',
     styleUrls    : ['./login.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations   : fuseAnimations,
 })
 export class LoginComponent implements OnInit
 {
@@ -24,7 +26,9 @@ export class LoginComponent implements OnInit
      * @param {FormBuilder} _formBuilder
      */
     constructor(private _formBuilder: FormBuilder, private authService: AuthService,
-                private router: Router, private _fuseConfigService: FuseConfigService) {  }
+                private router: Router, private _fuseConfigService: FuseConfigService,
+                private notificationService: NotificationService,
+                public translate: TranslateService) {  }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -64,6 +68,11 @@ export class LoginComponent implements OnInit
             (res) => {
                 localStorage.setItem('token', res.body['Authorization']);
                 this.router.navigate(['arrivedMail-sc']);
-            }, error => console.log(error.status));
+            }, error => {
+
+                this.notificationService.openSnackBar(this.translate.instant('LOGIN.LOGIN_ERROR'), this.translate.instant('mail.NOTIFICATION'));
+                console.log(error.status);
+
+            });
     }
 }

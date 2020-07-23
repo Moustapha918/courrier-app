@@ -138,6 +138,9 @@ export const locale = {
 
             DELETECONFIRMATION              : 'Confirmation de suppression'
 
+        },
+        LOGIN: {
+            LOGIN_ERROR : 'Username ou mot de passe erroné  veuillez ressayer!'
         }
     }
 };
