@@ -132,6 +132,9 @@ export const locale = {
         },
         LOGIN: {
             LOGIN_ERROR : 'Username ou mot de passe erroné  veuillez ressayer!'
+        },
+        ERRORS: {
+            FILE_DOWNLOAD: 'خطأ تقني الرجاء الاتصال بالطاقم الفني'
         }
     }
 };

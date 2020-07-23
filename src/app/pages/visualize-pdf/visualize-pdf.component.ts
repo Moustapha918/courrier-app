@@ -4,6 +4,8 @@ import {environment} from '../../../environments/environment';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ArrivedMailModel} from '../../models/arrived-mail.model';
 import {FileUploadService} from "../../services/file-upload.service";
+import {NotificationService} from "../../services/notification.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-visualize-pdf',
@@ -15,7 +17,9 @@ export class VisualizePdfComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<VisualizePdfComponent>,
               @Inject(MAT_DIALOG_DATA) public data: ArrivedMailModel,
-              private fileService: FileUploadService) { }
+              private fileService: FileUploadService,
+              private notificationService: NotificationService,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
 
@@ -24,7 +28,12 @@ export class VisualizePdfComponent implements OnInit {
               const objectURL = URL.createObjectURL(blob);
               console.log(blob);
               this.pdfSrc = objectURL;
-          });
+          }, error => {
+              this.notificationService.openSnackBar(
+                  this.translate.instant('ERRORS.FILE_DOWNLOAD'), this.translate.instant('mail.NOTIFICATION'));
+              this.dialogRef.close();
+
+              });
   }
 
 }
