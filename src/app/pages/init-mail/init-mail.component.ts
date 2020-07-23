@@ -13,6 +13,7 @@ import {DepartmentModel} from '../../models/departement.model';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: 'app-init-mail',
@@ -31,7 +32,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
     uploadFileMessage: string;
     departments: DepartmentModel[];
 
-
     private _unsubscribeAll: Subject<any>;
 
     constructor(
@@ -43,7 +43,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private loadingService: LoadingService,
         private referentialService: ReferentialService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        public auth: AuthService
     ) {
         this._unsubscribeAll = new Subject();
     }
@@ -108,7 +109,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
         this.fileInput.nativeElement.click();
 
 
-        const headers = [{name: 'Accept', value: 'application/json'}];
+        const headers = [{name: 'Accept', value: 'application/json'},
+            {name: 'Authorization', value:  `Bearer ${this.auth.getToken()}`}];
         this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
                 + this.form.controls['idDirectory'].value + '/'
                 + this.form.controls['idEntry'].value, autoUpload: true, headers: headers}); 
@@ -159,6 +161,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     });
                 }
                 else{
+
                     const message = 'une erreur technique est survenue lors du chargement du fichier.  Veuillez réessayer ultérieurement';
                     const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
