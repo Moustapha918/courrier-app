@@ -126,17 +126,19 @@ export class ViewingEmailComponent implements OnInit
         this.mail.annotations = this.annotations.filter( ann => ann.value);
         this.mail.specificInstructions = this.specificInstructions;
         console.log(this.mail);
-        this.initMailService.annotateAndVentilate(this.mail).subscribe( data => {
-            this.router.navigate(['../../arrivedMail-sc'], { relativeTo: this.activatedRoute });
-        },
-                error => console.log(error));
-        const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-        const dialogData = new DialogModel('title', message);
-        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-            width: '4000px',
-            data: dialogData
-        });
-        dialogRefError.afterClosed().subscribe(result => {
+        this.initMailService.annotateAndVentilate(this.mail).subscribe(data => {
+                this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
+            },
+            error => {
+                console.log(error);
+                const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                const dialogData = new DialogModel('title', message);
+                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                    width: '4000px',
+                    data: dialogData
+                });
+            }
+        );
 
         });
 
