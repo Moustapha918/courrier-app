@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit
         this.authService.login(this.loginForm.value['username'], this.loginForm.value['password']).subscribe(
             (res) => {
                 localStorage.setItem('token', res.body['Authorization']);
+                this.authService.loadUserDetails();
                 this.router.navigate(['arrivedMail-sc']);
             }, error => {
 

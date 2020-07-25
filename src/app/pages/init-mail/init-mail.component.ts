@@ -13,7 +13,8 @@ import {DepartmentModel} from '../../models/departement.model';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
+import { DateAdapter} from '@angular/material';
 
 @Component({
     selector: 'app-init-mail',
@@ -44,9 +45,12 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private loadingService: LoadingService,
         private referentialService: ReferentialService,
         private notificationService: NotificationService,
-        public auth: AuthService
+        public auth: AuthService,
+        private dateAdapter: DateAdapter<Date>
+
     ) {
         this._unsubscribeAll = new Subject();
+        this.dateAdapter.setLocale('fr');
     }
 
     ngOnInit(): void {
@@ -198,7 +202,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
     validateArrivedMail(): void {
 
-        // console.log(this.form.getRawValue());
+        console.log(this.form.getRawValue());
         const refDialog = this.loadingService.displaySpinner();
 
         this.initMailService.sendArrivedMailFormToBackend(this.form.getRawValue())
