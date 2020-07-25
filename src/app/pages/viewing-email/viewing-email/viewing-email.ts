@@ -24,6 +24,7 @@ export class ViewingEmailComponent implements OnInit
     horizontalStepperStep1: FormGroup;
     horizontalStepperStep2: FormGroup;
     horizontalStepperStep3: FormGroup;
+    horizontalStepperStep4: FormGroup;
 
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
@@ -107,6 +108,9 @@ export class ViewingEmailComponent implements OnInit
         });
 
         this.horizontalStepperStep3 = this._formBuilder.group({
+        });
+
+        this.horizontalStepperStep4 = this._formBuilder.group({
         });
 
 
