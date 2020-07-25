@@ -137,12 +137,8 @@ export class ViewingEmailComponent implements OnInit
                     width: '4000px',
                     data: dialogData
                 });
-            }
-        );
-
-        });
-
-    }
+            });
+        }
 
     canConfirm(): boolean {
         if (!this.annotations || !this.directions) {
