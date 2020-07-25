@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class AuthService {
     loginUrl = environment.backendUrl + '/login';
+    userDetailsUrl = environment.backendUrl + '/users/user-details';
 
   constructor( public jwtHelper: JwtHelperService, private httpClient: HttpClient,
                private router: Router) { }
@@ -17,8 +18,6 @@ export class AuthService {
 
     public isAuthenticated(): boolean {
         const token = localStorage.getItem('token');
-        // Check whether the token is expired and return
-        // true or false
         return !this.jwtHelper.isTokenExpired(token);
     }
 
@@ -36,5 +35,12 @@ export class AuthService {
     public getToken(): string {
         return localStorage.getItem('token');
 
+    }
+
+    loadUserDetails(): void {
+        this.httpClient.get(this.userDetailsUrl).subscribe(
+            userDetails => localStorage.setItem('user', JSON.stringify(userDetails)),
+            error => console.log('Error while loading user details and roles')
+            );
     }
 }
