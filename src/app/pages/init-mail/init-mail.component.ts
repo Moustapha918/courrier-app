@@ -12,7 +12,7 @@ import {ReferentialService} from '../../services/referential.service';
 import {DepartmentModel} from '../../models/departement.model';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -93,7 +93,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 (error) => {
                     console.log('Error ! : ' + error);
                     const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData,
@@ -113,8 +113,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
             {name: 'Authorization', value:  `Bearer ${this.auth.getToken()}`}];
         this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
                 + this.form.controls['idDirectory'].value + '/'
-                + this.form.controls['idEntry'].value, autoUpload: true, headers: headers}); 
-             // dddd
+                + this.form.controls['idEntry'].value, allowedMimeType: ['application/pdf'],
+            autoUpload: true, headers: headers});
 
         this.uploader.onAfterAddingFile = item => { // to allow cross origin
             item.withCredentials = false;
@@ -123,6 +123,19 @@ export class InitMailComponent implements OnInit, OnDestroy {
         };
         this.uploader.onCompleteAll = () =>  {
             console.log('onCompleteAll');
+        };
+
+        this.uploader.onWhenAddingFileFailed = message => {
+            console.log('onWhenAddingFileFailed', message);
+            const errorMessage = 'format de fichier invalide';
+            const dialogData = new DialogModel('Erreur', errorMessage);
+            const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                width: '1000px',
+                data: dialogData
+            });
+            dialogRefError.afterClosed().subscribe(result => {
+
+            });
         };
 
         this.uploader.onSuccessItem = (item: FileItem, idScanFile: string, status: number) => {
@@ -137,7 +150,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
                 this.notifyService.openSnackBar('erreur du téléchargement du fichier', 'Notification');
                 const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogData = new DialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
                     data: dialogData,
@@ -150,7 +163,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
             this.uploader.onErrorItem = (errorItem: FileItem, errorIdScanFile: string, errorStatus: number, errorHeaders: ParsedResponseHeaders) => {
                 if (status === 404){
                     const message = 'Le fichier est introuvable.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -163,7 +176,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 else{
 
                     const message = 'une erreur technique est survenue lors du chargement du fichier.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -187,9 +200,6 @@ export class InitMailComponent implements OnInit, OnDestroy {
 
 
     }
-
-
-
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
@@ -211,7 +221,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                      refDialog.close();
                      this.notificationService.openSnackBar('Unne Erreur est survenu lors de la création du courrier', 'close');
                      const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                     const dialogData = new ConfirmDialogModel('title', message);
+                     const dialogData = new DialogModel('title', message);
                      const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                          width: '4000px',
                          data: dialogData

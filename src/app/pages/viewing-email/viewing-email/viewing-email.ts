@@ -9,7 +9,7 @@ import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
+import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 
 
@@ -67,7 +67,7 @@ export class ViewingEmailComponent implements OnInit
                 error => {
                     console.log('Error ! : ' + error);
                     const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -87,7 +87,7 @@ export class ViewingEmailComponent implements OnInit
                 (error) => {
                     console.log('Error ! : ' + error);
                     const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -131,7 +131,7 @@ export class ViewingEmailComponent implements OnInit
         },
                 error => console.log(error));
         const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-        const dialogData = new ConfirmDialogModel('title', message);
+        const dialogData = new DialogModel('title', message);
         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
             width: '4000px',
             data: dialogData

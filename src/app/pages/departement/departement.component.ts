@@ -4,7 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
 import {ReferentialService} from '../../services/referential.service';
 import {NewDepartementComponent} from '../new-departement/new-departement.component';
-import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent, DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {TranslateService} from '@ngx-translate/core';
 
 
@@ -57,7 +57,7 @@ export class DepartementComponent implements OnInit {
     confirmDialog(departement): void {
         const message = `Vous êtes sûr de vouloir supprimer ce dpartement`;
 
-        const dialogData = new ConfirmDialogModel('Confirmation de suppression', message);
+        const dialogData = new DialogModel('Confirmation de suppression', message);
 
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
