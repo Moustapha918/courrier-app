@@ -11,6 +11,7 @@ import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
+import {StepsModel} from '../../../models/stepsModel';
 
 
 @Component({
@@ -27,11 +28,14 @@ export class ViewingEmailComponent implements OnInit {
 
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
+    steps: StepsModel = new StepsModel();
     annotations: any;
     directions: any;
     index1: any;
     index2: any;
     specificInstructions: any;
+    codeDirectionList = [];
+    direction: any;
 
 
     /**
@@ -119,16 +123,25 @@ export class ViewingEmailComponent implements OnInit {
 
 
     annotateAndVentilate(): void {
-        this.mail.directions = this.directions.filter(dir => dir.value);
-        this.mail.annotations = this.annotations.filter(ann => ann.value);
-        this.mail.specificInstructions = this.specificInstructions;
-        console.log(this.mail);
-        this.initMailService.annotateAndVentilate(this.mail).subscribe(data => {
+        this.steps.annotations = this.annotations.filter(ann => ann.value);
+
+        for (const direction of this.directions.filter(dir => dir.value)){
+            this.codeDirectionList.push(direction.code);
+        }
+        console.log(this.codeDirectionList);
+        this.steps.ventilation = this.codeDirectionList;
+        this.steps.specificInstructions = this.specificInstructions;
+
+        // this.mail.directions = this.directions.filter(dir => dir.value);
+        // this.mail.annotations = this.annotations.filter(ann => ann.value);
+        // this.mail.specificInstructions = this.specificInstructions;
+        console.log(this.steps);
+        this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
                 this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
             },
             error => {
                 console.log(error);
-                const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                 const dialogData = new ConfirmDialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
