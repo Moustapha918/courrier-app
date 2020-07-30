@@ -50,6 +50,8 @@ import {LoginModule} from './authentification/login/login.module';
 import {LoginComponent} from './authentification/login/login.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AuthGuardService} from '../services/auth-guard.service';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -183,6 +185,8 @@ const routes = [
                 tokenGetter: tokenGetter,
             },
         }),
+        MatExpansionModule,
+        MatListModule,
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,

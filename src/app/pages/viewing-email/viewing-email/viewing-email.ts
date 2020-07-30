@@ -12,6 +12,9 @@ import {TranslateService} from '@ngx-translate/core';
 import {ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
+import {DirectionModel} from '../../../models/direction.model';
+import {ServiceEntityModel} from '../../../models/service-entity.model';
+import {DivisionModel} from '../../../models/division.model';
 
 
 @Component({
@@ -28,6 +31,7 @@ export class ViewingEmailComponent implements OnInit {
 
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
+    mailSteps: StepsModel[];
     steps: StepsModel = new StepsModel();
     annotations: any;
     directions: any;
@@ -36,6 +40,11 @@ export class ViewingEmailComponent implements OnInit {
     specificInstructions: any;
     codeDirectionList = [];
     direction: any;
+    ventilationsDirections: DirectionModel[] = [];
+    ventilationsSecrvices: ServiceEntityModel[] = [];
+    ventilationsDivision: DivisionModel[] = [];
+
+
 
 
     /**
@@ -65,10 +74,12 @@ export class ViewingEmailComponent implements OnInit {
                 arrivedMail => {
                     // console.log(arrivedMail);
                     this.mail = arrivedMail;
+                    this.mailSteps = this.mail.steps;
+
                 },
                 error => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
@@ -80,6 +91,22 @@ export class ViewingEmailComponent implements OnInit {
             );
         });
 
+      /*  for (const step of this.mailSteps.ventilation){
+            // @ts-ignore
+
+            console.log(step);
+            /!*if (step.ventilationType === 'DIRECTION'){
+                for (const elt of step.ventilation){
+                    this.ventilationsDirections.push(this.referentialService.getDirectionByCode(elt));
+                }
+
+                step.ventilationDirections = this.ventilationsDirections;
+            }*!/
+
+        }*/
+
+
+
         this.referentialService.getAllDirectionsFromBackend()
             .subscribe(
                 dirs => {
@@ -88,7 +115,7 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     const dialogData = new ConfirmDialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
@@ -99,6 +126,8 @@ export class ViewingEmailComponent implements OnInit {
                     });
                 }
             );
+
+
 
 
         this.horizontalStepperStep1 = this._formBuilder.group({});
@@ -125,16 +154,13 @@ export class ViewingEmailComponent implements OnInit {
     annotateAndVentilate(): void {
         this.steps.annotations = this.annotations.filter(ann => ann.value);
 
-        for (const direction of this.directions.filter(dir => dir.value)){
+     /*   for (const direction of this.directions.filter(dir => dir.value)){
             this.codeDirectionList.push(direction.code);
-        }
+        }*/
         console.log(this.codeDirectionList);
-        this.steps.ventilation = this.codeDirectionList;
+        this.steps.ventilations = this.directions.filter(dir => dir.value);
         this.steps.specificInstructions = this.specificInstructions;
 
-        // this.mail.directions = this.directions.filter(dir => dir.value);
-        // this.mail.annotations = this.annotations.filter(ann => ann.value);
-        // this.mail.specificInstructions = this.specificInstructions;
         console.log(this.steps);
         this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
                 this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
@@ -162,4 +188,8 @@ export class ViewingEmailComponent implements OnInit {
 
     }
 
+    translateLabel(ventilation: any): string {
+        return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
+
+    }
 }
