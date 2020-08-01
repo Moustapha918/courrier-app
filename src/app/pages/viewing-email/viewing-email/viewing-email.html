@@ -19,11 +19,11 @@
                 <mat-step [stepControl]="horizontalStepperStep4">
 
                     <div class="basic-container">
-                        <mat-accordion>
+                        <mat-accordion >
                             <mat-expansion-panel *ngFor="let mailStep of mailSteps">
                                 <mat-expansion-panel-header>
                                     <div fxFlex="1 1 gap" fxLayout="row" fxLayoutGap="500px" fxLayoutAlign=" space-between">
-                                        <div> Annotation et Vantilaltion  </div>
+                                        <div> Annotation et Ventilaltion  </div>
                                         <div> {{mailStep.dateHandling}} </div>
 
                                     </div>
@@ -31,6 +31,7 @@
                                 </mat-expansion-panel-header>
 
                                 <mat-list>
+                                    <mat-divider></mat-divider>
                                     <strong> Utilisateur </strong>
                                     <mat-list-item > {{mailStep.user.fonction}} {{mailStep.user.firstName}}  {{mailStep.user.lastName}}</mat-list-item>
                                     <mat-divider></mat-divider>
@@ -38,10 +39,9 @@
                                     <mat-list-item *ngFor="let annotation of mailStep.annotations"> {{translateLabel(annotation)}}</mat-list-item>
                                     <mat-divider></mat-divider>
                                     <strong>Ventilation</strong>
-
                                     <mat-list-item class="instructions-area" *ngFor="let ventilation of mailStep.ventilations">{{translateLabel(ventilation)}}</mat-list-item>
-                                    <strong>Instructions Particulieres</strong>
                                     <mat-divider></mat-divider>
+                                    <strong>Instructions Particulieres</strong>
                                     <mat-list-item>{{mailStep.specificInstructions}}</mat-list-item>
                                 </mat-list>
 
