@@ -6,7 +6,7 @@ import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {ReferentialService} from '../../services/referential.service';
 import {DirectionModel} from '../../models/direction.model';
-import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {TranslateService} from '@ngx-translate/core';
 import {SpinnerModalComponent} from '../spinner-modal/spinner-modal.component';
 import {LoadingService} from '../../services/loading.service';
@@ -123,7 +123,7 @@ export class NewDirectionComponent implements OnInit {
                     else{
                         message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     }
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -159,7 +159,7 @@ export class NewDirectionComponent implements OnInit {
                     else{
                         message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     }
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData

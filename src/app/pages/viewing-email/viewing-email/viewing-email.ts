@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InitMailService} from '../../../services/init-mail.service';
@@ -9,7 +9,7 @@ import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
+import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
 import {DirectionModel} from '../../../models/direction.model';
@@ -58,7 +58,8 @@ export class ViewingEmailComponent implements OnInit {
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router,
         private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService
-    ) {
+    )
+    {
 
     }
 
@@ -79,8 +80,8 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 error => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -91,22 +92,6 @@ export class ViewingEmailComponent implements OnInit {
             );
         });
 
-      /*  for (const step of this.mailSteps.ventilation){
-            // @ts-ignore
-
-            console.log(step);
-            /!*if (step.ventilationType === 'DIRECTION'){
-                for (const elt of step.ventilation){
-                    this.ventilationsDirections.push(this.referentialService.getDirectionByCode(elt));
-                }
-
-                step.ventilationDirections = this.ventilationsDirections;
-            }*!/
-
-        }*/
-
-
-
         this.referentialService.getAllDirectionsFromBackend()
             .subscribe(
                 dirs => {
@@ -115,8 +100,8 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -167,23 +152,20 @@ export class ViewingEmailComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                const dialogData = new ConfirmDialogModel('title', message);
+                const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                const dialogData = new DialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
                     data: dialogData
                 });
-            }
-        );
-
-
-    }
+            });
+        }
 
     canConfirm(): boolean {
         if (!this.annotations || !this.directions) {
             return false;
         }
-        return this.annotations.some(annotation => annotation.value) &&
+        return  this.annotations.some( annotation => annotation.value) &&
             this.directions.some(dir => dir.value);
 
     }

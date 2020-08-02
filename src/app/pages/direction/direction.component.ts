@@ -4,7 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {NewDirectionComponent} from '../new-direction/new-direction.component';
 import {ReferentialService} from '../../services/referential.service';
-import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent, DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import { NotificationService } from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
 import {MatTableDataSource} from '@angular/material/table';
@@ -54,7 +54,7 @@ export class DirectionComponent implements OnInit {
             (error) => {
                 console.log('Error ! : ' + error);
                 const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                const dialogData = new ConfirmDialogModel('title', message);
+                const dialogData = new DialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
                     data: dialogData
@@ -98,7 +98,7 @@ export class DirectionComponent implements OnInit {
                 (error) => {
                     console.log('Error ! : ' + error);
                     const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -117,7 +117,7 @@ export class DirectionComponent implements OnInit {
     deleteConfirm(direction): void {
         const message = this.translate.instant('REFERENTIAL.DELETEMSGCONFIRMATIONDIRECTION');
 
-        const dialogData = new ConfirmDialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
+        const dialogData = new DialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
 
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {

@@ -4,7 +4,7 @@ import {ReferentialService} from '../../services/referential.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {NewDivisionComponent} from '../new-division/new-division.component';
-import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent, DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {MatTableDataSource} from '@angular/material/table';
 import {DivisionModel} from '../../models/division.model';
 import {NotificationService} from '../../services/notification.service';
@@ -54,7 +54,7 @@ export class DivisionComponent implements OnInit {
                     (error) => {
                         console.log('Error ! : ' + error);
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                        const dialogData = new ConfirmDialogModel('title', message);
+                        const dialogData = new DialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                             width: '4000px',
                             data: dialogData
@@ -71,7 +71,7 @@ export class DivisionComponent implements OnInit {
                     (error) => {
                         console.log('Error ! : ' + error);
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                        const dialogData = new ConfirmDialogModel('title', message);
+                        const dialogData = new DialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                             width: '4000px',
                             data: dialogData
@@ -114,7 +114,7 @@ export class DivisionComponent implements OnInit {
                 },
                 (error) => {
                     const message = 'une erreur technique est survenue lors de la suppression de la division.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '400px',
                         data: dialogData
@@ -132,7 +132,7 @@ export class DivisionComponent implements OnInit {
     deleteConfirm(division): void {
         const message = this.translate.instant('REFERENTIAL.DELETEMSGCONFIRMATIONDIVISION');
 
-        const dialogData = new ConfirmDialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
+        const dialogData = new DialogModel(this.translate.instant('REFERENTIAL.DELETECONFIRMATION'), message);
 
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {

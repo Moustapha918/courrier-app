@@ -16,7 +16,7 @@ export class ConfirmDialogComponent implements OnInit {
     direction: DirectionModel;
 
   constructor( public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel,
+               @Inject(MAT_DIALOG_DATA) public data: DialogModel,
                private loadingService: LoadingService) {
       this.title = data.title;
       this.message = data.message;
@@ -42,7 +42,7 @@ export class ConfirmDialogComponent implements OnInit {
 
 }
 
-export class ConfirmDialogModel {
+export class DialogModel {
 
     constructor(public title: string, public message: string) {
     }

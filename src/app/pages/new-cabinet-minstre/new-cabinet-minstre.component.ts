@@ -6,7 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ReferentialService} from '../../services/referential.service';
 import {MinisterOfficeModel} from '../../models/minister-office.model';
 import {LoadingService} from '../../services/loading.service';
-import {ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 
 @Component({
@@ -103,7 +103,7 @@ export class NewCabinetMinstreComponent implements OnInit {
                     else{
                         message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     }
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData
@@ -129,7 +129,7 @@ export class NewCabinetMinstreComponent implements OnInit {
 
                 (error) => {
                     const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
-                    const dialogData = new ConfirmDialogModel('title', message);
+                    const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
                         data: dialogData

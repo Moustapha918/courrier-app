@@ -47,12 +47,8 @@ export class ArrivedMailScComponent implements OnInit{
         },
             (error) => {
                 console.log('Error ! : ' + error);
-                const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                this.dialog.open(ErrorDilaogComponent, {
                     width: '4000px',
-                });
-                dialogRefError.afterClosed().subscribe(result => {
-                    if (result === true) {
-                    }
                 });
 
             }
