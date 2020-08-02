@@ -11,27 +11,40 @@ import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
 import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
+import {StepsModel} from '../../../models/stepsModel';
+import {DirectionModel} from '../../../models/direction.model';
+import {ServiceEntityModel} from '../../../models/service-entity.model';
+import {DivisionModel} from '../../../models/division.model';
 
 
 @Component({
-    selector   : 'viewing-email',
+    selector: 'viewing-email',
     templateUrl: './viewing-email.html',
-    styleUrls  : ['./viewing-email.scss']
+    styleUrls: ['./viewing-email.scss']
 })
-export class ViewingEmailComponent implements OnInit
-{
+export class ViewingEmailComponent implements OnInit {
 
     horizontalStepperStep1: FormGroup;
     horizontalStepperStep2: FormGroup;
     horizontalStepperStep3: FormGroup;
+    horizontalStepperStep4: FormGroup;
 
     form: FormGroup;
     mail: ArrivedMailModel = new ArrivedMailModel();
+    mailSteps: StepsModel[];
+    steps: StepsModel = new StepsModel();
     annotations: any;
     directions: any;
     index1: any;
     index2: any;
     specificInstructions: any;
+    codeDirectionList = [];
+    direction: any;
+    ventilationsDirections: DirectionModel[] = [];
+    ventilationsSecrvices: ServiceEntityModel[] = [];
+    ventilationsDivision: DivisionModel[] = [];
+
+
 
 
     /**
@@ -56,13 +69,14 @@ export class ViewingEmailComponent implements OnInit
         this.index1 = this.initMailService.index1;
         this.index2 = this.initMailService.index2;
 
-        this.activatedRoute.params.subscribe( param => {
+        this.activatedRoute.params.subscribe(param => {
             // console.log(param);
-            this.initMailService.getArrivedMail(param.id).
-            subscribe(
+            this.initMailService.getArrivedMail(param.id).subscribe(
                 arrivedMail => {
                     // console.log(arrivedMail);
                     this.mail = arrivedMail;
+                    this.mailSteps = this.mail.steps;
+
                 },
                 error => {
                     console.log('Error ! : ' + error);
@@ -93,26 +107,27 @@ export class ViewingEmailComponent implements OnInit
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
-                        
+
                     });
                 }
             );
 
 
-        this.horizontalStepperStep1 = this._formBuilder.group({
-        });
 
-        this.horizontalStepperStep2 = this._formBuilder.group({
 
-        });
+        this.horizontalStepperStep1 = this._formBuilder.group({});
 
-        this.horizontalStepperStep3 = this._formBuilder.group({
+        this.horizontalStepperStep2 = this._formBuilder.group({});
+
+        this.horizontalStepperStep3 = this._formBuilder.group({});
+
+        this.horizontalStepperStep4 = this._formBuilder.group({
         });
 
 
     }
 
-    visualizeMailPDF(): void{
+    visualizeMailPDF(): void {
         this.matDialog.open(VisualizePdfComponent, {
             width: '90%',
             height: '95%',
@@ -122,11 +137,17 @@ export class ViewingEmailComponent implements OnInit
 
 
     annotateAndVentilate(): void {
-        this.mail.directions = this.directions.filter(dir => dir.value);
-        this.mail.annotations = this.annotations.filter( ann => ann.value);
-        this.mail.specificInstructions = this.specificInstructions;
-        console.log(this.mail);
-        this.initMailService.annotateAndVentilate(this.mail).subscribe(data => {
+        this.steps.annotations = this.annotations.filter(ann => ann.value);
+
+     /*   for (const direction of this.directions.filter(dir => dir.value)){
+            this.codeDirectionList.push(direction.code);
+        }*/
+        console.log(this.codeDirectionList);
+        this.steps.ventilations = this.directions.filter(dir => dir.value);
+        this.steps.specificInstructions = this.specificInstructions;
+
+        console.log(this.steps);
+        this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
                 this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
             },
             error => {
@@ -149,4 +170,8 @@ export class ViewingEmailComponent implements OnInit
 
     }
 
+    translateLabel(ventilation: any): string {
+        return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
+
+    }
 }

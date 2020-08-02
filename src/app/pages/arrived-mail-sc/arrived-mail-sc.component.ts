@@ -92,7 +92,7 @@ export class FilesDataSource extends DataSource<any>
     {
         super();
 
-        this.filteredData = this.initMailService.arrivedMails;
+        this.filteredData = this.initMailService.arrivedMails || [];
     }
 
     /**
@@ -114,7 +114,12 @@ export class FilesDataSource extends DataSource<any>
                 map(() => {
 
 
+
                     // console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
+                    if (this.initMailService.arrivedMails == null) {
+                        return [];
+                    }
+
                     let data = this.initMailService.arrivedMails.slice();
                     data = this.filterData(data);
 

@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {ArrivedMailModel} from '../models/arrived-mail.model';
+import {StepsModel} from '../models/stepsModel';
 
 const annotations  = [
     {code: '1' , labelFR: 'M’en Parler', labelAR: 'للنقاش'},
@@ -122,10 +123,10 @@ export class InitMailService implements Resolve<any>{
             .get<ArrivedMailModel>(this.getAllArrivedMAilURI + idEntry) ;
     }
 
-    annotateAndVentilate(arrivedMail: ArrivedMailModel): Observable<any> {
+    annotateAndVentilate(arrivedMail: ArrivedMailModel, step: StepsModel): Observable<any> {
 
         const arrivedMailAnnotateUri = environment.backendUrl + '/mailing/arrived/' + arrivedMail.idEntry + '/annotate';
-        return this.httpClient.post(arrivedMailAnnotateUri, arrivedMail);
+        return this.httpClient.post(arrivedMailAnnotateUri, step);
 
     }
 }

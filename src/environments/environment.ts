@@ -10,7 +10,6 @@ export const environment = {
     backendUrl: 'http://localhost:8080'
     // backendUrl: 'https://admin-courrier.herokuapp.com'
 
-
 };
 
 /*
@@ -20,4 +19,5 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/dis t/zone-error';  // Included with Angular CLI.
+
