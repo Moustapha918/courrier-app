@@ -7,6 +7,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {ArrivedMailModel} from '../models/arrived-mail.model';
 import {StepsModel} from '../models/stepsModel';
 
+
 const annotations  = [
     {code: '1' , labelFR: 'M’en Parler', labelAR: 'للنقاش'},
     {code: '2', labelFR: 'Suite à Donner', labelAR: 'لإعطاء متابعة'},
@@ -29,6 +30,8 @@ export class InitMailService implements Resolve<any>{
     getAllArrivedMAilsSCURI = environment.backendUrl + '/mailing/arrived/all/sc';
     getAllArrivedMAilURI = environment.backendUrl + '/mailing/arrived/';
     uploadScanFileURI = environment.backendUrl + '/mailing/arrived/upload-scan';
+    getActiveUserURI = environment.backendUrl + '/mailing/getuser';
+
 
 
     arrivedMails: ArrivedMailModel[];
@@ -129,6 +132,8 @@ export class InitMailService implements Resolve<any>{
         return this.httpClient.post(arrivedMailAnnotateUri, step);
 
     }
+
+
 }
 
 

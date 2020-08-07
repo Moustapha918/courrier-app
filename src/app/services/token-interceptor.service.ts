@@ -12,7 +12,8 @@ export class TokenInterceptorService implements HttpInterceptor {
         console.log('intrecept request -----------', request);
         request = request.clone({
             setHeaders: {
-                Authorization: `Bearer ${this.auth.getToken()}`
+                'Authorization': `Bearer ${this.auth.getToken()}`,
+                'Access-Control-Allow-Origin': '*'
             }
         });
         return next.handle(request);

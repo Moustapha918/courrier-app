@@ -11,6 +11,7 @@ import {DataSource} from '@angular/cdk/table';
 import {LoadingService} from '../../services/loading.service';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ApplicationUserModel} from '../../models/applicationUser';
 
 @Component({
   selector: 'app-arrived-mail-sc',
@@ -21,6 +22,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class ArrivedMailScComponent implements OnInit{
     loading: boolean;
+    user: ApplicationUserModel;
 
     dataSource: FilesDataSource | null;
     displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
@@ -41,6 +43,9 @@ export class ArrivedMailScComponent implements OnInit{
         this.loading = true;
     }
     ngOnInit(): void{
+
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user.fonction);
 
         this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
             this.loadingService.closeSpinner();
