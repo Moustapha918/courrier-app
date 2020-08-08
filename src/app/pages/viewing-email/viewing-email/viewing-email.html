@@ -17,7 +17,7 @@
             <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
 
                 <mat-step [stepControl]="horizontalStepperStep4">
-
+                    <ng-template matStepLabel>{{ 'mail.HISTORY' | translate }}</ng-template>
                     <div class="basic-container">
                         <mat-accordion >
                             <mat-expansion-panel *ngFor="let mailStep of mailSteps">
@@ -241,7 +241,7 @@
 
                                 <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'ar'">
 
-                                    <mat-checkbox   *ngFor="let direction of directions" name="directions"
+                                    <mat-checkbox *ngFor="let direction of ventilationList" name="directions"
                                                   class="app-checkbox"
 
                                                   [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelAR}}
@@ -249,10 +249,10 @@
                                 </div>
                                 <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'fr'">
 
-                                    <mat-checkbox   *ngFor="let direction of directions" name="directions"
-                                                    class="app-checkbox"
+                                    <mat-checkbox *ngFor="let direction of ventilationList" name="directions"
+                                                  class="app-checkbox"
 
-                                                    [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelFR}}
+                                                  [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelFR}}
                                     </mat-checkbox>
                                 </div>
 

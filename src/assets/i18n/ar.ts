@@ -45,6 +45,7 @@ export const locale = {
             VENTILATION: 'التوزيع',
             SPECIFIC_INSTRUCTIONS: 'تعليمات خاصة',
             DISPLAY: 'عرض',
+            HISTORY: 'سجل',
             CONFIRM: 'تأكيد',
             DISPALY_ANNOTATION_VENTILATION: 'عرض و تعليق و توزيع هذا البريد',
             NOTIFICATION: 'إشعار',

@@ -34,12 +34,12 @@ export class ViewingEmailComponent implements OnInit {
     mailSteps: StepsModel[];
     steps: StepsModel = new StepsModel();
     annotations: any;
-    directions: any;
+    ventilationList: any;
     index1: any;
     index2: any;
     specificInstructions: any;
     codeDirectionList = [];
-    direction: any;
+    direc5tion: any;
     ventilationsDirections: DirectionModel[] = [];
     ventilationsSecrvices: ServiceEntityModel[] = [];
     ventilationsDivision: DivisionModel[] = [];
@@ -92,11 +92,11 @@ export class ViewingEmailComponent implements OnInit {
             );
         });
 
-        this.referentialService.getAllDirectionsFromBackend()
+        this.referentialService.getVentilationList()
             .subscribe(
                 dirs => {
                     // console.log(dirs);
-                    this.directions = dirs;
+                    this.ventilationList = dirs;
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
@@ -137,13 +137,15 @@ export class ViewingEmailComponent implements OnInit {
 
 
     annotateAndVentilate(): void {
+        console.log(this.annotations.filter(ann => ann.value))
         this.steps.annotations = this.annotations.filter(ann => ann.value);
+        console.log(this.steps.annotations);
 
      /*   for (const direction of this.directions.filter(dir => dir.value)){
             this.codeDirectionList.push(direction.code);
         }*/
         console.log(this.codeDirectionList);
-        this.steps.ventilations = this.directions.filter(dir => dir.value);
+        this.steps.ventilations = this.ventilationList.filter(dir => dir.value);
         this.steps.specificInstructions = this.specificInstructions;
 
         console.log(this.steps);
@@ -162,11 +164,11 @@ export class ViewingEmailComponent implements OnInit {
         }
 
     canConfirm(): boolean {
-        if (!this.annotations || !this.directions) {
+        if (!this.annotations || !this.ventilationList) {
             return false;
         }
         return  this.annotations.some( annotation => annotation.value) &&
-            this.directions.some(dir => dir.value);
+            this.ventilationList.some(dir => dir.value);
 
     }
 

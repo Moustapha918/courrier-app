@@ -23,7 +23,7 @@ export class ArrivedMailScComponent implements OnInit{
     loading: boolean;
 
     dataSource: FilesDataSource | null;
-    displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
+    displayedColumns: string[] = ['instance', 'idEntry', 'subject', 'sender', 'receptionDate'];
 
 
     @ViewChild(MatPaginator, {static: true})

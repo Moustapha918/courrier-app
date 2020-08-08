@@ -55,7 +55,7 @@ export class NewDivisionComponent implements OnInit {
 
 
         // POUR LA LISTE DEROULANTE DES DIRECTIONS
-        this.referentialService.getAllDirectionsFromBackend().subscribe(
+        this.referentialService.getVentilationList().subscribe(
             data => this.directions = data
         );
 

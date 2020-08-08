@@ -17,6 +17,7 @@ import {GeneralSecretaryModel} from '../models/general-secretary.model';
 })
 export class ReferentialService {
     getAllDirectionURI = environment.backendUrl + '/referential/direction/all';
+    getVentilationListURI = environment.backendUrl + '/referential/ventilation/list';
     getAllServicesEntityURI = environment.backendUrl + '/referential/service/all';
     getAllDepartmentURI = environment.backendUrl + '/referential/department/all';
     getAllDivisionsURI = environment.backendUrl + '/referential/division/all';
@@ -79,9 +80,9 @@ export class ReferentialService {
         });
     }
 
-    getAllDirectionsFromBackend(): Observable<DirectionModel[]> {
+    getVentilationList(): Observable<DirectionModel[]> {
         return this.httpClient
-            .get<DirectionModel[]>(this.getAllDirectionURI) ;
+            .get<DirectionModel[]>(this.getVentilationListURI) ;
     }
 
     sendDirectionFormToBackend(direction: DirectionModel): Observable<any> {
