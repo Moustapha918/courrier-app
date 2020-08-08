@@ -144,6 +144,10 @@ export const locale = {
         },
         ERRORS: {
             FILE_DOWNLOAD: 'Un erreur de chargement du fichier est survenu, merci de contacter l\'équipe technique'
+        },
+        ROBUSTESSE: {
+            RETRY: 'Veuillez réessayer ultérieurement'
+
         }
     }
 };

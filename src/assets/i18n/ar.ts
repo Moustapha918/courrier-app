@@ -135,6 +135,10 @@ export const locale = {
         },
         ERRORS: {
             FILE_DOWNLOAD: 'خطأ تقني الرجاء الاتصال بالطاقم الفني'
+        },
+        ROBUSTESSE: {
+            RETRY: 'الرجاء المحاولة لاحقا'
+
         }
     }
 };
