@@ -48,7 +48,7 @@ export class NewDepartementComponent implements OnInit {
     }
     // tslint:disable-next-line:typedef
     ngOnInit() {
-        this.directions = this.referentialService.getAllDirectionsFromBackend().subscribe(
+        this.directions = this.referentialService.getVentilationList().subscribe(
             data => this.directions = data
         );
         this.form = this._formBuilder.group({

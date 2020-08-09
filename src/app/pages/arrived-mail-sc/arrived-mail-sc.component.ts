@@ -25,7 +25,7 @@ export class ArrivedMailScComponent implements OnInit{
     user: ApplicationUserModel;
 
     dataSource: FilesDataSource | null;
-    displayedColumns: string[] = ['idEntry', 'subject', 'sender', 'receptionDate'];
+    displayedColumns: string[] = ['instance', 'idEntry', 'subject', 'sender', 'receptionDate'];
 
 
     @ViewChild(MatPaginator, {static: true})

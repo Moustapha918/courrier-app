@@ -13,6 +13,8 @@ export class ArrivedMailModel {
     observations: string;
     idScanFile: string;
     steps: any[];
+    instance: boolean;
+    treated: boolean;
 
 }
 

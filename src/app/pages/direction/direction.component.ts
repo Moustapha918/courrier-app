@@ -46,7 +46,7 @@ export class DirectionComponent implements OnInit {
 
 
     private updateDirectionsTable(): void {
-        this.referentialService.getAllDirectionsFromBackend().subscribe((data) => {
+        this.referentialService.getVentilationList().subscribe((data) => {
             this.dataSource = new MatTableDataSource<DirectionModel>(data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
