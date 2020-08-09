@@ -99,7 +99,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
+                        width: '600px',
                         data: dialogData,
                     });
                     dialogRefError.afterClosed();
@@ -134,7 +134,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
             const errorMessage = 'format de fichier invalide';
             const dialogData = new DialogModel('Erreur', errorMessage);
             const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                width: '1000px',
+                width: '600px',
                 data: dialogData
             });
             dialogRefError.afterClosed().subscribe(result => {
@@ -156,7 +156,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                 const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                 const dialogData = new DialogModel('title', message);
                 const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                    width: '4000px',
+                    width: '600px',
                     data: dialogData,
                 });
                 dialogRefError.afterClosed().subscribe(result => {
@@ -169,7 +169,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     const message = 'Le fichier est introuvable.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
+                        width: '600px',
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
@@ -182,7 +182,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                     const message = 'une erreur technique est survenue lors du chargement du fichier.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
+                        width: '600px',
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
@@ -227,7 +227,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
                      const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                      const dialogData = new DialogModel('title', message);
                      const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                         width: '4000px',
+                         width: '600px',
                          data: dialogData
                      });
                      dialogRefError.afterClosed().subscribe(result => {

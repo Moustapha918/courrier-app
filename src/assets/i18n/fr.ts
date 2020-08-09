@@ -145,6 +145,22 @@ export const locale = {
         },
         ERRORS: {
             FILE_DOWNLOAD: 'Un erreur de chargement du fichier est survenu, merci de contacter l\'équipe technique'
+        },
+        ROBUSTESSE: {
+            RETRY: 'Veuillez réessayer ultérieurement',
+            DIALOG_MESSAGE: 'une erreur technique est survenue.  Veuillez réessayer ultérieurement'
+
+        },
+
+        LOGIN_VERIFICATION: {
+            AUTHENTICATED: 'SE CONNECTER A VOTRE COMPTE',
+            IDENTIFIANT: 'identifiant',
+            EMAIL_REQUIRED: 'Email is required',
+            EMAIL_VALID: 'Please enter a valid email address',
+            PASSWORD_REQUIRED : 'Password is required',
+            REMEMBER_ME: 'Remember Me',
+            PASSWORD_FORGETED : 'Mot de passe oublié ?',
+            CONNECT : 'SE CONNECTER'
         }
     }
 };

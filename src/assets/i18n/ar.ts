@@ -136,6 +136,22 @@ export const locale = {
         },
         ERRORS: {
             FILE_DOWNLOAD: 'خطأ تقني الرجاء الاتصال بالطاقم الفني'
+        },
+        ROBUSTESSE: {
+            RETRY: 'الرجاء المحاولة لاحقا',
+            DIALOG_MESSAGE: 'حدث خطأ تقني.  الرجاء المحاولة لاحقا'
+
+        },
+
+        LOGIN_VERIFICATION : {
+            AUTHENTICATED: ' الرجاء التسجيل للدخول',
+            IDENTIFIANT: 'اسم المستخدم',
+            EMAIL_REQUIRED: ' الرجاء إدخال البريد الإلكتروني',
+            EMAIL_VALID: ' الرجاء إدخال بريد إلكتروني صحيح',
+            PASSWORD_REQUIRED : ' الرجاءإعادة إدخال كلمة المرور',
+            REMEMBER_ME: 'تذكرنى',
+            PASSWORD_FORGETED : 'نسيت كلمة المرور ?',
+            CONNECT : 'دخول'
         }
     }
 };

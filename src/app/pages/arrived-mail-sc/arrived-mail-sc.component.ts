@@ -123,7 +123,7 @@ export class FilesDataSource extends DataSource<any>
                     // console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
                     if (this.initMailService.arrivedMails == null) {
                         return [];
-                    }
+                    }6
 
                     let data = this.initMailService.arrivedMails.slice();
                     data = this.filterData(data);
