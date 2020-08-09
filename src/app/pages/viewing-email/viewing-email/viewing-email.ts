@@ -100,7 +100,7 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 (error) => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue lors de la suppression de la direction';
+                    const message = 'une erreur technique est survenue';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '600px',

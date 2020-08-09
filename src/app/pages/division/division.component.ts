@@ -56,7 +56,7 @@ export class DivisionComponent implements OnInit {
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                         const dialogData = new DialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                            width: '4000px',
+                            width: '600px',
                             data: dialogData
                         });
                         dialogRefError.afterClosed().subscribe(result => {
@@ -73,7 +73,7 @@ export class DivisionComponent implements OnInit {
                         const message = 'une erreur technique est survenue.  Veuillez réessayer ultérieurement';
                         const dialogData = new DialogModel('title', message);
                         const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                            width: '4000px',
+                            width: '600px',
                             data: dialogData
                         });
                         dialogRefError.afterClosed().subscribe(result => {
@@ -116,7 +116,7 @@ export class DivisionComponent implements OnInit {
                     const message = 'une erreur technique est survenue lors de la suppression de la division.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '400px',
+                        width: '600px',
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {

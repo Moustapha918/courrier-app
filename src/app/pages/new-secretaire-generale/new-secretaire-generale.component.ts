@@ -106,7 +106,7 @@ export class NewSecretaireGeneraleComponent implements OnInit {
                     }
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
+                        width: '600px',
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
@@ -141,7 +141,7 @@ export class NewSecretaireGeneraleComponent implements OnInit {
                     }
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
+                        width: '600px',
                         data: dialogData
                     });
                     dialogRefError.afterClosed().subscribe(result => {
