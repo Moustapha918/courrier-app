@@ -139,7 +139,7 @@
 
                 </mat-step>
 
-                <mat-step  [stepControl]="horizontalStepperStep2" *ngIf="mail.treated === true">
+                <mat-step  [stepControl]="horizontalStepperStep2" *ngIf="mail.treated === false">
                     <div fxLayout="row" fxLayoutAlign="center" >
                         <form fxLayout="column">
                             {{mail.treated}}
@@ -197,7 +197,7 @@
 
                 </mat-step>
 
-                <mat-step [stepControl]="horizontalStepperStep3" *ngIf="mail.treated === true">
+                <mat-step [stepControl]="horizontalStepperStep3" *ngIf="mail.treated === false">
                     <div fxLayout="row" fxLayoutAlign="center">
 
                         <form fxLayout="column" fxLayoutAlign="center center" >
