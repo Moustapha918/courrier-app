@@ -16,7 +16,7 @@
             <!-- HORIZONTAL STEPPER EXAMPLE -->
             <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
 
-                <mat-step [stepControl]="horizontalStepperStep4">
+                <mat-step [stepControl]="horizontalStepperStep4" >
 
                     <div class="basic-container">
                         <mat-accordion >
@@ -49,38 +49,6 @@
 
                         </mat-accordion>
                     </div>
-                    <!--<table class="simple">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Utilisateur</th>
-                            <th>Manipulation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr *ngFor="let mailSteps of mail.steps">
-                            <td>
-                                <span class="status h6 p-4" >
-                                    {{mailSteps.dateHandling}}
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    {{mailSteps.firstName + mailSteps.lastName}}
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    manip
-                                </span>
-                            </td>
-                        </tr>
-                        </tbody>
-
-
-
-                    </table>-->
 
                 </mat-step>
 
@@ -171,10 +139,10 @@
 
                 </mat-step>
 
-                <mat-step [stepControl]="horizontalStepperStep2">
+                <mat-step  [stepControl]="horizontalStepperStep2" *ngIf="mail.treated === true">
                     <div fxLayout="row" fxLayoutAlign="center" >
                         <form fxLayout="column">
-
+                            {{mail.treated}}
                             <ng-template matStepLabel>{{ 'mail.ANNOTATION' | translate }}</ng-template>
                             <div fxLayoutAlign="space-between space-between" fxLayout="row" *ngIf="translate.currentLang === 'fr'">
 
@@ -201,7 +169,7 @@
                                     </mat-checkbox>
                                 </div>
 
-                                <div fxLayoutAlign="start" fxLayout="column" >
+                                <div fxLayoutAlign="start" fxLayout="column">
                                     <mat-checkbox *ngFor="let i of index2" name="annotations"
                                                   class="app-checkbox"
                                                   [(ngModel)]="annotations[i].value">{{ annotations[i].labelAR}}
@@ -229,7 +197,7 @@
 
                 </mat-step>
 
-                <mat-step [stepControl]="horizontalStepperStep3">
+                <mat-step [stepControl]="horizontalStepperStep3" *ngIf="mail.treated === true">
                     <div fxLayout="row" fxLayoutAlign="center">
 
                         <form fxLayout="column" fxLayoutAlign="center center" >

@@ -70,10 +70,8 @@ export class ViewingEmailComponent implements OnInit {
         this.index2 = this.initMailService.index2;
 
         this.activatedRoute.params.subscribe(param => {
-            // console.log(param);
             this.initMailService.getArrivedMail(param.id).subscribe(
                 arrivedMail => {
-                    // console.log(arrivedMail);
                     this.mail = arrivedMail;
                     this.mailSteps = this.mail.steps;
 
