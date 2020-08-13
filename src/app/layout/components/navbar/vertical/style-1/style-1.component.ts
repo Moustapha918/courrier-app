@@ -94,6 +94,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     {
 
         this.user = JSON.parse(localStorage.getItem('user'));
+
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),
