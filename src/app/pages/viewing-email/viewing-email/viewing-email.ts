@@ -15,6 +15,7 @@ import {StepsModel} from '../../../models/stepsModel';
 import {DirectionModel} from '../../../models/direction.model';
 import {ServiceEntityModel} from '../../../models/service-entity.model';
 import {DivisionModel} from '../../../models/division.model';
+import {LoadingService} from '../../../services/loading.service';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class ViewingEmailComponent implements OnInit {
         public dialog: MatDialog,
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
-        private _formBuilder: FormBuilder, private router: Router,
+        private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
         private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService
     )
     {
@@ -68,14 +69,17 @@ export class ViewingEmailComponent implements OnInit {
         this.annotations = this.initMailService.annotations;
         this.index1 = this.initMailService.index1;
         this.index2 = this.initMailService.index2;
-
+        this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
             // console.log(param);
             this.initMailService.getArrivedMail(param.id).subscribe(
+
                 arrivedMail => {
                     // console.log(arrivedMail);
+
                     this.mail = arrivedMail;
                     this.mailSteps = this.mail.steps;
+                    this.loadingService.closeSpinner();
 
                 },
                 error => {
@@ -137,7 +141,7 @@ export class ViewingEmailComponent implements OnInit {
 
 
     annotateAndVentilate(): void {
-        console.log(this.annotations.filter(ann => ann.value))
+        console.log(this.annotations.filter(ann => ann.value));
         this.steps.annotations = this.annotations.filter(ann => ann.value);
         console.log(this.steps.annotations);
 
@@ -151,6 +155,7 @@ export class ViewingEmailComponent implements OnInit {
         console.log(this.steps);
         this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
                 this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
+                this.loadingService.displaySpinner();
             },
             error => {
                 console.log(error);
@@ -167,6 +172,7 @@ export class ViewingEmailComponent implements OnInit {
         if (!this.annotations || !this.ventilationList) {
             return false;
         }
+
         return  this.annotations.some( annotation => annotation.value) &&
             this.ventilationList.some(dir => dir.value);
 
