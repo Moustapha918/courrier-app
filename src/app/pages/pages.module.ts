@@ -52,6 +52,7 @@ import {JwtModule} from '@auth0/angular-jwt';
 import {AuthGuardService} from '../services/auth-guard.service';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
+import { InitDapartureMAilComponent } from './init-daparture-mail/init-daparture-mail.component';
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -121,6 +122,11 @@ const routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path     : 'new-departure-mail',
+        component: InitDapartureMAilComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path     : 'lecture-mail/:id',
         component: ViewingEmailComponent,
         canActivate: [AuthGuardService]
@@ -141,7 +147,7 @@ const routes = [
         NewSecretaireGeneraleComponent,
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
         DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent
+        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent, InitDapartureMAilComponent
 
     ],
     exports: [
