@@ -47,7 +47,7 @@ export const navigation: FuseNavigation[] = [
                         translate: 'NAV.DEPARTURE',
                         title: 'Courrier Depart',
                         type     : 'item',
-                        // url : 'arrivedMail-sc'
+                        url : 'departureMail-sc'
                     },
                     {
                         id     : 'new-departure-mail',

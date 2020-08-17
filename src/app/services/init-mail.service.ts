@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {AutoGenParamsModel} from '../models/auto-gen-params.model';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -88,7 +88,8 @@ export class InitMailService implements Resolve<any>{
         return new Promise((resolve, reject) => {
 
             Promise.all([
-                this.getArrivedMailsSC()
+                this.getArrivedMailsSC(),
+
             ]).then(
                 () => {
                     resolve();
@@ -119,7 +120,7 @@ export class InitMailService implements Resolve<any>{
             this.httpClient.get<ArrivedMailModel[]>(this.getAllArrivedMAilsURI)
                 .subscribe((response: any) => {
                     this.arrivedMails = response;
-                    console.log('this.arrivedMails from service', this.arrivedMails);
+                    console.log('this.arrivedMailsss from service', this.arrivedMails);
                     // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
                     this.onarrivedMailsChanged.next(this.arrivedMails);
                     resolve(response);
@@ -154,18 +155,21 @@ export class InitMailService implements Resolve<any>{
             .post<any>(this.addNewDepartureMailURI, arrivedMail);
     }
 
-    getDepartureMails(): Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get<DepartureMailModel[]>(this.getAllDepartureMAilsURI)
-                .subscribe((response: any) => {
-                    this.departureMails = response;
-                    console.log('this.arrivedMails from service', this.arrivedMails);
-                    // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
-                    this.onDepartureMailsChanged.next(this.departureMail);
-                    resolve(response);
-                }, reject);
-        });
+
+
+    getAllDepartureMails(): DepartureMailModel[]{
+        this.httpClient.get<DepartureMailModel[]>(this.getAllDepartureMAilsURI).subscribe(departureMails => {
+                console.log('get all departures');
+                this.onDepartureMailsChanged.next(departureMails);
+
+                this.departureMails = departureMails;
+
+                console.log(this.departureMails);
+            },
+            (error: HttpErrorResponse) => {
+                console.log(error.name + ' Message is : ' + error.message);
+            });
+        return this.departureMails;
     }
 
 
