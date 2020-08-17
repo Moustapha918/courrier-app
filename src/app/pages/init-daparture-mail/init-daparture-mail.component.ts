@@ -199,9 +199,6 @@ export class InitDapartureMAilComponent implements OnInit {
             }
             this.form.controls['idScanFile'].setValue(idScanFile);
         };
-
-
-
     }
 
     validateDepartureMail(): void {

@@ -27,6 +27,7 @@ export const locale = {
             MAIL_DATE_DEPARTURE: 'تاريخ إرسال البريد',
             DIRECTORY_ID: 'رقم الملف',
             ID_ENTRY: 'رقم الدخول',
+            ID_EXIT: 'رقم الخروج',
             IDRECEIVED_DOCUMENT: 'مرجع الوثيقة الواردة',
             IDRECEIVED_DOCUMENT_MSG: 'المرجع إلزامي',
             RECEIVED_DOCUMENT_DATE: 'تاريخ الوثيقة الواردة',

@@ -29,6 +29,7 @@ export const locale = {
             MAIL_DATE_DEPARTURE             : 'Date d\'envoi du courrier',
             DIRECTORY_ID                    : 'Numéro du dossier',
             ID_ENTRY                        : 'Numéro d\'entré',
+            ID_EXIT                         : 'Numéro de sortie',
             IDRECEIVED_DOCUMENT             : 'Réference du document réçu',
             IDRECEIVED_DOCUMENT_MSG         : 'La référence est obligatoire!',
             RECEIVED_DOCUMENT_DATE          : 'Date du document réçu',

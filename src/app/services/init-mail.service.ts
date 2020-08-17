@@ -42,9 +42,11 @@ export class InitMailService implements Resolve<any>{
 
 
     arrivedMails: ArrivedMailModel[];
+    departureMails: DepartureMailModel[];
     onarrivedMailsChanged: BehaviorSubject<any>;
+    onDepartureMailsChanged: BehaviorSubject<any>;
 
-    departureMails: DepartureMailModel;
+    departureMail: DepartureMailModel;
 
     annotations: any;
     index1: any;
@@ -53,6 +55,8 @@ export class InitMailService implements Resolve<any>{
     constructor(private httpClient: HttpClient){
 
         this.onarrivedMailsChanged = new BehaviorSubject<any>({});
+        this.onDepartureMailsChanged = new BehaviorSubject<any>({});
+
         this.annotations = annotations;
         this.index1 = index1;
         this.index2 = index2;
@@ -149,6 +153,22 @@ export class InitMailService implements Resolve<any>{
         return this.httpClient
             .post<any>(this.addNewDepartureMailURI, arrivedMail);
     }
+
+    getDepartureMails(): Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this.httpClient.get<DepartureMailModel[]>(this.getAllDepartureMAilsURI)
+                .subscribe((response: any) => {
+                    this.departureMails = response;
+                    console.log('this.arrivedMails from service', this.arrivedMails);
+                    // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
+                    this.onDepartureMailsChanged.next(this.departureMail);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+
 
 
 }
