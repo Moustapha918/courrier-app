@@ -1,31 +1,30 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {debounceTime, distinctUntilChanged, map, takeUntil} from 'rxjs/operators';
-import {FuseUtils} from '../../../@fuse/utils';
-import {BehaviorSubject, fromEvent, merge, Observable, Subject} from 'rxjs';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '../../../@fuse/animations';
-import {InitMailService} from '../../services/init-mail.service';
+import {ApplicationUserModel} from '../../models/applicationUser';
 import {MatPaginator, MatSort} from '@angular/material';
-import {DataSource} from '@angular/cdk/table';
+import {InitMailService} from '../../services/init-mail.service';
+import {MatDialog} from '@angular/material/dialog';
 import {LoadingService} from '../../services/loading.service';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
-import {MatDialog} from '@angular/material/dialog';
-import {ApplicationUserModel} from '../../models/applicationUser';
+import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {DataSource} from '@angular/cdk/table';
+import {FuseUtils} from '../../../@fuse/utils';
 
 @Component({
-  selector: 'app-arrived-mail-sc',
-  templateUrl: './arrived-mail-sc.component.html',
-  styleUrls: ['./arrived-mail-sc.component.scss'],
+  selector: 'app-departure-mail-sc',
+  templateUrl: './departure-mail-sc.component.html',
+  styleUrls: ['./departure-mail-sc.component.scss'],
     animations   : fuseAnimations,
     encapsulation: ViewEncapsulation.None
 })
-export class ArrivedMailScComponent implements OnInit{
+export class DepartureMailScComponent implements OnInit {
+
     loading: boolean;
     user: ApplicationUserModel;
 
-    dataSource: FilesDataSource | null;
-    displayedColumns: string[] = ['instance', 'idEntry', 'subject', 'sender', 'receptionDate'];
+    dataSource: FilesDeparturesSource | null;
+    displayedColumns: string[] = [ 'idEntry', 'subject', 'receiver', 'departureDate'];
 
 
     @ViewChild(MatPaginator, {static: true})
@@ -37,47 +36,51 @@ export class ArrivedMailScComponent implements OnInit{
     @ViewChild('filter', {static: true})
     filter: ElementRef;
 
-    constructor(private initMailService: InitMailService, public dialog: MatDialog, private loadingService: LoadingService)
-    {
-        // Set the defaults
-        this.loading = true;
-    }
-    ngOnInit(): void{
+  constructor(private initMailService: InitMailService, public dialog: MatDialog, private loadingService: LoadingService) {
+      // Set the defaults
+      this.loading = true;
+  }
 
-        this.user = JSON.parse(localStorage.getItem('user'));
-        console.log(this.user.fonction);
+  ngOnInit(): void {
 
-        this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
-            this.loadingService.closeSpinner();
-        },
-            (error) => {
-                console.log('Error ! : ' + error);
-                this.dialog.open(ErrorDilaogComponent, {
-                    width: '4000px',
-                });
-
-            }
-        );
-        this.dataSource = new FilesDataSource(this.initMailService, this.paginator, this.sort);
+      this.user = JSON.parse(localStorage.getItem('user'));
 
 
-        fromEvent(this.filter.nativeElement, 'keyup')
-            .pipe(
-                debounceTime(150),
-                distinctUntilChanged()
-            )
-            .subscribe(() => {
-                if ( !this.dataSource )
-                {
-                    return;
-                }
 
-                this.dataSource.filter = this.filter.nativeElement.value;
-            });
-    }
+      this.initMailService.onarrivedMailsChanged.subscribe( (data) => {
+              this.loadingService.closeSpinner();
+          },
+          (error) => {
+              console.log('Error ! : ' + error);
+              this.dialog.open(ErrorDilaogComponent, {
+                  width: '4000px',
+              });
+
+          }
+      );
+
+      this.dataSource = new FilesDeparturesSource(this.initMailService, this.paginator, this.sort);
+
+
+
+      fromEvent(this.filter.nativeElement, 'keyup')
+          .pipe(
+              debounceTime(150),
+              distinctUntilChanged()
+          )
+          .subscribe(() => {
+              if ( !this.dataSource )
+              {
+                  return;
+              }
+
+              this.dataSource.filter = this.filter.nativeElement.value;
+          });
+  }
+
 }
 
-export class FilesDataSource extends DataSource<any>
+export class FilesDeparturesSource extends DataSource<any>
 {
     private _filterChange = new BehaviorSubject('');
     private _filteredDataChange = new BehaviorSubject('');
@@ -97,7 +100,7 @@ export class FilesDataSource extends DataSource<any>
     {
         super();
 
-        this.filteredData = this.initMailService.arrivedMails || [];
+        this.filteredData = this.initMailService.getAllDepartureMails() || [];
     }
 
     /**
@@ -108,11 +111,14 @@ export class FilesDataSource extends DataSource<any>
     connect(): Observable<any[]>
     {
         const displayDataChanges = [
-            this.initMailService.onarrivedMailsChanged,
+            this.initMailService.onDepartureMailsChanged,
             this._matPaginator.page,
             this._filterChange,
             this._matSort.sortChange
         ];
+
+        this.initMailService.getAllDepartureMails();
+
 
         return merge(...displayDataChanges)
             .pipe(
@@ -120,21 +126,20 @@ export class FilesDataSource extends DataSource<any>
 
 
 
-                    // console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
-                    if (this.initMailService.arrivedMails == null) {
-                        return [];
-                    }
+                        // console.log('__ data _____________ : ',  this.initMailService.arrivedMails);
+                        if (this.initMailService.departureMails == null) {
+                            return [];
+                        }
+                        let data = this.initMailService.departureMails.slice();
+                        data = this.filterData(data);
 
-                    let data = this.initMailService.arrivedMails.slice();
-                    data = this.filterData(data);
+                        this.filteredData = [...data];
 
-                    this.filteredData = [...data];
+                        data = this.sortData(data);
 
-                    data = this.sortData(data);
-
-                    // Grab the page's slice of data.
-                    const startIndex = this._matPaginator.pageIndex * this._matPaginator.pageSize;
-                    return data.splice(startIndex, this._matPaginator.pageSize);
+                        // Grab the page's slice of data.
+                        const startIndex = this._matPaginator.pageIndex * this._matPaginator.pageSize;
+                        return data.splice(startIndex, this._matPaginator.pageSize);
                     }
                 ));
     }
@@ -156,7 +161,7 @@ export class FilesDataSource extends DataSource<any>
 
     // Filter
     get filter(): string
-     {
+    {
         return this._filterChange.value;
     }
 
@@ -231,5 +236,4 @@ export class FilesDataSource extends DataSource<any>
     {
     }
 }
-
 

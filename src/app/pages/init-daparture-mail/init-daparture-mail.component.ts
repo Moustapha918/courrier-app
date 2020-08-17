@@ -209,7 +209,7 @@ export class InitDapartureMAilComponent implements OnInit {
         this.initMailService.sendDepartureMailFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
-                    this.router.navigate(['../arrivedMail-sc'], { relativeTo: this.activatedRoute });
+                    this.router.navigate(['../departureMail-sc'], { relativeTo: this.activatedRoute });
                     refDialog.close();
                 },
                 (error) => {
