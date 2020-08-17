@@ -41,6 +41,23 @@ export const navigation: FuseNavigation[] = [
                 title    : 'NAV.DEPARTURE',
                 translate: 'NAV.DEPARTURE',
                 type     : 'collapsable',
+                children : [
+                    {
+                        id     : 'departureMail-sc',
+                        translate: 'NAV.DEPARTURE',
+                        title: 'Courrier Depart',
+                        type     : 'item',
+                        // url : 'arrivedMail-sc'
+                    },
+                    {
+                        id     : 'new-departure-mail',
+                        url     : 'new-departure-mail',
+                        title: 'NAV.NEWMAIIL',
+                        translate: 'NAV.NEWMAIIL',
+                        type: 'item'
+                    }
+
+                ]
             },
             {
                 id       : 'référentiel',

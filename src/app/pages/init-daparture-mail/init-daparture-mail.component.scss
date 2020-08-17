@@ -1,0 +1,34 @@
+form {
+    width: 100%;
+    max-width: 800px !important;
+}
+
+.form-errors-model {
+    flex: 1;
+
+    code {
+        background: none !important;
+    }
+}
+
+
+.upload-box {  // TO DO: manage this
+    cursor: pointer;
+    background: rgba(21, 153, 225, 0);
+    border: 2px dashed #19a0f8;
+    text-align: center;
+    margin: 25px;
+}
+
+
+.horizontal-stepper-wrapper,
+.vertical-stepper-wrapper {
+    max-width: 800px;
+}
+
+/*
+.my-snack-bar {
+    background-color: #E8EAF6;
+    color: #3D5AFE;
+}
+*/
