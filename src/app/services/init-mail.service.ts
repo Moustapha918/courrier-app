@@ -38,6 +38,7 @@ export class InitMailService implements Resolve<any>{
     addNewDepartureMailURI = environment.backendUrl + '/mailing/depart/add';
     getAllDepartureMAilsURI = environment.backendUrl + '/mailing/depart/all';
     getAllDepartureMAilByIdURI = environment.backendUrl + '/mailing/depart/';
+    uploadScanFileDepartureURI = environment.backendUrl + '/mailing/depart/upload-scan';
 
 
 

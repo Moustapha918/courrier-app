@@ -39,7 +39,7 @@ export class ViewingDepartureMailComponent implements OnInit {
                   // console.log(arrivedMail);
 
                   this.mail = departureMail;
-                  console.log(this.mail)
+                  console.log(this.mail);
                   this.loadingService.closeSpinner();
 
               },
@@ -63,7 +63,8 @@ export class ViewingDepartureMailComponent implements OnInit {
         this.matDialog.open(VisualizePdfComponent, {
             width: '90%',
             height: '95%',
-            data: this.mail
+            data: {mail: this.mail, type: 'depart'}
+            // data: this.mail
         });
     }
 
