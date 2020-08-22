@@ -114,7 +114,7 @@ export class InitDapartureMAilComponent implements OnInit {
 
         const headers = [{name: 'Accept', value: 'application/json'},
             {name: 'Authorization', value:  `Bearer ${this.auth.getToken()}`}];
-        this.uploader = new FileUploader({url: this.initMailService.uploadScanFileURI + '/'
+        this.uploader = new FileUploader({url: this.initMailService.uploadScanFileDepartureURI + '/'
                 + this.form.controls['idDirectory'].value + '/'
                 + this.form.controls['idEntry'].value, allowedMimeType: ['application/pdf'],
             autoUpload: true, headers: headers});
@@ -189,8 +189,6 @@ export class InitDapartureMAilComponent implements OnInit {
                         }
                     });
                 }
-
-
             };
 
 

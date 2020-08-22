@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class FileUploadService {
     downloadFileUrl = environment.backendUrl + '/mailing/arrived/download-scan/';
+    downloadFileDepartureUrl = environment.backendUrl + '/mailing/depart/download-scan/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,6 +16,13 @@ export class FileUploadService {
 
       return this.httpClient.get(this.downloadFileUrl + idDirectory + '/' + idScanFile, { responseType: 'blob' });
   }
+
+    downLoadDepartureFile(idDirectory: string, idScanFile: string): Observable<any>{
+
+        return this.httpClient.get(this.downloadFileDepartureUrl + idDirectory + '/' + idScanFile, { responseType: 'blob' });
+    }
+
+
 
 
 }

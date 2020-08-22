@@ -135,7 +135,8 @@ export class ViewingEmailComponent implements OnInit {
         this.matDialog.open(VisualizePdfComponent, {
             width: '90%',
             height: '95%',
-            data: this.mail
+            data: {mail: this.mail, type: 'arrived'}
+            // data: this.mail
         });
     }
 
