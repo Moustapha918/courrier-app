@@ -3,9 +3,9 @@
     <!-- CENTER -->
     <div class="center">
 
-        <div class="h1 pt-32">
+        <!--<div class="h1 pt-32">
             {{ 'mail.DISPALY_ANNOTATION_VENTILATION' | translate }}
-        </div>
+        </div>-->
 
         <p class="pb-32">
 
@@ -36,7 +36,7 @@
                             <div fxLayout="row" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
-                                    <mat-label>{{ 'mail.MAIL_DATE' | translate }}</mat-label>
+                                    <mat-label>{{ 'mail.MAIL_DATE_DEPARTURE' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.departureDate" disabled name="receptionDate">
                                     <mat-icon matSuffix class="disabled-text">today</mat-icon>
                                 </mat-form-field>
@@ -57,7 +57,7 @@
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-                                    <mat-label>{{ 'mail.IDRECEIVED_DOCUMENT' | translate }}</mat-label>
+                                    <mat-label>{{ 'mail.AMPLIATIONS' | translate }}</mat-label>
                                     <input matInput [(ngModel)]="mail.ampliations" name="idReceivedDocument"
                                            disabled>
                                     <mat-icon matSuffix class="secondary-text">flag</mat-icon>
@@ -68,19 +68,25 @@
                             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
 
                                 <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
-                                    <mat-label>{{ 'mail.SENDER_MAIL' | translate }}</mat-label>
-                                    <input matInput [(ngModel)]="mail.receiver" name="sender" disabled>
+                                    <mat-label>{{ 'mail.RECEIVER_MAIL' | translate }}</mat-label>
+                                    <input matInput [(ngModel)]="mail.receiver" name="receiver" disabled>
                                     <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>{{ 'mail.SUBJECT_MAIL' | translate }}</mat-label>
+                                    <textarea [(ngModel)]="mail.subject" matInput name="subject" disabled> </textarea>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
-
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>{{ 'mail.SUBJECT_MAIL' | translate }}</mat-label>
-                                    <textarea [(ngModel)]="mail.subject" matInput name="subject" disabled>
-                            </textarea>
+                                <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
+                                    <mat-label>{{ 'mail.OBSERVATIONS' | translate }}</mat-label>
+                                    <input matInput [(ngModel)]="mail.observations" name="receiver" disabled>
+                                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
                                 </mat-form-field>
+
+
                             </div>
 
                         </form>
