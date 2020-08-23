@@ -49,6 +49,7 @@ export const locale = {
             ANNOTATION_VENTILATION: 'التعليق و التوزيع',
             ANNOTATION: 'التعليق',
             VENTILATION: 'التوزيع',
+            CLOSE: 'اغلاق',
             SPECIFIC_INSTRUCTIONS: 'تعليمات خاصة',
             DISPLAY: 'عرض',
             HISTORY: 'سجل',
