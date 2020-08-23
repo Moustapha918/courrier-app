@@ -186,7 +186,7 @@ export class InitMailService implements Resolve<any>{
 
     closeMail(idEntry: string, step: StepsModel): Observable<any> {
         const closeMailURI = environment.backendUrl + `/mailing/arrived/${idEntry}/terminate`;
-        return this.httpClient.post(closeMailURI, step);s
+        return this.httpClient.post(closeMailURI, step);
     }
 }
 
