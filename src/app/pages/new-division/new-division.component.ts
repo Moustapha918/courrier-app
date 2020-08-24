@@ -95,7 +95,7 @@ export class NewDivisionComponent implements OnInit {
 
         });
         console.log(this.data);
-        this.referentialService.getAllServiceEntityFromBackend().subscribe(
+        this.referentialService.getAllServicesEntity().subscribe(
             data => this.services = data
         );
 

@@ -63,7 +63,7 @@ export class ServiceEntityComponent implements OnInit {
     }
 
     private updateServicesTable(): void {
-        this.referentialService.getAllServiceEntityFromBackend().subscribe((services) => {
+        this.referentialService.getAllServicesEntity().subscribe((services) => {
 
             services.map(service  => {
                 this.referentialService.getDirectionByCode(service.codeDirection).subscribe((direction) => {

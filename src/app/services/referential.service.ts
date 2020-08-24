@@ -11,6 +11,7 @@ import {DepartmentModel} from '../models/departement.model';
 import {DivisionModel} from '../models/division.model';
 import {MinisterOfficeModel} from '../models/minister-office.model';
 import {GeneralSecretaryModel} from '../models/general-secretary.model';
+import {AnnotationModel} from "../models/annotation.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,7 @@ export class ReferentialService {
     getDirectionURI = environment.backendUrl + '/referential/direction/';
     getServiceURI = environment.backendUrl + '/referential/service/';
     getServicesURI = environment.backendUrl + '/referential/services/';
+    private annotationsURI: string = environment.backendUrl + '/referential/annotations';
 
     constructor(private httpClient: HttpClient) {
 
@@ -67,17 +69,8 @@ export class ReferentialService {
 
     // Direction
 
-    getAllDirections(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get<DirectionModel[]>(this.getAllDirectionURI)
-                .subscribe((response: any) => {
-                    this.directions = response;
-                    console.log('this.Direction from service', this.directions);
-                    this.onDirectionChanged.next(this.directions);
-
-                    resolve(response);
-                }, reject);
-        });
+    getAllDirections(): Observable<any> {
+            return this.httpClient.get<DirectionModel[]>(this.getAllDirectionURI);
     }
 
     getVentilationList(): Observable<DirectionModel[]> {
@@ -150,27 +143,12 @@ export class ReferentialService {
             .put<GeneralSecretaryModel>(this.updateGeneralSecretaryURI, generalSecretary);
     }
 
-    // ServiceEntity
-    getAllServicesEntity(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get<ServiceEntityModel[]>(this.getAllServicesEntityURI)
-                .subscribe((response: any) => {
-                    this.serviceEntity = response;
-                    console.log('this.Service from service', this.serviceEntity);
-                    // this.onServiceEntityChanged.next(this.serviceEntity);
-
-                    resolve(response);
-                }, reject);
-        });
-    }
-
-
     sendServiceEntityFormToBackend(serviceEntity: ServiceEntityModel): Observable<any> {
         return this.httpClient
             .post<any>(this.addNewServiceEntityURI, serviceEntity);
     }
 
-    getAllServiceEntityFromBackend(): Observable<ServiceEntityModel[]> {
+    getAllServicesEntity(): Observable<ServiceEntityModel[]> {
         return this.httpClient
             .get<ServiceEntityModel[]>(this.getAllServicesEntityURI) ;
     }
@@ -221,10 +199,7 @@ export class ReferentialService {
         return this.httpClient
             .put<DirectionModel>(this.updateDepartementURI, departement);
     }
-
-
-
-
+    
     // Division
     sendDivisionFormToBackend(division: DivisionModel): Observable<any> {
         return this.httpClient
@@ -246,6 +221,11 @@ export class ReferentialService {
         console.log(this.updateDivisionURI );
         return this.httpClient
             .put<DirectionModel>(this.updateDivisionURI, division);
+    }
+    
+    getAnnotations(): Observable<AnnotationModel[]>{
+        
+        return this.httpClient.get<AnnotationModel[]>(this.annotationsURI);
     }
 
 

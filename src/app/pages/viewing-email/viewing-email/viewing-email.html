@@ -158,35 +158,11 @@
                             <div fxLayoutAlign="space-between space-between" fxLayout="row" *ngIf="translate.currentLang === 'fr'">
 
                                 <div fxLayoutAlign="start" fxLayout="column" >
-                                    <mat-checkbox *ngFor="let i of index1 " name="annotations"
+                                    <mat-checkbox *ngFor="let annotation of annotations" name="annotations"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{annotations[i].labelFR}}
+                                                  [(ngModel)]="annotation.value">{{translate.currentLang === 'fr' ? annotation.labelFR : annotation.labelAR }}
                                     </mat-checkbox>
                                 </div>
-
-                                <div fxLayoutAlign="start" fxLayout="column" >
-                                    <mat-checkbox *ngFor="let i of index2" name="annotations"
-                                                  class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{ annotations[i].labelFR}}
-                                    </mat-checkbox>
-                                </div>
-                            </div>
-                            <div fxLayoutAlign="space-between space-between" fxLayout="row" *ngIf="translate.currentLang === 'ar'">
-
-                                <div fxLayoutAlign="start" fxLayout="column" >
-                                    <mat-checkbox *ngFor="let i of index1 " name="annotations"
-                                                  class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{annotations[i].labelAR}}
-                                    </mat-checkbox>
-                                </div>
-
-                                <div fxLayoutAlign="start" fxLayout="column" >
-                                    <mat-checkbox *ngFor="let i of index2" name="annotations"
-                                                  class="app-checkbox"
-                                                  [(ngModel)]="annotations[i].value">{{ annotations[i].labelAR}}
-                                    </mat-checkbox>
-                                </div>
-
                             </div>
 
                             <div style="margin-top:20px;">

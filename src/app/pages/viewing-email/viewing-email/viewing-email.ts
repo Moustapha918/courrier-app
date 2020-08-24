@@ -12,11 +12,9 @@ import {TranslateService} from '@ngx-translate/core';
 import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
-import {DirectionModel} from '../../../models/direction.model';
-import {ServiceEntityModel} from '../../../models/service-entity.model';
-import {DivisionModel} from '../../../models/division.model';
+
 import {LoadingService} from '../../../services/loading.service';
-import {NotificationService} from "../../../services/notification.service";
+import {NotificationService} from '../../../services/notification.service';
 
 
 @Component({
@@ -37,14 +35,8 @@ export class ViewingEmailComponent implements OnInit {
     steps: StepsModel = new StepsModel();
     annotations: any;
     ventilationList: any;
-    index1: any;
-    index2: any;
     specificInstructions: any;
     codeDirectionList = [];
-    direc5tion: any;
-    ventilationsDirections: DirectionModel[] = [];
-    ventilationsSecrvices: ServiceEntityModel[] = [];
-    ventilationsDivision: DivisionModel[] = [];
 
 
 
@@ -62,15 +54,13 @@ export class ViewingEmailComponent implements OnInit {
         private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService,
         private notificationService: NotificationService
     )
-    {
-
-    }
+    {    }
 
     ngOnInit(): void {
 
-        this.annotations = this.initMailService.annotations;
-        this.index1 = this.initMailService.index1;
-        this.index2 = this.initMailService.index2;
+        this.referentialService.getAnnotations().subscribe(
+            annotations =>  this.annotations = annotations);
+
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
             // console.log(param);
@@ -146,12 +136,7 @@ export class ViewingEmailComponent implements OnInit {
     annotateAndVentilate(): void {
         console.log(this.annotations.filter(ann => ann.value));
         this.steps.annotations = this.annotations.filter(ann => ann.value);
-        console.log(this.steps.annotations);
 
-     /*   for (const direction of this.directions.filter(dir => dir.value)){
-            this.codeDirectionList.push(direction.code);
-        }*/
-        console.log(this.codeDirectionList);
         this.steps.ventilations = this.ventilationList.filter(dir => dir.value);
         this.steps.specificInstructions = this.specificInstructions;
 
