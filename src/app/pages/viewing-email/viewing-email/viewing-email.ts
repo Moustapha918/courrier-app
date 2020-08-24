@@ -16,6 +16,7 @@ import {DirectionModel} from '../../../models/direction.model';
 import {ServiceEntityModel} from '../../../models/service-entity.model';
 import {DivisionModel} from '../../../models/division.model';
 import {LoadingService} from '../../../services/loading.service';
+import {NotificationService} from "../../../services/notification.service";
 
 
 @Component({
@@ -58,7 +59,8 @@ export class ViewingEmailComponent implements OnInit {
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
-        private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService
+        private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService,
+        private notificationService: NotificationService
     )
     {
 
@@ -182,5 +184,29 @@ export class ViewingEmailComponent implements OnInit {
     translateLabel(ventilation: any): string {
         return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
 
+    }
+
+    closeMail(): void {
+        const spinner = this.loadingService.displaySpinner();
+        this.steps.annotations = this.annotations.filter(ann => ann.value);
+        const clotureAnnotation = {code: '99', labelFR: 'Clôture', labelAR: 'اغلاق'};
+        this.steps.annotations.push(clotureAnnotation);
+        this.steps.specificInstructions = this.specificInstructions;
+        this.initMailService.closeMail(this.mail.idEntry, this.steps).subscribe(
+            success => {
+
+                console.log(success);
+                this.notificationService.openSnackBar('Courrier bien clôturé', 'Notification');
+                spinner.close();
+                this.router.navigate(['arrivedMail-sc']);
+            }, error => {
+                console.log(error);
+                const message = 'Une erreur technique est survenue lors du cloture du mail.  Veuillez réessayer ultérieurement';
+                const dialogData = new DialogModel('title', message);
+                this.dialog.open(ErrorDilaogComponent, {
+                    width: '2500px',
+                    data: dialogData
+                });
+            });
     }
 }

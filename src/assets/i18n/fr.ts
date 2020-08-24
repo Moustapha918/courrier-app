@@ -53,6 +53,7 @@ export const locale = {
             ANNOTATION_VENTILATION          : 'Annoter et ventiler',
             ANNOTATION                      : 'Annoter',
             VENTILATION                     : 'Ventiler',
+            CLOSE                           : 'Côturer',
             SPECIFIC_INSTRUCTIONS           : 'Instructions particuliers',
             DISPLAY                         : 'Visualiser',
             HISTORY                         :  'Historique',
@@ -139,11 +140,6 @@ export const locale = {
             DELETEMINISTEROFFICEMSG         : 'Elément supprimé',
             UPDATEMINISTEROFFICEMSG         : 'Elément mis à jour',
             DELETEMSGCONFIRMATIONMINISTEROFFICE  : `Etes-vous sûr de vouloir supprimer cet élément`,
-
-
-
-
-
 
             DELETECONFIRMATION              : 'Confirmation de suppression'
 
