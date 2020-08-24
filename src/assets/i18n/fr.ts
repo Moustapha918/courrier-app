@@ -162,7 +162,7 @@ export const locale = {
             EMAIL_REQUIRED: 'Email is required',
             EMAIL_VALID: 'Please enter a valid email address',
             PASSWORD_REQUIRED : 'Password is required',
-            REMEMBER_ME: 'Remember Me',
+            REMEMBER_ME: 'Rester connecté',
             PASSWORD_FORGETED : 'Mot de passe oublié ?',
             CONNECT : 'SE CONNECTER'
         }
