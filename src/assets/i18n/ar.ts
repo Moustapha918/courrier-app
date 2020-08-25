@@ -155,6 +155,7 @@ export const locale = {
         LOGIN_VERIFICATION : {
             AUTHENTICATED: ' الرجاء التسجيل للدخول',
             IDENTIFIANT: 'اسم المستخدم',
+            PASSWORD: 'كلمة السر',
             EMAIL_REQUIRED: ' الرجاء إدخال البريد الإلكتروني',
             EMAIL_VALID: ' الرجاء إدخال بريد إلكتروني صحيح',
             PASSWORD_REQUIRED : ' الرجاءإعادة إدخال كلمة المرور',

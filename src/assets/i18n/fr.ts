@@ -158,10 +158,11 @@ export const locale = {
 
         LOGIN_VERIFICATION: {
             AUTHENTICATED: 'SE CONNECTER A VOTRE COMPTE',
-            IDENTIFIANT: 'identifiant',
-            EMAIL_REQUIRED: 'Email is required',
-            EMAIL_VALID: 'Please enter a valid email address',
-            PASSWORD_REQUIRED : 'Password is required',
+            IDENTIFIANT: 'Identifiant',
+            PASSWORD: 'Mot de passe',
+            EMAIL_REQUIRED: 'Le nom d\'utilisateur est obligatoire',
+            EMAIL_VALID: 'Email invalide',
+            PASSWORD_REQUIRED : 'Mot de passe obligatoire',
             REMEMBER_ME: 'Rester connecté',
             PASSWORD_FORGETED : 'Mot de passe oublié ?',
             CONNECT : 'SE CONNECTER'

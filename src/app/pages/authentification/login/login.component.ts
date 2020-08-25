@@ -7,6 +7,7 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {NotificationService} from '../../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
+import {LoadingService} from '../../../services/loading.service';
 
 @Component({
     selector     : 'login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit
     constructor(private _formBuilder: FormBuilder, private authService: AuthService,
                 private router: Router, private _fuseConfigService: FuseConfigService,
                 private notificationService: NotificationService,
-                public translate: TranslateService) {  }
+                public translate: TranslateService, private loadingService: LoadingService) {  }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -64,14 +65,18 @@ export class LoginComponent implements OnInit
 
     login(): void {
         console.log(this.loginForm.value);
+        const spinner = this.loadingService.displaySpinner();
         this.authService.login(this.loginForm.value['username'], this.loginForm.value['password']).subscribe(
             (res) => {
                 localStorage.setItem('token', res.body['Authorization']);
                 this.authService.loadUserDetails();
                 this.router.navigate(['arrivedMail-sc']);
+                spinner.close();
             }, error => {
 
-                this.notificationService.openSnackBar(this.translate.instant('LOGIN.LOGIN_ERROR'), this.translate.instant('mail.NOTIFICATION'));
+                this.notificationService.openSnackBar(this.translate.instant('LOGIN.LOGIN_ERROR'),
+                    this.translate.instant('mail.NOTIFICATION'));
+                spinner.close();
                 console.log(error.status);
 
             });
