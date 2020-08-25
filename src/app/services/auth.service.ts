@@ -22,13 +22,16 @@ export class AuthService {
     }
 
     public login(username: string, password: string): Observable<HttpResponse<any>>{
+
       return this.httpClient.post<HttpResponse<any>>(this.loginUrl,
-          {username: username, password: password},
+          {username: username.toLocaleLowerCase(), password: password},
           {observe: 'response'});
     }
 
     public logout(): void{
-        localStorage.clear();
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
         this.router.navigate(['login']);
     }
 
