@@ -62,6 +62,14 @@ export const locale = {
             NO: 'لا',
 
         },
+
+        VIEWINGMAIL: {
+            USER: 'المستخدم',
+            INITMAIL: 'إنشاء البريد',
+            ANNOT_VENT : 'تعليق و توزيع',
+        },
+
+
         REFERENTIAL: {
             REFERENTIEL: 'المرجع',
             ORGANIGRAM: 'Organigramme',

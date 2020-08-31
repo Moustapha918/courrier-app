@@ -66,20 +66,7 @@ export class LoginComponent implements OnInit
             password: ['', Validators.required]
         });
 
-
-
     }
-
-/*    private updateNavigationBar(): void{
-        this.user = JSON.parse(localStorage.getItem('user'));
-
-        if (this.user != null && this.user.fonction === 'FONCTION_SG') {
-            this.navigation = navigation;
-        } else {
-            this.navigation = navigationNonSG;
-        }
-        this._fuseNavigationService.register('main', this.navigation);
-    }*/
 
     login(): void {
         console.log(this.loginForm.value);

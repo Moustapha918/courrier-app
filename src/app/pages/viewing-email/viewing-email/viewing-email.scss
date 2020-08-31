@@ -2,6 +2,19 @@
 
 }
 
+
+.header {
+    display: inline-block;
+    width: 100%;
+}
+.playerOne {
+    float: left;
+}
+.playerTwo {
+    float: right;
+    padding-right:100px;
+}
+
 .mat-list-item {
     min-height: 40px;
     /*overflow: scroll;*/

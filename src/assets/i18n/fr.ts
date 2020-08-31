@@ -65,6 +65,13 @@ export const locale = {
 
 
         },
+
+        VIEWINGMAIL: {
+            USER: 'Utilisateur',
+            INITMAIL: 'Initiation du courrier',
+            ANNOT_VENT : 'Annotation et Ventilaltion',
+        },
+
         REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',

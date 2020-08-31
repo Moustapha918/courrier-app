@@ -12,7 +12,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
-
 import {LoadingService} from '../../../services/loading.service';
 import {NotificationService} from '../../../services/notification.service';
 
@@ -76,7 +75,7 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 error => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
