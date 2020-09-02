@@ -9,6 +9,7 @@ export class StepsModel{
     specificInstructions: string;
     dateHandling: any;
     ventilationDirections: DirectionModel[];
+    type: string;
 
 
 }
