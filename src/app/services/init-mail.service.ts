@@ -73,20 +73,6 @@ export class InitMailService implements Resolve<any>{
     }
 
 
-    getArrivedMails(): Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get<ArrivedMailModel[]>(this.getAllArrivedMAilsURI)
-                .subscribe((response: any) => {
-                    this.arrivedMails = response;
-                    console.log('this.arrivedMails from service', this.arrivedMails);
-                    // setTimeout(() => { console.log('____________'); this.onarrivedMailsChanged.next(this.arrivedMails); resolve(response); }, 10000)
-                    this.onarrivedMailsChanged.next(this.arrivedMails);
-                    resolve(response);
-                }, reject);
-        });
-    }
-
     getArrivedMailsSC(): Promise<any>
     {
         return new Promise((resolve, reject) => {

@@ -1,0 +1,114 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-md-0">
+                <h1 class="md-display-3">{{ 'NAV.ARRIVED' | translate }}</h1>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="{{ 'mail.CHERCHER_COURRIER' | translate }}">
+                </div>
+            </div>
+
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <button mat-raised-button *ngIf="user.fonction=='FONCTION_SG'"
+                    [routerLink]="'../new-arrived-mail'">
+                <!--class="add-product-button fuse-white mt-24 mt-md-0">-->
+                <span>{{ 'mail.AJOUTER_COURRIER' | translate }}</span>
+            </button>
+            <!-- / ADD BUTTON -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-table class="products-table"
+                       #table [dataSource]="dataSource"
+                       matSort
+                       [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                    <mat-cell *matCellDef="let Mail">
+                        {{Mail.type}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="idEntry">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.ID_ENTRY' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let Mail">
+                        <p class="text-truncate" *ngIf="Mail.treated === false"><strong>{{Mail.idEntry}}</strong></p>
+                        <p class="text-truncate" *ngIf="Mail.treated === true">{{Mail.idEntry}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="subject">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let Mail">
+
+                        <p class="text-truncate" >{{Mail.subject}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- expediteur -->
+                <ng-container matColumnDef="senderOrReceiver">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.EXPEDITEUR' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let Mail">
+                        <p class="text-truncate">{{Mail.senderOrReceiver}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Date -->
+                <ng-container matColumnDef="dateCreation">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let Mail">
+
+                        <p class="text-truncate" >{{Mail.dateCreation}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let mail; columns: displayedColumns;"
+                         class="product"
+                         matRipple [routerLink]="'../lecture-mail/'+mail.idEntry">
+
+                </mat-row>
+
+            </mat-table>
+
+            <mat-paginator #paginator
+                           [length]="dataSource.filteredData.length"
+                           [pageIndex]="0"
+                           [pageSize]="10"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

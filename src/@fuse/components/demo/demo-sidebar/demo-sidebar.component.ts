@@ -23,18 +23,6 @@ export class FuseDemoSidebarComponent
     }
 
     // tslint:disable-next-line:use-lifecycle-interface
-    ngOnInit(): void {
-
-        this.route.params.subscribe( param => {
-            console.log(param);
-            this.initMailService.getArrivedMails().then( mails => {
-                console.log(mails);
-                this.mail = mails.find( m => m.idEntry === param.id);
-                console.log(this.mail);
-            });
-        });
-
-    }
 
 
 
