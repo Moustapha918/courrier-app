@@ -21,7 +21,9 @@ export const locale = {
             OBJET: 'الموضوع',
             EXPEDITEUR: 'المرسل',
             RECEIVER : 'المستلم',
+            EXPEDITEUR_RECEIVER : 'المرسل/المستلم',
             DATE: 'تاريخ الإستلام',
+            DATE_CREATION : 'تاريخ الإنشاء',
             DATESEND: 'تاريخ الإرسال',
             CREATE_MAIL: 'إنشاء رسالة واردة جديدة',
             CREATE_MAIL_DEPARTURE           : 'إنشاء رسالة صادرة جديدة',
@@ -51,7 +53,10 @@ export const locale = {
             ANNOTATION_VENTILATION: 'التعليق و التوزيع',
             ANNOTATION: 'التعليق',
             VENTILATION: 'التوزيع',
-            CLOSE: 'اغلاق',
+            CLOSE: 'إغلاق',
+            CLOSEMAIL: 'إغلاق البريد',
+            CLOSEMSGCONFIRMATION: `هل أنت متأكد أنك تريد إغلاق هذا البريد`,
+            CLOSECONFIRMATION: 'تأكيد الإغلاق',
             SPECIFIC_INSTRUCTIONS: 'تعليمات خاصة',
             DISPLAY: 'عرض',
             HISTORY: 'سجل',
@@ -62,6 +67,14 @@ export const locale = {
             NO: 'لا',
 
         },
+
+        VIEWINGMAIL: {
+            USER: 'المستخدم',
+            INITMAIL: 'إنشاء البريد',
+            ANNOT_VENT : 'تعليق و توزيع',
+        },
+
+
         REFERENTIAL: {
             REFERENTIEL: 'المرجع',
             ORGANIGRAM: 'Organigramme',

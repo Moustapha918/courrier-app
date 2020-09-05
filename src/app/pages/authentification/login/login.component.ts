@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
 import {NotificationService} from '../../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LoadingService} from '../../../services/loading.service';
+import {ApplicationUserModel} from '../../../models/applicationUser';
+import {FuseNavigationService} from '../../../../@fuse/components/navigation/navigation.service';
 
 @Component({
     selector     : 'login',
@@ -19,6 +21,8 @@ import {LoadingService} from '../../../services/loading.service';
 export class LoginComponent implements OnInit
 {
     loginForm: FormGroup;
+    navigation: any;
+    user: ApplicationUserModel;
 
     /**
      * Constructor
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit
      */
     constructor(private _formBuilder: FormBuilder, private authService: AuthService,
                 private router: Router, private _fuseConfigService: FuseConfigService,
-                private notificationService: NotificationService,
+                private notificationService: NotificationService, private _fuseNavigationService: FuseNavigationService,
                 public translate: TranslateService, private loadingService: LoadingService) {  }
 
     // -----------------------------------------------------------------------------------------------------
@@ -61,6 +65,7 @@ export class LoginComponent implements OnInit
             username   : ['', [Validators.required]],
             password: ['', Validators.required]
         });
+
     }
 
     login(): void {
@@ -71,6 +76,7 @@ export class LoginComponent implements OnInit
                 localStorage.setItem('token', res.body['Authorization']);
                 this.authService.loadUserDetails();
                 this.router.navigate(['arrivedMail-sc']);
+
                 spinner.close();
             }, error => {
 

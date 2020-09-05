@@ -23,7 +23,9 @@ export const locale = {
             OBJET                           : 'Objet',
             EXPEDITEUR                      : 'Expediteur',
             RECEIVER                        : 'Destinataire',
+            EXPEDITEUR_RECEIVER             : 'Destinataire/Expediteur',
             DATE                            : 'Date de réception',
+            DATE_CREATION                   : 'Date de création',
             DATESEND                        : 'Date d\'envoi',
             CREATE_MAIL                     : 'Créer un courrier arrivé',
             CREATE_MAIL_DEPARTURE           : 'Créer un courrier depart',
@@ -53,7 +55,10 @@ export const locale = {
             ANNOTATION_VENTILATION          : 'Annoter et ventiler',
             ANNOTATION                      : 'Annoter',
             VENTILATION                     : 'Ventiler',
-            CLOSE                           : 'Côturer',
+            CLOSE                           : 'Clôturer',
+            CLOSEMAIL                       : 'Clôture du courrier',
+            CLOSEMSGCONFIRMATION            : `Etes-vous sûr de vouloir clôturer ce courrier`,
+            CLOSECONFIRMATION               : 'Confirmation de clôture',
             SPECIFIC_INSTRUCTIONS           : 'Instructions particuliers',
             DISPLAY                         : 'Visualiser',
             HISTORY                         :  'Historique',
@@ -65,6 +70,13 @@ export const locale = {
 
 
         },
+
+        VIEWINGMAIL: {
+            USER: 'Utilisateur',
+            INITMAIL: 'Initiation du courrier',
+            ANNOT_VENT : 'Annotation et Ventilaltion',
+        },
+
         REFERENTIAL: {
             REFERENTIEL                     : 'Referentiel',
             ORGANIGRAM                      : 'Organigramme',

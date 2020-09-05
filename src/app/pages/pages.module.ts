@@ -55,6 +55,8 @@ import {MatListModule} from '@angular/material/list';
 import { InitDapartureMAilComponent } from './init-daparture-mail/init-daparture-mail.component';
 import { DepartureMailScComponent } from './departure-mail-sc/departure-mail-sc.component';
 import { ViewingDepartureMailComponent } from './viewing-departure-mail/viewing-departure-mail.component';
+import { ArchiveComponent } from './archive/archive.component';
+import {ArchiveService} from "../services/archive.service";
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -129,10 +131,19 @@ const routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path     : 'archive',
+        component: ArchiveComponent,
+        canActivate: [AuthGuardService],
+        resolve : {
+            data : ArchiveService
+        }
+    },
+    {
         path     : 'departureMail-sc',
         component: DepartureMailScComponent,
         canActivate: [AuthGuardService]
     },
+
     {
         path     : 'lecture-departuremail/:id',
         component: ViewingDepartureMailComponent,
@@ -159,7 +170,7 @@ const routes = [
         NewSecretaireGeneraleComponent,
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
         DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent, InitDapartureMAilComponent, DepartureMailScComponent, ViewingDepartureMailComponent
+        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent, InitDapartureMAilComponent, DepartureMailScComponent, ViewingDepartureMailComponent, ArchiveComponent
 
     ],
     exports: [

@@ -10,6 +10,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { navigation } from 'app/navigation/navigation';
+import { navigationNonSG } from 'app/navigation/navigationNonSG';
 
 
 import * as _ from 'lodash';
@@ -18,6 +19,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 import {LoadingService} from './services/loading.service';
 import {MatDialogRef} from '@angular/material';
 import {SpinnerModalComponent} from './pages/spinner-modal/spinner-modal.component';
+import {ApplicationUserModel} from './models/applicationUser';
 
 @Component({
     selector   : 'app',
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy
     navigation: any;
     languages: any;
     selectedLanguage: any;
+    user: ApplicationUserModel;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -95,6 +98,14 @@ export class AppComponent implements OnInit, OnDestroy
                 flag : 'tr'
             }
         ];
+
+        this.user = JSON.parse(localStorage.getItem('user'));
+
+        if (this.user != null && this.user.fonction === 'FONCTION_SG') {
+            this.navigation = navigation;
+        } else {
+            this.navigation = navigationNonSG;
+        }
 
         // Get default navigation
         this.navigation = navigation;

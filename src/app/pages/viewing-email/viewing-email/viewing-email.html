@@ -23,20 +23,22 @@
                             <mat-expansion-panel *ngFor="let mailStep of mailSteps">
 
                                 <mat-expansion-panel-header>
-                                    <div fxFlex="1 1 gap" fxLayout="row" fxLayoutGap="500px" fxLayoutAlign=" space-between">
-                                        <div *ngIf="!mailStep.ventilations || mailStep.ventilations.length === 0">   Initiation du courrier      </div>
-                                        <div *ngIf="mailStep.ventilations?.length > 0"> Annotation et Ventilaltion  </div>
-                                        <div> {{mailStep.dateHandling}} </div>
+                                    <div class="header">
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Initiation'">   {{ 'VIEWINGMAIL.INITMAIL' | translate }} </div>
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Annotation'"> {{ 'VIEWINGMAIL.ANNOT_VENT' | translate }}  </div>
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Terminate'"> {{ 'mail.CLOSEMAIL' | translate }}  </div>
+                                        <div class="playerTwo   ">  {{mailStep.dateHandling}} </div>
                                     </div>
+
                                 </mat-expansion-panel-header>
 
                                 <mat-list>
-                                    <strong> <a>Utilisateur</a> </strong>
+                                    <strong> <a>{{ 'VIEWINGMAIL.USER' | translate }}</a> </strong>
                                     <mat-divider></mat-divider>
                                     <mat-list-item > {{mailStep.user.fonction}} : {{mailStep.user.firstName}}  {{mailStep.user.lastName}}</mat-list-item>
 
-                                    <ng-container *ngIf="mailStep.annotations && mailStep.annotations?.length > 0">
-                                        <strong > <a>Annotations</a> </strong>
+                                    <ng-container *ngIf="mailStep.type && mailStep.annotations?.length > 0">
+                                        <strong > <a>{{ 'mail.ANNOTATION' | translate }}</a> </strong>
                                         <mat-divider ></mat-divider>
                                         <mat-list-item *ngFor="let annotation of mailStep.annotations"> {{translateLabel(annotation)}}
 
@@ -44,13 +46,13 @@
                                     </ng-container>
 
                                     <ng-container *ngIf="mailStep.ventilations && mailStep.ventilations?.length > 0">
-                                        <strong> <a>Ventilation </a> </strong>
+                                        <strong> <a>{{ 'mail.VENTILATION' | translate }} </a> </strong>
                                         <mat-divider></mat-divider>
                                         <mat-list-item lass="instructions-area" *ngFor="let ventilation of mailStep.ventilations">{{translateLabel(ventilation)}}</mat-list-item>
                                     </ng-container>
 
                                     <ng-container *ngIf="mailStep.specificInstructions">
-                                        <strong> <a>Instructions Particulieres</a></strong>
+                                        <strong> <a>{{ 'mail.SPECIFIC_INSTRUCTIONS' | translate }}</a></strong>
                                         <mat-divider></mat-divider>
                                         <mat-list-item>{{mailStep.specificInstructions}}</mat-list-item>
                                     </ng-container>
@@ -173,10 +175,9 @@
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center center" class="pt-36">
 
-                                <button class="mr-8" mat-raised-button (click)="closeMail()" type="button" color="accent">
+                                <button class="mr-8" mat-raised-button (click)="confirmCloseMail()" type="button" color="accent">
                                     {{ 'mail.CLOSE' | translate }}
                                 </button>
-
                                 <button class="mr-8" mat-raised-button matStepperNext type="button" color="accent">
                                     {{ 'mail.VENTILATION' | translate }}
                                 </button>

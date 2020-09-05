@@ -9,10 +9,9 @@ import {MatDialog} from '@angular/material';
 import {VisualizePdfComponent} from '../../visualize-pdf/visualize-pdf.component';
 import {ReferentialService} from '../../../services/referential.service';
 import {TranslateService} from '@ngx-translate/core';
-import {DialogModel} from '../../confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent, DialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
-
 import {LoadingService} from '../../../services/loading.service';
 import {NotificationService} from '../../../services/notification.service';
 
@@ -52,14 +51,18 @@ export class ViewingEmailComponent implements OnInit {
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
         private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService,
-        private notificationService: NotificationService
+        private notifyService: NotificationService, private notificationService: NotificationService
     )
     {    }
 
     ngOnInit(): void {
 
         this.referentialService.getAnnotations().subscribe(
-            annotations =>  this.annotations = annotations);
+            annotations =>
+            this.annotations = annotations
+
+        );
+
 
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
@@ -76,7 +79,7 @@ export class ViewingEmailComponent implements OnInit {
                 },
                 error => {
                     console.log('Error ! : ' + error);
-                    const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                    const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
                     const dialogData = new DialogModel('title', message);
                     const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
                         width: '4000px',
@@ -172,7 +175,7 @@ export class ViewingEmailComponent implements OnInit {
     }
 
     closeMail(): void {
-        const spinner = this.loadingService.displaySpinner();
+
         this.steps.annotations = this.annotations.filter(ann => ann.value);
         const clotureAnnotation = {code: '99', labelFR: 'Clôture', labelAR: 'اغلاق'};
         this.steps.annotations.push(clotureAnnotation);
@@ -182,7 +185,7 @@ export class ViewingEmailComponent implements OnInit {
 
                 console.log(success);
                 this.notificationService.openSnackBar('Courrier bien clôturé', 'Notification');
-                spinner.close();
+
                 this.router.navigate(['arrivedMail-sc']);
             }, error => {
                 console.log(error);
@@ -194,4 +197,25 @@ export class ViewingEmailComponent implements OnInit {
                 });
             });
     }
+
+    confirmCloseMail(): void {
+        const message = this.translate.instant('mail.CLOSEMSGCONFIRMATION');
+
+        const dialogData = new DialogModel(this.translate.instant('mail.CLOSECONFIRMATION'), message);
+
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+
+            if (result === true) {
+                this.closeMail();
+                this.loadingService.closeSpinner();
+            }
+        });
+
+    }
 }
+
