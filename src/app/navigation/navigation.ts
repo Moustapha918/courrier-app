@@ -103,9 +103,19 @@ export const navigation: FuseNavigation[] = [
 
             {
                 id       : 'archive',
+                // url      : 'arhive',
                 title    : 'archive',
                 translate: 'NAV.ARCHIVE',
-                type     : 'group',
+                type     : 'collapsable',
+                children : [
+                    {
+                        id     : 'departureMail-sc',
+                        translate: 'NAV.ARCHIVE',
+                        title: 'Archive',
+                        type     : 'item',
+                        url : 'archive'
+                    }
+                    ]
             }
         ]
     },

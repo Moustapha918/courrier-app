@@ -1,26 +1,25 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ApplicationUserModel} from "../../models/applicationUser";
-import {FilesDataSource} from "../arrived-mail-sc/arrived-mail-sc.component";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {DataSource} from "@angular/cdk/table";
-import {BehaviorSubject, fromEvent, merge, Observable} from "rxjs";
-import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
-import {FuseUtils} from "../../../@fuse/utils";
-import {ArchiveService} from "../../services/archive.service";
-import {MatDialog} from "@angular/material/dialog";
-import {LoadingService} from "../../services/loading.service";
-import {ErrorDilaogComponent} from "../error-dilaog/error-dilaog.component";
-import {fuseAnimations} from "../../../@fuse/animations";
-import {ActivatedRoute} from "@angular/router";
-import {ArchiveModel} from "../../models/archive.model";
-import {InitMailService} from "../../services/init-mail.service";
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ApplicationUserModel} from '../../models/applicationUser';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {DataSource} from '@angular/cdk/table';
+import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {FuseUtils} from '../../../@fuse/utils';
+import {ArchiveService} from '../../services/archive.service';
+import {MatDialog} from '@angular/material/dialog';
+import {LoadingService} from '../../services/loading.service';
+import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
+import {fuseAnimations} from '../../../@fuse/animations';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-archive',
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.scss'],
     animations   : fuseAnimations,
+    encapsulation: ViewEncapsulation.None
 })
 export class ArchiveComponent implements  OnInit {
 
@@ -28,7 +27,7 @@ export class ArchiveComponent implements  OnInit {
     user: ApplicationUserModel;
 
     dataSource: FilesArchiveSource;
-    displayedColumns: string[] = ['type', 'idEntry', 'subject', 'senderOrReceiver', 'dateCreation'];
+    displayedColumns: string[] = ['type', 'idDirectory', 'idEntry', 'subject', 'senderOrReceiver', 'dateCreation'];
 
 
     @ViewChild(MatPaginator, {static: true})
