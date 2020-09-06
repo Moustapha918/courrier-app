@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InitMailService} from '../../../services/init-mail.service';
@@ -14,6 +14,8 @@ import {ErrorDilaogComponent} from '../../error-dilaog/error-dilaog.component';
 import {StepsModel} from '../../../models/stepsModel';
 import {LoadingService} from '../../../services/loading.service';
 import {NotificationService} from '../../../services/notification.service';
+import {ArchiveService} from '../../../services/archive.service';
+import {ArchiveModel} from '../../../models/archive.model';
 
 
 @Component({
@@ -38,8 +40,6 @@ export class ViewingEmailComponent implements OnInit {
     codeDirectionList = [];
 
 
-
-
     /**
      * Constructor
      *
@@ -51,44 +51,72 @@ export class ViewingEmailComponent implements OnInit {
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
         private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService,
-        private notifyService: NotificationService, private notificationService: NotificationService
-    )
-    {    }
+        private notifyService: NotificationService, private notificationService: NotificationService, private archiveService: ArchiveService
+    ) {
+    }
 
     ngOnInit(): void {
 
         this.referentialService.getAnnotations().subscribe(
             annotations =>
-            this.annotations = annotations
-
+                this.annotations = annotations
         );
 
 
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
-            // console.log(param);
-            this.initMailService.getArrivedMail(param.id).subscribe(
+            console.log(param.archive);
 
-                arrivedMail => {
-                    // console.log(arrivedMail);
 
-                    this.mail = arrivedMail;
-                    this.mailSteps = this.mail.steps;
-                    this.loadingService.closeSpinner();
+            if (param.archive === 'arrived') {
+                this.initMailService.getArrivedMail(param.id).subscribe(
+                    arrivedMail => {
+                        // console.log(arrivedMail);
 
-                },
-                error => {
-                    console.log('Error ! : ' + error);
-                    const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
-                    const dialogData = new DialogModel('title', message);
-                    const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                        width: '4000px',
-                        data: dialogData
-                    });
-                    dialogRefError.afterClosed().subscribe(result => {
-                    });
-                }
-            );
+                        this.mail = arrivedMail;
+                        this.mailSteps = this.mail.steps;
+                        this.loadingService.closeSpinner();
+
+                    },
+                    error => {
+                        console.log('Error ! : ' + error);
+                        const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
+                        const dialogData = new DialogModel('title', message);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                            data: dialogData
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+                        });
+                    }
+                );
+            } else {
+                this.archiveService.getArchiveMail(param.id).subscribe(
+                    (archiveMail: ArchiveModel) => {
+
+                        const archiveMailT = new ArchiveModel();
+                        Object.assign(archiveMailT, archiveMail);
+
+                        this.mail = archiveMailT.mapToArrivedMail();
+
+                        this.mailSteps = this.mail.steps;
+                        this.loadingService.closeSpinner();
+
+                    },
+                    error => {
+                        console.log('Error ! : ' + error);
+                        const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
+                        const dialogData = new DialogModel('title', message);
+                        const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                            width: '4000px',
+                            data: dialogData
+                        });
+                        dialogRefError.afterClosed().subscribe(result => {
+                        });
+                    }
+                );
+
+            }
         });
 
         this.referentialService.getVentilationList()
@@ -112,16 +140,13 @@ export class ViewingEmailComponent implements OnInit {
             );
 
 
-
-
         this.horizontalStepperStep1 = this._formBuilder.group({});
 
         this.horizontalStepperStep2 = this._formBuilder.group({});
 
         this.horizontalStepperStep3 = this._formBuilder.group({});
 
-        this.horizontalStepperStep4 = this._formBuilder.group({
-        });
+        this.horizontalStepperStep4 = this._formBuilder.group({});
 
 
     }
@@ -157,14 +182,14 @@ export class ViewingEmailComponent implements OnInit {
                     data: dialogData
                 });
             });
-        }
+    }
 
     canConfirm(): boolean {
         if (!this.annotations || !this.ventilationList) {
             return false;
         }
 
-        return  this.annotations.some( annotation => annotation.value) &&
+        return this.annotations.some(annotation => annotation.value) &&
             this.ventilationList.some(dir => dir.value);
 
     }

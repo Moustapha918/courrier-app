@@ -56,7 +56,7 @@ import { InitDapartureMAilComponent } from './init-daparture-mail/init-daparture
 import { DepartureMailScComponent } from './departure-mail-sc/departure-mail-sc.component';
 import { ViewingDepartureMailComponent } from './viewing-departure-mail/viewing-departure-mail.component';
 import { ArchiveComponent } from './archive/archive.component';
-import {ArchiveService} from "../services/archive.service";
+import {ArchiveService} from '../services/archive.service';
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -145,12 +145,12 @@ const routes = [
     },
 
     {
-        path     : 'lecture-departuremail/:id',
+        path     : 'lecture-departuremail/:archive/:id',
         component: ViewingDepartureMailComponent,
         canActivate: [AuthGuardService]
     },
     {
-        path     : 'lecture-mail/:id',
+        path     : 'lecture-mail/:archive/:id',
         component: ViewingEmailComponent,
         canActivate: [AuthGuardService]
     },
