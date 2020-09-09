@@ -203,7 +203,6 @@ export class ViewingEmailComponent implements OnInit {
 
         const dialogData = new DialogModel(this.translate.instant('mail.CLOSECONFIRMATION'), message);
 
-
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             maxWidth: '4000px',
             data: dialogData
