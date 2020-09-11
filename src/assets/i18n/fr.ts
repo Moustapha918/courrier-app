@@ -57,7 +57,8 @@ export const locale = {
             VENTILATION                     : 'Ventiler',
             CLOSE                           : 'Clôturer',
             CLOSEMAIL                       : 'Clôture du courrier',
-            CLOSEMSGCONFIRMATION            : `Etes-vous sûr de vouloir clôturer ce courrier`,
+            CLOSEMSGCONFIRMATION            : `Etes-vous sûr de vouloir clôturer ce courrier ?`,
+            LOGOUT_CONFIRMATION            : `Etes-vous sûr de vouloir vous deconnecter ?`,
             CLOSECONFIRMATION               : 'Confirmation de clôture',
             SPECIFIC_INSTRUCTIONS           : 'Instructions particuliers',
             DISPLAY                         : 'Visualiser',
@@ -67,6 +68,7 @@ export const locale = {
             NOTIFICATION                    : 'Notification',
             YES                            : 'Oui',
             NO                             : 'No',
+            ATTENTION                      : 'Attention !'
 
 
         },
