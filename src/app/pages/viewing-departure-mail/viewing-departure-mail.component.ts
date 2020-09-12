@@ -12,6 +12,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {DialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {VisualizePdfComponent} from '../visualize-pdf/visualize-pdf.component';
+import {ArchiveModel} from '../../models/archive.model';
+import {ArchiveService} from '../../services/archive.service';
 
 @Component({
   selector: 'app-viewing-departure-mail',
@@ -25,7 +27,7 @@ export class ViewingDepartureMailComponent implements OnInit {
     mail: DepartureMailModel = new DepartureMailModel();
 
   constructor(public dialog: MatDialog,
-              private _fuseSidebarService: FuseSidebarService,
+              private _fuseSidebarService: FuseSidebarService, private archiveService: ArchiveService,
               private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
               private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
               private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService) { }
@@ -33,28 +35,56 @@ export class ViewingDepartureMailComponent implements OnInit {
   ngOnInit(): void {
       this.activatedRoute.params.subscribe(param => {
           console.log(param);
-          this.initMailService.getDepartureMail(param.id).subscribe(
+          if (param.archive === 'departure') {
 
-              departureMail => {
-                  // console.log(arrivedMail);
 
-                  this.mail = departureMail;
-                  console.log(this.mail);
-                  this.loadingService.closeSpinner();
+              this.initMailService.getDepartureMail(param.id).subscribe(
+                  departureMail => {
+                      // console.log(arrivedMail);
 
-              },
-              error => {
-                  console.log('Error ! : ' + error);
-                  const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
-                  const dialogData = new DialogModel('title', message);
-                  const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
-                      width: '4000px',
-                      data: dialogData
-                  });
-                  dialogRefError.afterClosed().subscribe(result => {
-                  });
-              }
-          );
+                      this.mail = departureMail;
+                      console.log(this.mail);
+                      this.loadingService.closeSpinner();
+
+                  },
+                  error => {
+                      console.log('Error ! : ' + error);
+                      const message = 'une erreur technique est survenue lors de la suppression de la direction.  Veuillez réessayer ultérieurement';
+                      const dialogData = new DialogModel('title', message);
+                      const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                          width: '4000px',
+                          data: dialogData
+                      });
+                      dialogRefError.afterClosed().subscribe(result => {
+                      });
+                  }
+              );
+          }
+          else{
+              this.archiveService.getArchiveMail(param.id).subscribe(
+                  (archiveMail: ArchiveModel) => {
+
+                      const archiveMailT = new ArchiveModel();
+                      Object.assign(archiveMailT, archiveMail);
+
+                      this.mail = archiveMailT.mapToDepartureMail();
+
+                      this.loadingService.closeSpinner();
+
+                  },
+                  error => {
+                      console.log('Error ! : ' + error);
+                      const message = 'Le courrier est introuvable.  Veuillez réessayer ultérieurement';
+                      const dialogData = new DialogModel('title', message);
+                      const dialogRefError = this.dialog.open(ErrorDilaogComponent, {
+                          width: '4000px',
+                          data: dialogData
+                      });
+                      dialogRefError.afterClosed().subscribe(result => {
+                      });
+                  }
+              );
+          }
       });
 
   }

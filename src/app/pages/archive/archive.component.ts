@@ -11,7 +11,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {LoadingService} from '../../services/loading.service';
 import {ErrorDilaogComponent} from '../error-dilaog/error-dilaog.component';
 import {fuseAnimations} from '../../../@fuse/animations';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -41,7 +41,8 @@ export class ArchiveComponent implements  OnInit {
 
   constructor(private archiveService: ArchiveService, public dialog: MatDialog,
               private route: ActivatedRoute,
-              private loadingService: LoadingService) { }
+              private loadingService: LoadingService,
+              private router: Router) { }
 
 
     ngOnInit(): void {
@@ -86,6 +87,15 @@ export class ArchiveComponent implements  OnInit {
           });
   }
 
+    showMailDetails(mail): void {
+      let lectureURL = '';
+      if (mail.type === 'arrived'){
+          lectureURL = '../lecture-mail/' + 'archive/' + mail.idEntry;
+      } else {
+          lectureURL = '../lecture-departuremail/' + 'archive/' + mail.idEntry;
+      }
+      this.router.navigate([lectureURL]);
+    }
 }
 
 export class FilesArchiveSource extends DataSource<any>
