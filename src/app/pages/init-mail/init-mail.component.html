@@ -18,33 +18,19 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                 <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+                    <mat-icon matSuffix class="disabled-text">folder</mat-icon>
                     <mat-label>{{ 'mail.DIRECTORY_ID' | translate }} </mat-label>
                     <input type="text"
-                           placeholder={{autoDirectory}}
-                           aria-label="Number"
                            matInput
                            formControlName="idDirectory"
-                           [matAutocomplete]="auto">
+                           [matAutocomplete]="auto" required>
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
+                            <option *ngIf="autoDirectory==option"  [ngValue]="option" >{{autoDirectory}} (Nouveau)</option>
+                            <option *ngIf="autoDirectory!=option"  [ngValue]="option" >{{option}}</option>
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-
-<!--                <mat-form-field appearance="outline" fxFlex="50" class="pr-4">-->
-
-<!--                    <mat-label>{{ 'mail.DIRECTORY_ID' | translate }} </mat-label>-->
-<!--&lt;!&ndash;                    <input matInput formControlName="idDirectory">&ndash;&gt;-->
-<!--                    <mat-select formControlName="idDirectory">-->
-<!--&lt;!&ndash;                        <mat-autocomplete #auto="matAutocomplete">&ndash;&gt;-->
-<!--                            <mat-option *ngFor="let option of listDirectories" [value]="option">-->
-<!--                                {{option}}-->
-<!--                            </mat-option>-->
-<!--&lt;!&ndash;                        </mat-autocomplete>&ndash;&gt;-->
-<!--                   </mat-select>-->
-<!--                    <mat-icon matSuffix class="disabled-text">folder</mat-icon>-->
-<!--                </mat-form-field>-->
 
                 <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
                     <mat-label>{{ 'mail.ID_ENTRY' | translate }} </mat-label>
