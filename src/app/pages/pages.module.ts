@@ -59,6 +59,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import {ArchiveService} from "../services/archive.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
+
 export function tokenGetter(): string{
     return localStorage.getItem('token');
 }
@@ -146,12 +147,12 @@ const routes = [
     },
 
     {
-        path     : 'lecture-departuremail/:id',
+        path     : 'lecture-departuremail/:archive/:id',
         component: ViewingDepartureMailComponent,
         canActivate: [AuthGuardService]
     },
     {
-        path     : 'lecture-mail/:id',
+        path     : 'lecture-mail/:archive/:id',
         component: ViewingEmailComponent,
         canActivate: [AuthGuardService]
     },
