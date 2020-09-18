@@ -56,7 +56,9 @@ import { InitDapartureMAilComponent } from './init-daparture-mail/init-daparture
 import { DepartureMailScComponent } from './departure-mail-sc/departure-mail-sc.component';
 import { ViewingDepartureMailComponent } from './viewing-departure-mail/viewing-departure-mail.component';
 import { ArchiveComponent } from './archive/archive.component';
-import {ArchiveService} from '../services/archive.service';
+import {ArchiveService} from "../services/archive.service";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
 
 export function tokenGetter(): string{
     return localStorage.getItem('token');
@@ -216,6 +218,7 @@ const routes = [
         }),
         MatExpansionModule,
         MatListModule,
+        MatAutocompleteModule,
     ],
     entryComponents: [SpinnerModalComponent, NewDirectionComponent,
         NewServiceEntityComponent, NewDepartementComponent, NewDivisionComponent,
