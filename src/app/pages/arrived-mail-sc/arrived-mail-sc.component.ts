@@ -73,6 +73,9 @@ export class ArrivedMailScComponent implements OnInit{
 
                 this.dataSource.filter = this.filter.nativeElement.value;
             });
+
+
+
     }
 }
 
@@ -212,7 +215,8 @@ export class FilesDataSource extends DataSource<any>
                     [propertyA, propertyB] = [a.sender, b.sender];
                     break;
                 case 'receptionDate':
-                    [propertyA, propertyB] = [a.receptionDate, b.receptionDate];
+
+                    [propertyA, propertyB] = [Date.parse(a.receptionDate), Date.parse(b.receptionDate)];
                     break;
             }
 
