@@ -223,6 +223,13 @@ export class ViewingEmailComponent implements OnInit {
             });
     }
 
+    ResponseToMAil(id): void{
+        let lectureURL;
+        lectureURL = '../new-departure-mail/' +  id;
+        // this.router.navigate(['new-departure-mail'], { queryParams: { idDirectory: id } });
+        this.router.navigate([lectureURL]);
+    }
+
     confirmCloseMail(): void {
         const message = this.translate.instant('mail.CLOSEMSGCONFIRMATION');
 

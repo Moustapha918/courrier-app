@@ -55,6 +55,7 @@ export const locale = {
             VENTILATION: 'التوزيع',
             CLOSE: 'إغلاق',
             CLOSEMAIL: 'إغلاق البريد',
+            ANSWER: 'رد علي البريد',
             CLOSEMSGCONFIRMATION: `هل أنت متأكد أنك تريد إغلاق هذا البريد ؟`,
             LOGOUT_CONFIRMATION: ` هل انت متؤكد من تسجيل الخروج ؟`,
             CLOSECONFIRMATION: 'تأكيد الإغلاق',

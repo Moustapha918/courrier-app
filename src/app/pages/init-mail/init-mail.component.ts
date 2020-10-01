@@ -38,6 +38,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
     filteredOptions: any;
 
 
+
     private _unsubscribeAll: Subject<any>;
 
     constructor(
@@ -51,6 +52,7 @@ export class InitMailComponent implements OnInit, OnDestroy {
         private referentialService: ReferentialService,
         private notificationService: NotificationService,
         public auth: AuthService,
+
         private dateAdapter: DateAdapter<Date>
 
     ) {
@@ -66,6 +68,8 @@ export class InitMailComponent implements OnInit, OnDestroy {
     // ],
 
     ngOnInit(): void {
+
+
 
 
         this.form = this._formBuilder.group({
