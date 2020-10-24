@@ -10,6 +10,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import {AuthService} from "../../../services/auth.service";
+import {ConfirmDialogComponent, DialogModel} from "../../../pages/confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {LoadingService} from "../../../services/loading.service";
 
 @Component({
     selector     : 'toolbar',
@@ -39,10 +42,13 @@ export class ToolbarComponent implements OnInit, OnDestroy
      * @param {TranslateService} _translateService
      */
     constructor(
+        public dialog: MatDialog,
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private authService: AuthService
+        private authService: AuthService,
+        private translate: TranslateService,
+        private loadingService: LoadingService
     )
     {
         
@@ -138,7 +144,23 @@ export class ToolbarComponent implements OnInit, OnDestroy
     }
 
     logout(): void{
-        this.authService.logout();
+
+        const message = this.translate.instant('mail.LOGOUT_CONFIRMATION');
+
+        const dialogData = new DialogModel(this.translate.instant('mail.ATTENTION'), message);
+
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '4000px',
+            data: dialogData
+        });
+        dialogRef.afterClosed().subscribe(result => {
+
+            if (result === true) {
+                this.loadingService.closeSpinner();
+                this.authService.logout();
+            }
+        });
+
     }
 }
 
