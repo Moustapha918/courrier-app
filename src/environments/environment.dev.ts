@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    hmr       : true,
+    dev       : true,
     backendUrl: 'https://admin-courrier.herokuapp.com'
 };
