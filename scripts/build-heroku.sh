@@ -1,9 +1,9 @@
 #!/bin/sh
 echo "NODE_ENV=" $NODE_ENV
 if [ "$NODE_ENV" == "production" ]; then
-    echo "Starting the server with node app"
+    echo "Starting production env"
     ng build --aot --prod
 else
-    echo "Starting the server using grunt"
-    ng build --aot --dev
+    echo "Starting  dev env"
+    ng build --aot --configuration=dev
 fi
