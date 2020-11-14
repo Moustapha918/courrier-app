@@ -162,7 +162,12 @@
                                 <div fxLayoutAlign="start" fxLayout="column" >
                                     <mat-checkbox *ngFor="let annotation of annotations" name="annotations"
                                                   class="app-checkbox"
-                                                  [(ngModel)]="annotation.value">{{translate.currentLang === 'fr' ? annotation.labelFR : annotation.labelAR }}
+                                                  [(ngModel)]="annotation.value">
+
+                                        {{chooseAnnotation(annotation)}}
+
+                                        <!--{{translate.currentLang === 'fr' ? annotation.labelFR : annotation.labelAR }}-->
+
                                     </mat-checkbox>
                                 </div>
                             </div>

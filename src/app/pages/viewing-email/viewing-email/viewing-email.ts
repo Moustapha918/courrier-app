@@ -16,6 +16,8 @@ import {LoadingService} from '../../../services/loading.service';
 import {NotificationService} from '../../../services/notification.service';
 import {ArchiveService} from '../../../services/archive.service';
 import {ArchiveModel} from '../../../models/archive.model';
+import {AnnotationModel} from '../../../models/annotation.model';
+
 
 
 @Component({
@@ -40,6 +42,7 @@ export class ViewingEmailComponent implements OnInit {
     codeDirectionList = [];
 
 
+
     /**
      * Constructor
      *
@@ -60,7 +63,9 @@ export class ViewingEmailComponent implements OnInit {
         this.referentialService.getAnnotations().subscribe(
             annotations =>
                 this.annotations = annotations
+
         );
+
 
 
         this.loadingService.displaySpinner();
@@ -170,7 +175,7 @@ export class ViewingEmailComponent implements OnInit {
 
         console.log(this.steps);
         this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
-                this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
+                this.router.navigate(['/arrivedMail-sc'], {relativeTo: this.activatedRoute});
                 this.loadingService.displaySpinner();
             },
             error => {
@@ -182,6 +187,16 @@ export class ViewingEmailComponent implements OnInit {
                     data: dialogData
                 });
             });
+    }
+
+    chooseAnnotation(annotation: AnnotationModel): string {
+        if (this.translate.currentLang === 'ar') {
+            return annotation.labelAR ;
+        }
+        else{
+            return annotation.labelFR ;
+        }
+
     }
 
     canConfirm(): boolean {
@@ -223,6 +238,8 @@ export class ViewingEmailComponent implements OnInit {
             });
     }
 
+
+
     confirmCloseMail(): void {
         const message = this.translate.instant('mail.CLOSEMSGCONFIRMATION');
 
@@ -241,5 +258,9 @@ export class ViewingEmailComponent implements OnInit {
         });
 
     }
+
+
+
+
 }
 
