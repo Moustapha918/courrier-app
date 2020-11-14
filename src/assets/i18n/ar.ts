@@ -85,6 +85,9 @@ export const locale = {
             DEPARTMENTS: 'Departement',
             MINISTEROFFICE: 'ديوان الوزير',
             GENERALSECRETARY: 'الأمانة العامة',
+            SG: 'الأمين العام',
+            DR: 'المدير',
+
 
             DIRECTION: 'الإدارة',
             ADDDIRECTION: 'إضافة إدارة',

@@ -88,7 +88,8 @@ export const locale = {
             DEPARTMENTS                      : 'Departement',
             MINISTEROFFICE                  : 'Cabinet du ministre',
             GENERALSECRETARY                : 'Secretariat Generale',
-
+            DR                              : 'Directeur',
+            SG                              : 'Secrétaire général',
 
             DIRECTION                       : 'direction',
             ADDDIRECTION                    : 'Ajouter une direction',
