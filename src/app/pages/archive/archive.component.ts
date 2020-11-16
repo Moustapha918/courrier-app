@@ -89,7 +89,7 @@ export class ArchiveComponent implements  OnInit {
 
     showMailDetails(mail): void {
       let lectureURL = '';
-      if (mail.type === 'arrived'){
+      if (mail.type === 'ARRIVED'){
           lectureURL = '../lecture-mail/' + 'archive/' + mail.idEntry;
       } else {
           lectureURL = '../lecture-departuremail/' + 'archive/' + mail.idEntry;
@@ -232,7 +232,7 @@ export class FilesArchiveSource extends DataSource<any>
                     [propertyA, propertyB] = [a.sender, b.sender];
                     break;
                 case 'receptionDate':
-                    [propertyA, propertyB] = [a.receptionDate, b.receptionDate];
+                    [propertyA, propertyB] = [Date.parse(a.receptionDate), Date.parse(b.receptionDate)];
                     break;
             }
 

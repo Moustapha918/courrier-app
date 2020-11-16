@@ -218,7 +218,7 @@ export class FilesDeparturesSource extends DataSource<any>
                     [propertyA, propertyB] = [a.sender, b.sender];
                     break;
                 case 'receptionDate':
-                    [propertyA, propertyB] = [a.receptionDate, b.receptionDate];
+                    [propertyA, propertyB] = [Date.parse(a.receptionDate), Date.parse(b.receptionDate)];
                     break;
             }
 
