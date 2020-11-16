@@ -17,6 +17,7 @@ import {NotificationService} from '../../../services/notification.service';
 import {ArchiveService} from '../../../services/archive.service';
 import {ArchiveModel} from '../../../models/archive.model';
 import {AnnotationModel} from '../../../models/annotation.model';
+import {ApplicationUserModel} from '../../../models/applicationUser';
 
 
 
@@ -212,6 +213,24 @@ export class ViewingEmailComponent implements OnInit {
     translateLabel(ventilation: any): string {
         return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
 
+    }
+
+    translateFunction(user: ApplicationUserModel): string{
+        if (user.fonction === 'FONCTION_SG') {
+            return this.translate.instant('REFERENTIAL.SG');
+        }
+        if (user.fonction === 'FONCTION_DIRECTEUR') {
+
+            return user.codeDirection + ' : ' + this.translate.instant('REFERENTIAL.DR');
+        }
+        if (user.fonction === 'FONCTION_CS') {
+
+            return user.codeService + ' : ' + this.translate.instant('REFERENTIAL.CS');
+        }
+        if (user.fonction === 'FONCTION_CD') {
+
+            return user.codeDivision + ' : ' + this.translate.instant('REFERENTIAL.CD');
+        }
     }
 
     closeMail(): void {

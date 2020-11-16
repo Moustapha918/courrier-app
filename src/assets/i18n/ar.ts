@@ -87,6 +87,8 @@ export const locale = {
             GENERALSECRETARY: 'الأمانة العامة',
             SG: 'الأمين العام',
             DR: 'المدير',
+            CS: 'رئيس المصلحة',
+            CD: 'رئيس القسم',
 
 
             DIRECTION: 'الإدارة',
