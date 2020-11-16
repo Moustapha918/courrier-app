@@ -24,10 +24,10 @@
 
                                 <mat-expansion-panel-header>
                                     <div class="header">
-                                        <div class="playerOne" *ngIf="mailStep.type === 'Initiation'">   {{ 'VIEWINGMAIL.INITMAIL' | translate }} </div>
-                                        <div class="playerOne" *ngIf="mailStep.type === 'Annotation'"> {{ 'VIEWINGMAIL.ANNOT_VENT' | translate }}  </div>
-                                        <div class="playerOne" *ngIf="mailStep.type === 'Terminate'"> {{ 'mail.CLOSEMAIL' | translate }}  </div>
-                                        <div class="playerTwo   ">  {{mailStep.dateHandling}} </div>
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Initiation'">   <strong>{{ 'VIEWINGMAIL.INITMAIL' | translate }}</strong> </div>
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Annotation'"> <strong>{{ 'VIEWINGMAIL.ANNOT_VENT' | translate }} </strong> </div>
+                                        <div class="playerOne" *ngIf="mailStep.type === 'Terminate'"> <strong>{{ 'mail.CLOSEMAIL' | translate }} </strong>  </div>
+                                        <div class="playerTwo   ">  <strong>{{mailStep.dateHandling}} </strong></div>
                                     </div>
 
                                 </mat-expansion-panel-header>
@@ -35,7 +35,7 @@
                                 <mat-list>
                                     <strong> <a>{{ 'VIEWINGMAIL.USER' | translate }}</a> </strong>
                                     <mat-divider></mat-divider>
-                                    <mat-list-item > {{mailStep.user.fonction}} : {{mailStep.user.firstName}}  {{mailStep.user.lastName}}</mat-list-item>
+                                    <mat-list-item > {{translateFunction(mailStep.user)}}</mat-list-item>
 
                                     <ng-container *ngIf="mailStep.type && mailStep.annotations?.length > 0">
                                         <strong > <a>{{ 'mail.ANNOTATION' | translate }}</a> </strong>
@@ -48,7 +48,7 @@
                                     <ng-container *ngIf="mailStep.ventilations && mailStep.ventilations?.length > 0">
                                         <strong> <a>{{ 'mail.VENTILATION' | translate }} </a> </strong>
                                         <mat-divider></mat-divider>
-                                        <mat-list-item lass="instructions-area" *ngFor="let ventilation of mailStep.ventilations">{{translateLabel(ventilation)}}</mat-list-item>
+                                        <mat-list-item lass="instructions-area" *ngFor="let ventilation of mailStep.ventilations">{{ventilation.code + ' : ' + translateLabel(ventilation)}}</mat-list-item>
                                     </ng-container>
 
                                     <ng-container *ngIf="mailStep.specificInstructions">
