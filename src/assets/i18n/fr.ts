@@ -53,8 +53,8 @@ export const locale = {
             ATTACH_FILE                     : 'Importer un fichier ici',
             MAIL_INFORMATION                : 'Informations du courrier',
             ANNOTATION_VENTILATION          : 'Annoter et ventiler',
-            ANNOTATION                      : 'Annoter',
-            VENTILATION                     : 'Ventiler',
+            ANNOTATION                      : 'Annotation',
+            VENTILATION                     : 'Ventilation',
             CLOSE                           : 'Clôturer',
             CLOSEMAIL                       : 'Clôture du courrier',
             CLOSEMSGCONFIRMATION            : `Etes-vous sûr de vouloir clôturer ce courrier ?`,
@@ -88,7 +88,10 @@ export const locale = {
             DEPARTMENTS                      : 'Departement',
             MINISTEROFFICE                  : 'Cabinet du ministre',
             GENERALSECRETARY                : 'Secretariat Generale',
-
+            DR                              : 'Directeur',
+            SG                              : 'Secrétaire général',
+            CS                              : 'Chef service',
+            CD                              : 'Chef division',
 
             DIRECTION                       : 'direction',
             ADDDIRECTION                    : 'Ajouter une direction',
