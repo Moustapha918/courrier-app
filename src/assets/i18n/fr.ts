@@ -56,6 +56,7 @@ export const locale = {
             ANNOTATION                      : 'Annotation',
             VENTILATION                     : 'Ventilation',
             CLOSE                           : 'Clôturer',
+            ANSWER                          : 'Répondre',
             CLOSEMAIL                       : 'Clôture du courrier',
             CLOSEMSGCONFIRMATION            : `Etes-vous sûr de vouloir clôturer ce courrier ?`,
             LOGOUT_CONFIRMATION            : `Etes-vous sûr de vouloir vous deconnecter ?`,

@@ -7,8 +7,10 @@
 export const environment = {
     production: false,
     hmr       : false,
+
     // backendUrl: 'http://localhost:8080'
     backendUrl: 'https://ppd-demat-courrier.herokuapp.com'
+
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -18,4 +20,3 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dis t/zone-error';  // Included with Angular CLI.
-
