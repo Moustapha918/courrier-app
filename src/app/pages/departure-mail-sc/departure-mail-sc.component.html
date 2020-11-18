@@ -52,7 +52,7 @@
                 <!-- ID Column -->
 
                 <ng-container matColumnDef="idEntry">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.ID_ENTRY' | translate }} </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> <a>{{ 'mail.ID_ENTRY' | translate }} </a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         {{Mail.idEntry}}
                     </mat-cell>
@@ -60,7 +60,7 @@
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="subject">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.OBJET' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         {{Mail.subject}}
                     </mat-cell>
@@ -68,7 +68,7 @@
 
                 <!-- expediteur -->
                 <ng-container matColumnDef="receiver">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.RECEIVER' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.RECEIVER' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         {{Mail.receiver}}
                     </mat-cell>
@@ -76,7 +76,7 @@
 
                 <!-- Date -->
                 <ng-container matColumnDef="departureDate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATESEND' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.DATESEND' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         {{Mail.departureDate}}
                     </mat-cell>

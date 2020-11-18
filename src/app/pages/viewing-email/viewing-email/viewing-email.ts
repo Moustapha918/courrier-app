@@ -16,6 +16,9 @@ import {LoadingService} from '../../../services/loading.service';
 import {NotificationService} from '../../../services/notification.service';
 import {ArchiveService} from '../../../services/archive.service';
 import {ArchiveModel} from '../../../models/archive.model';
+import {AnnotationModel} from '../../../models/annotation.model';
+import {ApplicationUserModel} from '../../../models/applicationUser';
+
 
 
 @Component({
@@ -40,6 +43,7 @@ export class ViewingEmailComponent implements OnInit {
     codeDirectionList = [];
 
 
+
     /**
      * Constructor
      *
@@ -60,7 +64,9 @@ export class ViewingEmailComponent implements OnInit {
         this.referentialService.getAnnotations().subscribe(
             annotations =>
                 this.annotations = annotations
+
         );
+
 
 
         this.loadingService.displaySpinner();
@@ -170,7 +176,7 @@ export class ViewingEmailComponent implements OnInit {
 
         console.log(this.steps);
         this.initMailService.annotateAndVentilate(this.mail, this.steps).subscribe(data => {
-                this.router.navigate(['../../arrivedMail-sc'], {relativeTo: this.activatedRoute});
+                this.router.navigate(['/arrivedMail-sc'], {relativeTo: this.activatedRoute});
                 this.loadingService.displaySpinner();
             },
             error => {
@@ -182,6 +188,16 @@ export class ViewingEmailComponent implements OnInit {
                     data: dialogData
                 });
             });
+    }
+
+    chooseAnnotation(annotation: AnnotationModel): string {
+        if (this.translate.currentLang === 'ar') {
+            return annotation.labelAR ;
+        }
+        else{
+            return annotation.labelFR ;
+        }
+
     }
 
     canConfirm(): boolean {
@@ -197,6 +213,24 @@ export class ViewingEmailComponent implements OnInit {
     translateLabel(ventilation: any): string {
         return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
 
+    }
+
+    translateFunction(user: ApplicationUserModel): string{
+        if (user.fonction === 'FONCTION_SG') {
+            return this.translate.instant('REFERENTIAL.SG');
+        }
+        if (user.fonction === 'FONCTION_DIRECTEUR') {
+
+            return user.codeDirection + ' : ' + this.translate.instant('REFERENTIAL.DR');
+        }
+        if (user.fonction === 'FONCTION_CS') {
+
+            return user.codeService + ' : ' + this.translate.instant('REFERENTIAL.CS');
+        }
+        if (user.fonction === 'FONCTION_CD') {
+
+            return user.codeDivision + ' : ' + this.translate.instant('REFERENTIAL.CD');
+        }
     }
 
     closeMail(): void {
@@ -223,12 +257,14 @@ export class ViewingEmailComponent implements OnInit {
             });
     }
 
+
     ResponseToMAil(id): void{
         let lectureURL;
         lectureURL = '../new-departure-mail/' +  id;
         // this.router.navigate(['new-departure-mail'], { queryParams: { idDirectory: id } });
         this.router.navigate([lectureURL]);
     }
+
 
     confirmCloseMail(): void {
         const message = this.translate.instant('mail.CLOSEMSGCONFIRMATION');
@@ -248,5 +284,9 @@ export class ViewingEmailComponent implements OnInit {
         });
 
     }
+
+
+
+
 }
 

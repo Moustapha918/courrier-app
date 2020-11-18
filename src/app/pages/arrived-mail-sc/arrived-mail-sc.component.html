@@ -57,7 +57,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="idEntry">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'mail.ID_ENTRY' | translate }} </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> <a>{{ 'mail.ID_ENTRY' | translate }}</a> </mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate" *ngIf="Mail.treated === false"><strong>{{Mail.idEntry}}</strong></p>
                         <p class="text-truncate" *ngIf="Mail.treated === true">{{Mail.idEntry}}</p>
@@ -66,7 +66,7 @@
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="subject">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.OBJET' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.OBJET' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate" *ngIf="Mail.treated === false"><strong>{{Mail.subject}}</strong></p>
                         <p class="text-truncate" *ngIf="Mail.treated === true">{{Mail.subject}}</p>
@@ -75,7 +75,7 @@
 
                 <!-- expediteur -->
                 <ng-container matColumnDef="sender">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.EXPEDITEUR' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.EXPEDITEUR' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate" *ngIf="Mail.treated === false"><strong>{{Mail.sender}}</strong></p>
                         <p class="text-truncate" *ngIf="Mail.treated === true">{{Mail.sender}}</p>
@@ -84,7 +84,7 @@
 
                 <!-- Date -->
                 <ng-container matColumnDef="receptionDate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'mail.DATE' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><a>{{ 'mail.DATE' | translate }}</a></mat-header-cell>
                     <mat-cell *matCellDef="let Mail">
                         <p class="text-truncate" *ngIf="Mail.treated === false"><strong>{{Mail.receptionDate}}</strong></p>
                         <p class="text-truncate" *ngIf="Mail.treated === true">{{Mail.receptionDate}}</p>
