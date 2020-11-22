@@ -31,6 +31,7 @@ export class AuthService {
       return this.httpClient.post<HttpResponse<any>>(this.loginUrl,
           {username: username.toLocaleLowerCase(), password: password},
           {observe: 'response'});
+
     }
 
     public logout(): void{

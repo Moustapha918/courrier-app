@@ -26,8 +26,10 @@
                            [matAutocomplete]="auto" required>
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+
                             <option *ngIf="autoDirectory==option"  [ngValue]="option" >{{autoDirectory}} (Nouveau)</option>
                             <option *ngIf="autoDirectory!=option"  [ngValue]="option" >{{option}}</option>
+
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>

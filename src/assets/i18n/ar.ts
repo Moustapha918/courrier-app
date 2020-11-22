@@ -55,6 +55,7 @@ export const locale = {
             VENTILATION: 'التوزيع',
             CLOSE: 'إغلاق',
             CLOSEMAIL: 'إغلاق البريد',
+            ANSWER: 'رد علي البريد',
             CLOSEMSGCONFIRMATION: `هل أنت متأكد أنك تريد إغلاق هذا البريد ؟`,
             LOGOUT_CONFIRMATION: ` هل انت متؤكد من تسجيل الخروج ؟`,
             CLOSECONFIRMATION: 'تأكيد الإغلاق',
@@ -85,6 +86,11 @@ export const locale = {
             DEPARTMENTS: 'Departement',
             MINISTEROFFICE: 'ديوان الوزير',
             GENERALSECRETARY: 'الأمانة العامة',
+            SG: 'الأمين العام',
+            DR: 'المدير',
+            CS: 'رئيس المصلحة',
+            CD: 'رئيس القسم',
+
 
             DIRECTION: 'الإدارة',
             ADDDIRECTION: 'إضافة إدارة',
