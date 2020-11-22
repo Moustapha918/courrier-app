@@ -8,6 +8,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import {ApplicationUserModel} from '../../../../../models/applicationUser';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector     : 'navbar-vertical-style-1',
@@ -37,7 +38,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _router: Router
+        private _router: Router,
+        private translateService: TranslateService
     )
     {
         // Set the private defaults
@@ -134,6 +136,24 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    translateFunction(user: ApplicationUserModel): string{
+        if (user.fonction === 'FONCTION_SG') {
+            return this.translateService.instant('REFERENTIAL.SG');
+        }
+        if (user.fonction === 'FONCTION_DIRECTEUR') {
+
+            return user.codeDirection + ' : ' + this.translateService.instant('REFERENTIAL.DR');
+        }
+        if (user.fonction === 'FONCTION_CS') {
+
+            return user.codeService + ' : ' + this.translateService.instant('REFERENTIAL.CS');
+        }
+        if (user.fonction === 'FONCTION_CD') {
+
+            return user.codeDivision + ' : ' + this.translateService.instant('REFERENTIAL.CD');
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------

@@ -54,7 +54,7 @@ export class ViewingEmailComponent implements OnInit {
         private _fuseSidebarService: FuseSidebarService,
         private activatedRoute: ActivatedRoute, private  initMailService: InitMailService,
         private _formBuilder: FormBuilder, private router: Router, private loadingService: LoadingService,
-        private matDialog: MatDialog, private referentialService: ReferentialService, public translate: TranslateService,
+        private matDialog: MatDialog, private referentialService: ReferentialService, public translateService: TranslateService,
         private notifyService: NotificationService, private notificationService: NotificationService, private archiveService: ArchiveService
     ) {
     }
@@ -66,8 +66,14 @@ export class ViewingEmailComponent implements OnInit {
                 this.annotations = annotations
 
         );
-
-
+        /*this.translateService.onLangChange.subscribe(param =>
+        {
+            if (this.annotations){
+                this.annotations.forEach(annotation =>
+                    annotation.label =
+                        param.lang === 'fr' ? annotation.labelFR : annotation.labelAR);
+            }
+        });*/
 
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
@@ -191,7 +197,7 @@ export class ViewingEmailComponent implements OnInit {
     }
 
     chooseAnnotation(annotation: AnnotationModel): string {
-        if (this.translate.currentLang === 'ar') {
+        if (this.translateService.currentLang === 'ar') {
             return annotation.labelAR ;
         }
         else{
@@ -211,25 +217,25 @@ export class ViewingEmailComponent implements OnInit {
     }
 
     translateLabel(ventilation: any): string {
-        return this.translate.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
+        return this.translateService.currentLang === 'ar' ? ventilation.labelAR : ventilation.labelFR;
 
     }
 
     translateFunction(user: ApplicationUserModel): string{
         if (user.fonction === 'FONCTION_SG') {
-            return this.translate.instant('REFERENTIAL.SG');
+            return this.translateService.instant('REFERENTIAL.SG');
         }
         if (user.fonction === 'FONCTION_DIRECTEUR') {
 
-            return user.codeDirection + ' : ' + this.translate.instant('REFERENTIAL.DR');
+            return user.codeDirection + ' : ' + this.translateService.instant('REFERENTIAL.DR');
         }
         if (user.fonction === 'FONCTION_CS') {
 
-            return user.codeService + ' : ' + this.translate.instant('REFERENTIAL.CS');
+            return user.codeService + ' : ' + this.translateService.instant('REFERENTIAL.CS');
         }
         if (user.fonction === 'FONCTION_CD') {
 
-            return user.codeDivision + ' : ' + this.translate.instant('REFERENTIAL.CD');
+            return user.codeDivision + ' : ' + this.translateService.instant('REFERENTIAL.CD');
         }
     }
 
@@ -267,9 +273,9 @@ export class ViewingEmailComponent implements OnInit {
 
 
     confirmCloseMail(): void {
-        const message = this.translate.instant('mail.CLOSEMSGCONFIRMATION');
+        const message = this.translateService.instant('mail.CLOSEMSGCONFIRMATION');
 
-        const dialogData = new DialogModel(this.translate.instant('mail.CLOSECONFIRMATION'), message);
+        const dialogData = new DialogModel(this.translateService.instant('mail.CLOSECONFIRMATION'), message);
 
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             maxWidth: '4000px',
