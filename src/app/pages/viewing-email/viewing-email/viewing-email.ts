@@ -66,14 +66,14 @@ export class ViewingEmailComponent implements OnInit {
                 this.annotations = annotations
 
         );
-        this.translateService.onLangChange.subscribe(param =>
+        /*this.translateService.onLangChange.subscribe(param =>
         {
             if (this.annotations){
                 this.annotations.forEach(annotation =>
                     annotation.label =
                         param.lang === 'fr' ? annotation.labelFR : annotation.labelAR);
             }
-        });
+        });*/
 
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
