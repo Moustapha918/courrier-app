@@ -8,8 +8,8 @@ export const environment = {
     production: false,
     hmr       : false,
 
-    backendUrl: 'http://localhost:8080'
-    // backendUrl: 'https://ppd-demat-courrier.herokuapp.com'
+    // backendUrl: 'http://localhost:8080'
+    backendUrl: 'https://ppd-demat-courrier.herokuapp.com'
 
 };
 /*
