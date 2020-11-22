@@ -20,7 +20,7 @@ export const fuseConfig: FuseConfig = {
             secondaryBackground: 'fuse-navy-900',
             folded             : false,
             hidden             : false,
-            position           : 'left',
+            position           : 'right',
             variant            : 'vertical-style-1'
         },
         toolbar  : {

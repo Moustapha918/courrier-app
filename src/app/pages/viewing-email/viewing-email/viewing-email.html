@@ -157,16 +157,16 @@
                         <form fxLayout="column">
 
                             <ng-template matStepLabel> <a> {{ 'mail.ANNOTATION' | translate }} </a> </ng-template>
-                            <div fxLayoutAlign="space-between space-between" fxLayout="row" *ngIf="translate.currentLang === 'fr'">
+                            <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
                                 <div fxLayoutAlign="start" fxLayout="column" >
                                     <mat-checkbox *ngFor="let annotation of annotations" name="annotations"
                                                   class="app-checkbox"
                                                   [(ngModel)]="annotation.value">
 
-                                        {{chooseAnnotation(annotation)}}
+                                        <!--{{annotation.label }}-->
 
-                                        <!--{{translate.currentLang === 'fr' ? annotation.labelFR : annotation.labelAR }}-->
+                                        {{chooseAnnotation(annotation)}}
 
                                     </mat-checkbox>
                                 </div>
@@ -207,7 +207,7 @@
                             <div fxLayoutAlign="space-between space-between" fxLayout="row">
 
 
-                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'ar'">
+                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translateService.currentLang === 'ar'">
 
                                     <mat-checkbox *ngFor="let direction of ventilationList" name="directions"
                                                   class="app-checkbox"
@@ -215,7 +215,7 @@
                                                   [(ngModel)]="direction.value"> {{direction.code}} - {{direction.labelAR}}
                                     </mat-checkbox>
                                 </div>
-                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translate.currentLang === 'fr'">
+                                <div fxLayoutAlign="start" fxLayout="column"*ngIf="translateService.currentLang === 'fr'">
 
                                     <mat-checkbox *ngFor="let direction of ventilationList" name="directions"
                                                   class="app-checkbox"
