@@ -8,6 +8,7 @@ import { hmrBootstrap } from 'hmr';
 if ( environment.production )
 {
     enableProdMode();
+    console.log(environment);
 }
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
@@ -23,6 +24,9 @@ if ( environment.hmr )
         console.error('HMR is not enabled for webpack-dev-server!');
         console.log('Are you using the --hmr flag for ng serve?');
     }
+}else if ( environment.dev )
+{
+    bootstrap();
 }
 else
 {

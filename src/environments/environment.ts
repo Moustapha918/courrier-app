@@ -7,6 +7,7 @@
 export const environment = {
     production: false,
     hmr       : false,
+    dev       : false,
     // backendUrl: 'http://localhost:8080'
     backendUrl: 'https://ppd-demat-courrier.herokuapp.com'
 };
