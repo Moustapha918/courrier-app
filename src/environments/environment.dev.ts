@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    hmr       : true,
-    dev       : false,
+    dev       : true,
+    hmr       : false,
     backendUrl: 'https://admin-courrier.herokuapp.com'
 };
