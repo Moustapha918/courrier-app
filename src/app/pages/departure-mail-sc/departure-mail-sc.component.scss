@@ -116,20 +116,20 @@ app-departure-mail-sc {
             }
         }
 
-        .mat-column-instance {
-            flex: 0 1 80px;
+        .mat-column-idEntry {
+            flex: 0 1 15%;
         }
 
-        .mat-column-price {
-            flex: 0 1 160px;
+        .mat-column-subject {
+            flex: 0 1 40%;
         }
 
-        .mat-column-quantity {
-            flex: 0 1 160px;
+        .mat-column-receiver {
+            flex: 0 1 40%;
         }
 
-        .mat-column-active {
-            flex: 0 1 80px;
+        .mat-column-departureDate {
+            flex: 0 1 15%;
         }
 
         .quantity-indicator {

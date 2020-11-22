@@ -120,16 +120,19 @@ app-arrived-mail-sc {
             flex: 0 1 80px;
         }
 
-        .mat-column-price {
+        .mat-column-idEntry {
             flex: 0 1 160px;
         }
-
-        .mat-column-quantity {
-            flex: 0 1 160px;
+        .mat-column-subject {
+            flex: 0 1 460px;
         }
 
-        .mat-column-active {
-            flex: 0 1 80px;
+        .mat-column-sender {
+            flex: 0 1 460px;
+        }
+
+        .mat-column-receptionDate {
+            flex: 0 1 160px;
         }
 
         .quantity-indicator {
