@@ -5,10 +5,10 @@ if [ "$NODE_ENV" == "production" ]; then
     ng build --aot --configuration=prod
 else
     if [ "$NODE_ENV" == "dev" ]; then
-    echo "Starting production env"
+    echo "Starting dev env"
     ng build --configuration=dev
-    fi
-
+    else
     echo "Starting  hmr env"
     ng build --aot --configuration=hmr
+    fi
 fi
