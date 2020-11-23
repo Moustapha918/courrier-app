@@ -139,6 +139,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     }
 
     translateFunction(user: ApplicationUserModel): string{
+        if (!user || user.fonction == null)
+            return '';
         if (user.fonction === 'FONCTION_SG') {
             return this.translateService.instant('REFERENTIAL.SG');
         }
