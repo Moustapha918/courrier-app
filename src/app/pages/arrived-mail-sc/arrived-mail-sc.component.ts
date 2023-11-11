@@ -73,9 +73,6 @@ export class ArrivedMailScComponent implements OnInit{
 
                 this.dataSource.filter = this.filter.nativeElement.value;
             });
-
-
-
     }
 }
 

@@ -77,7 +77,6 @@ export class ViewingEmailComponent implements OnInit {
 
         this.loadingService.displaySpinner();
         this.activatedRoute.params.subscribe(param => {
-            console.log(param.archive);
 
 
             if (param.archive === 'arrived') {

@@ -82,8 +82,6 @@ export class NewCabinetMinstreComponent implements OnInit {
 
     validateMinisterOffice(): void {
 
-        console.log(this.form.getRawValue());
-
         this.referentialService.sendMinisterOfficeFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
@@ -116,8 +114,6 @@ export class NewCabinetMinstreComponent implements OnInit {
     }
 
     updateMisterOffice(): void {
-
-        console.log(this.form.getRawValue());
 
         this.referentialService.updateMinisterOffice(this.form.getRawValue())
             .subscribe(

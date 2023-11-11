@@ -3,7 +3,7 @@ export const locale = {
     data: {
         NAV: {
             APPLICATIONS: 'Applications',
-            ARRIVED: 'Courrier arrivé',
+            ARRIVED: 'Gestion electornique des documents',
             LIST: 'Liste des courrier (en instance)',
             NEWMAIIL: 'Creer un courrier',
             DEPARTURE: 'Courrier Départ',
@@ -19,6 +19,7 @@ export const locale = {
             ARCHIVE                         : 'Archive',
             CHERCHER_COURRIER               : 'Chercher un courrier',
             AJOUTER_COURRIER                : 'Ajouter un courrier',
+            ADD_ARCHIVE                     : 'Ajouter un archive',
             NUMERO_ENTREE                   : 'N° d’entrée',
             OBJET                           : 'Objet',
             EXPEDITEUR                      : 'Expediteur',
@@ -28,6 +29,7 @@ export const locale = {
             DATE_CREATION                   : 'Date de création',
             DATESEND                        : 'Date d\'envoi',
             CREATE_MAIL                     : 'Créer un courrier arrivé',
+            CREATE_ARCHIVE                  : 'AJOUTER UN ARCHIVE',
             CREATE_MAIL_DEPARTURE           : 'Créer un courrier depart',
             MAIL_DATE                       : 'Date de reception du courrier',
             MAIL_DATE_DEPARTURE             : 'Date d\'envoi du courrier',

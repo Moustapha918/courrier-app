@@ -124,9 +124,7 @@ export class NewServiceEntityComponent implements OnInit {
 
     validateServiceEntity(): void {
 
-        console.log(this.form.getRawValue());
-
-        this.referentialService.sendServiceEntityFormToBackend(this.form.getRawValue())
+       this.referentialService.sendServiceEntityFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
                     this.dialogRef.close();
@@ -159,8 +157,6 @@ export class NewServiceEntityComponent implements OnInit {
     }
 
     updateServiceEntity(): void {
-
-        console.log(this.form.getRawValue());
 
         this.referentialService.updateServiceEntity(this.form.getRawValue())
             .subscribe(

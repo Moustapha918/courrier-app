@@ -95,8 +95,6 @@ export class NewDepartementComponent implements OnInit {
 
     validateDepartment(): void {
 
-        console.log(this.form.getRawValue());
-
         this.referentialService.sendDepartementFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
@@ -112,8 +110,6 @@ export class NewDepartementComponent implements OnInit {
     }
 
     updateDepartment(): void {
-
-        console.log(this.form.getRawValue());
 
         this.referentialService.updateDepartement(this.form.getRawValue())
             .subscribe(

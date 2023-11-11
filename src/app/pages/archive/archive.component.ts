@@ -49,8 +49,6 @@ export class ArchiveComponent implements  OnInit {
 
       this.user = JSON.parse(localStorage.getItem('user'));
 
-
-
       this.archiveService.onArchiveMailsChanged.subscribe( (data) => {
               this.loadingService.closeSpinner();
           },
@@ -63,7 +61,6 @@ export class ArchiveComponent implements  OnInit {
           }
       );
 
-      console.log(this.route.snapshot.data.data);
       this.dataSource = new FilesArchiveSource(this.archiveService, this.paginator, this.sort);
 
       const archiveMails = this.route.snapshot.data['data'];

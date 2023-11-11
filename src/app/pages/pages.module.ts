@@ -58,6 +58,7 @@ import { ViewingDepartureMailComponent } from './viewing-departure-mail/viewing-
 import { ArchiveComponent } from './archive/archive.component';
 import {ArchiveService} from '../services/archive.service';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ImportArchiveComponent } from './archive/import-archive/import-archive.component';
 
 
 export function tokenGetter(): string{
@@ -128,6 +129,11 @@ const routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path     : 'new-archive',
+        component: ImportArchiveComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path     : 'new-departure-mail',
         component: InitDapartureMAilComponent,
         canActivate: [AuthGuardService]
@@ -177,7 +183,7 @@ const routes = [
         NewSecretaireGeneraleComponent,
         ViewingEmailComponent, ReferentialComponent, DirectionComponent, NewDirectionComponent, ServiceEntityComponent,
         DivisionComponent, DepartementComponent, NewServiceEntityComponent, NewDivisionComponent, NewDepartementComponent, ConfirmDialogComponent, ViewingEmailComponent,
-        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent, InitDapartureMAilComponent, DepartureMailScComponent, ViewingDepartureMailComponent, ArchiveComponent
+        VisualizePdfComponent, SpinnerModalComponent, ErrorDilaogComponent, InitDapartureMAilComponent, DepartureMailScComponent, ViewingDepartureMailComponent, ArchiveComponent, ImportArchiveComponent
 
     ],
     exports: [

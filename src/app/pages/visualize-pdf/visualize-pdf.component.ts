@@ -6,6 +6,7 @@ import {FileUploadService} from '../../services/file-upload.service';
 import {NotificationService} from '../../services/notification.service';
 import {TranslateService} from '@ngx-translate/core';
 import {DepartureMailModel} from '../../models/departure-mail.model';
+import {PDFDocumentProxy} from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-visualize-pdf',
@@ -17,6 +18,8 @@ export class VisualizePdfComponent implements OnInit {
     arrivedMail: ArrivedMailModel;
     departureMail: DepartureMailModel;
     type: string;
+    isPdfLoaded = false;
+    private pdf: PDFDocumentProxy;
 
   constructor(public dialogRef: MatDialogRef<VisualizePdfComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -61,4 +64,24 @@ export class VisualizePdfComponent implements OnInit {
       }
   }
 
+    onLoaded($event: PDFDocumentProxy): void{
+        this.pdf = $event;
+        this.isPdfLoaded = true;
+
+    }
+
+    print(): void{
+        this.pdf.getData().then((u8) => {
+            const blob = new Blob([u8.buffer], {
+                type: 'application/pdf'
+            });
+
+            const blobUrl = window.URL.createObjectURL((blob));
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = blobUrl;
+            document.body.appendChild(iframe);
+            iframe.contentWindow.print();
+        });
+    }
 }

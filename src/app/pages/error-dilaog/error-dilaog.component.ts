@@ -26,7 +26,6 @@ export class ErrorDilaogComponent implements OnInit {
 
         // Close the dialog, return true
         this.dialogRef.close(true);
-        console.log(this.message);
         if (this.message === 'Le courrier est introuvable.  Veuillez réessayer ultérieurement'){
             this.router.navigate(['arrivedMail-sc']);
         }

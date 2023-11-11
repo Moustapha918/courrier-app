@@ -122,8 +122,6 @@ export class NewDivisionComponent implements OnInit {
 
     validateDivision(): void {
 
-        console.log(this.form.getRawValue());
-
         this.referentialService.sendDivisionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
@@ -155,8 +153,6 @@ export class NewDivisionComponent implements OnInit {
     }
 
     updateDivision(): void {
-
-        console.log(this.form.getRawValue());
 
         this.referentialService.updateDivision(this.form.getRawValue())
             .subscribe(

@@ -13,6 +13,8 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 export class ArchiveService implements Resolve<any>{
     getAllArchiveURI = environment.backendUrl + '/archive/all';
     getArchiveMAilByIdURI = environment.backendUrl + '/archive/';
+    addArchiveMAilByIdURI = environment.backendUrl + '/archive/add';
+    uploadScanFileURI = environment.backendUrl + '/mailing/arrived/upload-scan';
 
     onArchiveMailsChanged: BehaviorSubject<any>;
 
@@ -36,9 +38,14 @@ export class ArchiveService implements Resolve<any>{
 
     getArchiveMail(idEntry: string): Observable<ArchiveModel> {
         if (!idEntry){
-
         }
         return this.httpClient
             .get<ArchiveModel>(this.getArchiveMAilByIdURI + idEntry) ;
+    }
+
+    addArchiveMail(archiveMail: ArchiveModel): Observable<void>{
+        return this.httpClient
+            .post<void>(this.addArchiveMAilByIdURI, archiveMail);
+
     }
 }

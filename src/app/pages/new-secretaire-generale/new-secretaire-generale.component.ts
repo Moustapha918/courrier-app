@@ -83,8 +83,6 @@ export class NewSecretaireGeneraleComponent implements OnInit {
 
     validateGeneralSecretary(): void {
 
-        console.log(this.form.getRawValue());
-
         this.referentialService.sendGeneralSecretaryFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {

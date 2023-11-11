@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit
     }
 
     login(): void {
-        console.log(this.loginForm.value);
+
         const spinner = this.loadingService.displaySpinner();
         this.authService.login(this.loginForm.value['username'], this.loginForm.value['password']).subscribe(
             (res) => {
@@ -83,7 +83,6 @@ export class LoginComponent implements OnInit
                 this.notificationService.openSnackBar(this.translate.instant('LOGIN.LOGIN_ERROR'),
                     this.translate.instant('mail.NOTIFICATION'));
                 spinner.close();
-                console.log(error.status);
 
             });
     }

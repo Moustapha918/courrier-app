@@ -27,7 +27,12 @@
 
 
             <!-- / SEARCH -->
-
+            <!-- ADD BUTTON -->
+            <button mat-raised-button *ngIf="user.fonction=='FONCTION_SG'"
+                    [routerLink]="'../new-archive'">
+                <span>{{ 'mail.ADD_ARCHIVE' | translate }}</span>
+            </button>
+            <!-- / ADD BUTTON -->
 
 
         </div>

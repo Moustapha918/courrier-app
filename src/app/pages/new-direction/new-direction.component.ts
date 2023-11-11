@@ -100,9 +100,6 @@ export class NewDirectionComponent implements OnInit {
 
     validateDirection(): void {
 
-        console.log(this.form.getRawValue());
-
-
         this.referentialService.sendDirectionFormToBackend(this.form.getRawValue())
             .subscribe(
                 () => {
@@ -136,9 +133,6 @@ export class NewDirectionComponent implements OnInit {
     }
 
     updateDirection(): void {
-
-        console.log(this.form.getRawValue());
-
 
         this.referentialService.updateDirection(this.form.getRawValue())
             .subscribe(

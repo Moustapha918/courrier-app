@@ -1,11 +1,10 @@
 <div class="pdf-container">
 
-
-
+    <button (click)="print()" [disabled]="!isPdfLoaded">Print</button>
     <pdf-viewer [src]="pdfSrc"
                 [render-text]="true"
+                (after-load-complete)="onLoaded($event)"
                 style="display: block;"
     ></pdf-viewer>
-
 
 </div>
