@@ -5,11 +5,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
+    production: true,
     hmr       : false,
     dev       : false,
     // backendUrl: 'http://localhost:8080'
-    backendUrl: 'https://ppd-demat-courrier.herokuapp.com'
+    backendUrl: 'https://desolate-bastion-03055-398588e863e9.herokuapp.com'
 };
 /*
  * For easier debugging in development mode, you can import the following file
